@@ -14,7 +14,7 @@
       <div class="flex lg:flex-1">
         <a href="/" class="-m-1.5 p-1.5"> 
           <span class="sr-only">Your Company</span>
-          <img class="w-[250px] h-[86px]" src="bibitani.ico" alt="logobibitani">
+          <img class="w-[250px] h-[86px]" src="{{ asset('../bibitani.ico') }}"alt="logobibitani">
         </a>
       </div>
       <div class="lg:flex lg:gap-x-12">

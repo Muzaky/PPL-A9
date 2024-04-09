@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\C_Pengajuan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +19,12 @@ Route::get('/', function () {
     return view('landing');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::get('/register', function () {
+    return view('auth.register');
+});
 
 Route::get('dashboard', [App\Http\Controllers\DinasController::class, 'index'])->name('dashboard'); 
 
@@ -26,15 +32,19 @@ Route::get('dashboard', [App\Http\Controllers\DinasController::class, 'index'])-
 
 Route::get('berita_list', [App\Http\Controllers\BeritaController::class, 'index'])->name('berita.list');
 Route::get('landingberita', [App\Http\Controllers\BeritaController::class, 'landing'])->name('berita.landing');
-// Route::get('berita/{id_berita}', [App\Http\Controllers\BeritaController::class, 'show'])->name('berita.detail');
+Route::get('berita/detail/{id}', [App\Http\Controllers\BeritaController::class, 'show'])->name('berita.detail');
 Route::get('berita_list/create', [App\Http\Controllers\BeritaController::class, 'create'])->name('berita.create');
 Route::post('berita/store', [App\Http\Controllers\BeritaController::class, 'store'])->name('berita.store');
-Route::get('berita/{id_berita}/edit', [App\Http\Controllers\BeritaController::class, 'edit'])->name('berita.edit');
-Route::put('berita/{id_berita}/update', [App\Http\Controllers\BeritaController::class, 'update'])->name('berita.update');
-Route::delete('berita/{id_berita}/destroy', [App\Http\Controllers\BeritaController::class, 'destroy'])->name('berita.destroy');
+Route::get('berita_list/{id}', [App\Http\Controllers\BeritaController::class, 'edit'])->name('berita.edit');
+Route::put('berita/{id}/update', [App\Http\Controllers\BeritaController::class, 'update'])->name('berita.update');
+Route::delete('berita_list/{id}', [App\Http\Controllers\BeritaController::class, 'destroy'])->name('berita.destroy');
+// Route::get('berita/edit', [App\Http\Controllers\BeritaController::class, 'edit'])->name('berita.edit');
+// Route::delete('berita/{id_berita}/destroy', [App\Http\Controllers\BeritaController::class, 'destroy'])->name('berita.destroy');
+
+//Routing Pengajuan
 
 
-//Routing Dinas Dashboard
+Route::post('pengajuan/store', [C_Pengajuan::class, 'store'])->name('pengajuan.store');
 
 // Route::get('berita', [App\Http\Controllers\BeritaController::class, 'index'])->name('berita.list');
 // Route::get('landingdinas', [App\Http\Controllers\BeritaController::class, 'landing'])->name('berita.landing');
@@ -44,4 +54,3 @@ Route::delete('berita/{id_berita}/destroy', [App\Http\Controllers\BeritaControll
 // Route::get('berita/{id_berita}/edit', [App\Http\Controllers\BeritaController::class, 'index'])->name('berita.edit');
 // Route::put('berita/{id_berita}/update', [App\Http\Controllers\BeritaController::class, 'index'])->name('berita.update');
 // Route::get('berita/{id_berita}/destroy', [App\Http\Controllers\BeritaController::class, 'index'])->name('berita.destroy');
-

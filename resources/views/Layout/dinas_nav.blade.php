@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/@heroicons/react/outline.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet"
-        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fort[]awesome/fontawesome-free/css/all.min.css">
         <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 </head>
 
@@ -23,7 +23,7 @@
         <!-- Sidebar -->
         <div class="flex flex-col bg-transparent 0 w-80">
             <div class="flex justify-center items-center">
-                <img class="w-[250px] h-[86px] mt-[32px] mb-[88px]" src="../bibitani.ico" alt="logobibitani">
+                <img class="w-[250px] h-[86px] mt-[32px] mb-[88px]" src="{{ asset('../bibitani.ico') }}" alt="logobibitani">
             </div>
 
             <div class="">

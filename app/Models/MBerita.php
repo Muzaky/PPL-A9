@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class MBerita extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory;
 
     protected $guarded = [];
 

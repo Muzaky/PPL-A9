@@ -2,29 +2,29 @@
 
 namespace App\Models;
 
-use App\Traits\Uuids;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class MBerita extends Model
+class MPengajuan extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory;
 
     protected $guarded = [];
 
-    protected $table = 'pengajuan_pemberian_bantuan';
+    protected $table = 'pengajuan';
 
     protected $primaryKey = "id_pengajuan";
     protected $fillable = [
         "id_pengajuan",
-        'judul',
-        'proposal',
-        'id_kelompoktani',
-        'status_pengajuan',
+        'tanggal_pengajuan',
+        'berkas_pengajuan',
+        'status_validasi',
+        'catatan_validasi',
         'keterangan',
     ] ;
     static function getData(){
-        return DB::table('pengajuan_pemberian_bantuan');
+        return DB::table('pengajuan');
     }
 }
