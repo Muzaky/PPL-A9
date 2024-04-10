@@ -51,10 +51,10 @@ class C_Auth extends Controller
         $request->validate([
             'username' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6',
         ]);
         User::create([
-            'username' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
