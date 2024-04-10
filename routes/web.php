@@ -31,6 +31,13 @@ Route::get('/registrasi', function () {
     return view('registrasi.create');
 });
 
+Route::get('/homepage', function () {
+    return view('kelompoktani.homepage');
+});
+
+Route::get('/registertani', function () {
+    return view('registrasi.create');
+});
 
 Route::get('login', [C_Auth::class, 'login'])->name('login');
 Route::post('login', [C_Auth::class, 'authenticate'])->name('authenticate');

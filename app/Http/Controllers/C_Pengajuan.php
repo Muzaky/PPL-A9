@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\C_Auth;
 use App\Http\Controllers\Controller;
 use App\Models\MPengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class C_Pengajuan extends Controller
 {
@@ -48,8 +50,18 @@ class C_Pengajuan extends Controller
 
     public function store(Request $request)
     {
+        $id_kelompoktani = $request->session()->get('id_kelompoktani');
+        
+    
+
     $request->validate([
+        // $userid = Auth::user()->id,
         'berkas_pengajuan' => 'file|mimes:pdf',
+        'id_kelompoktani'=> $id_kelompoktani,
+        'id_informasi'=> $request->input('id_informasi') ,
+        'nama_informasi'=> $request->input('nama_informasi') ,
+        // 'id_informasi'=> ,
+
     ]);
 
     $data = [

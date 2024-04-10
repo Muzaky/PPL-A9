@@ -86,6 +86,9 @@
                                     <input type="file" name="berkas_pengajuan"  id="berkas_pengajuan"
                                         class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan File">
+                                    </input>
+                                    <input type="hidden" name="id_informasi" value="{{ $data->id_informasi }}">
+                                    <input type="hidden" name="nama_informasi" value="{{ $data->nama_informasi }}">
                                 </div>
                             </div>
             

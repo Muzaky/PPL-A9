@@ -27,4 +27,8 @@ class MBerita extends Model
     static function getData(){
         return DB::table('kelompoktani');
     }
+
+    static function getSession($id_kelompoktani){
+        session(['id_kelompoktani'=> $id_kelompoktani]);
+    }
 }

@@ -27,6 +27,9 @@ class C_Auth extends Controller
         } else {
             return redirect('login')->with('error', 'Email atau Kata sandi salah !');
         }
+
+        
+
     }
 
     public function logout(Request $request)
