@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\C_Pengajuan;
+use App\Http\Controllers\C_Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,17 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
+
+Route::get('/registrasi', function () {
+    return view('registrasi.create');
+});
+
+
+Route::get('login', [C_Auth::class, 'login'])->name('login');
+Route::post('login', [C_Auth::class, 'authenticate'])->name('authenticate');
+Route::get('logout', [C_Auth::class, 'logout'])->name('logout');
+Route::get('register', [C_Auth::class, 'form_register'])->name('auth.register');
+Route::post('register', [C_Auth::class, 'register'])->name('register');
 
 Route::get('dashboard', [App\Http\Controllers\DinasController::class, 'index'])->name('dashboard'); 
 

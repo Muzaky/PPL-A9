@@ -87,6 +87,7 @@ class C_Pengajuan extends Controller
             'jumlah_bibit' => 'required',
             'syarat_ketentuan' => 'required',
             'kontak_narahubung' => 'required',
+            
             'gambar_informasi' => 'file|mimes:pdf,jpg,jpeg,svg,png',
         ]);
     

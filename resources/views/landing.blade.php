@@ -29,12 +29,16 @@
       </div>
       <div class="lg:flex lg:gap-x-12">
         <a href="/" class="font-semibold leading-6 text-gray-900" style="font-size:20px">Home</a>
-        <a href="{{route('berita.landing')}}" class="font-semibold leading-6 text-gray-900" style="font-size:20px">Berita</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900" style="font-size:20px">Pengajuan</a>
+        <a href="{{route('berita.landing')}}" class="font-semibold leading-6 text-gray-900" style="font-size:20px">About Us</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900" style="font-size:20px">Address</a>
       </div>
       <div class=" lg:flex lg:flex-1 lg:justify-end">
-        <a href="/login" class="flex justify-center text-sm font-semibold leading-6 text-gray-900 mx-8" style="font-size:20px; width: 128px; height:44px;background-color:#204E51; color:#f4f4f4; align-items: center;border-radius:8px">Login</a>
-        <a href="/register" class="flex justify-center text-sm font-semibold leading-6 text-gray-900" style="font-size:20px; width: 128px; height:44px;background-color:#f4f4f4; color:#204E51; align-items: center;border-radius:8px; border :1px solid #204E51">Register</a>
+        @if(Auth::check())
+        <a href="{{ route('logout') }}" class="flex justify-center text-sm font-semibold leading-6 text-gray-900 mx-8" style="font-size:20px; width: 128px; height:44px;background-color:#204E51; color:#f4f4f4; align-items: center;border-radius:8px">Logout</a>
+        @else
+        <a href="/login" class="flex justify-center font-semibold leading-6  mx-8 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]" >Masuk</a>
+        <a href="/register" class="flex justify-center text-sm font-semibold leading-6 text-gray-900" style="font-size:20px; width: 128px; height:44px;background-color:#f4f4f4; color:#204E51; align-items: center;border-radius:8px; border :1px solid #204E51">Daftar</a>
+        @endif
       </div>
     </nav>
     <div class="relative isolate px-6 lg:px-8 bg-cover h-screen" style="background-image: url(image_1.png); background-size: cover;background-repeat: no-repeat; max-height: 86vh;" >

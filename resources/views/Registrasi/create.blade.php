@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="bibitani.ico">
-    <title>Login</title>
+    <title>Bibitani | Registrasi Kelompok Tani</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -28,36 +28,47 @@
                         <div class="px-4 md:px-0 lg:w-6/12">
                             <div class="md:mx-6 md:p-12 flex flex-col">
                                 <!--Logo-->
-                                <div class="text-center">
-                                    <img class="mx-auto w-90 my-12" src="../bibitani.ico" alt="logo" />
-
-                                </div>
+                               
+                                <p class="mb-[10px] text-[36px] font-bold font-[Open Sans] text-wrap w-[300px]">Register Kelompok <font style="color: #53C341">Tani</font></p>
 
                                 <form class="flex flex-col">
-                                    <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Register</p>
-                                    <small class="mb-[36px] text-[#B9B8B8] ">Register here using your username, email, and
-                                        password</small>
                                     <!--Username input-->
-                                    <div class=" mb-4">
-                                        <label class="block mb-2 font-semibold text-[20px]">
-                                            Username
-                                        </label>
-                                        <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="text"
-                                            placeholder="Username" id="username" name="username" />
+                                    <div class=" mb-[23px] mt-[45px]">
+                                        {{-- <label class="block mb-2 font-semibold text-[20px]">
+                                            Nama Kelompok Tani
+                                        </label> --}}
+                                        <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none" type="text"
+                                            placeholder="Nama Kelompok Tani" />
                                     </div>
-                                    <div class=" mb-4">
-                                        <label class="block mb-2 font-semibold text-[20px]">
-                                            Password
-                                        </label>
-                                        <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="password"
-                                            placeholder="Password" id="password" name="password" />
+                                    <div class=" mb-[23px]">
+                                        {{-- <label class="block mb-2 font-semibold text-[20px]">
+                                            Luas Hamparan
+                                        </label> --}}
+                                        <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none " type="password"
+                                            placeholder="Luas Hamparan" />
                                     </div>
-                                    <div class=" mb-4">
-                                        <label class="block mb-2 font-semibold text-[20px]">
-                                            Email
+                                    <div class=" mb-[23px]">
+                                        {{-- <label class="block mb-2 font-semibold text-[20px]">
+                                            Jumlah Anggota
+                                        </label> --}}
+                                        <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none " type="text"
+                                            placeholder="Jumlah Anggota" />
+                                    </div>
+                                    <div class=" mb-[23px]">
+                                        {{-- <label class="block mb-2 font-semibold text-[20px]">
+                                            Lokasi Kelompok Tani
+                                        </label> --}}
+                                        <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none " type="text"
+                                            placeholder="Lokasi Kelompok Tani" />
+                                    </div>
+                                    <div class=" mb-[23px]">
+                                        {{-- <label class="block mb-2 font-light text-[20px] text-neutral-400">
+                                            Bukti Legalitas
                                         </label>
-                                        <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="text"
-                                            placeholder="Email" id="email" name="password"/>
+                                        <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none " type="file"
+                                            placeholder="Bukti Legalitas" /> --}}
+
+                                        <input type="file">
                                     </div>
 
                                     <!--Password input-->
@@ -66,7 +77,7 @@
                                     <!--Submit button-->
                                     <div class="pb-1 pt-1 text-center">
                                         <button class=" bg-[#204E51] p-3 rounded px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]" type="button">
-                                            Register
+                                            Kirim
                                         </button>
 
                                         <!--Forgot password link-->
