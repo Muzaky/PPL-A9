@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Contracts\Session\Session;
+use App\Models\MRegistrasi;
+
 
 class C_Auth extends Controller
 {
@@ -21,10 +22,13 @@ class C_Auth extends Controller
 
     public function authenticate(Request $request)
     {
+        
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            // dd(session()->all());
-            return redirect('/homepage');
+            //dd(session()->all());
+            $user = MRegistrasi::Cid_users();
+            // dd($user);
+            return view('kelompoktani.homepage', ['user' => $user]);
         } else {
             return redirect('login')->with('error', 'Email atau Kata sandi salah !');
         }

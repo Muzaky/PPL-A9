@@ -77,4 +77,17 @@ class C_Registrasi extends Controller
             return redirect()->back()->with('error', 'An error occurred while saving the data. Please try again later.');
         }
     }
+    public function show($id){
+        $data = MRegistrasi::find($id);
+        return view('registrasi.show', ['data' => $data]);
+    }
+    public function edit($id){
+        $data = MRegistrasi::find($id);
+        return view('registrasi.edit', ['data' => $data]);
+    }
+    public function update(Request $request, $id){
+        $data = MRegistrasi::find($id);
+        $data->update($request->all());
+        return redirect()->route('registrasi.list');
+    }
 }

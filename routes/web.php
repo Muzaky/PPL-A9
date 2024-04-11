@@ -77,8 +77,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/homepage', function () {return view('kelompoktani.homepage');});
     Route::get('landingberita', [App\Http\Controllers\BeritaController::class, 'landing'])->name('berita.landing');
     Route::get('berita/detail/{id}', [App\Http\Controllers\BeritaController::class, 'show'])->name('berita.detail');
+
     Route::get('registrasitani/create', [C_Registrasi::class, 'create'])->name('registrasi.create');
     Route::post('registrasitani/store', [C_Registrasi::class, 'store'])->name('registrasi.store');
+    Route::get('registrasitani/{id}/edit', [C_Registrasi::class, 'edit'])->name('registrasi.edit');
+    Route::post('registrasitani/{id}/show', [C_Registrasi::class, 'show'])->name('registrasi.show');
 
 });
 

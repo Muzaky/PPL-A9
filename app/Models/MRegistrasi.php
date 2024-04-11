@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MRegistrasi extends Model
 {
@@ -34,6 +35,11 @@ class MRegistrasi extends Model
 
     static function getById($id_registrasi){
         return static::find($id_registrasi);
+    }
+    static function Cid_users(){
+        return DB::table('registrasi')
+        ->where('id_users', Auth::user()->id)
+        ->count();
     }
 
 }
