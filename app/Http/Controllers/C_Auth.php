@@ -23,7 +23,7 @@ class C_Auth extends Controller
     {
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-            return view('landing');
+            return view('kelompoktani.homepage');
         } else {
             return redirect('login')->with('error', 'Email atau Kata sandi salah !');
         }
@@ -40,7 +40,7 @@ class C_Auth extends Controller
 
         $request->session()->regenerateToken(); // Menghasilkan token sesi baru
 
-        return redirect('/')->with('status', 'You have been logged out successfully.'); // Redirect ke halaman utama dengan pesan sukses
+        return redirect('/landing')->with('status', 'You have been logged out successfully.'); // Redirect ke halaman utama dengan pesan sukses
     }
 
     public function form_register()

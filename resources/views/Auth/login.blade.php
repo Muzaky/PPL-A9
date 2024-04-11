@@ -12,7 +12,7 @@
 </head>
 
 <body class="flex justify-center items-center">
-    <form action="{{url('login')}}" method="post">
+    <form action="{{ url('homepage') }}" method="post">
         @method('POST')
         @csrf
         <div class="container h-full p-10 ">
@@ -20,7 +20,7 @@
                 <div class="w-full">
                     <!-- Container -->
                     <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800 relative">
-                        <a href="/" class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
+                        <a href="{{ url('landing') }}" class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
                             aria-label="Close">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

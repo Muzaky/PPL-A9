@@ -12,46 +12,53 @@
     @vite('resources/css/app.css')
 </head>
 <body class="flex flex-col justify-center items-center h-screen">
-    <div class="flex justify-center items-center flex-row h-[266px] w-[1707px] mt-10 bg-[#f4f4f4]">
-        <div class="flex flex-col bg-gray-500 h-full w-full font-bold justify-center">
-            <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap">Registrasi Kelompok Tani</div>
-            <div class="flex ml-[64px] text-[20px]">Lakukan registrasi untuk mengakses semua fitur BibiTani</div>
+    <div class="flex justify-center items-center flex-row h-[466px] w-[1707px] mt-10 bg-image">
+        <style>
+            .bg-image {
+              background-image: url('../images/Component.png');  background-repeat: no-repeat;  background-size: cover;       }
+          </style>  
+        <div class="flex flex-col bg-transparent h-full w-full font-bold justify-center">
+            <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap text-white">Registrasi Kelompok Tani</div>
+            <div class="flex ml-[64px] text-[20px] text-white">Lakukan registrasi untuk mengakses semua fitur BibiTani</div>
         </div>
-        <div class="flex flex-row bg-gray-600 h-full w-[600px] items-center justify-center ">
-            <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[12px] justify-center items-center " href="/registertani">Register</a>
-            <a class="flex py-2 text-[20px] ml-4 w-[120px] bg-white rounded-[12px] justify-center items-center font-bold" href="/registertani">Logout</a>
+        <div class="flex flex-row bg-transparent h-full w-[1000px] items-center justify-center ">
+            <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center " href="/registertani">Register</a>
+            @if(Auth::check())
+            <a class="flex py-2 text-[20px] ml-4 w-[120px] bg-white rounded-[4px] justify-center items-center font-bold" href="{{ route('logout') }}">Logout</a>
+            @else
+            <a class="flex py-2 text-[20px] ml-4 w-[120px] bg-white rounded-[4px] justify-center items-center font-bold" href="{{ route('login') }}">Login</a>
+            @endif
         </div>
     </div>
 
-    <div class="flex flex-col h-full w-[1707px] bg-black items-center">
-        <h1 class="flex text-white">Fitur Bibitani</h1>
+    <div class="flex flex-col h-full w-[1707px]  items-center">
+        <h1 class="flex text-black my-10 text-[50px] font-bold">Fitur Bibitani</h1>
         <div class="flex flex-row">
-            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center" href="">
+            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center" href="{{ route('berita.landing') }}">
                 <div class="flex flex-col items-center">
-
-                    <img class="flex w-[100px] h-[100px]" src="{{ asset('images/newspaper.png') }}" alt="">
-                    <h1 class="flex text-[20px] font-bold mt-8">Pemberitahuan</h1>  
+                    <img class="flex w-[150px] h-[150px]" src="{{ asset('images/newspaper.png') }}" alt="">
+                    <h1 class="flex text-[20px] font-bold mt-4">Pemberitahuan</h1>  
                 </div>
             </a>
-            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center" href="">
+            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center" href="">
                 <div class="flex flex-col items-center">
 
-                    <img class="flex w-[100px] h-[100px]" src="{{ asset('images/newspaper.png') }}" alt="">
-                    <h1 class="flex text-[20px] font-bold mt-8">Pemberitahuan</h1>  
+                    <img class="flex w-[150px] h-[197px]" src="{{ asset('images/Cog.png') }}" alt="">
+                    <h1 class="flex text-[20px] font-bold -mt-4 text-center">Bantuan Bibit Hortikultura</h1>  
                 </div>
             </a>
-            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center" href="">
+            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center" href="">
                 <div class="flex flex-col items-center">
 
-                    <img class="flex w-[100px] h-[100px]" src="{{ asset('images/newspaper.png') }}" alt="">
-                    <h1 class="flex text-[20px] font-bold mt-8">Pemberitahuan</h1>  
+                    <img class="flex w-[150px] h-[150px]" src="{{ asset('images/Document.png') }}" alt="">
+                    <h1 class="flex text-[20px] font-bold mt-4">Pelaporan</h1>  
                 </div>
             </a>
-            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center" href="">
+            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center" href="">
                 <div class="flex flex-col items-center">
 
-                    <img class="flex w-[100px] h-[100px]" src="{{ asset('images/newspaper.png') }}" alt="">
-                    <h1 class="flex text-[20px] font-bold mt-8">Pemberitahuan</h1>  
+                    <img class="flex w-[150px] h-[150px]" src="{{ asset('images/Chat.png') }}" alt="">
+                    <h1 class="flex text-[20px] font-bold mt-4">Ulasan</h1>  
                 </div>
             </a>
             

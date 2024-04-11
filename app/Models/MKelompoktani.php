@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class MBerita extends Model
+class MKelompoktani extends Model
 {
     use HasFactory, Uuids;
 

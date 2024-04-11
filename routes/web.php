@@ -16,7 +16,7 @@ use App\Http\Controllers\C_Auth;
 
 
 
-Route::get('/', function () {
+Route::get('/landing', function () {
     return view('landing');
 });
 
@@ -40,7 +40,7 @@ Route::get('/registertani', function () {
 });
 
 Route::get('login', [C_Auth::class, 'login'])->name('login');
-Route::post('login', [C_Auth::class, 'authenticate'])->name('authenticate');
+Route::post('homepage', [C_Auth::class, 'authenticate'])->name('authenticate');
 Route::get('logout', [C_Auth::class, 'logout'])->name('logout');
 Route::get('register', [C_Auth::class, 'form_register'])->name('auth.register');
 Route::post('register', [C_Auth::class, 'register'])->name('register');
@@ -73,3 +73,12 @@ Route::post('pengajuan/store', [C_Pengajuan::class, 'store'])->name('pengajuan.s
 // Route::get('berita/{id_berita}/edit', [App\Http\Controllers\BeritaController::class, 'index'])->name('berita.edit');
 // Route::put('berita/{id_berita}/update', [App\Http\Controllers\BeritaController::class, 'index'])->name('berita.update');
 // Route::get('berita/{id_berita}/destroy', [App\Http\Controllers\BeritaController::class, 'index'])->name('berita.destroy');
+
+
+// Route::group(['middleware' => ['auth']], function() {
+//     Route::get('/homepage', function () {
+//         return view('kelompoktani.homepage');
+//     });
+    
+    
+// });
