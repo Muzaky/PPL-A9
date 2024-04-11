@@ -39,15 +39,15 @@
 
                                     <form class="flex flex-col">
                                         <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Login</p>
-                                        <small class="mb-[46px] text-[#B9B8B8] ">Login here using your username and
+                                        <small class="mb-[46px] text-[#B9B8B8] ">Login here using your email and
                                             password</small>
                                         <!--Username input-->
                                         <div class=" mb-4">
                                             <label class="block mb-2 font-semibold text-[20px]">
-                                                Username
+                                                Email
                                             </label>
                                             <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="text"
-                                                placeholder="Username" id="username" name="username" />
+                                                placeholder="Username" id="email" name="email" />
                                         </div>
                                         <div class=" mb-4">
                                             <label class="block mb-2 font-semibold text-[20px]">

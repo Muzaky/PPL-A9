@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('registrasi', function (Blueprint $table) {
             $table->id('id_registrasi');
-            $table->string('nama_keltani');
-            $table->string('nama_ketua');
-            $table->string('luas_hamparan');
-            $table->integer('jumlah_anggota');
-            $table->string('alamat_keltani');
+            $table->string('nama_keltani')->nullable();
+            $table->string('nama_ketua')->nullable();
+            $table->string('luas_hamparan')->nullable();
+            $table->integer('jumlah_anggota')->nullable();
+            $table->string('alamat_keltani')->nullable();
             $table->string('bukti_legalitas')->nullable();
             $table->date('tanggal_validasi')->nullable();
             $table->string('catatan_validasi')->nullable();
-            $table->integer('id_kelompoktani');
-            $table->integer('id_kecamatan');
-            $table->string('status_validasi')->default('0');
+            $table->integer('id_users')->nullable();
+            $table->string('nama_kecamatan')->nullable();
+            $table->integer('status_validasi')->default(1);
             $table->timestamps();
         });
     }

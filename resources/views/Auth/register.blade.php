@@ -42,10 +42,10 @@
                                         <!--Username input-->
                                         <div class=" mb-4">
                                             <label class="block mb-2 font-semibold text-[20px]">
-                                                Username
+                                                Name
                                             </label>
                                             <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="text"
-                                                placeholder="Username" id="username" name="username"/>
+                                                placeholder="Name" id="name" name="name"/>
                                         </div>
                                         <div class=" mb-4">
                                             <label class="block mb-2 font-semibold text-[20px]">

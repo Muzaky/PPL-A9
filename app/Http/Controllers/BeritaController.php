@@ -13,6 +13,7 @@ class BeritaController extends Controller
 
     public function landing()
     {
+        // dd(auth()->user());
         $data = MBerita::getData()->paginate(10);
         //return json_encode($data);
         return view(
@@ -30,7 +31,9 @@ class BeritaController extends Controller
         );
     }
 
-    public function show($id){
+    public function show($id)
+    {
+        // dd(auth()->user());
         $data = MBerita::getById($id);
         return view(
             'Berita.viewberita',
@@ -84,43 +87,43 @@ class BeritaController extends Controller
     //             'gambar_informasi' => $nama_file,
     //         ]);
     //     }
-        
+
     //     return redirect()->route('berita.list');
     // }
     public function store(Request $request)
-{
-    $request->validate([
-        'judul_informasi' => 'required',
-        'nama_bibit' => 'required',
-        'tgl_awal' => 'required',
-        'tgl_akhir' => 'required',
-        'jumlah_bibit' => 'required',
-        'syarat_ketentuan' => 'required',
-        'kontak_narahubung' => 'required',
-        'gambar_informasi' => 'file|mimes:pdf,jpg,jpeg,svg,png',
-    ]);
+    {
+        $request->validate([
+            'judul_informasi' => 'required',
+            'nama_bibit' => 'required',
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required',
+            'jumlah_bibit' => 'required',
+            'syarat_ketentuan' => 'required',
+            'kontak_narahubung' => 'required',
+            'gambar_informasi' => 'file|mimes:pdf,jpg,jpeg,svg,png',
+        ]);
 
-    $data = [
-        'judul_informasi' => $request->judul_informasi,
-        'nama_bibit' => $request->nama_bibit,
-        'tgl_awal' => $request->tgl_awal,
-        'tgl_akhir' => $request->tgl_akhir,
-        'jumlah_bibit' => $request->jumlah_bibit,
-        'syarat_ketentuan' => $request->syarat_ketentuan,
-        'kontak_narahubung' => $request->kontak_narahubung,
-    ];
+        $data = [
+            'judul_informasi' => $request->judul_informasi,
+            'nama_bibit' => $request->nama_bibit,
+            'tgl_awal' => $request->tgl_awal,
+            'tgl_akhir' => $request->tgl_akhir,
+            'jumlah_bibit' => $request->jumlah_bibit,
+            'syarat_ketentuan' => $request->syarat_ketentuan,
+            'kontak_narahubung' => $request->kontak_narahubung,
+        ];
 
-    if ($request->hasFile('gambar_informasi')) {
-        $file = $request->file('gambar_informasi');
-        $nama_file = $file->getClientOriginalName();
-        $file->move('img', $nama_file);
-        $data['gambar_informasi'] = $nama_file;
+        if ($request->hasFile('gambar_informasi')) {
+            $file = $request->file('gambar_informasi');
+            $nama_file = $file->getClientOriginalName();
+            $file->move('img', $nama_file);
+            $data['gambar_informasi'] = $nama_file;
+        }
+
+        MBerita::create($data);
+
+        return redirect()->route('berita.list');
     }
-
-    MBerita::create($data);
-
-    return redirect()->route('berita.list');
-}
 
     public function edit(Request $request, $id_informasi)
     {
@@ -143,7 +146,7 @@ class BeritaController extends Controller
             'kontak_narahubung' => 'required',
             'gambar_informasi' => 'file|mimes:pdf,jpg,jpeg,svg,png',
         ]);
-    
+
         $data = [
             'judul_informasi' => $request->judul_informasi,
             'nama_bibit' => $request->nama_bibit,
@@ -153,7 +156,7 @@ class BeritaController extends Controller
             'syarat_ketentuan' => $request->syarat_ketentuan,
             'kontak_narahubung' => $request->kontak_narahubung,
         ];
-    
+
         if ($request->hasFile('gambar_informasi')) {
             $file = $request->file('gambar_informasi');
             $nama_file = $file->getClientOriginalName();
@@ -171,8 +174,6 @@ class BeritaController extends Controller
         $destroy = MBerita::getById($id_informasi);
         $destroy->delete();
         return redirect()->route('berita.list')
-            ->with('success','Berita telah didelete');
+            ->with('success', 'Berita telah didelete');
     }
-
-    
 }

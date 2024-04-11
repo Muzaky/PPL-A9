@@ -1,7 +1,10 @@
 @extends('Layout.nav')
-
+{{-- @dd(Auth::user()) --}}
+{{-- @if (session()->has('success')) --}}
 @section('content')
 <section>
+  {{-- @dd(Auth::user()) --}}
+  {{-- @if (session()->has('success')) --}}
   <div class="container my-6 mx-auto md:px-6">
     <!-- Section: Design Block -->
     <section class="mb-32 text-center md:text-left">
@@ -50,5 +53,6 @@
 
 
 @endsection
+{{-- @endif --}}
 
   

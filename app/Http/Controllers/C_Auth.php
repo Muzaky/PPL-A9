@@ -21,9 +21,10 @@ class C_Auth extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return view('kelompoktani.homepage');
+            // dd(session()->all());
+            return redirect('/homepage');
         } else {
             return redirect('login')->with('error', 'Email atau Kata sandi salah !');
         }
@@ -52,15 +53,16 @@ class C_Auth extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
         User::create([
-            'username' => $request->username,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
+        
 
         return redirect('login');
     }

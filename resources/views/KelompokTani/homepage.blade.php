@@ -12,6 +12,8 @@
     @vite('resources/css/app.css')
 </head>
 <body class="flex flex-col justify-center items-center h-screen">
+    {{-- @dd(auth()->user()->username)  --}}
+    {{-- {{ Auth::check() ? 'Authenticated' : 'Not Authenticated' }} --}}
     <div class="flex justify-center items-center flex-row h-[466px] w-[1707px] mt-10 bg-image">
         <style>
             .bg-image {
@@ -22,7 +24,7 @@
             <div class="flex ml-[64px] text-[20px] text-white">Lakukan registrasi untuk mengakses semua fitur BibiTani</div>
         </div>
         <div class="flex flex-row bg-transparent h-full w-[1000px] items-center justify-center ">
-            <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center " href="/registertani">Register</a>
+            <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center " href="{{ route('registrasi.create') }}">Register</a>
             @if(Auth::check())
             <a class="flex py-2 text-[20px] ml-4 w-[120px] bg-white rounded-[4px] justify-center items-center font-bold" href="{{ route('logout') }}">Logout</a>
             @else
