@@ -22,13 +22,16 @@ class C_Auth extends Controller
 
     public function authenticate(Request $request)
     {
-        
+        // $id = MRegistrasi::getData();
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             //dd(session()->all());
-            $user = MRegistrasi::Cid_users();
-            // dd($user);
-            return view('kelompoktani.homepage', ['user' => $user]);
+            $user = Auth::user()->id;
+            $registrasi=MRegistrasi::where('id_users',$user)->first();
+            $usercount = MRegistrasi::Cid_users();
+  
+            
+            return view('kelompoktani.homepage', compact('registrasi', 'usercount'));
         } else {
             return redirect('login')->with('error', 'Email atau Kata sandi salah !');
         }

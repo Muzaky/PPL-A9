@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('bukti_legalitas')->nullable();
             $table->date('tanggal_validasi')->nullable();
             $table->string('catatan_validasi')->nullable();
-            $table->integer('id_users')->nullable();
+            $table->integer('id_users')->unique();
             $table->string('nama_kecamatan')->nullable();
-            $table->integer('status_validasi')->default(1);
+            $table->string('status_validasi')->default('1');
             $table->timestamps();
         });
     }

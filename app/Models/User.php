@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function registrasi()
     {
-        return $this->hasOne(MRegistrasi::class);
+        return $this->hasOne(MRegistrasi::class, 'id_users', 'id');
     }
     public function kelompoktani()
     {

@@ -30,21 +30,21 @@
             </div>
         </div>
         <div class="flex flex-row bg-transparent h-full w-[1000px] items-center justify-center ">
-            @if ($user == 0)
+            {{-- @dd($registrasi->status_validasi) --}}
+            @if ($usercount == 0)
                 <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
                     href="{{ route('registrasi.create') }}">Register</a>
-            @else
-                
-                {{-- @if ($status == 3)
+            @else 
+                @if ($registrasi ->status_validasi == 1)
                     <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-                        href="{{ route('registrasi.editpetani') }}">Edit</a>
-                @elseif ($status == 2)
+                        href="#">Menunggu</a>
+                @elseif ($registrasi ->status_validasi == 2)
                     <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-                        href="{{ route('registrasi.show') }}">Lihat</a>
-                @else
+                        href="#">Lihat</a>
+                @elseif ($registrasi ->status_validasi == 3)
                     <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-                        href="">Menunggu</a>
-                @endif --}}
+                        href="#">Edit</a>
+                @endif
             @endif
             {{-- <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
                 href="{{ route('registrasi.create') }}">Register</a> --}}
@@ -61,41 +61,64 @@
     <div class="flex flex-col h-full w-[1707px]  items-center">
         <h1 class="flex text-black my-10 text-[50px] font-bold">Fitur Bibitani</h1>
         <div class="flex flex-row">
-            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
-                href="{{ route('berita.landing') }}">
-                <div class="flex flex-col items-center">
-                    <img class="flex w-[150px] h-[150px]" src="{{ asset('images/newspaper.png') }}" alt="">
-                    <h1 class="flex text-[20px] font-bold mt-4">Pemberitahuan</h1>
-                </div>
-            </a>
-            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
-                href="">
-                <div class="flex flex-col items-center">
+            @if ($registrasi ->status_validasi == 2)
+                <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
+                    href="{{ route('berita.landing') }}">
+                    <div class="flex flex-col items-center">
+                        <img class="flex w-[150px] h-[150px]" src="{{ asset('images/newspaper.png') }}" alt="">
+                        <h1 class="flex text-[20px] font-bold mt-4">Pemberitahuan</h1>
+                    </div>
+                </a>
+                <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
+                    href="">
+                    <div class="flex flex-col items-center">
 
-                    <img class="flex w-[150px] h-[197px]" src="{{ asset('images/Cog.png') }}" alt="">
-                    <h1 class="flex text-[20px] font-bold -mt-4 text-center">Bantuan Bibit Hortikultura</h1>
-                </div>
-            </a>
-            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
-                href="">
-                <div class="flex flex-col items-center">
+                        <img class="flex w-[150px] h-[197px]" src="{{ asset('images/Cog.png') }}" alt="">
+                        <h1 class="flex text-[20px] font-bold -mt-4 text-center">Bantuan Bibit Hortikultura</h1>
+                    </div>
+                </a>
+                <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
+                    href="">
+                    <div class="flex flex-col items-center">
 
-                    <img class="flex w-[150px] h-[150px]" src="{{ asset('images/Document.png') }}" alt="">
-                    <h1 class="flex text-[20px] font-bold mt-4">Pelaporan</h1>
-                </div>
-            </a>
-            <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
-                href="">
-                <div class="flex flex-col items-center">
+                        <img class="flex w-[150px] h-[150px]" src="{{ asset('images/Document.png') }}" alt="">
+                        <h1 class="flex text-[20px] font-bold mt-4">Pelaporan</h1>
+                    </div>
+                </a>
+                <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
+                    href="">
+                    <div class="flex flex-col items-center">
 
-                    <img class="flex w-[150px] h-[150px]" src="{{ asset('images/Chat.png') }}" alt="">
-                    <h1 class="flex text-[20px] font-bold mt-4">Ulasan</h1>
-                </div>
-            </a>
+                        <img class="flex w-[150px] h-[150px]" src="{{ asset('images/Chat.png') }}" alt="">
+                        <h1 class="flex text-[20px] font-bold mt-4">Ulasan</h1>
+                    </div>
+                </a>
+            @elseif ($registrasi ->status_validasi == 1)
+                <h1>Harap Tunggu Validasi Registrasi</h1>
+            @else
+                <h1>Harap Ubah Persyaratan Registrasi</h1>
+            @endif
+
 
         </div>
     </div>
+    <script>
+        document.getElementById('myLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevents the default action of the link
+        });
+    </script>
 </body>
 
 
 </html>
+{{-- @if ($status == '3')
+    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
+        href="{{ route('registrasi.editpetani') }}">Edit</a>
+@elseif ($status == '2')
+    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
+        href="{{ route('registrasi.show') }}">Lihat</a>
+@elseif ($status == '1')
+    <a id="myLink"
+        class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center"
+        href="#">Menunggu</a>
+@endif --}}
