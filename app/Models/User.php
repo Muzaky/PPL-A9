@@ -63,23 +63,7 @@ class User extends Authenticatable
     //     return $this->hasMany(MPelaporan::class);
     // }
 
-    public static function createWithLoggedInUser($userData, $loggedInUserId = null)
-    {
-        // Create a new user instance and set the provided data
-        $user = new static();
-        $user->fill($userData);
-
-        // If a logged-in user ID is provided, associate it with the created user
-        if ($loggedInUserId) {
-            $user->created_by = $loggedInUserId;
-        }
-
-        // Save the user to the database
-        $user->save();
-
-        // Return the created user instance
-        return $user;
-    }
+    
    
 
     

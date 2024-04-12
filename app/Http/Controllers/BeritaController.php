@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\MBerita;
+use App\Models\MRegistrasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BeritaController extends Controller
@@ -13,12 +15,18 @@ class BeritaController extends Controller
 
     public function landing()
     {
-        // dd(auth()->user());
+        $user = Auth::user()->id;
+        $registrasi=MRegistrasi::where('id_users',$user)->first();
+        $usercount = MRegistrasi::Cid_users();
+        // dd($usercount);
         $data = MBerita::getData()->paginate(10);
         //return json_encode($data);
         return view(
+            
             'Berita.landingberita',
-            ['data' => $data]
+            ['data' => $data,
+            'registrasi' => $registrasi,
+            'usercount' => $usercount]
         );
     }
     public function index()
@@ -41,8 +49,7 @@ class BeritaController extends Controller
         );
     }
 
-    // public function show()
-
+    // public function show(),
     public function create()
     {
         return view('Berita.create');

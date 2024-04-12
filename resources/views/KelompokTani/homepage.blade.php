@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="flex flex-row bg-transparent h-full w-[1000px] items-center justify-center ">
-            {{-- @dd($registrasi->status_validasi) --}}
+            {{-- @dd($usercount) --}}
             @if ($usercount == 0)
                 <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
                     href="{{ route('registrasi.create') }}">Register</a>
@@ -63,7 +63,7 @@
         <div class="flex flex-row">
             @if ($registrasi ->status_validasi == 2)
                 <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
-                    href="{{ route('berita.landing') }}">
+                    href="{{ route('landingpemberitahuan') }}">
                     <div class="flex flex-col items-center">
                         <img class="flex w-[150px] h-[150px]" src="{{ asset('images/newspaper.png') }}" alt="">
                         <h1 class="flex text-[20px] font-bold mt-4">Pemberitahuan</h1>

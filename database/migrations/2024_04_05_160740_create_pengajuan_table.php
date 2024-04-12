@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('catatan_validasi')->nullable();
             $table->string('status_validasi')->default('0');
             $table->date('tanggal_validasi');
-            $table->string('nama_informasi');
-            $table->integer('id_kelompoktani');
+            // $table->string('nama_informasi');
+            // $table->integer('id_kelompoktani');
             $table->integer('id_informasi');
             $table->timestamps();
             $table->softDeletes();

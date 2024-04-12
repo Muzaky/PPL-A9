@@ -23,6 +23,7 @@ class C_Registrasi extends Controller
             // User is not authenticated
             $userId = null; // or you can handle it as you want
         }
+        
         $kecamatan = MKecamatan::all();
         
         return view(
