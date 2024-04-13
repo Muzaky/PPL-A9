@@ -87,8 +87,21 @@
                                         class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan File">
                                     </input>
-                                    <input type="hidden" name="id_informasi" value="{{ $data->id_informasi }}">
-                                    <input type="hidden" name="nama_informasi" value="{{ $data->nama_informasi }}">
+                                    <input type="number" name="id_informasi"  id="id_informasi"
+                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
+                                        value="{{ $data->id_informasi }}" placeholder="">
+                                    </input>
+                                    <input type="text" name="nama_informasi"  id="nama_informasi"
+                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
+                                        value="{{ $data->judul_informasi }}" placeholder=>
+                                    </input>
+                                    <input type="number" name="id_registrasi"  id="id_registrasi"
+                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
+                                        value="{{ $id_registrasi->id_registrasi }}" placeholder=>
+                                    </input>
+                                    {{-- <input type="" name="id_informasi" id="id_informasi" value="{{ $data->id_informasi }}">
+                                    <input type="" name="nama_informasi" id="nama_informasi" value="{{ $data->nama_informasi }}"> --}}
+                           
                                 </div>
                             </div>
             

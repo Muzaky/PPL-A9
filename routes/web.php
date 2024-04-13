@@ -6,7 +6,7 @@ use App\Http\Controllers\C_Pengajuan;
 use App\Http\Controllers\C_Auth;
 use App\Http\Controllers\C_Registrasi;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\DashboardController;
+
 use App\Http\Controllers\HomepageController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -79,23 +79,23 @@ Route::post('pengajuan/store', [C_Pengajuan::class, 'store'])->name('pengajuan.s
 //Routing Auth
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'homepage'], function(){
+    Route::group(['prefix' => 'homepage'], function () {
         Route::get('/', [HomepageController::class, 'homepage'])->name('homepage');
     });
 
-    Route::group(['prefix' => 'pemberitahuan'], function(){
+    Route::group(['prefix' => 'pemberitahuan'], function () {
         Route::get('/landing', [BeritaController::class, 'landing'])->name('landingpemberitahuan');
         Route::get('/detail/{id}', [BeritaController::class, 'show'])->name('pemberitahuandetail');
-        
     });
 
+    Route::group(['prefix' => 'registrasitani'], function () {
+        Route::get('/create', [C_Registrasi::class, 'create'])->name('registrasi.create');
+        Route::post('/store', [C_Registrasi::class, 'store'])->name('registrasi.store');
+        Route::get('/{id}/edit', [C_Registrasi::class, 'edit'])->name('registrasi.edit');
+        Route::post('/{id}/show', [C_Registrasi::class, 'show'])->name('registrasi.show');
+    });
     // Route::get('landingberita', [BeritaController::class, 'landing'])->name('berita.landing');
-    Route::get('berita/detail/{id}', [BeritaController::class, 'show'])->name('berita.detail');
-
-    Route::get('registrasitani/create', [C_Registrasi::class, 'create'])->name('registrasi.create');
-    Route::post('registrasitani/store', [C_Registrasi::class, 'store'])->name('registrasi.store');
-    Route::get('registrasitani/{id}/edit', [C_Registrasi::class, 'edit'])->name('registrasi.edit');
-    Route::post('registrasitani/{id}/show', [C_Registrasi::class, 'show'])->name('registrasi.show');
+    
 });
 
 

@@ -16,11 +16,11 @@ return new class extends Migration
             $table->date('tanggal_pengajuan');
             $table->string('berkas_pengajuan')->nullable();
             $table->string('catatan_validasi')->nullable();
-            $table->string('status_validasi')->default('0');
-            $table->date('tanggal_validasi');
-            // $table->string('nama_informasi');
-            // $table->integer('id_kelompoktani');
+            $table->date('tanggal_validasi')->nullable();
+            $table->string('nama_informasi');
             $table->integer('id_informasi');
+            $table->integer('id_registrasi');
+            $table->integer('status_validasi')->default(1);
             $table->timestamps();
             $table->softDeletes();
             });

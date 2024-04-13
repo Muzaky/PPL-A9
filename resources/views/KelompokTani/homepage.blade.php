@@ -61,7 +61,7 @@
     <div class="flex flex-col h-full w-[1707px]  items-center">
         <h1 class="flex text-black my-10 text-[50px] font-bold">Fitur Bibitani</h1>
         <div class="flex flex-row">
-            @if ($registrasi ->status_validasi == 2)
+            @if ($registrasi &&$registrasi ->status_validasi == 2)
                 <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
                     href="{{ route('landingpemberitahuan') }}">
                     <div class="flex flex-col items-center">
@@ -93,32 +93,21 @@
                         <h1 class="flex text-[20px] font-bold mt-4">Ulasan</h1>
                     </div>
                 </a>
-            @elseif ($registrasi ->status_validasi == 1)
-                <h1>Harap Tunggu Validasi Registrasi</h1>
+            @elseif ($registrasi && $registrasi ->status_validasi == 3)
+            <h1>Harap Ubah Validasi Registrasi</h1>
+            @elseif ($registrasi && $registrasi ->status_validasi == 1)
+            <h1>Harap Tunggu Validasi Registrasi</h1>
             @else
-                <h1>Harap Ubah Persyaratan Registrasi</h1>
+            <h1>Harap Lakukan Registrasi Kelompok Tani
+                untuk mengakses fitur bibitani
+            </h1>
             @endif
 
 
         </div>
     </div>
-    <script>
-        document.getElementById('myLink').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevents the default action of the link
-        });
-    </script>
+   
 </body>
 
 
 </html>
-{{-- @if ($status == '3')
-    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-        href="{{ route('registrasi.editpetani') }}">Edit</a>
-@elseif ($status == '2')
-    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-        href="{{ route('registrasi.show') }}">Lihat</a>
-@elseif ($status == '1')
-    <a id="myLink"
-        class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center"
-        href="#">Menunggu</a>
-@endif --}}

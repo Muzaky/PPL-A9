@@ -15,18 +15,13 @@ class BeritaController extends Controller
 
     public function landing()
     {
-        $user = Auth::user()->id;
-        $registrasi=MRegistrasi::where('id_users',$user)->first();
-        $usercount = MRegistrasi::Cid_users();
         // dd($usercount);
         $data = MBerita::getData()->paginate(10);
         //return json_encode($data);
         return view(
             
             'Berita.landingberita',
-            ['data' => $data,
-            'registrasi' => $registrasi,
-            'usercount' => $usercount]
+            ['data' => $data]
         );
     }
     public function index()
@@ -42,10 +37,11 @@ class BeritaController extends Controller
     public function show($id)
     {
         // dd(auth()->user());
+        $user = Auth::user()->id;
+        $id_registrasi = MRegistrasi::where('id_users', $user)->first();
+        // dd($id_registrasi);
         $data = MBerita::getById($id);
-        return view(
-            'Berita.viewberita',
-            ['data' => $data]
+        return view('Berita.viewberita',['data' => $data],compact('id_registrasi')
         );
     }
 
@@ -54,49 +50,7 @@ class BeritaController extends Controller
     {
         return view('Berita.create');
     }
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'judul_informasi' => 'required',
-    //         'nama_bibit' => 'required',
-    //         'tgl_awal' => 'required',
-    //         'tgl_akhir' => 'required',
-    //         'jumlah_bibit' => 'required',
-    //         'syarat_ketentuan' => 'required',
-    //         'kontak_narahubung' => 'required',
-    //         'gambar_informasi' => 'file|mimes:pdf,jpg,jpeg,svg,png',
-    //     ]);
-    //     // if ($request->hasFile('gambar_informasi')){
-    //     //     $imagePath = $request->file('gambar_informasi')->store('informasi', 'public');
-    //     //     $validatedData['gambar_informasi'] = $imagePath;
-    //     // }
-    //     if ($request->gambar_informasi == "") {
-    //         DB::table("informasi")->insert([
-    //             'judul_informasi' => $request->judul_informasi,
-    //             'nama_bibit' => $request->nama_bibit,
-    //             'tgl_awal' => $request->tgl_awal,
-    //             'jumlah_bibit' => $request->jumlah_bibit,
-    //             'syarat_ketentuan' => $request->syarat_ketentuan,
-    //             'kontak_narahubung' => $request->kontak_narahubung,
-    //         ]);
-    //     } else {
-    //         $file = $request->file('gambar_informasi');
-    //         $nama_file = $file->getClientOriginalName();
-    //         $file->move('img', $nama_file);
-    //         DB::table("informasi")->insert([
-    //             'judul_informasi' => $request->judul_informasi,
-    //             'nama_bibit' => $request->nama_bibit,
-    //             'tgl_awal' => $request->tgl_awal,
-    //             'tgl_akhir' => $request->tgl_akhir,
-    //             'jumlah_bibit' => $request->jumlah_bibit,
-    //             'syarat_ketentuan' => $request->syarat_ketentuan,
-    //             'kontak_narahubung' => $request->kontak_narahubung,
-    //             'gambar_informasi' => $nama_file,
-    //         ]);
-    //     }
-
-    //     return redirect()->route('berita.list');
-    // }
+   
     public function store(Request $request)
     {
         $request->validate([

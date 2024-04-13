@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\C_Auth;
 use App\Http\Controllers\Controller;
 use App\Models\MPengajuan;
+use App\Models\MRegistrasi;
+use App\Models\MBerita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+
 
 class C_Pengajuan extends Controller
 {
@@ -45,27 +48,30 @@ class C_Pengajuan extends Controller
 
     public function create()
     {
-        return view('Berita.create');
+        $user = Auth::user()->id;
+        $id_registrasi = MRegistrasi::where('id_users', $user)->get('id_informasi');
+        return view('Berita.create', compact('id_registrasi'));
     }
 
     public function store(Request $request)
     {
-        $id_kelompoktani = $request->session()->get('id_kelompoktani');
-        
-    
+        $user = Auth::user()->id;
+        $id_registrasi = MRegistrasi::where('id_users', $user)->get('id_registrasi');
+        // dd($id_registrasi);
+
 
     $request->validate([
-        // $userid = Auth::user()->id,
         'berkas_pengajuan' => 'file|mimes:pdf',
-        'id_kelompoktani'=> $id_kelompoktani,
-        'id_informasi'=> $request->input('id_informasi') ,
-        'nama_informasi'=> $request->input('nama_informasi') ,
-        // 'id_informasi'=> ,
-
+        'id_registrasi'=> 'required',
+        'id_informasi'=> 'required' ,
+        'nama_informasi'=> 'required' ,
     ]);
 
     $data = [
         'tanggal_pengajuan' => Carbon::now()->toDateString(),
+        'id_registrasi'=> $request->id_registrasi,
+        'id_informasi'=> $request->id_informasi, 
+        'nama_informasi'=> $request->nama_informasi, 
     ];
 
     if ($request->hasFile('berkas_pengajuan')) {
@@ -77,7 +83,7 @@ class C_Pengajuan extends Controller
 
     MPengajuan::create($data);
 
-    return redirect()->route('berita.landing');
+    return redirect()->route('homepage');
     }
 
     public function edit(Request $request, $id_informasi)

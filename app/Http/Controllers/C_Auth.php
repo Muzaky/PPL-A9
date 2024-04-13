@@ -25,7 +25,7 @@ class C_Auth extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user()->id;
-            $registrasi = MRegistrasi::where('id_users', $user)->first();
+            $registrasi = MRegistrasi::where('id_users', $user)->first();   
             $usercount = MRegistrasi::where('id_users', $user)->count();
     
             // Debugging statements

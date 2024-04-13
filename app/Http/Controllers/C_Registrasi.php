@@ -72,7 +72,7 @@ class C_Registrasi extends Controller
 
             MRegistrasi::create($data);
 
-            return redirect()->route('berita.list');
+            return redirect()->route('homepage');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'An error occurred while saving the data. Please try again later.');

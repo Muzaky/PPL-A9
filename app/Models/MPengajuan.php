@@ -20,9 +20,12 @@ class MPengajuan extends Model
         "id_pengajuan",
         'tanggal_pengajuan',
         'berkas_pengajuan',
-        'status_validasi',
+        'tanggal_validasi',
         'catatan_validasi',
-        'keterangan',
+        'nama_informasi',
+        'id_informasi',
+        'id_registrasi',
+        'status_validasi',
     ] ;
     static function getData(){
         return DB::table('pengajuan');
