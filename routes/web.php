@@ -92,7 +92,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/create', [C_Registrasi::class, 'create'])->name('registrasi.create');
         Route::post('/store', [C_Registrasi::class, 'store'])->name('registrasi.store');
         Route::get('/{id}/edit', [C_Registrasi::class, 'edit'])->name('registrasi.edit');
+        Route::put('/{id}/update', [C_Registrasi::class, 'update'])->name('registrasi.update');
         Route::post('/{id}/show', [C_Registrasi::class, 'show'])->name('registrasi.show');
+        
+
     });
     // Route::get('landingberita', [BeritaController::class, 'landing'])->name('berita.landing');
     

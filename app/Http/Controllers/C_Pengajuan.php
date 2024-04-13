@@ -61,7 +61,7 @@ class C_Pengajuan extends Controller
 
 
     $request->validate([
-        'berkas_pengajuan' => 'file|mimes:pdf',
+        'berkas_pengajuan' => 'required|file|mimes:pdf',
         'id_registrasi'=> 'required',
         'id_informasi'=> 'required' ,
         'nama_informasi'=> 'required' ,
@@ -106,7 +106,7 @@ class C_Pengajuan extends Controller
             'syarat_ketentuan' => 'required',
             'kontak_narahubung' => 'required',
             
-            'gambar_informasi' => 'file|mimes:pdf,jpg,jpeg,svg,png',
+            'gambar_informasi' => 'required|file|mimes:pdf,jpg,jpeg,svg,png' ,
         ]);
     
         $data = [

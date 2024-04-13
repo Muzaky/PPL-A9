@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->id('id_pengajuan');
             $table->date('tanggal_pengajuan');
-            $table->string('berkas_pengajuan')->nullable();
+            $table->string('berkas_pengajuan');
             $table->string('catatan_validasi')->nullable();
             $table->date('tanggal_validasi')->nullable();
             $table->string('nama_informasi');

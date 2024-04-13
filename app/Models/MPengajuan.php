@@ -30,4 +30,8 @@ class MPengajuan extends Model
     static function getData(){
         return DB::table('pengajuan');
     }
+
+    public static function getById($id_pengajuan){
+        return static::find($id_pengajuan);
+    }
 }

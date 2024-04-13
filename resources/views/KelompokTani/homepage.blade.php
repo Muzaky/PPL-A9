@@ -43,7 +43,7 @@
                         href="#">Lihat</a>
                 @elseif ($registrasi ->status_validasi == 3)
                     <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-                        href="#">Edit</a>
+                        href="{{ route('registrasi.edit', $registrasi->id_registrasi) }}">Edit</a>
                 @endif
             @endif
             {{-- <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "

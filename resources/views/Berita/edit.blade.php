@@ -6,7 +6,7 @@
                 class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <form class="flex justify-center items-center flex-col"
-                        action="{{ route('berita.update', $data->id_informasi) }}" method="POST"
+                        action="{{ route('berita.update', $data->id_informasi) }}"" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
