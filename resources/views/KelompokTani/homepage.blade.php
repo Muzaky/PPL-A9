@@ -63,7 +63,7 @@
         <div class="flex flex-row">
             @if ($registrasi &&$registrasi ->status_validasi == 2)
                 <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
-                    href="{{ route('landingpemberitahuan') }}">
+                    href="{{ route('pemberitahuan.landing') }}">
                     <div class="flex flex-col items-center">
                         <img class="flex w-[150px] h-[150px]" src="{{ asset('images/newspaper.png') }}" alt="">
                         <h1 class="flex text-[20px] font-bold mt-4">Pemberitahuan</h1>

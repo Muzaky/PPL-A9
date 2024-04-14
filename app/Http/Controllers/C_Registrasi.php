@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class C_Registrasi extends Controller
 {
+    public function index(){
+        $data = MRegistrasi::getData()->paginate(10);
+        return view("Registrasi.data_list",
+        ['data' => $data]);
+    }
     public function create()
     {
         $user = Auth::user();
@@ -112,11 +117,26 @@ class C_Registrasi extends Controller
 
         
     }
-    // public function update(Request $request, $id){
-    //     $data = MRegistrasi::find($id);
-    //     $data->update($request->all());
-    //     return redirect()->route('registrasi.list');
-    // }
+    public function editdinas(Request $request, $id_registrasi){
+
+       
+        
+        $kecamatan = MKecamatan::all();
+        
+        
+        $data = MRegistrasi::getById($id_registrasi);
+        
+        return view(
+            'registrasi.editdinas',
+            ['kecamatan' => $kecamatan,
+            'data' => $data],
+        );
+
+
+        
+    }
+
+   
 
 
     public function update(Request $request, $id_registrasi)
@@ -158,6 +178,49 @@ class C_Registrasi extends Controller
         $update = MRegistrasi::getById($id_registrasi);
         $update->update($data);
         return redirect()->route('homepage')
+            ->with('success', 'Berita telah terpost');
+    }
+
+
+    public function updatedinas(Request $request, $id_registrasi)
+    {
+        $request->validate([
+            'nama_keltani' => 'required',
+            'nama_ketua' => 'required',
+            'luas_hamparan' => 'required',
+            'jumlah_anggota' => 'required',
+            'alamat_keltani' => 'required',
+            'bukti_legalitas' => 'file|mimes:pdf,png,jpg,jpeg,svg',
+            'tanggal_validasi' => 'nullable',
+            'catatan_validasi' => 'nullable',
+            'nama_kecamatan' => 'required',
+            'status_validasi' => 'required',
+            'id_users' => 'required',
+        ]);
+
+        $data = [
+            'nama_keltani' => $request->nama_keltani,
+            'nama_ketua' => $request->nama_ketua,
+            'luas_hamparan' => $request->luas_hamparan,
+            'jumlah_anggota' => $request->jumlah_anggota,
+            'alamat_keltani' => $request->alamat_keltani,
+            'tanggal_validasi' => $request->tanggal_validasi,
+            'catatan_validasi' => $request->catatan_validasi,
+            'nama_kecamatan' => $request->nama_kecamatan,
+            'status_validasi' => $request->status_validasi,
+            'id_users' => $request->id_users,
+        ];
+
+        if ($request->hasFile('bukti_legalitas')) {
+            $file = $request->file('bukti_legalitas');
+            $nama_file = $file->getClientOriginalName();
+            $file->move('bukti', $nama_file);
+            $data['bukti_legalitas'] = $nama_file;
+        }
+
+        $update = MRegistrasi::getById($id_registrasi);
+        $update->update($data);
+        return redirect()->route('registrasi.list')
             ->with('success', 'Berita telah terpost');
     }
     

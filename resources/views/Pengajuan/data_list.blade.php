@@ -8,7 +8,7 @@
                 Pada halaman ini akan membantu kamu dalam menambahkan pemberitahun, mengedit apabila diperlukan perubahan
                 pada pemberitahuan, menghapus pemberitahuan dan memantau pemberitahuan yang telah ditambahkan</p>
 
-            <a class="flex justify-center  items-center font-[Poppins] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
+            <a class="flex justify-center text-center items-center font-[Poppins] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
                 href="{{ route('berita.create') }}" id="myButton" onclick="startLoading()"><span class="flex">Tambah
                     Informasi
                     Baru</span></a>
@@ -17,42 +17,35 @@
                     <thead class="bg-white">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 No</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Nama Kel.Tani</th>
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                Judul Informasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Nama Ketua</th>
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                Nama Bibit</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Luas Hamparan</th>
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                Gambar Informasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Jumlah Anggota</th>
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                Tanggal Awal</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Alamat Kel.Tani</th>
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                Tanggal Akhir</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Bukti Legalitas</th>
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                Jumlah Bibit</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Tanggal Validasi</th>
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                Syarat Ketentuan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Catatan Validasi</th>
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                Narahubung</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                id_users</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Status Validasi</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins] ">
+                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Action</th>
-                            
                         </tr>
                     </thead>
                     <tbody>
@@ -63,42 +56,51 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $no++ }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_keltani }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->judul_informasi }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_ketua }}</div>
-                                </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->luas_hamparan }}</div>
-                                </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_anggota }}</div>
-                                </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->alamat_keltani }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_bibit }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class="px-2 py-1 fs-6 lh-sm object-fill">
-                                        <a href="{{ asset('pdf/' . $val->bukti_legalitas) }}">
-                                            {{ basename($val->bukti_legalitas) }}
+                                        <a href="{{ asset('img/' . $val->gambar_informasi) }}">
+                                            {{ basename($val->gambar_informasi) }}
 
                                         </a>
+                                        {{-- <img --}}
+                                        {{-- src="{{ asset('img' . '/' . $val->gambar_informasi) }}" alt=""> --}}
                                     </div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tgl_awal }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->catatan_validasi }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tgl_akhir }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->id_users }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_bibit }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->status_validasi }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->syarat_ketentuan }}</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center py-4 flex gap-x-3 ">
-                                    <a href="{{ route('registrasi.editdinas', $val->id_registrasi) }}"
+                                <td class="tb-col tb-col-md justify-center text-center">
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->kontak_narahubung }}</div>
+                                </td>
+                                <td class="tb-col tb-col-md px-6 py-4 flex gap-x-3">
+                                    {{-- <button id="edit-form" action="{{ route('berita.edit', $val->id_informasi) }}">
+                                        
+                                        <button onclick="showeditButton({{ $val->id_informasi }})"
+                                        class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-green-600">
+                                            <i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
+                                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+                                                </svg>
+                                            </i>
+                                        </button>
+                                    </button> --}}
+                                    <a href="{{ route('berita.edit', $val->id_informasi) }}"
                                         class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-green-600"><i>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
@@ -106,10 +108,10 @@
                                                     d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                                             </svg>
                                         </i></a>
-                                    {{-- <button id="delete-form" action="{{ route('berita.destroy', $val->id_registrasi) }}"
+                                    <button id="delete-form" action="{{ route('berita.destroy', $val->id_informasi) }}"
                                         method="POST">
 
-                                        <button onclick="showDelButton({{ $val->id_registrasi }})"
+                                        <button onclick="showDelButton({{ $val->id_informasi }})"
                                             class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-red-600">
                                             <i>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -120,7 +122,7 @@
                                             </i>
                                         </button>
 
-                                    </button> --}}
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -160,7 +162,7 @@
         </div>
 
         <!--Modal Script Edit Button-->
-
+        
         {{-- @extends('Berita.edit') --}}
 
 
@@ -178,7 +180,7 @@
 
             }
 
-
+            
 
             function hideDelButton() {
                 let delbutton = document.getElementById('delbutton')

@@ -17,34 +17,34 @@
                     <thead class="bg-white">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 No</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Judul Informasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Nama Bibit</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Gambar Informasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Tanggal Awal</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Tanggal Akhir</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Jumlah Bibit</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Syarat Ketentuan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Narahubung</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Action</th>
                         </tr>
                     </thead>
@@ -87,19 +87,6 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->kontak_narahubung }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md px-6 py-4 flex gap-x-3">
-                                    {{-- <button id="edit-form" action="{{ route('berita.edit', $val->id_informasi) }}">
-                                        
-                                        <button onclick="showeditButton({{ $val->id_informasi }})"
-                                        class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-green-600">
-                                            <i>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
-                                                    <path strokeLinecap="round" strokeLinejoin="round"
-                                                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
-                                                </svg>
-                                            </i>
-                                        </button>
-                                    </button> --}}
                                     <a href="{{ route('berita.edit', $val->id_informasi) }}"
                                         class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-green-600"><i>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
