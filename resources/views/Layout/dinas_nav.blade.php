@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('registrasi.list') }}"
                             class="text-gray-800 hover:bg-gray-800 hover:text-white  px-4 py-2 rounded-md text-sm font-medium flex items-center space-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                                 stroke="currentColor" class="w-6 h-6">
@@ -67,7 +67,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('registrasi.list') }}"
+                        <a href="{{ Route('pengajuan.list') }}"
                             class="text-gray-800 hover:bg-gray-800 hover:text-white  px-4 py-2 rounded-md text-sm font-medium flex items-center space-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                                 stroke="currentColor" class="w-6 h-6">
@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ Route('pelaporan.list') }}"
                             class="text-gray-800 hover:bg-gray-800 hover:text-white  px-4 py-2 rounded-md text-sm font-medium flex items-center space-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                                 stroke="currentColor" class="w-6 h-6">

@@ -19,7 +19,7 @@
       </div>
       <div class="lg:flex lg:gap-x-12">
         <a href="{{ route('homepage') }}" class="font-semibold leading-6 text-gray-900" style="font-size:20px">Home</a>
-        <a href="{{ route('landingpemberitahuan') }}" class="font-semibold leading-6 text-gray-900" style="font-size:20px">Berita</a>
+        <a href="{{ route('pemberitahuan.landing') }}" class="font-semibold leading-6 text-gray-900" style="font-size:20px">Berita</a>
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900" style="font-size:20px">Pengajuan</a>
       </div>
       <div class=" lg:flex lg:flex-1 lg:justify-end">

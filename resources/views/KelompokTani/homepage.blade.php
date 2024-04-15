@@ -31,7 +31,7 @@
         </div>
         <div class="flex flex-row bg-transparent h-full w-[1000px] items-center justify-center ">
             {{-- @dd($usercount) --}}
-            @if ($usercount == 0)
+            @if ($usercount == 0 )
                 <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
                     href="{{ route('registrasi.create') }}">Register</a>
             @else 
@@ -70,7 +70,7 @@
                     </div>
                 </a>
                 <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
-                    href="">
+                    href="{{ route('pengajuan.landing') }}">
                     <div class="flex flex-col items-center">
 
                         <img class="flex w-[150px] h-[197px]" src="{{ asset('images/Cog.png') }}" alt="">
@@ -78,7 +78,7 @@
                     </div>
                 </a>
                 <a class="flex flex-col items-center mx-4 bg-white border border-gray-200 rounded-lg shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center"
-                    href="">
+                    href="{{ route('pelaporan.landing') }}">
                     <div class="flex flex-col items-center">
 
                         <img class="flex w-[150px] h-[150px]" src="{{ asset('images/Document.png') }}" alt="">

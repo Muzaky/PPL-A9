@@ -2,17 +2,17 @@
 @section('content')
     <section>
         <div class="flex flex-col m-4 w-[100%]">
-            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Pemberitahuan Informasi Bibit Horikultura
+            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Registrasi Kelomopok Tani Bibit Horikultura
             </h1>
             <p class="text-[18px] font-normal text-[#9B9B9B] font-[Poppins] mt-[11px] text-wrap w-[1100px] leading-[25px]">
                 Pada halaman ini akan membantu kamu dalam menambahkan pemberitahun, mengedit apabila diperlukan perubahan
                 pada pemberitahuan, menghapus pemberitahuan dan memantau pemberitahuan yang telah ditambahkan</p>
 
-            <a class="flex justify-center  items-center font-[Poppins] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
+            {{-- <a class="flex justify-center  items-center font-[Poppins] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
                 href="{{ route('berita.create') }}" id="myButton" onclick="startLoading()"><span class="flex">Tambah
                     Informasi
-                    Baru</span></a>
-            <div class="flex flex-col overflow-x-auto">
+                    Baru</span></a> --}}
+            <div class="flex flex-col overflow-x-auto mt-4">
                 <table class="table-auto min-w-full divide-y divide-gray-200 ">
                     <thead class="bg-white">
                         <tr>
@@ -69,7 +69,7 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_ketua }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->luas_hamparan }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->luas_hamparan }} Hektare</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_anggota }}</div>
@@ -80,7 +80,8 @@
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class="px-2 py-1 fs-6 lh-sm object-fill">
                                         <a href="{{ asset('pdf/' . $val->bukti_legalitas) }}">
-                                            {{ basename($val->bukti_legalitas) }}
+                                            {{-- {{ basename($val->bukti_legalitas) }} --}}
+                                            Buka File
 
                                         </a>
                                     </div>
@@ -89,7 +90,7 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->catatan_validasi }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->catatan_validasi) }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->id_users }}</div>

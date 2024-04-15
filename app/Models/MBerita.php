@@ -34,4 +34,8 @@ class MBerita extends Model
     public static function getById($id_informasi){
         return static::find($id_informasi);
     }
+
+    public function informasi(){
+        return $this->hasMany(MBerita::class);
+    }
 }

@@ -22,7 +22,6 @@ class MPengajuan extends Model
         'berkas_pengajuan',
         'tanggal_validasi',
         'catatan_validasi',
-        'nama_informasi',
         'id_informasi',
         'id_registrasi',
         'status_validasi',
@@ -31,7 +30,20 @@ class MPengajuan extends Model
         return DB::table('pengajuan');
     }
 
+    
+
     public static function getById($id_pengajuan){
         return static::find($id_pengajuan);
+    }
+
+    public function pelaporan(){
+        return $this->hasMany(MPelaporan::class);
+    }
+    public function registrasi(){
+        return $this->hasOne(MRegistrasi::class,'id_registrasi','id');
+    }
+    public function informasi()
+    {
+        return $this->belongsTo(MBerita::class, 'id_informasi');
     }
 }

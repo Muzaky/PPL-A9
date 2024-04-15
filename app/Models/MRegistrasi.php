@@ -75,4 +75,12 @@ class MRegistrasi extends Model
             ->join('registrasi as reg', 'users.id', '=', 'reg.id_users')
             ->where('users.id', $id);
     }
+
+    public function pelaporan(){
+        return $this->hasMany(MPelaporan::class);
+    }
+
+    public function pengajuan(){
+        return $this->hasMany(MPengajuan::class,'id_registras','id');
+    }
 }

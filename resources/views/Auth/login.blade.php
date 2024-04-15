@@ -20,7 +20,8 @@
                 <div class="w-full">
                     <!-- Container -->
                     <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800 relative">
-                        <a href="{{ url('landing') }}" class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
+                        <a href="{{ url('landing') }}"
+                            class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
                             aria-label="Close">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -32,10 +33,16 @@
                             <div class="px-4 md:px-0 lg:w-6/12">
                                 <div class="md:mx-6 md:p-12 flex flex-col">
                                     <!--Logo-->
-                                    <div class="text-center">
+                                    <div class="items-center">
                                         <img class="mx-auto w-90 my-12" src="../bibitani.ico" alt="logo" />
 
                                     </div>
+                                    @if (session()->has('error'))
+                                        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 text-center"
+                                            role="alert">
+                                            {{ session()->get('error') }}
+                                        </div>
+                                    @endif
 
                                     <form class="flex flex-col">
                                         <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Login</p>
@@ -54,7 +61,7 @@
                                                 Password
                                             </label>
                                             <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="password"
-                                                placeholder="Password" id="password" name="password"/>
+                                                placeholder="Password" id="password" name="password" />
                                         </div>
 
                                         <!--Password input-->

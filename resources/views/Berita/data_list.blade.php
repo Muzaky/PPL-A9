@@ -81,7 +81,7 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_bibit }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->syarat_ketentuan }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->syarat_ketentuan) }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->kontak_narahubung }}</div>
@@ -95,7 +95,7 @@
                                                     d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                                             </svg>
                                         </i></a>
-                                    <button id="delete-form" action="{{ route('berita.destroy', $val->id_informasi) }}"
+                                    <button id="delete-form" action=""
                                         method="POST">
 
                                         <button onclick="showDelButton({{ $val->id_informasi }})"

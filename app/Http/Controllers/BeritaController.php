@@ -137,4 +137,6 @@ class BeritaController extends Controller
         return redirect()->route('berita.list')
             ->with('success', 'Berita telah didelete');
     }
+
+    
 }

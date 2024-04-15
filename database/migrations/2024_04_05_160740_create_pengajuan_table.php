@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id('id_pengajuan');
             $table->date('tanggal_pengajuan');
             $table->string('berkas_pengajuan');
-            $table->string('catatan_validasi')->nullable();
+            $table->text('catatan_validasi')->nullable();
             $table->date('tanggal_validasi')->nullable();
-            $table->string('nama_informasi');
-            $table->integer('id_informasi');
-            $table->integer('id_registrasi');
+            $table->foreignId('id_informasi');
+            $table->foreignId('id_registrasi');
             $table->integer('status_validasi')->default(1);
             $table->timestamps();
             $table->softDeletes();

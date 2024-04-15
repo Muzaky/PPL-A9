@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('alamat_keltani')->nullable();
             $table->string('bukti_legalitas')->nullable();
             $table->date('tanggal_validasi')->nullable();
-            $table->string('catatan_validasi')->nullable();
-            $table->integer('id_users')->unique();
+            $table->text('catatan_validasi')->nullable();
+            $table->foreignId('id_users')->unique();
             $table->string('nama_kecamatan')->nullable();
             $table->string('status_validasi')->default('1');
             $table->timestamps();

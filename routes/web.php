@@ -6,7 +6,7 @@ use App\Http\Controllers\C_Pengajuan;
 use App\Http\Controllers\C_Auth;
 use App\Http\Controllers\C_Registrasi;
 use App\Http\Controllers\BeritaController;
-
+use App\Http\Controllers\C_Pelaporan;
 use App\Http\Controllers\HomepageController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -21,6 +21,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+Route::get('/', function () {
+    return view("landing");
+});
 
 
 Route::get('/landing', function () {
@@ -42,7 +45,7 @@ Route::get('/registrasi', function () {
 //     return view('kelompoktani.homepage');
 // });
 
-
+Route::get('login', [C_Auth::class, 'login'])->name('login');
 
 
 Route::get('login', [C_Auth::class, 'login'])->name('login');
@@ -60,7 +63,7 @@ Route::group(['prefix' => 'pemberitahuan'], function () {
     Route::post('/store', [BeritaController::class, 'store'])->name('berita.store');
     Route::get('/{id}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
     Route::put('/{id}/update', [BeritaController::class, 'update'])->name('berita.update');
-    Route::delete('/{id}/destroy', [BeritaController::class, 'destroy'])->name('berita.destroy');
+    Route::delete('destroy/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
 });
 
 
@@ -68,9 +71,19 @@ Route::group(['prefix' => 'pemberitahuan'], function () {
 //Routing Pengajuan
 
 Route::group(['prefix'=> 'pengajuan'], function () {
-    Route::post('/store', [C_Pengajuan::class, 'store'])->name('pengajuan.store');
-    Route::post('/data_list', [C_Pengajuan::class, 'index'])->name('pengajuan.list');
+    // Route::post('/store', [C_Pengajuan::class, 'store'])->name('pengajuan.store');
+    Route::get('/data_list', [C_Pengajuan::class, 'index'])->name('pengajuan.list');
+    Route::get('/{id}/editdinas', [C_Pengajuan::class, 'editdinas'])->name('pengajuan.editdinas');
+    Route::put('/{id}/updatedinas', [C_Pengajuan::class, 'updatedinas'])->name('pengajuan.updatedinas');
+    Route::delete('destroy/{id}', [C_Pengajuan::class, 'destroy'])->name('pengajuan.destroy');
 
+});
+
+Route::group(['prefix'=> 'pelaporan'], function () {
+    Route::get('/data_list', [C_Pelaporan::class, 'index'])->name('pelaporan.list');
+    Route::get('/{id}/editdinas', [C_Pelaporan::class, 'editdinas'])->name('pelaporan.editdinas');
+    Route::put('/{id}/updatedinas', [C_Pelaporan::class, 'updatedinas'])->name('pelaporan.updatedinas');
+    Route::delete('destroy/{id}', [C_Pelaporan::class, 'destroy'])->name('pelaporan.destroy');
 });
 
 
@@ -95,7 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'pemberitahuan'], function () {
-        Route::get('/landing', [BeritaController::class, 'landing'])->name('pemberitahuan.landing');
+        Route::get('', [BeritaController::class, 'landing'])->name('pemberitahuan.landing');
         Route::get('/detail/{id}', [BeritaController::class, 'show'])->name('pemberitahuan.detail');
     });
 
@@ -109,6 +122,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix'=> 'pengajuan'], function () {
         Route::post('/store', [C_Pengajuan::class, 'store'])->name('pengajuan.store');
+        Route::get('', [C_Pengajuan::class, 'landing'])->name('pengajuan.landing');
+        Route::get('/viewpengajuan/{id}', [C_Pengajuan::class, 'show'])->name('pengajuan.show');
+        Route::post('/{id}/update', [C_Pengajuan::class, 'update'])->name('pengajuan.update');
+    });
+
+    Route::group(['prefix'=> 'pelaporan'], function () {
+        Route::get('', [C_Pelaporan::class, 'landing'])->name('pelaporan.landing');
+        Route::get('/main/{id}', [C_Pelaporan::class, 'main'])->name('pelaporan.main');
+        Route::post('/store', [C_Pelaporan::class, 'store'])->name('pelaporan.store');
+        Route::get('/viewpelaporan/{id}', [C_Pelaporan::class, 'show'])->name('pelaporan.show');
+        Route::post('/{id}/update', [C_Pelaporan::class, 'update'])->name('pelaporan.update');
     });
     
     // Route::get('landingberita', [BeritaController::class, 'landing'])->name('berita.landing');
