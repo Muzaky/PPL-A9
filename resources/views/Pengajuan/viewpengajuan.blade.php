@@ -23,7 +23,7 @@
                     <input type="text" class="w-[449px] bg-transparent border-0" disabled readonly
                         value="{{ $pengajuan->tanggal_pengajuan }}">
                 </div>
-                <div class="flex flex-row items-center mt-[32px]">
+                <div class="flex flex-row mt-[32px]">
                     <label for="" class="text-[24px] font-bold">Berkas Pengajuan :</label>
                     <a href="{{ asset('pdf/' . $data->berkas_pengajuan) }}"
                         class="w-[449px] bg-transparent border-0">{{ $pengajuan->berkas_pengajuan }}</a>
@@ -36,7 +36,7 @@
                             {{-- @if ($pengajuan->status_validasi == 2) --}}
                             <label for="" class="text-[24px] font-medium">Status Validasi :</label>
                             <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
-                                <div class="h-[60vpx] w-[5px] bg-green-500"></div>
+                                <div class="h-[60px] w-[5px] bg-green-500"></div>
                                 <div class="bg-green-500 rounded-full p-1 mx-2">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -58,13 +58,13 @@
                             {{-- @if ($pengajuan->status_validasi == 2) --}}
                             <label for="" class="text-[24px] font-medium">Status Validasi :</label>
                             <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
-                                <div class="h-[60vpx] w-[5px] bg-red-500"></div>
-                                <div class="bg-green-500 rounded-full p-1 mx-2">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7"></path>
+                                <div class="h-[60px] w-[5px] bg-red-500"></div>
+                                <div class="bg-red-500 rounded-full p-1 mx-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                                     </svg>
+
                                 </div>
                                 <span class="text-[#000] font-medium px-4 py-4">Berkas Pengajuan Bibit Ditolak</span>
                             </div>
@@ -74,7 +74,6 @@
                             <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4" readonly
                                 value="{{ $pengajuan->updated_at }}">
                         </div>
-                        <span class="text-red-500 font-bold">Berkas ditolak</span>
                     @else
                         <div class="flex items-center">
                             {{-- @if ($pengajuan->status_validasi == 2) --}}
@@ -113,6 +112,13 @@
                                 class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
                                 Ubah</button>
                         </button>
+                    @elseif ($pengajuan->status_validasi == 3)
+                        <button>
+                            <button onclick="showEditButton()"
+                                class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
+                                Ubah</button>
+                        </button>
+                    @else
                     @endif
                 </div>
 

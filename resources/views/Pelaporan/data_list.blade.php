@@ -70,7 +70,7 @@
                                     </div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->kondisi }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->kondisi)}}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
@@ -79,13 +79,19 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->catatan_validasi) }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->status_validasi }}</div>
+                                    @if ($val->status_validasi == 1)
+                                    <div class=" px-2 py-1 fs-6 lh-sm">Diproses</div>
+                                    @elseif ($val->status_validasi ==2)
+                                    <div class=" px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
+                                    @else 
+                                    <div class=" px-2 py-1 fs-6 lh-sm">Ditolak</div>
+                                    @endif
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->id_registrasi }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_keltani }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->id_pengajuan }}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_pengajuan }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center py-4 flex gap-x-3 ">
                                     <a href="{{ route('pelaporan.editdinas', $val->id_pelaporan) }}"
@@ -96,10 +102,10 @@
                                                     d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                                             </svg>
                                         </i></a>
-                                    {{-- <button id="delete-form" action="{{ route('berita.destroy', $val->id_registrasi) }}"
+                                    <button id="delete-form" action=""
                                         method="POST">
 
-                                        <button onclick="showDelButton({{ $val->id_registrasi }})"
+                                        <button onclick="showDelButton({{ $val->id_pelaporan }})"
                                             class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-red-600">
                                             <i>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -110,7 +116,7 @@
                                             </i>
                                         </button>
 
-                                    </button> --}}
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -158,7 +164,7 @@
         <script>
             function showDelButton(id) {
                 let delbutton = document.getElementById('delbutton')
-                document.getElementById('deleteForm').action = "{{ route('berita.destroy', '') }}/" + id;
+                document.getElementById('deleteForm').action = "{{ route('pelaporan.destroy', '') }}/" + id;
 
                 delbutton.classList.remove('hidden')
                 delbutton.classList.add('flex')

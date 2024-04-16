@@ -21,16 +21,19 @@ class C_Pengajuan extends Controller
     {
         $user = Auth::user()->id;
         $registrasi = MRegistrasi::where('id_users', $user)->first();
-        $pengajuan = MPengajuan::where('id_registrasi', $user)->get();
-        $informasi = MBerita::where('id_informasi', $user)->get();
+        $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->get();
+        
+        
+        // $informasi = $pengajuan;
         $data = MPengajuan::getData()->paginate(10);
+        // dd($informasi);
 
-        // dd($pengajuan);
+        
         // dd($pengajuan);
         //return json_encode($data);
         return view(
             'Pengajuan.landing',
-            ['data' => $data],compact('pengajuan', 'informasi', 'registrasi')
+            ['data' => $data],compact('pengajuan', 'registrasi')
         );
     }
 
@@ -39,8 +42,10 @@ class C_Pengajuan extends Controller
         $user = Auth::user()->id;
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_pengajuan', $id)->first();
-        $informasi = MBerita::where('id_informasi', $user)->first();
+        // $informasi = MBerita::where('id_informasi', $pengajuan->informasi)->get();
+        $informasi = $pengajuan->informasi;
         $data = MPengajuan::getById($id);
+        
         return view(
             'Pengajuan.viewpengajuan',
             ['data' => $data],compact('pengajuan', 'informasi', 'registrasi')
@@ -165,11 +170,11 @@ class C_Pengajuan extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'berkas_pengajuan' => '=file|mimes:pdf',
+            'berkas_pengajuan' => 'file|mimes:pdf',
             'status_validasi' => 'required',
             'catatan_validasi' => 'required',
             'tanggal_pengajuan' => 'required',
-            'tanggal_validasi' => 'required',
+            'tanggal_validasi',
             
         ]);
 

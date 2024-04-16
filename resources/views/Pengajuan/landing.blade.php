@@ -25,13 +25,21 @@
                                 class="mb-1 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
                                 @if ($pengajuan->status_validasi == 2)
                                     Validated
+                                @elseif ($pengajuan->status_validasi == 1)
+                                    Diproses
                                 @else
-                                    {{ $pengajuan->status_validasi }}
+                                    ditolak
                                 @endif
                             </div>
                             <p class="text-neutral-500 mb-2">
                                 <small>
-                                    Terverifikasi tanggal
+                                    @if ($pengajuan->status_validasi == 2)
+                                        Tanggal Validated
+                                    @elseif ($pengajuan->status_validasi == 1)
+                                        Sedang dalam proses validasi dinas
+                                    @else
+                                        Ditolak
+                                    @endif
                                     <u>
                                         {{ $pengajuan->tanggal_validasi }}
                                     </u>

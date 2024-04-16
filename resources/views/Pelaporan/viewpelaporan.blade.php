@@ -1,7 +1,41 @@
 @extends('Layout.navtani')
 @section('content')
+    <style>
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+    </style>
     <section class="flex flex-col font-[Poppins] items-center">
-        <div class="flex flex-col text-center w-full h-[700px] bg-[#9AB2AA]  items-center relative">
+        <div class="alert">
+            @if (session()->has('success'))
+                <div id="alert-border-3"
+                    class="flex items-center mt-5 p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
+                    role="alert">
+                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <div class="ms-3 text-sm font-medium">
+                        {{ session('success') }}
+                    </div>
+                    <button type="button"
+                        class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
+                        data-dismiss-target="#alert-border-3" aria-label="Close">
+                        <span class="sr-only">Dismiss</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
+            @endif
+        </div>
+        <div class="flex flex-col text-center w-full h-full py-5 bg-[#9AB2AA]  items-center relative">
             <a href="{{ route('pelaporan.landing') }}"
                 class="absolute left-[20px] top-[20px] flex items-center text-black text-sm font-medium">
                 <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -19,19 +53,29 @@
             <div class="flex flex-col w-[1289px] ">
 
                 <div class="flex flex-row items-center gap-2 mt-4">
+                    <label for="" class="text-[24px] font-bold">Nama Kegiatan</label>
+                    <input type="text" class="w-[449px] bg-transparent border-0" disabled readonly
+                        value="{{ $data->nama_kegiatan }}">
+                </div>
+                <div class="flex flex-row items-center gap-2 mt-4">
                     <label for="" class="text-[24px] font-bold">Tanggal Pelaporan :</label>
                     <input type="text" class="w-[449px] bg-transparent border-0" disabled readonly
-                        value="{{ $pelaporan->tanggal_pelaporan }}">
+                        value="{{ $data->tanggal_pelaporan }}">
                 </div>
-                <div class="flex flex-row items-center mt-[32px]">
+                <div class="flex flex-row items-center mt-[32px]">  
                     <label for="" class="text-[24px] font-bold">Berkas Pengajuan :</label>
-                    <a href="{{ asset('pdf/' . $data->dokumentasi_pelaporan) }}"
-                        class="w-[449px] bg-transparent border-0">{{ $pelaporan->dokumentasi_pelaporan }}</a>
+                    <a href="{{ asset('dokumentasi/' . $data->dokumentasi_pelaporan) }}"
+                        class="w-[449px] bg-transparent border-0">{{ $data->dokumentasi_pelaporan }}</a>
+                </div>
+                <div class="flex flex-row items-center gap-2 mt-4">
+                    <label for="" class="text-[24px] font-bold">Kondisi :</label>
+                    <input type="textarea" class="w-[449px] bg-transparent border-0" disabled readonly
+                        value="{{ strip_tags($data->kondisi) }}">
                 </div>
             </div>
             <div class="flex flex-col w-[1330px] h-[349px] bg-[#ACBE9D]  mt-[36px]">
                 <div class="flex flex-row items-center justify-between gap-2 mt-4 mx-4">
-                    @if ($pelaporan->status_validasi == 2)
+                    @if ($data->status_validasi == 2)
                         <div class="flex items-center">
                             {{-- @if ($pengajuan->status_validasi == 2) --}}
                             <label for="" class="text-[24px] font-medium">Status Validasi :</label>
@@ -51,9 +95,9 @@
                         <div class="">
                             <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
                             <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4" disabled readonly
-                                value="{{ $pelaporan->updated_at }}">
+                                value="{{ $data->updated_at }}">
                         </div>
-                    @elseif ($pelaporan->status_validasi == 3)
+                    @elseif ($data->status_validasi == 3)
                         <div class="flex items-center">
                             {{-- @if ($pengajuan->status_validasi == 2) --}}
                             <label for="" class="text-[24px] font-medium">Status Validasi :</label>
@@ -72,7 +116,7 @@
                         <div class="">
                             <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
                             <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4" readonly
-                                value="{{ $pelaporan->updated_at }}">
+                                value="{{ $data->updated_at }}">
                         </div>
                         <span class="text-red-500 font-bold">Berkas ditolak</span>
                     @else
@@ -94,9 +138,9 @@
                         </div>
                         <div class="">
                             <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
-                            @if ($pelaporan->tanggal_validasi == null)
-                                <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4 " disabled readonly
-                                    value="{{ $pelaporan->tanggal_validasi }}">
+                            @if ($data->tanggal_validasi == null)
+                                <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4 " disabled
+                                    readonly value="{{ $data->tanggal_validasi }}">
                             @endif
                         </div>
                     @endif
@@ -105,9 +149,9 @@
                 <div class="flex flex-col items-center gap-2 mt-8">
                     <label for="" class="text-[24px] font-bold">Catatan Validasi :</label>
                     <span class="flex items-center justify-center w-[982px] h-[98px] bg-[#ffffff] rounded-[8px]">
-                        {{ strip_tags($pelaporan->catatan_validasi) }}
+                        {{ strip_tags($data->catatan_validasi) }}
                     </span>
-                    @if ($pelaporan->status_validasi == 1)
+                    @if ($data->status_validasi == 1)
                         <button>
                             <button onclick="showEditButton()"
                                 class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
@@ -136,7 +180,7 @@
                 </button>
                 <div class="flex-auto px-4 lg:px-10 py-4 pt-0">
                     <form class="flex justify-center items-center flex-col"
-                        action="{{ route('pelaporan.update', $pelaporan->id_pelaporan) }}" method="POST"
+                        action="{{ route('pelaporan.update', $data->id_pelaporan) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -155,7 +199,7 @@
                                         class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
                                         value="{{ $data->dokumentasi_pelaporan }}" placeholder="Masukkan File">
                                     </input>
-                                   
+
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         htmlfor="grid-password">
                                         Nama Kegiatan
@@ -164,14 +208,15 @@
                                         class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
                                         value="{{ $data->nama_kegiatan }}" placeholder="Masukkan File">
                                     </input>
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        htmlfor="grid-password">
                                         Kondisi
                                     </label>
-            
+
                                     <textarea name="kondisi" id="kondisi">{{ $data->kondisi }}
                                         
                                     </textarea>
-                                    
+
 
                                     {{-- <input type="" name="id_informasi" id="id_informasi" value="{{ $data->id_informasi }}">
                                     <input type="" name="nama_informasi" id="nama_informasi" value="{{ $data->nama_informasi }}"> --}}
@@ -190,9 +235,8 @@
             </div>
         </div>
         <script>
-
             CKEDITOR.replace('kondisi');
-            
+
             function showEditButton() {
                 let editbutton = document.getElementById('editbutton')
 

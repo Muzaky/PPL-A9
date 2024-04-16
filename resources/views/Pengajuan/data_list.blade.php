@@ -68,7 +68,13 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->status_validasi }}</div>
+                                    @if ($val->status_validasi == 1)
+                                    <div class=" px-2 py-1 fs-6 lh-sm">Diproses</div>
+                                    @elseif ($val->status_validasi ==2)
+                                    <div class=" px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
+                                    @else 
+                                    <div class=" px-2 py-1 fs-6 lh-sm">Ditolak</div>
+                                    @endif
                                 </td>
                                 <td class="tb-col tb-col-md justify-center py-4 flex gap-x-3 ">
                                     <a href="{{ route('pengajuan.editdinas', $val->id_pengajuan) }}"

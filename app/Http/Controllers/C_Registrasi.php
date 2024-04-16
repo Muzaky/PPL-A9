@@ -224,4 +224,11 @@ class C_Registrasi extends Controller
             ->with('success', 'Berita telah terpost');
     }
     
+    public function destroy($id_registrasi)
+    {
+        $destroy = MRegistrasi::getById($id_registrasi);
+        $destroy->delete();
+        return redirect()->route('registrasi.list')
+            ->with('success', 'KelompokTani telah didelete');
+    }
 }

@@ -36,6 +36,6 @@ class MBerita extends Model
     }
 
     public function informasi(){
-        return $this->hasMany(MBerita::class);
+        return $this->hasMany(MPengajuan::class);
     }
 }

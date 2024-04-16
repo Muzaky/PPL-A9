@@ -38,13 +38,15 @@ class MPelaporan extends Model
     }
 
     public function pengajuan(){
-        return $this->hasOne(MPengajuan::class);
+        return $this->belongsTo(MPengajuan::class,'id_pengajuan');
     }
     public function registrasi(){
-        return $this->hasOne(MRegistrasi::class);
+        return $this->belongsTo(MRegistrasi::class);
     }
 
-    public function pelaporan(){
-        return $this->belongsTo(MPengajuan::class);
-    }
+    // public function pelaporan(){
+    //     return $this->belongsTo(MPengajuan::class);
+    // }
+
+
 }
