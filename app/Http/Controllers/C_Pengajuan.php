@@ -86,7 +86,7 @@ class C_Pengajuan extends Controller
 
         MPengajuan::create($data);
 
-        return redirect()->route('homepage');
+        return redirect()->route('homepage')->with('success', 'Berhasil melakukan pengajuan !');
     }
 
     public function edit(Request $request, $id_pengajuan)
@@ -127,11 +127,11 @@ class C_Pengajuan extends Controller
             ->with('success', 'Berita telah terpost');
     }
 
-    public function destroy($id_informasi)
+    public function destroy($id_pengajuan)
     {
-        $destroy = MPengajuan::getById($id_informasi);
+        $destroy = MPengajuan::getById($id_pengajuan);
         $destroy->delete();
-        return redirect()->route('berita.list')
+        return redirect()->route('pengajuan.list')
             ->with('success', 'Berita telah didelete');
     }
 

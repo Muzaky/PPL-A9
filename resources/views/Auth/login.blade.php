@@ -12,7 +12,7 @@
 </head>
 
 <body class="flex justify-center items-center">
-    <form action="{{ url('homepage') }}" method="post">
+    <form action="{{ route('authenticate') }}" method="post">
         @method('POST')
         @csrf
         <div class="container h-full p-10 ">

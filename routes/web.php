@@ -7,6 +7,7 @@ use App\Http\Controllers\C_Auth;
 use App\Http\Controllers\C_Registrasi;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\C_Pelaporan;
+use App\Http\Controllers\DinasController;
 use App\Http\Controllers\HomepageController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -54,55 +55,58 @@ Route::get('logout', [C_Auth::class, 'logout'])->name('logout');
 Route::get('register', [C_Auth::class, 'form_register'])->name('auth.register');
 Route::post('register', [C_Auth::class, 'register'])->name('register');
 
-Route::get('dashboard', [App\Http\Controllers\DinasController::class, 'index'])->name('dashboard');
 
-//Routing Berita
-Route::group(['prefix' => 'pemberitahuan'], function () {
-    Route::get('/data_list', [BeritaController::class, 'index'])->name('berita.list');
-    Route::get('/create', [BeritaController::class, 'create'])->name('berita.create');
-    Route::post('/store', [BeritaController::class, 'store'])->name('berita.store');
-    Route::get('/{id}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
-    Route::put('/{id}/update', [BeritaController::class, 'update'])->name('berita.update');
-    Route::delete('destroy/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+
+
+
+
+Route::group(['middleware' => ['dinas']], function () 
+{
+    Route::get('/dashboard', [DinasController::class, 'index'])->name('dashboard');
+
+    Route::group(['prefix' => 'pemberitahuan'], function () {
+        Route::get('/data_list', [BeritaController::class, 'index'])->name('berita.list');
+        Route::get('/create', [BeritaController::class, 'create'])->name('berita.create');
+        Route::post('/store', [BeritaController::class, 'store'])->name('berita.store');
+        Route::get('/{id}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
+        Route::put('/{id}/update', [BeritaController::class, 'update'])->name('berita.update');
+        Route::delete('destroy/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+    });
+    
+    //Routing Pengajuan Dinas
+    Route::group(['prefix'=> 'pengajuan'], function () {
+        Route::get('/data_list', [C_Pengajuan::class, 'index'])->name('pengajuan.list');
+        Route::get('/{id}/editdinas', [C_Pengajuan::class, 'editdinas'])->name('pengajuan.editdinas');
+        Route::put('/{id}/updatedinas', [C_Pengajuan::class, 'updatedinas'])->name('pengajuan.updatedinas');
+        Route::delete('destroy/{id}', [C_Pengajuan::class, 'destroy'])->name('pengajuan.destroy');
+    
+    });
+    
+    //Routing Pelaporan Dinas
+    Route::group(['prefix'=> 'pelaporan'], function () {
+        Route::get('/data_list', [C_Pelaporan::class, 'index'])->name('pelaporan.list');
+        Route::get('/{id}/editdinas', [C_Pelaporan::class, 'editdinas'])->name('pelaporan.editdinas');
+        Route::put('/{id}/updatedinas', [C_Pelaporan::class, 'updatedinas'])->name('pelaporan.updatedinas');
+        Route::delete('destroy/{id}', [C_Pelaporan::class, 'destroy'])->name('pelaporan.destroy');
+    });
+    
+    
+    //Routing Registrasi Dinas
+    Route::group(['prefix'=> 'kelompoktani'], function () {
+        Route::get('/data_list', [C_Registrasi::class, 'index'])->name('registrasi.list');
+        Route::get('/{id}/editdinas', [C_Registrasi::class, 'editdinas'])->name('registrasi.editdinas');
+        Route::put('/{id}/updatedinas', [C_Registrasi::class, 'updatedinas'])->name('registrasi.updatedinas');
+        Route::delete('/destroy/{id}', [C_Registrasi::class, 'destroy'])->name('registrasi.destroy');
+    });
+
+    
 });
 
-
-
-//Routing Pengajuan
-
-Route::group(['prefix'=> 'pengajuan'], function () {
-    // Route::post('/store', [C_Pengajuan::class, 'store'])->name('pengajuan.store');
-    Route::get('/data_list', [C_Pengajuan::class, 'index'])->name('pengajuan.list');
-    Route::get('/{id}/editdinas', [C_Pengajuan::class, 'editdinas'])->name('pengajuan.editdinas');
-    Route::put('/{id}/updatedinas', [C_Pengajuan::class, 'updatedinas'])->name('pengajuan.updatedinas');
-    Route::delete('destroy/{id}', [C_Pengajuan::class, 'destroy'])->name('pengajuan.destroy');
-
-});
-
-Route::group(['prefix'=> 'pelaporan'], function () {
-    Route::get('/data_list', [C_Pelaporan::class, 'index'])->name('pelaporan.list');
-    Route::get('/{id}/editdinas', [C_Pelaporan::class, 'editdinas'])->name('pelaporan.editdinas');
-    Route::put('/{id}/updatedinas', [C_Pelaporan::class, 'updatedinas'])->name('pelaporan.updatedinas');
-    Route::delete('destroy/{id}', [C_Pelaporan::class, 'destroy'])->name('pelaporan.destroy');
-});
-
-
-//Routing Registrasi
-Route::group(['prefix'=> 'kelompoktani'], function () {
-    Route::get('/data_list', [C_Registrasi::class, 'index'])->name('registrasi.list');
-    // Route::get('/{id}/edit', [C_Registrasi::class, 'edit'])->name('registrasi.edit');
-    Route::get('/{id}/editdinas', [C_Registrasi::class, 'editdinas'])->name('registrasi.editdinas');
-    Route::put('/{id}/updatedinas', [C_Registrasi::class, 'updatedinas'])->name('registrasi.updatedinas');
-    Route::delete('/{id}/destroy', [C_Registrasi::class, 'destroy'])->name('registrasi.destroy');
-});
-
-// Route::get('registrasitani/create', [C_Registrasi::class, 'create'])->name('registrasi.create');
-// Route::post('registrasitani/store', [C_Registrasi::class, 'store'])->name('registrasi.store');
 
 
 //Routing Auth
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['kelompoktani']], function () {
     Route::group(['prefix' => 'homepage'], function () {
         Route::get('/', [HomepageController::class, 'homepage'])->name('homepage');
     });

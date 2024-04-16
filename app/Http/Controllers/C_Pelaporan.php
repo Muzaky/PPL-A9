@@ -51,7 +51,7 @@ class C_Pelaporan extends Controller
         $pengajuan = MPengajuan::where('id_pengajuan', $id)->first();
         $informasi = MBerita::where('id_informasi', $pengajuan->id_pengajuan)->get();
         // dd($pengajuan);
-        $pelaporan = MPelaporan::where('id_pengajuan', $id)->get();
+        $pelaporan = MPelaporan::where('id_pengajuan', $user)->get();
         // dd($pelaporan);
         $data = MPengajuan::getById($id);
         return view(

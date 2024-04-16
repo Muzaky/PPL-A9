@@ -24,19 +24,29 @@ class C_Auth extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            $user = Auth::user()->id;
-            $registrasi = MRegistrasi::where('id_users', $user)->first();   
-            $usercount = MRegistrasi::where('id_users', $user)->count();
-    
+            $user = Auth::user();
+            $userx = Auth::user()->id;
+            $registrasi = MRegistrasi::where('id_users', $userx)->first();
+            $usercount = MRegistrasi::where('id_users', $userx)->count();
+            // dd($registrasi);
+            // dd($user);
             // Debugging statements
             //dd($usercount); // Check the value of $usercount
+            $x = Auth::user()->id_roles;
+            // dd($x);
+            if ($x == 1) {
+                return view('kelompoktani.homepage', compact('registrasi', 'usercount'));
+            }
+            elseif ($x == 2) {
+                return redirect('dashboard');
+            }
             
-            return view('kelompoktani.homepage', compact('registrasi', 'usercount'));
+
         } else {
             return redirect('login')->with('error', 'Email atau Kata sandi salah !');
         }
     }
-    
+
 
     public function logout(Request $request)
     {
@@ -67,7 +77,7 @@ class C_Auth extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-        
+
 
         return redirect('login');
     }

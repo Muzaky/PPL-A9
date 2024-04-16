@@ -15,7 +15,7 @@ class DinasMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->roles_id != 2){
+        if(auth()->user()->id_roles != 2){
             abort(403);
         }
         return $next($request);

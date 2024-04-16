@@ -12,62 +12,73 @@
             </a>
             <h1 class=" text-[48px] font-bold text-[#204E51] px-[105px]  mb-10">Pelaporan Bantuan Bibit</h1>
 
+            <div class="flex flex-col items-center">
 
-            @foreach ($pelaporan as $pelaporans)
-                @if ($pelaporans->id_pelaporan == 0)
-                    <div class="flex flex-col items-center">
-
+                @if ($pelaporan->isEmpty())
+    
                         <h1>Anda belum melakukan pelaporan</h1>
                         <a href="{{ route('pelaporan.landing') }}" class="text-[#204E51]"></a>
-                        <button>
-                            <button onclick="showEditButton()"
-                                class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[220px] mt-4">
-                                Tambahkan Pelaporan</button>
-                        </button>
-                    </div>
+                        
+                    
                 @else
-                    <div class="flex flex-col items-center">
-                        <h1>sudah berisi</h1>
-
-                    </div>
+                    @foreach ($pelaporan as $pelaporans)
+                            <div class="flex flex-col items-center">
+                                <a href="{{ route('pelaporan.show', $pelaporans->id_pelaporan) }}"
+                                    class="flex flex-col items-center mb-6 bg-white border w-[1710px] border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                                        src="{{ optional($pengajuan->informasi)->gambar_informasi ? asset('img/' . $pengajuan->informasi->gambar_informasi) : 'fallback-image-url.jpg' }}"
+                                        alt="">
+                                    <div class="flex flex-col justify-between px-4 leading-normal">
+                                        <h5 class="text-[40px] font-bold tracking-tight text-gray-900 dark:text-white ">
+                                            {{-- {{ optional($pengajuan->informasi)->nama_bibit }} --}}
+                                            {{ $pelaporans->nama_kegiatan }}
+                                        </h5>
+                                        <div
+                                            class="mb-1 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
+                                            @if ($pelaporans->status_validasi == 2)
+                                                Validated
+                                            @elseif ($pelaporans->status_validasi == 3)
+                                                Rejected
+                                            @else
+                                                Sedang di proses
+                                            @endif
+                                        </div>
+                                        <p class="text-neutral-500 mb-2">
+                                            <small>
+                                                Terverifikasi tanggal
+                                                <u>
+                                                    {{ $pelaporans->tanggal_validasi }}
+                                                </u>
+                                            </small>
+                                        </p>
+                                        <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+    
+                                        </div>
+                                        
+    
+                                    </div>
+                                </a>
+                                
+    
+                            </div>
+    
+                        
+                    @endforeach
+                    
                 @endif
-                
-            <div class="flex flex-col items-center">
-                <a href="{{ route('pelaporan.show', $pelaporans->id_pelaporan) }}"
-                    class="flex flex-col items-center mb-6 bg-white border w-[1710px] border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                        src="{{ optional($pengajuan->informasi)->gambar_informasi ? asset('img/' . $pengajuan->informasi->gambar_informasi) : 'fallback-image-url.jpg' }}"
-                        alt="">
-                    <div class="flex flex-col justify-between px-4 leading-normal">
-                        <h5 class="text-[56px] font-bold tracking-tight text-gray-900 dark:text-white ">
-                            {{ optional($pengajuan->informasi)->nama_bibit }}</h5>
-                        <div
-                            class="mb-1 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
-                            @if ($pengajuan->status_validasi == 2)
-                                Validated
-                            @else
-                                {{ $pengajuan->status_validasi }}
-                            @endif
-                        </div>
-                        <p class="text-neutral-500 mb-2">
-                            <small>
-                                Terverifikasi tanggal
-                                <u>
-                                    {{ $pengajuan->tanggal_validasi }}
-                                </u>
-                            </small>
-                        </p>
-                        <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-
-                        </div>
-
-                    </div>
-                </a>
-
+                <button>
+                    <button onclick="showEditButton()"
+                        class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[220px] mt-4">
+                        Tambahkan Pelaporan</button>
+                </button>
             </div>
+            {{-- @foreach ($pelaporan as $pelaporans) --}}
+           
 
-            
-            @endforeach
+
+
+
+            {{-- @endforeach --}}
 
         </div>
         <div id="editbutton"
@@ -114,10 +125,13 @@
                                         htmlfor="grid-password">
                                         Kondisi
                                     </label>
-                                    <input type="text" name="kondisi" id="kondisi"
+                                    {{-- <input type="text" name="kondisi" id="kondisi"
                                         class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan File">
-                                    </input>
+                                    </input> --}}
+                                    <textarea name="kondisi" id="kondisi" class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150">
+
+                                    </textarea>
 
                                     {{-- <input type="" name="id_informasi" id="id_informasi" value="{{ $data->id_informasi }}">
                                     <input type="" name="nama_informasi" id="nama_informasi" value="{{ $data->nama_informasi }}"> --}}

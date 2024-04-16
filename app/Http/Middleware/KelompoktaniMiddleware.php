@@ -15,7 +15,7 @@ class KelompoktaniMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->roles_id != 1){
+        if(auth()->user()->id_roles != 1){
             abort(403);
         }
         return $next($request);

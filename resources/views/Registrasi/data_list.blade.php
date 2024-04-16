@@ -2,7 +2,7 @@
 @section('content')
     <section>
         <div class="flex flex-col m-4 w-[100%]">
-            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Registrasi Kelomopok Tani Bibit Horikultura
+            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Registrasi Kelompok Tani Bibit Horikultura
             </h1>
             <p class="text-[18px] font-normal text-[#9B9B9B] font-[Poppins] mt-[11px] text-wrap w-[1100px] leading-[25px]">
                 Pada halaman ini akan membantu kamu dalam menambahkan pemberitahun, mengedit apabila diperlukan perubahan
