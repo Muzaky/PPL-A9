@@ -118,7 +118,12 @@
                             <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4" readonly
                                 value="{{ $data->updated_at }}">
                         </div>
-                        <span class="text-red-500 font-bold">Berkas ditolak</span>
+                        <button>
+                            <button onclick="showEditButton()"
+                                class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
+                                Ubah</button>
+                        </button>
+                        
                     @else
                         <div class="flex items-center">
                             {{-- @if ($pengajuan->status_validasi == 2) --}}
@@ -180,11 +185,11 @@
                 </button>
                 <div class="flex-auto px-4 lg:px-10 py-4 pt-0">
                     <form class="flex justify-center items-center flex-col"
-                        action="{{ route('pelaporan.update', $data->id_pelaporan) }}" method="POST"
+                        action="{{ route('pelaporan.update', $pelaporan->id_pelaporan) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                            Ubah Pengajuan
+                            Ubah Pelaporan
                         </h6>
                         <div class="flex flex-wrap text-center">
 

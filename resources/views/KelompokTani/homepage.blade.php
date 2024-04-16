@@ -60,9 +60,27 @@
             }
         </style>
         <div class="flex flex-col bg-transparent h-full w-full font-bold justify-center">
-            <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap text-white">Registrasi Kelompok Tani</div>
-            <div class="flex ml-[64px] text-[20px] text-white">Lakukan registrasi untuk mengakses semua fitur BibiTani
-            </div>
+            @if ($usercount == 0)
+                <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap text-white">Registrasi Kelompok Tani</div>
+                <div class="flex ml-[64px] text-[20px] text-white">Lakukan registrasi untuk mengakses semua fitur
+                    BibiTani
+                </div>
+            @elseif ($usercount != 0)
+                @if ($registrasi->status_validasi == 1)
+                    <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap text-white">Menunggu Validasi Kelompok
+                        Tani
+                    </div>
+                    <div class="flex ml-[64px] text-[20px] text-white">Silahkan menunggu validasi dari kedinasan !
+                    </div>
+                @elseif ($registrasi->status_validasi == 2)
+                    <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap text-white">Selamat Datang Kelompok Tani
+                        {{ $registrasi->nama_keltani }} !
+                    </div>
+                    <div class="flex ml-[64px] text-[20px] text-white">Terima kasih telah menggunakan aplikasi Bibitani
+                        !
+                    </div>
+                @endif
+            @endif
         </div>
 
         <div class="flex flex-row bg-transparent h-full w-[1000px] items-center justify-center ">

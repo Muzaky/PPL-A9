@@ -115,7 +115,8 @@ class C_Pelaporan extends Controller
     }
 
     public function update(Request $request, $id_pelaporan)
-    {
+    {  
+        // dd($id_pelaporan);
         // dd($request);
         $request->validate([
             'dokumentasi_pelaporan' => '|file|mimes:png,jpg,jpeg',
@@ -160,7 +161,7 @@ class C_Pelaporan extends Controller
             'nama_kegiatan' => 'required',
             'status_validasi' => 'required',
             'catatan_validasi' => 'required',
-            'tanggal_validasi' => 'required',
+            'tanggal_validasi',
         ]);
 
         $data = [
