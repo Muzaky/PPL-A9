@@ -10,7 +10,7 @@
                 </svg>
                 Back
             </a>
-            <h1 class=" text-[48px] font-bold text-[#204E51] px-[105px]  mb-10">Pelaporan Bantuan Bibit</h1>
+            <h1 class=" text-[48px] font-bold text-[#204E51] px-[105px]  mb-10">History Pelaporan Bantuan Bibit</h1>
 
             <div class="flex flex-col items-center">
 

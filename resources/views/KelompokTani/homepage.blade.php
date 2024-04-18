@@ -22,6 +22,26 @@
 </style>
 
 <body class="flex flex-col justify-center items-center h-screen">
+    <nav class="flex items-center justify-between p-6 lg:px-8 mx w-full" aria-label="Global">
+        <div class="flex lg:flex-1">
+            <a href="/" class="-m-1.5 p-1.5">
+                <img class="w-[250px] h-[86px]" src="{{ asset('../bibitani.ico') }}"alt="logobibitani">
+            </a>
+        </div>
+
+        <div class=" lg:flex lg:flex-1 lg:justify-end">
+            @if (Auth::check())
+                <a href="{{ route('logout') }}"
+                    class="flex justify-center font-semibold leading-6  mx-8 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Logout</a>
+            @else
+                <a href="/login"
+                    class="flex justify-center font-semibold leading-6  mx-8 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Masuk</a>
+                <a href="/register"
+                    class="flex justify-center font-semibold leading-6  hover:bg-[#204e51] bg-[#f4f4f4] text-[#204e51] hover:text-[#f4f4f4] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Daftar</a>
+            @endif
+        </div>
+    </nav>
+
     <div class="alert">
         @if (session()->has('success'))
             <div id="alert-border-3"
@@ -51,7 +71,7 @@
 
     {{-- @dd(auth()->user()->username)  --}}
     {{-- {{ Auth::check() ? 'Authenticated' : 'Not Authenticated' }} --}}
-    <div class="flex justify-center items-center flex-row h-[466px] w-[1707px] mt-10 bg-image">
+    <div class="flex justify-center items-center flex-row h-[466px] w-[1707px] bg-image">
         <style>
             .bg-image {
                 background-image: url('../images/Component.png');
@@ -67,13 +87,13 @@
                 </div>
             @elseif ($usercount != 0)
                 @if ($registrasi->status_validasi == 1)
-                    <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap text-white">Menunggu Validasi Kelompok
+                    <div class="flex ml-[64px] w-[300px] text-[36px] text-white">Menunggu Validasi Kelompok
                         Tani
                     </div>
                     <div class="flex ml-[64px] text-[20px] text-white">Silahkan menunggu validasi dari kedinasan !
                     </div>
                 @elseif ($registrasi->status_validasi == 2)
-                    <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap text-white">Selamat Datang Kelompok Tani
+                    <div class="flex ml-[64px] w-[400px] text-[36px] text-white">Selamat Datang Kelompok Tani
                         {{ $registrasi->nama_keltani }} !
                     </div>
                     <div class="flex ml-[64px] text-[20px] text-white">Terima kasih telah menggunakan aplikasi Bibitani
@@ -84,7 +104,6 @@
         </div>
 
         <div class="flex flex-row bg-transparent h-full w-[1000px] items-center justify-center ">
-            {{-- @dd($registrasi) --}}
             @if ($usercount == 0)
                 <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
                     href="{{ route('registrasi.create') }}">Register</a>
@@ -94,20 +113,11 @@
                         href="#">Menunggu</a>
                 @elseif ($registrasi->status_validasi == 2)
                     <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-                        href="#">Lihat</a>
+                        href="{{ route('registrasi.edit', $registrasi->id_registrasi) }}">Lihat</a>
                 @elseif ($registrasi->status_validasi == 3)
                     <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
                         href="{{ route('registrasi.edit', $registrasi->id_registrasi) }}">Edit</a>
                 @endif
-            @endif
-            {{-- <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-                href="{{ route('registrasi.create') }}">Register</a> --}}
-            @if (Auth::check())
-                <a class="flex py-2 text-[20px] ml-4 w-[120px] bg-white rounded-[4px] justify-center items-center font-bold"
-                    href="{{ route('logout') }}">Logout</a>
-            @else
-                <a class="flex py-2 text-[20px] ml-4 w-[120px] bg-white rounded-[4px] justify-center items-center font-bold"
-                    href="{{ route('login') }}">Login</a>
             @endif
         </div>
     </div>

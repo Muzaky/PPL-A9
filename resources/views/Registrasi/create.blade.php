@@ -9,7 +9,6 @@
     <title>Bibitani | Registrasi Kelompok Tani</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 
 <body class="flex justify-center items-center">
@@ -41,7 +40,7 @@
                                     enctype="multipart/form-data" class="max-w-md">
                                     @csrf
                                     <!-- Nama Kelompok Tani -->
-                                    <div class=" mb-[23px] mt-[23px]">
+                                    <div class=" mb-[18px] mt-[px]">
                                         <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none"
                                             type="text" placeholder="Nama Kelompok Tani" id="nama_keltani"
                                             name="nama_keltani" />
@@ -95,6 +94,7 @@
                                                 class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                             </div>
                                         </div>
+                                    </div>
 
                                         <!-- Status Validasi -->
                                         <div class="mb-4 hidden">
@@ -123,12 +123,13 @@
 
 
                                         <!-- Submit button -->
-                                        <div class="pb-1 pt-1 text-center">
+                                    <div class="pb-1 pt-1 text-center">
                                             <button
                                                 class=" bg-[#204E51] p-3 rounded px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]"
                                                 type="submit">
                                                 Kirim
                                             </button>
+                                    </div>
 
 
                                 </form>

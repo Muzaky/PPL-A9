@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="bibitani.ico">
-    <title>Bibitani | Registrasi Kelompok Tani</title>
+    <title>Bibitani | Data Kelompok Tani</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -25,7 +25,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
-                    </a>
+                    </a>        
                     <div class="g-0 lg:flex lg:flex-wrap">
                         <!-- Left column container-->
                         <div class="px-4 md:px-0 lg:w-6/12">
@@ -33,26 +33,25 @@
                                 <!--Logo-->
 
                                 <p class="mb-[10px] text-[36px] font-bold font-[Open Sans] text-wrap w-[300px]">
-                                    Regitrasi
-                                    Kelompok <font style="color: #53C341">Tani</font>
+                                    Data
+                                    Kelompok Tani <font style="color: #53C341">Tani</font>
                                 </p>
-                                {{-- @dd($data) --}}
-                                <form action="{{ route('registrasi.update', $data->id_registrasi) }}" method="POST"
+
+                                <form action="{{ route('registrasi.store') }}" method="POST"
                                     enctype="multipart/form-data" class="max-w-md">
                                     @csrf
                                     <!-- Nama Kelompok Tani -->
-                                    <div class=" mb-[23px] mt-[23px]">
+                                    <div class=" mb-[18px] mt-[px]">
                                         <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none"
                                             type="text" placeholder="Nama Kelompok Tani" id="nama_keltani"
-                                            name="nama_keltani" value="{{ $data->nama_keltani }}" />
+                                            name="nama_keltani" value="{{ $data->nama_keltani }}"/>
                                     </div>
 
 
                                     <!-- Nama Ketua -->
                                     <div class=" mb-[18px]">
                                         <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none"
-                                            type="text" placeholder="Nama Ketua" id="nama_ketua" name="nama_ketua"
-                                            value="{{ $data->nama_ketua }}" />
+                                            type="text" placeholder="Nama Ketua" id="nama_ketua" name="nama_ketua" value="{{ $data->nama_ketua }}"/>
                                     </div>
 
 
@@ -68,7 +67,7 @@
                                     <div class=" mb-[18px]">
                                         <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none "
                                             type="number" placeholder="Jumlah Anggota" id="jumlah_anggota"
-                                            name="jumlah_anggota" value="{{ $data->jumlah_anggota }}" />
+                                            name="jumlah_anggota" value="{{ $data->jumlah_anggota }}"/>
                                     </div>
 
 
@@ -76,11 +75,11 @@
                                     <div class=" mb-[18px]">
                                         <input class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none "
                                             type="text" placeholder="Alamat Kelompok Tani" id="alamat_keltani"
-                                            name="alamat_keltani" value="{{ $data->alamat_keltani }}" />
+                                            name="alamat_keltani" value="{{ $data->alamat_keltani }}"/>
                                     </div>
 
 
-
+                                    
                                     <!-- Nama Kecamatan -->
                                     <div class="mb-[18px] relative">
                                         <div class="relative">
@@ -96,40 +95,42 @@
                                                 class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                             </div>
                                         </div>
+                                    </div>
 
                                         <!-- Status Validasi -->
-                                        <div class="mb-4">
+                                        <div class="mb-4 hidden">
                                             <label for="status_validasi"
                                                 class="block text-sm font-medium text-gray-700">Status
                                                 Validasi</label>
                                             <input type="number" name="status_validasi" id="status_validasi"
-                                                value="{{ $data->status_validasi }}" autocomplete="off"
+                                                value="1" autocomplete="off"
                                                 class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                         </div>
 
                                         <!-- ID Users -->
-                                        <div class="">
+                                        <div class=" hidden">
                                             <input
-                                                class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none "
-                                                type="text" placeholder="" id="id_users" name="id_users"
-                                                value="{{ $data->id_users }}" />
+                                            class="w-[600px] h-[52px] p-2  border-b border-gray-500 outline-none "
+                                            type="text" placeholder="" id="id_users" name="id_users"
+                                            value="{{ $userId }}" />
                                         </div>
                                         <!-- Bukti Legalitas -->
                                         <div class="mb-[23px] mt-[18px] text-center">
                                             <label class="block font-semibold text-[20px]">Bukti
                                                 Legalitas</label>
-                                            <input type="file" class="" name="bukti_legalitas"
-                                                id="bukti_legalitas" value="{{ $data->bukti_legalitas }}">
+                                            <input type="text" class="" name="bukti_legalitas"
+                                                id="bukti_legalitas" value="{{ $data->bukti_legalitas }}" disabled>
                                         </div>
 
 
                                         <!-- Submit button -->
-                                        <div class="pb-1 pt-1 text-center">
+                                    {{-- <div class="pb-1 pt-1 text-center">
                                             <button
                                                 class=" bg-[#204E51] p-3 rounded px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]"
                                                 type="submit">
                                                 Kirim
                                             </button>
+                                    </div> --}}
 
 
                                 </form>
@@ -150,5 +151,7 @@
 
 
 </body>
+
+
 
 </html>
