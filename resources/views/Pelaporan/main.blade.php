@@ -1,5 +1,14 @@
 @extends('layout.navtani')
 @section('content')
+<style>
+    #judul {
+            font-family: 'Montserrat';
+            font-size: 48px;
+            font-weight: 700;
+            
+
+        }
+</style>
     <section class="flex flex-col font-[Poppins]">
         <div>
             <a href="{{ route('pelaporan.landing') }}"
@@ -10,7 +19,7 @@
                 </svg>
                 Back
             </a>
-            <h1 class=" text-[48px] font-bold text-[#204E51] px-[105px]  mb-10">History Pelaporan Bantuan Bibit</h1>
+            <h1 class="text-[#204E51] px-[105px] mb-10 text-center" id="judul">History Pelaporan Bantuan Bibit</h1>
 
             <div class="flex flex-col items-center">
 
@@ -25,11 +34,11 @@
                             <div class="flex flex-col items-center">
                                 <a href="{{ route('pelaporan.show', $pelaporans->id_pelaporan) }}"
                                     class="flex flex-col items-center mb-6 bg-white border w-[1710px] border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                                        src="{{ optional($pengajuan->informasi)->gambar_informasi ? asset('img/' . $pengajuan->informasi->gambar_informasi) : 'fallback-image-url.jpg' }}"
+                                    <img class="object-cover w-48 rounded h-40"
+                                        src="{{ optional($pelaporans->dokumentasi_pelaporan) ? asset('dokumentasi/' . $pelaporans->dokumentasi_pelaporan) : 'fallback-image-url.jpg' }}"
                                         alt="">
                                     <div class="flex flex-col justify-between px-4 leading-normal">
-                                        <h5 class="text-[40px] font-bold tracking-tight text-gray-900 dark:text-white ">
+                                        <h5 class="text-[36px] font-semibold tracking-tight text-gray-900 dark:text-white ">
                                             {{-- {{ optional($pengajuan->informasi)->nama_bibit }} --}}
                                             {{ $pelaporans->nama_kegiatan }}
                                         </h5>
@@ -40,16 +49,30 @@
                                             @elseif ($pelaporans->status_validasi == 3)
                                                 Rejected
                                             @else
-                                                Sedang di proses
+                                                Proses
                                             @endif
                                         </div>
                                         <p class="text-neutral-500 mb-2">
-                                            <small>
-                                                Terverifikasi tanggal
-                                                <u>
-                                                    {{ $pelaporans->tanggal_validasi }}
-                                                </u>
-                                            </small>
+                                            @if ($pelaporans->status_validasi ==2)
+                                                <small>
+                                                    Terverifikasi tanggal
+                                                    <u>
+                                                        {{ $pelaporans->tanggal_validasi }}
+                                                    </u>
+                                                </small>
+                                            @elseif ($pelaporans->status_validasi == 3)
+                                                <small>
+                                                    Ditolak tanggal
+                                                    <u>
+                                                        {{ $pelaporans->tanggal_validasi }}
+                                                    </u>
+                                                </small>
+                                            @else
+                                                <small>
+                                                    Menunggu pemrosesan oleh Dinas
+                                                </small>
+                                            @endif
+
                                         </p>
                                         <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
     

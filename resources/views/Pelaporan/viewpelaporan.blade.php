@@ -141,7 +141,7 @@
                                         Diproses</span>
                                 </div>
                             {{-- </div> --}}
-                            <div class="flex">
+                            <div class="flex justify-center">
                                 <p class="px-4 py-4 text-center">Berkas sedang diproses</p>
                             </div>
                             <div class="flex">
