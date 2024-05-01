@@ -7,6 +7,12 @@
             right: 20px;
             z-index: 9999;
         }
+
+        #judul {
+            font-family: 'Montserrat';
+            font-size: 28px;
+
+        }
     </style>
     <section class="flex flex-col font-[Poppins] items-center">
         <div class="alert">
@@ -36,7 +42,7 @@
             @endif
         </div>
         <div class="flex flex-col text-center w-full h-full py-5 bg-[#9AB2AA]  items-center relative">
-            <a href="{{ route('pelaporan.landing') }}"
+            <a href="{{ route('pelaporan.main', $pengajuan->id_pengajuan) }}"
                 class="absolute left-[20px] top-[20px] flex items-center text-black text-sm font-medium">
                 <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
@@ -46,40 +52,37 @@
             </a>
 
             <div>
-                <h1 class="text-[48px] font-bold  px-[200px] pt-[50px] mb-4">Pelaporan Bantuan Bibit
+                <h1 class="text-[28px] font-bold  px-[200px] pt-[50px] mb-4" id="judul">Detail Pelaporan Bantuan Bibit
                     {{ $informasi->first()->nama_bibit }}</h1>
             </div>
-            <!-- Back button -->
-            <div class="flex flex-col w-[1289px] ">
+            <div class="flex flex-row text-start">
+                <div class="container-list flex flex-col">
+                    <div class="flex flex-row items-center gap-2 mt-4">
+                        <label class="text-[24px] font-medium">Tanggal Pelaporan :</label>
+                        <input type="text" class="w-[449px] bg-transparent border-0 text-[20px]" disabled readonly
+                            value="{{ $data->tanggal_pelaporan }}">
+                    </div>
+                    <div class="flex flex-row items-center gap-2 mt-4">
+                        <label class="text-[24px] font-medium">Nama Kegiatan : </label>
+                        <input type="text" class="w-[449px] bg-transparent border-0 text-[20px]" disabled readonly
+                            value="{{ $data->nama_kegiatan }}">
+                    </div>
+                    <div class="flex flex-row items-center gap-2 mt-4">
+                        <label for="" class="text-[24px] font-medium">Dokumentasi :</label>
+                        <a href="{{ asset('dokumentasi/' . $data->dokumentasi_pelaporan) }}"
+                            class="w-[449px] border-0 text-[20px]">{{ $data->dokumentasi_pelaporan }}</a>
+                    </div>
+                    <div class="flex-row gap-2 mt-4">
+                        <label for="" class="block text-[24px] font-medium">Kondisi :</label>
+                        <textarea type="text" class="w-[449px] border-0 text-center mt-4 rounded" disabled readonly>{{ strip_tags($data->kondisi) }}</textarea>
+                    </div>
+                </div>
 
-                <div class="flex flex-row items-center gap-2 mt-4">
-                    <label for="" class="text-[24px] font-bold">Nama Kegiatan</label>
-                    <input type="text" class="w-[449px] bg-transparent border-0" disabled readonly
-                        value="{{ $data->nama_kegiatan }}">
-                </div>
-                <div class="flex flex-row items-center gap-2 mt-4">
-                    <label for="" class="text-[24px] font-bold">Tanggal Pelaporan :</label>
-                    <input type="text" class="w-[449px] bg-transparent border-0" disabled readonly
-                        value="{{ $data->tanggal_pelaporan }}">
-                </div>
-                <div class="flex flex-row items-center mt-[32px]">  
-                    <label for="" class="text-[24px] font-bold">Berkas Pengajuan :</label>
-                    <a href="{{ asset('dokumentasi/' . $data->dokumentasi_pelaporan) }}"
-                        class="w-[449px] bg-transparent border-0">{{ $data->dokumentasi_pelaporan }}</a>
-                </div>
-                <div class="flex flex-row items-center gap-2 mt-4">
-                    <label for="" class="text-[24px] font-bold">Kondisi :</label>
-                    <input type="textarea" class="w-[449px] bg-transparent border-0" disabled readonly
-                        value="{{ strip_tags($data->kondisi) }}">
-                </div>
-            </div>
-            <div class="flex flex-col w-[1330px] h-[349px] bg-[#ACBE9D]  mt-[36px]">
-                <div class="flex flex-row items-center justify-between gap-2 mt-4 mx-4">
-                    @if ($data->status_validasi == 2)
-                        <div class="flex items-center">
-                            {{-- @if ($pengajuan->status_validasi == 2) --}}
-                            <label for="" class="text-[24px] font-medium">Status Validasi :</label>
-                            <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
+                <div class="container-status flex flex-col bg-gray-400">
+                    <h2 class="text-[24px] font-semibold px-4 py-4 mx-auto">Status Validasi</h2>
+                    <div class="flex flex-col mx-4">
+                        @if ($data->status_validasi == 2)
+                            <div class="flex items-center bg-[#F0FFFB] rounded-[8px]">
                                 <div class="h-[60vpx] w-[5px] bg-green-500"></div>
                                 <div class="bg-green-500 rounded-full p-1 mx-2">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -91,84 +94,72 @@
                                 <span class="text-[#000] font-medium px-4 py-4">Pelaporan Bantuan Bibit telah
                                     disetujui</span>
                             </div>
-                        </div>
-                        <div class="">
-                            <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
-                            <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4" disabled readonly
-                                value="{{ $data->updated_at }}">
-                        </div>
-                    @elseif ($data->status_validasi == 3)
-                        <div class="flex items-center">
-                            {{-- @if ($pengajuan->status_validasi == 2) --}}
-                            <label for="" class="text-[24px] font-medium">Status Validasi :</label>
-                            <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
-                                <div class="h-[60vpx] w-[5px] bg-red-500"></div>
-                                <div class="bg-red-500 rounded-full p-1 mx-2">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span class="text-[#000] font-medium px-4 py-4">Berkas Pengajuan Bibit Ditolak</span>
+                            <div>
+                                <p class="px-4 py-4 text-center">{{ $data->updated_at }}</p>
                             </div>
-                        </div>
-                        <div class="">
-                            <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
-                            <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4" readonly
-                                value="{{ $data->updated_at }}">
-                        </div>
-                        <button>
-                            <button onclick="showEditButton()"
-                                class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
-                                Ubah</button>
-                        </button>
-                        
-                    @else
-                        <div class="flex items-center">
-                            {{-- @if ($pengajuan->status_validasi == 2) --}}
-                            <label for="" class="text-[24px] font-medium">Status Validasi :</label>
-                            <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
-                                <div class="h-[60px] w-[5px] bg-yellow-500"></div>
-                                <div class="bg-yellow-500 rounded-full  ml-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        strokeWidth={1.5} stroke="currentColor" class="w-8 h-8">
-                                        <path strokeLinecap="round" strokeLinejoin="round"
-                                            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
-                                    </svg>
-                                </div>
-                                <span class="text-[#000] font-medium px-2 py-4">Berkas Pengajuan Bibit Sedang
-                                    Diproses</span>
+                            <div>
+                                <textarea type="text" class="w-[449px] h-full border-0 text-center mt-4 rounded" disabled readonly>{{ strip_tags($data->catatan_validasi) }}</textarea>
                             </div>
-                        </div>
-                        <div class="">
-                            <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
-                            @if ($data->tanggal_validasi == null)
-                                <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4 " disabled
-                                    readonly value="{{ $data->tanggal_validasi }}">
-                            @endif
-                        </div>
-                    @endif
+                        @elseif ($data->status_validasi == 3)
+                            {{-- <div class="flex items-center"> --}}
+                                <div class="flex items-center bg-[#F0FFFB] rounded-[8px]">
+                                    <div class="h-[60vpx] w-[5px] bg-red-500"></div>
+                                    <div class="bg-red-500 rounded-full p-1 mx-2">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-[#000] font-medium px-4 py-4">Berkas Pelaporan Ditolak</span>
+                                </div>
+                            {{-- </div> --}}
+                            <div>
+                                <p>{{ $data->updated_at }}</p>
 
-                </div>
-                <div class="flex flex-col items-center gap-2 mt-8">
-                    <label for="" class="text-[24px] font-bold">Catatan Validasi :</label>
-                    <span class="flex items-center justify-center w-[982px] h-[98px] bg-[#ffffff] rounded-[8px]">
-                        {{ strip_tags($data->catatan_validasi) }}
-                    </span>
-                    @if ($data->status_validasi == 1)
-                        <button>
-                            <button onclick="showEditButton()"
-                                class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
-                                Ubah</button>
-                        </button>
+                            </div>
+                            <div>
+                                <textarea type="text" class="w-[449px] h-full border-0 text-center mt-4 rounded" disabled readonly>Belum ada catatan</textarea>
+                            </div>
+                            <button>
+                                <button onclick="showEditButton()"
+                                    class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
+                                    Ubah</button>
+                            </button>
+                        @else
+                            {{-- <div class="flex items-center bg-[#F0FFFB] rounded-[8px]"> --}}
+                                <div class="flex items-center bg-[#F0FFFB] rounded-[8px]">
+                                    {{-- <div class="h-[60px] w-[5px] bg-yellow-500"></div> --}}
+                                    <div class="bg-yellow-500 rounded-full p-1 mx-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            strokeWidth={1.5} stroke="currentColor" class="w-8 h-8">
+                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-[#000] font-medium px-4 py-4">Berkas Pelaporan Sedang
+                                        Diproses</span>
+                                </div>
+                            {{-- </div> --}}
+                            <div class="flex">
+                                <p class="px-4 py-4 text-center">Berkas sedang diproses</p>
+                            </div>
+                            <div class="flex">
+                                <textarea type="text" class="w-[449px] h-full border-0 text-center rounded" disabled readonly>Belum ada catatan</textarea>
+                            </div>
+                            <div class="flex items-center justify-center my-4">
+                                <button onclick="showEditButton()"
+                                    class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
+                                    Ubah</button>
+                            </div>
+                    </div>
                     @endif
                 </div>
-
-
-
             </div>
+
         </div>
+        <!-- Back button -->
+
 
 
         <div id="editbutton"
@@ -179,7 +170,8 @@
                     class="absolute left-[20px] top-[20px] flex items-center text-black text-sm font-medium">
                     <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                        </path>
                     </svg>
                     Back
                 </button>

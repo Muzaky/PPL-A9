@@ -64,7 +64,8 @@
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class="px-2 py-1 fs-6 lh-sm object-fill">
                                         <a href="{{ asset('img/' . $val->gambar_informasi) }}">
-                                            {{ basename($val->gambar_informasi) }}
+                                            Lihat Gambar
+                                            {{-- {{ basename($val->gambar_informasi) }} --}}
 
                                         </a>
                                         {{-- <img --}}

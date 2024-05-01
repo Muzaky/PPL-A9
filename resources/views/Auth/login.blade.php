@@ -45,23 +45,22 @@
                                     @endif
 
                                     <form class="flex flex-col">
-                                        <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Login</p>
-                                        <small class="mb-[46px] text-[#B9B8B8] ">Login here using your email and
-                                            password</small>
+                                        <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Masuk</p>
+                                        <small class="mb-[46px] text-[#B9B8B8] ">Silahkan masukkan email dan password</small>
                                         <!--Username input-->
                                         <div class=" mb-4">
                                             <label class="block mb-2 font-semibold text-[20px]">
                                                 Email
                                             </label>
                                             <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="text"
-                                                placeholder="Username" id="email" name="email" />
+                                                placeholder="Masukkan email" id="email" name="email" />
                                         </div>
                                         <div class=" mb-4">
                                             <label class="block mb-2 font-semibold text-[20px]">
                                                 Password
                                             </label>
                                             <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="password"
-                                                placeholder="Password" id="password" name="password" />
+                                                placeholder="Masukkan password" id="password" name="password" />
                                         </div>
 
                                         <!--Password input-->
@@ -72,7 +71,7 @@
                                             <button
                                                 class=" bg-[#204E51] p-3 rounded px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]"
                                                 type="submit">
-                                                Log in
+                                                Masuk
                                             </button>
 
                                             <!--Forgot password link-->
@@ -80,10 +79,9 @@
                                         <!--Register button-->
                                         <div class="flex items-center justify-center pb-6">
                                             <p class="mt-4 text-center text-sm text-[#204E51] ">
-                                                Not a member ?
+                                                Tidak punya akun ?
                                                 <a href="{{ route('auth.register') }}"
-                                                    class="font-bold leading-6 text-[#000000] hover:text-[#204E51]">Register
-                                                    here</a>
+                                                    class="font-bold leading-6 text-[#000000] hover:text-[#204E51]">Daftar disini</a>
                                             </p>
                                         </div>
                                     </form>

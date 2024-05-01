@@ -1,0 +1,119 @@
+ <div class="flex flex-col w-[1289px] items-start text-left">
+
+                <div class="flex flex-row items-center gap-2 mt-4">
+                    <label class="text-[24px] font-bold">Tanggal Pelaporan :</label>
+                    <input type="text" class="w-[449px] bg-transparent border-0 text-[20px]" disabled readonly
+                        value="{{ $data->tanggal_pelaporan }}">
+                </div>
+                <div class="flex flex-row items-center gap-2 mt-4">
+                    <label class="text-[24px] font-bold">Nama Kegiatan : </label>
+                    <input type="text" class="w-[449px] bg-transparent border-0 text-[20px]" disabled readonly
+                        value="{{ $data->nama_kegiatan }}">
+                </div>
+                <div class="flex flex-row items-center gap-2 mt-4">  
+                    <label for="" class="text-[24px] font-bold">Dokumentasi :</label>
+                    <a href="{{ asset('dokumentasi/' . $data->dokumentasi_pelaporan) }}"
+                        class="w-[449px] border-0 text-[20px]" >{{ $data->dokumentasi_pelaporan }}</a>
+                </div>
+                <div class="flex-row gap-2 mt-4">
+                    <label for="" class="block text-[24px] font-bold">Kondisi :</label>
+                    <textarea type="text" class="w-[449px] border-0 text-center mt-4 rounded" disabled readonly
+                        >{{ strip_tags($data->kondisi) }}</textarea>
+                </div>
+            </div>
+            <div class="flex flex-col w-[1330px] h-[349px] bg-[#ACBE9D]  mt-[36px]">
+                <div class="flex flex-row items-center justify-between gap-2 mt-4 mx-4">
+                    @if ($data->status_validasi == 2)
+                        <div class="flex items-center">
+                            {{-- @if ($pengajuan->status_validasi == 2) --}}
+                            <label for="" class="text-[24px] font-medium">Status Validasi :</label>
+                            <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
+                                <div class="h-[60vpx] w-[5px] bg-green-500"></div>
+                                <div class="bg-green-500 rounded-full p-1 mx-2">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-[#000] font-medium px-4 py-4">Pelaporan Bantuan Bibit telah
+                                    disetujui</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
+                            <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4" disabled readonly
+                                value="{{ $data->updated_at }}">
+                        </div>
+                    @elseif ($data->status_validasi == 3)
+                        <div class="flex items-center">
+                            {{-- @if ($pengajuan->status_validasi == 2) --}}
+                            <label for="" class="text-[24px] font-medium">Status Validasi :</label>
+                            <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
+                                <div class="h-[60vpx] w-[5px] bg-red-500"></div>
+                                <div class="bg-red-500 rounded-full p-1 mx-2">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-[#000] font-medium px-4 py-4">Berkas Pelaporan Ditolak</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
+                            <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4" readonly
+                                value="{{ $data->updated_at }}">
+                        </div>
+                        <button>
+                            <button onclick="showEditButton()"
+                                class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
+                                Ubah</button>
+                        </button>
+                        
+                    @else
+                        <div class="flex items-center">
+                            {{-- @if ($pengajuan->status_validasi == 2) --}}
+                            <label for="" class="text-[24px] font-medium">Status Validasi :</label>
+                            <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
+                                <div class="h-[60px] w-[5px] bg-yellow-500"></div>
+                                <div class="bg-yellow-500 rounded-full  ml-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        strokeWidth={1.5} stroke="currentColor" class="w-8 h-8">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                    </svg>
+                                </div>
+                                <span class="text-[#000] font-medium px-2 py-4">Berkas Pelaporan Sedang
+                                    Diproses</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <label for="" class="text-[24px] font-medium ml-[4px]">Tanggal Validasi :</label>
+                            @if ($data->tanggal_validasi == null)
+                                <input type="text" class="w-[200px] bg-transparent border-0 px-4 py-4 " disabled
+                                    readonly value="{{ $data->tanggal_validasi }}">
+                            @endif
+                        </div>
+                    @endif
+
+                </div>
+                <div class="flex flex-col items-center gap-2 mt-8">
+                    <label for="" class="text-[24px] font-bold">Catatan Validasi :</label>
+                    <span class="flex items-center justify-center w-[982px] h-[98px] bg-[#ffffff] rounded-[8px]">
+                        {{ strip_tags($data->catatan_validasi) }}
+                    </span>
+                    @if ($data->status_validasi == 1)
+                        <button>
+                            <button onclick="showEditButton()"
+                                class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[100px]">
+                                Ubah</button>
+                        </button>
+                    @endif
+                </div>
+
+
+
+            </div>
+        </div>

@@ -108,7 +108,7 @@
 
                         </div>
                        
-                        <button type="submit" class="flex mt-4">
+                        <button type="submit" class="flex w-[300px] justify-center rounded-[12px] bg-[#80411e] opacity-70 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#37251b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#76f51] mt-8">
                             Simpan
                         </button>
                     </form>

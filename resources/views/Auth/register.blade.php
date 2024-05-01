@@ -20,13 +20,15 @@
                 <div class="w-full">
                     <!-- Container -->
                     <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800 relative">
-                        <a href="/" class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
+                         <a href="{{ url('landing') }}"
+                            class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
                             aria-label="Close">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </a>
+                        
                         <div class="g-0 lg:flex lg:flex-wrap">
                             <!-- Left column container-->
                             <div class="px-4 md:px-0 lg:w-6/12">
@@ -38,32 +40,17 @@
                                     </div>
 
                                     <form class="flex flex-col">
-                                        <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Register</p>
-                                        <small class="mb-[36px] text-[#B9B8B8] ">Register here using your username,
-                                            email, and
-                                            password</small>
+                                        <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Daftar</p>
+                                        <small class="mb-[36px] text-[#B9B8B8] ">Daftar disini menggunakan Nama, Email dan Password</small>
                                         <!--Username input-->
                                         <div class=" mb-4">
                                             <label class="block mb-2 font-semibold text-[20px]">
-                                                Name
+                                                Nama
                                             </label>
                                             <input
-                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('name') border-red-500 @enderror border border-[#204E51]"
-                                                type="text" placeholder="Name" id="name" name="name" />
+                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('name') border-red-500 @enderror"
+                                                type="text" placeholder="Masukkan nama" id="name" name="name" />
                                             @error('name')
-                                                <div class="invalid-feedback text-red-500">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class=" mb-4">
-                                            <label class="block mb-2 font-semibold text-[20px]">
-                                                Password
-                                            </label>
-                                            <input
-                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('password') border-red-500 @enderror border border-[#204E51]"
-                                                type="password" placeholder="Password" id="password" name="password" />
-                                            @error('password')
                                                 <div class="invalid-feedback text-red-500">
                                                     {{ $message }}
                                                 </div>
@@ -74,15 +61,41 @@
                                                 Email
                                             </label>
                                             <input
-                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('email') border-red-500 @enderror border border-[#204E51]"
-                                                type="text" placeholder="Email" id="email" name="email" />
+                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('email') border-red-500 @enderror"
+                                                type="text" placeholder="Masukkan email" id="email" name="email" />
                                             @error('email')
                                                 <div class="invalid-feedback text-red-500">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
                                         </div>
-
+                                        <div class=" mb-4">
+                                            <label class="block mb-2 font-semibold text-[20px]">
+                                                Password
+                                            </label>
+                                            <input
+                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('password') border-red-500 @enderror"
+                                                type="password" placeholder="Masukkan password" id="password" name="password" />
+                                            @error('password')
+                                                <div class="invalid-feedback text-red-500">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class=" mb-4">
+                                            <label class="block mb-2 font-semibold text-[20px]">
+                                                Konfirmasi Password
+                                            </label>
+                                            <input
+                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('password') border-red-500 @enderror"
+                                                type="confirm-password" placeholder="Konfirmasi password" id="password" name="password" />
+                                            @error('password')
+                                                <div class="invalid-feedback text-red-500">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        
                                         <!--Password input-->
 
 
@@ -91,7 +104,7 @@
                                             <button
                                                 class=" bg-[#204E51] p-3 rounded px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]"
                                                 type="submit">
-                                                Register
+                                                Daftar
                                             </button>
 
                                             <!--Forgot password link-->
@@ -99,10 +112,10 @@
                                         <!--Login button-->
                                         <div class="flex items-center justify-center pb-6">
                                             <p class="mt-4 text-center text-sm text-[#204E51] ">
-                                                Have a member ?
+                                                Sudah punya akun ?
                                                 <a href="/login"
-                                                    class="font-bold leading-6 text-[#000000] hover:text-[#204E51] ">Login
-                                                    here</a>
+                                                    class="font-bold leading-6 text-[#000000] hover:text-[#204E51] ">Masuk
+                                                    disini</a>
                                             </p>
                                         </div>
                                     </form>
@@ -113,7 +126,7 @@
                             <div
                                 class="flex items-center justify-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none">
                                 <div class="w-[688px] h-[746px] rounded-[20px] my-8"
-                                    style="background-image: url(image_1.png); background-size: cover"></div>
+                                    style="background-image: url('air.png'); background-size: cover"></div>
                             </div>
                         </div>
                     </div>

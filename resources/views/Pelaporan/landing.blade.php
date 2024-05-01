@@ -10,7 +10,7 @@
                 </svg>
                 Back
             </a>
-            <h1 class=" text-[48px] font-bold text-[#204E51] px-[105px]  mb-10">Pelaporan Bantuan Bibit</h1>
+            <h1 class=" text-[48px] font-bold text-[#204E51] px-[105px]  mb-10">Daftar pengajuan kelompok tani {{ $registrasi->nama_keltani }}</h1>
             @foreach ($pengajuan as $pengajuan)
                 @if ($pengajuan ->status_validasi == 2)
                 <div class="flex flex-col items-center">

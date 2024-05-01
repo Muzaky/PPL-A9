@@ -45,8 +45,8 @@
       <div class="h-screen bg-cover -mx-8"id="overlay" style="max-height: 86vh">
         <div class="mx-auto max-w-4xl py-32 sm:py-48 lg:py-40">
           <div class="text-center">
-            <h1 class="font-bold tracking-tight sm:text-6xl style" style="font-size:90px ;color:#f4f4f4">Solusi Penyaluran Bibit <font color="#39A413">Horikultura</font> Kabupaten Jember</h1>
-            <p class="mt-6 text-lg leading-8" style="color:#f4f4f4">Lakukan pengajuan subsidi bibit tanpa harus datang ke dinas !</p>
+            <h1 class="font-bold tracking-tight sm:text-6xl style" style="font-size:90px ;color:#f4f4f4">Solusi Penyaluran Bibit <font color="#39A413">Hortikultura</font> Kabupaten Jember</h1>
+            <p class="mt-6 text-lg leading-8" style="color:#f4f4f4">Lakukan pengajuan subsidi bibit tanpa harus datang ke dinas</p>
           </div>
           <div class="mt-10 flex items-center justify-center gap-x-6">
               <a href="#" class="flex justify-center items-center text-sm font-semibold leading-6 text-gray-900" style="font-size:20px; width: 176px; height:48px;background-color:#transparent; color:#f4f4f4;border-radius:8px; border :1px solid #f4f4f4">Learn more</a>
