@@ -2,11 +2,12 @@
 @section('content')
     <section>
         <div class="flex flex-col m-4 w-[100%]">
-            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Registrasi Kelompok Tani Bibit Horikultura
+            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Kelompok Tani Kabupaten Jember
             </h1>
             <p class="text-[18px] font-normal text-[#9B9B9B] font-[Poppins] mt-[11px] text-wrap w-[1100px] leading-[25px]">
-                Pada halaman ini akan membantu kamu dalam menambahkan pemberitahun, mengedit apabila diperlukan perubahan
-                pada pemberitahuan, menghapus pemberitahuan dan memantau pemberitahuan yang telah ditambahkan</p>
+                Pada halaman ini akan membantu Anda dalam menampilkan data dari seluruh Kelompok Tani di Kabupaten Jember
+                dan Kelompok
+                Tani yang meminta persetujuan validasi akun BibiTani.</p>
 
             {{-- <a class="flex justify-center  items-center font-[Poppins] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
                 href="{{ route('berita.create') }}" id="myButton" onclick="startLoading()"><span class="flex">Tambah
@@ -45,14 +46,11 @@
                                 Catatan Validasi</th>
                             <th scope="col"
                                 class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                id_users</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                                 Status Validasi</th>
                             <th scope="col"
                                 class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins] ">
                                 Action</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -93,15 +91,12 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->catatan_validasi) }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->id_users }}</div>
-                                </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
                                     @if ($val->status_validasi == 1)
-                                    <div class=" px-2 py-1 fs-6 lh-sm">Diproses</div>
-                                    @elseif ($val->status_validasi ==2)
-                                    <div class=" px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
-                                    @else 
-                                    <div class=" px-2 py-1 fs-6 lh-sm">Ditolak</div>
+                                        <div class=" px-2 py-1 fs-6 lh-sm">Diproses</div>
+                                    @elseif ($val->status_validasi == 2)
+                                        <div class=" px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
+                                    @else
+                                        <div class=" px-2 py-1 fs-6 lh-sm">Ditolak</div>
                                     @endif
 
                                 </td>
@@ -114,8 +109,8 @@
                                                     d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                                             </svg>
                                         </i></a>
-                                    <button id="delete-form" action="{{ route('registrasi.destroy', $val->id_registrasi) }}"
-                                        method="POST">
+                                    <button id="delete-form"
+                                        action="{{ route('registrasi.destroy', $val->id_registrasi) }}" method="POST">
 
                                         <button onclick="showDelButton({{ $val->id_registrasi }})"
                                             class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-red-600">

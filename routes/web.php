@@ -7,6 +7,7 @@ use App\Http\Controllers\C_Auth;
 use App\Http\Controllers\C_Registrasi;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\C_Pelaporan;
+use App\Http\Controllers\C_Ulasan;
 use App\Http\Controllers\DinasController;
 use App\Http\Controllers\HomepageController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -137,6 +138,10 @@ Route::group(['middleware' => ['kelompoktani']], function () {
         Route::post('/store', [C_Pelaporan::class, 'store'])->name('pelaporan.store');
         Route::get('/viewpelaporan/{id}', [C_Pelaporan::class, 'show'])->name('pelaporan.show');
         Route::post('/{id}/update', [C_Pelaporan::class, 'update'])->name('pelaporan.update');
+    });
+
+    Route::group(['prefix' => 'ulasan'], function (){
+        Route::get('', [C_Ulasan::class, 'landing'])->name('ulasan.landing');
     });
     
     // Route::get('landingberita', [BeritaController::class, 'landing'])->name('berita.landing');

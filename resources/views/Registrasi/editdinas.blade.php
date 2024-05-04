@@ -93,11 +93,8 @@
                             </div>
                             <div class="w-full lg:w-6/12 px-4">
                                 <div class="relative w-full mb-3">
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                        htmlfor="grid-password">
-                                        Status Validasi
-                                    </label>
-                                    <div class="flex flex-row gap-10">
+                                    
+                                    <div class="flex flex-row gap-10 mt-2">
                                         <div class="flex flex-row items-center justify-center gap-6">
                                             <div class="flex flex-col items-center justify-center">
                                                 <label for="Rejected" class="block mb-2 text-sm font-medium text-gray-900">Tertolak</label>
