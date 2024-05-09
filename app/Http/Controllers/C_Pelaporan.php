@@ -34,7 +34,6 @@ class C_Pelaporan extends Controller
         $user = Auth::user()->id;
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->first();
-        
         $pelaporan = MPelaporan::where('id_pelaporan', $id)->first();
         $informasi = $pengajuan->informasi;
 

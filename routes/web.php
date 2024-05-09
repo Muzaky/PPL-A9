@@ -100,6 +100,11 @@ Route::group(['middleware' => ['dinas']], function ()
         Route::delete('/destroy/{id}', [C_Registrasi::class, 'destroy'])->name('registrasi.destroy');
     });
 
+    //Routing Ulasan Dinas
+    Route::group(['prefix'=> 'ulasan'], function () {
+        Route::get('/data_list', [C_Ulasan::class, 'index'])->name('ulasan.list');
+    });
+
     
 });
 
@@ -142,6 +147,9 @@ Route::group(['middleware' => ['kelompoktani']], function () {
 
     Route::group(['prefix' => 'ulasan'], function (){
         Route::get('', [C_Ulasan::class, 'landing'])->name('ulasan.landing');
+        Route::post('/store', [C_Ulasan::class, 'store'])->name('ulasan.store');
+        Route::put('/update/{id}', [C_Ulasan::class, 'update'])->name('ulasan.update');
+        Route::delete('/destroy/{id}', [C_Ulasan::class, 'destroy'])->name('ulasan.destroy');
     });
     
     // Route::get('landingberita', [BeritaController::class, 'landing'])->name('berita.landing');

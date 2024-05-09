@@ -81,6 +81,6 @@ class MRegistrasi extends Model
     }
 
     public function pengajuan(){
-        return $this->hasMany(MPengajuan::class,'id_registras','id');
+        return $this->hasMany(MPengajuan::class,'id_registrasi','id');
     }
 }
