@@ -231,4 +231,16 @@ class C_Registrasi extends Controller
         return redirect()->route('registrasi.list')
             ->with('success', 'KelompokTani telah didelete');
     }
+
+    public function profile($id_registrasi){
+
+        $user = Auth::user()->id;
+    
+        $registrasi =  MRegistrasi::regkec();
+        $registrasi = $registrasi->where('id', $user)->first(); 
+        $hashedpassword = $registrasi->password;
+        $kecamatan = MKecamatan::all();
+
+        return view('kelompoktani.profile',compact('registrasi','kecamatan'),['hashedpassword' => $hashedpassword]);
+    }
 }

@@ -19,7 +19,6 @@ class BeritaController extends Controller
         $data = MBerita::getData()->paginate(10);
         //return json_encode($data);
         return view(
-            
             'Berita.landingberita',
             ['data' => $data]
         );

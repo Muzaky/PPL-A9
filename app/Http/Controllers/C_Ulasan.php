@@ -38,7 +38,7 @@ class C_Ulasan extends Controller
         ];
 
         MUlasan::create($data);
-        return redirect()->route('homepage');
+        return redirect()->route('ulasan.landing');
     }
 
     public function update(Request $request, $id)

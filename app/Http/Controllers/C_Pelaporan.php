@@ -20,7 +20,6 @@ class C_Pelaporan extends Controller
         $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->get();
         $informasi = MBerita::where('id_informasi', $user)->get();
         $data = MPengajuan::getData()->paginate(10);
-
         // dd($pengajuan);
         return view(
             'Pelaporan.landing',

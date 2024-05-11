@@ -19,17 +19,14 @@
 
         /* Dropdown Button */
 
+        /* Dropdown Button */
         .dropbtn {
+
             color: black;
-            padding: 0;
+
+            font-size: 16px;
             border: none;
             cursor: pointer;
-            display: flex;
-            /* Ensure the button can contain the SVG */
-            align-items: center;
-            /* Center the SVG vertically */
-            justify-content: center;
-            /* Center the SVG horizontally */
         }
 
         /* Dropdown Content (Hidden by Default) */
@@ -65,8 +62,6 @@
             position: relative;
             display: inline-block;
         }
-
-        
     </style>
     <section class="flex flex-col font-[Poppins]">
         <div>
@@ -97,19 +92,20 @@
                                     @if ($data->id_registrasi == $registrasi->id_registrasi)
                                         <div class="flex flex-row">
                                             <div class="dropdown">
-                                                <button onclick="toggleDropdown()" class="dropbtn">
+                                                <button onclick="toggleDropdown({{ $data->id_ulasan }})" class="dropbtn">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                         fill="currentColor" class="dropbtn w-6 h-6">
                                                         <path fill-rule="evenodd"
                                                             d="M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z"
-                                                            clip-rule="evenodd" /> 
+                                                            clip-rule="evenodd" />
+
                                                     </svg>
-                                            
+
                                                 </button>
-                                                <div id="myDropdown" class="dropdown-content hidden">
-                                                    <a href="#" onclick="editData({{ $data->id_ulasan }})">Edit</a>
+                                                <div id="myDropdown{{ $data->id_ulasan }}" class="dropdown-content hidden">
+                                                    <a href="#" onclick="editData({{ $data->id_ulasan }})">Ubah</a>
                                                     <a href="#"
-                                                        onclick="showDeleteModal({{ $data->id_ulasan }})">Delete</a>
+                                                        onclick="showDeleteModal({{ $data->id_ulasan }})">Hapus</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -180,11 +176,11 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                                                    Delete Ulasan
+                                                    Hapus Ulasan
                                                 </h6>
-                                                <p>Are you sure you want to delete this data?</p>
+                                                <p>Apakah anda ingin menghapus ulasan ?</p>
                                                 <button type="submit" class="flex mt-4">
-                                                    Delete
+                                                    Hapus
                                                 </button>
                                             </form>
                                         </div>
@@ -316,10 +312,16 @@
                 }, 500);
             }
 
-            function toggleDropdown() {
-                
-                var dropdown = document.getElementById("myDropdown");
+            function toggleDropdown(id) {
+                var allDropdowns = document.getElementsByClassName("dropdown-content");
+                var dropdown = document.getElementById("myDropdown" + id);
                 dropdown.classList.toggle("show");
+
+                for (var i = 0; i < allDropdowns.length; i++) {
+                    if (allDropdowns[i].id !== "myDropdown" + id) {
+                        allDropdowns[i].classList.remove("show");
+                    }
+                }
             }
 
             // Close the dropdown menu if the user clicks outside of it

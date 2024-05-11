@@ -65,6 +65,12 @@
             position: relative;
             display: inline-block;
         }
+
+        /* Adjust the position of the dropdown content */
+        .dropdown-content.show {
+            top: 100%;
+            left: 0;
+        }
     </style>
     <section class="ulasan_list">
         <div class="flex flex-col m-4 w-[100&]">
@@ -94,12 +100,10 @@
                                                         d="M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z"
                                                         clip-rule="evenodd" />
                                                 </svg>
-
                                             </button>
                                             <div id="myDropdown" class="dropdown-content hidden">
                                                 <a href="#" onclick="editData({{ $data->id_ulasan }})">Edit</a>
-                                                <a href="#"
-                                                    onclick="showDeleteModal({{ $data->id_ulasan }})">Delete</a>
+                                                <a href="#" onclick="showDeleteModal({{ $data->id_ulasan }})">Delete</a>
                                             </div>
                                         </div>
                                     </div>

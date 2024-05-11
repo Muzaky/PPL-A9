@@ -21,8 +21,8 @@
     }
 </style>
 
-<body class="flex flex-col justify-center items-center h-screen">
-    <nav class="flex items-center justify-between p-6 lg:px-8 mx w-full" aria-label="Global">
+<body class="flex flex-col items-center justify-center h-screen">
+    <nav class="flex items-center justify-between w-full p-6 lg:px-8 mx" aria-label="Global">
         <div class="flex lg:flex-1">
             <a href="/" class="-m-1.5 p-1.5">
                 <img class="w-[250px] h-[86px]" src="{{ asset('../bibitani.ico') }}"alt="logobibitani">
@@ -45,14 +45,14 @@
     <div class="alert">
         @if (session()->has('success'))
             <div id="alert-border-3"
-                class="flex items-center mt-5 p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
+                class="flex items-center p-4 mt-5 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
                 role="alert">
                 <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor" viewBox="0 0 20 20">
                     <path
                         d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                 </svg>
-                <div class="ms-3 text-sm font-medium">
+                <div class="text-sm font-medium ms-3">
                     {{ session('success') }}
                 </div>
                 <button type="button"
@@ -79,7 +79,7 @@
                 background-size: cover;
             }
         </style>
-        <div class="flex flex-col bg-transparent h-full w-full font-bold justify-center">
+        <div class="flex flex-col justify-center w-full h-full font-bold bg-transparent">
             @if ($usercount == 0)
                 <div class="flex ml-[64px] w-[300px] text-[36px] text-wrap text-white">Registrasi Kelompok Tani</div>
                 <div class="flex ml-[64px] text-[20px] text-white">Lakukan registrasi untuk mengakses semua fitur
@@ -105,17 +105,17 @@
 
         <div class="flex flex-row bg-transparent h-full w-[1000px] items-center justify-center ">
             @if ($usercount == 0)
-                <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
+                <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[8px] border-[#204E51] border justify-center items-center hover:bg-[#204E51] hover:text-white"
                     href="{{ route('registrasi.create') }}">Register</a>
             @else
                 @if ($registrasi->status_validasi == 1)
-                    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
+                    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] border-[#204E51] border justify-center items-center"
                         href="#">Menunggu</a>
                 @elseif ($registrasi->status_validasi == 2)
-                    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
-                        href="{{ route('registrasi.edit', $registrasi->id_registrasi) }}">Lihat</a>
+                    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] border-[#204E51] border justify-center items-center hover:bg-[#204E51] hover:text-white"
+                        href="{{ route('kelompoktani.profile', $registrasi->id_registrasi) }}">Lihat</a>
                 @elseif ($registrasi->status_validasi == 3)
-                    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] justify-center items-center "
+                    <a class="flex py-2 text-[20px] mr-4 w-[120px] font-bold bg-white rounded-[4px] border-[#204E51] border justify-center items-center hover:bg-[#204E51] hover:text-white"
                         href="{{ route('registrasi.edit', $registrasi->id_registrasi) }}">Edit</a>
                 @endif
             @endif

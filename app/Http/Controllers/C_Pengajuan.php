@@ -140,8 +140,6 @@ class C_Pengajuan extends Controller
             ->with('success', 'Berita telah didelete');
     }
 
-
-
     //Control Dinas
     public function index()
     {

@@ -13,8 +13,8 @@
                 href="{{ route('berita.create') }}" id="myButton" onclick="startLoading()"><span class="flex">Tambah
                     Informasi
                     Baru</span></a> --}}
-            <div class="flex flex-col overflow-x-auto mt-4">
-                <table class="table-auto min-w-full divide-y divide-gray-200 ">
+            <div class="flex flex-col mt-4 overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200 table-auto ">
                     <thead class="bg-white">
                         <tr>
                             <th scope="col"
@@ -57,52 +57,52 @@
                         <?php $no = 1; ?>
                         @foreach ($data as $val)
                             <tr>
-                                <td class="tb-col tb-col-sm justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $no++ }}</div>
+                                <td class="justify-center text-center tb-col tb-col-sm">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $no++ }}</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_keltani }}</div>
+                                <td class="justify-center text-center tb-col tb-col-md">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->nama_keltani }}</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_ketua }}</div>
+                                <td class="justify-center text-center tb-col tb-col-md">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->nama_ketua }}</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->luas_hamparan }} Hektare</div>
+                                <td class="justify-center text-center tb-col tb-col-md">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->luas_hamparan }} Hektare</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_anggota }}</div>
+                                <td class="justify-center text-center tb-col tb-col-md">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_anggota }}</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->alamat_keltani }}</div>
+                                <td class="justify-center text-center tb-col tb-col-md">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->alamat_keltani }}</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class="px-2 py-1 fs-6 lh-sm object-fill">
-                                        <a href="{{ asset('pdf/' . $val->bukti_legalitas) }}">
+                                <td class="justify-center text-center tb-col tb-col-md">
+                                    <div class="object-fill px-2 py-1 fs-6 lh-sm">
+                                        <a href="{{ asset('bukti/' . $val->bukti_legalitas) }}">
                                             {{-- {{ basename($val->bukti_legalitas) }} --}}
                                             Buka File
 
                                         </a>
                                     </div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
+                                <td class="justify-center text-center tb-col tb-col-md">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->catatan_validasi) }}</div>
+                                <td class="justify-center text-center tb-col tb-col-md">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->catatan_validasi) }}</div>
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
+                                <td class="justify-center text-center tb-col tb-col-md">
                                     @if ($val->status_validasi == 1)
-                                        <div class=" px-2 py-1 fs-6 lh-sm">Diproses</div>
+                                        <div class="px-2 py-1 fs-6 lh-sm">Diproses</div>
                                     @elseif ($val->status_validasi == 2)
-                                        <div class=" px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
+                                        <div class="px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
                                     @else
-                                        <div class=" px-2 py-1 fs-6 lh-sm">Ditolak</div>
+                                        <div class="px-2 py-1 fs-6 lh-sm">Ditolak</div>
                                     @endif
 
                                 </td>
-                                <td class="tb-col tb-col-md justify-center py-4 flex gap-x-3 ">
+                                <td class="flex justify-center py-4 tb-col tb-col-md gap-x-3 ">
                                     <a href="{{ route('registrasi.editdinas', $val->id_registrasi) }}"
-                                        class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-green-600"><i>
+                                        class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-green-600 rounded-md"><i>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
                                                 <path strokeLinecap="round" strokeLinejoin="round"
@@ -113,7 +113,7 @@
                                         action="{{ route('registrasi.destroy', $val->id_registrasi) }}" method="POST">
 
                                         <button onclick="showDelButton({{ $val->id_registrasi }})"
-                                            class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-red-600">
+                                            class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-red-600 rounded-md">
                                             <i>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     strokeWidth="1.5" stroke="currentColor" class="w-6 h-6">
@@ -132,12 +132,11 @@
         </div>
         <!--Modal Script Delete Button-->
         <div id="delbutton"
-            class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen flex items-center justify-center opacity-0 hidden 
-                 transition-opacity duration-500">
+            class="fixed top-0 left-0 flex items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
 
             <div class="bg-white rounded shadow-md p-8 w-[25%] gap-5 flex-col overflow-hidden">
                 <div class="flex gap-3">
-                    <div class="bg-red-100 rounded-full text-red-600 min-w-10 h-10 flex items-center justify-center">
+                    <div class="flex items-center justify-center h-10 text-red-600 bg-red-100 rounded-full min-w-10">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -145,18 +144,18 @@
                         </svg>
                     </div>
                     <div class="flex-grow">
-                        <h1 class="font-bold text-lg mb-2 text-gray-700">Menghapus Data</h1>
+                        <h1 class="mb-2 text-lg font-bold text-gray-700">Menghapus Data</h1>
                         <p class="text-gray-600">Apakah anda ingin menghapus data ?</p>
                     </div>
                 </div>
-                <div class=" mt-3 flex justify-end">
+                <div class="flex justify-end mt-3 ">
                     <button onclick="hideDelButton()"
-                        class="bg-white rounded px-4 py-2 mr-3 text-black cursor-pointer hover:bg-gray-300">Batal</button>
+                        class="px-4 py-2 mr-3 text-black bg-white rounded cursor-pointer hover:bg-gray-300">Batal</button>
                     <form id="deleteForm" method="POST" action="">
                         @method('DELETE')
                         @csrf
                         <button type="submit"
-                            class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded">Hapus</button>
+                            class="px-4 py-2 font-semibold text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
                     </form>
                 </div>
             </div>

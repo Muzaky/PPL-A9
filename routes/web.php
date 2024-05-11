@@ -115,6 +115,7 @@ Route::group(['middleware' => ['dinas']], function ()
 Route::group(['middleware' => ['kelompoktani']], function () {
     Route::group(['prefix' => 'homepage'], function () {
         Route::get('/', [HomepageController::class, 'homepage'])->name('homepage');
+        Route::get('/{id}/profile', [C_Registrasi::class, 'profile'])->name('kelompoktani.profile');
     });
 
     Route::group(['prefix' => 'pemberitahuan'], function () {

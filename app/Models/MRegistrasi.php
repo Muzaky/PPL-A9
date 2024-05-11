@@ -49,6 +49,33 @@ class MRegistrasi extends Model
         }
     }
 
+    static function regkec(){
+        return DB::table('registrasi')
+        ->select(
+            'registrasi.id_registrasi', 
+            'registrasi.nama_keltani', 
+            'registrasi.nama_ketua', 
+            'registrasi.luas_hamparan', 
+            'registrasi.jumlah_anggota', 
+            'registrasi.alamat_keltani', 
+            'registrasi.bukti_legalitas', 
+            'registrasi.foto_profil', 
+            'registrasi.tanggal_validasi', 
+            'registrasi.catatan_validasi', 
+            'registrasi.status_validasi', 
+            'registrasi.created_at', 
+            'registrasi.updated_at', 
+            'kecamatan.id_kecamatan', 
+            'kecamatan.nama_kecamatan', 
+            'users.id', 
+            'users.email', 
+            'users.password'
+        )
+        ->join('kecamatan', 'registrasi.nama_kecamatan', '=', 'kecamatan.id_kecamatan')
+        ->join('users', 'registrasi.id_users', '=', 'users.id')
+        ->get();
+    }
+
 
     static function idusers()
     {
@@ -75,6 +102,8 @@ class MRegistrasi extends Model
             ->join('registrasi as reg', 'users.id', '=', 'reg.id_users')
             ->where('users.id', $id);
     }
+
+    
 
     public function pelaporan(){
         return $this->hasMany(MPelaporan::class);

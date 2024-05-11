@@ -30,7 +30,7 @@ class MUlasan extends Model{
 
    static function getDataName(){
     return DB::table('ulasan')
-    ->select('ulasan.*', 'registrasi.*', 'registrasi.nama_keltani')
+    ->select('ulasan.id_ulasan', 'ulasan.deskripsi', 'ulasan.id_registrasi', 'ulasan.created_at', 'ulasan.updated_at', 'registrasi.id_registrasi', 'registrasi.nama_keltani')
     ->join('registrasi', 'ulasan.id_registrasi', '=', 'registrasi.id_registrasi')
     ->get();
    }
