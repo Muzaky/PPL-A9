@@ -36,12 +36,9 @@ class C_Auth extends Controller
             // dd($x);
             if ($x == 1) {
                 return view('kelompoktani.homepage', compact('registrasi', 'usercount'));
-            }
-            elseif ($x == 2) {
+            } elseif ($x == 2) {
                 return redirect('dashboard');
             }
-            
-
         } else {
             return redirect('login')->with('error', 'Email atau Kata sandi salah !');
         }
@@ -80,5 +77,29 @@ class C_Auth extends Controller
 
 
         return redirect('login');
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $registrasi =  MRegistrasi::regkec();
+
+        $registrasi = $registrasi->where('id', $id)->first();
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|min:6',
+        ]);
+
+        if (Hash::check($request->old_password, $registrasi->password)) {
+            $data = [
+                'password' => Hash::make($request->password)
+            ];
+            $update = User::getById($id);
+            $update->update($data);
+            return redirect()->route('homepage')
+                ->with('success', 'Kredensial has been updated');
+        } else {
+            return redirect()->back()->with('error', 'Password lama tidak cocok');
+        }
     }
 }

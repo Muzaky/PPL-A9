@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class C_Registrasi extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = MRegistrasi::getData()->paginate(10);
-        return view("Registrasi.data_list",
-        ['data' => $data]);
+        return view(
+            "Registrasi.data_list",
+            ['data' => $data]
+        );
     }
     public function create()
     {
@@ -29,14 +32,14 @@ class C_Registrasi extends Controller
             // User is not authenticated
             $userId = null; // or you can handle it as you want
         }
-        
+
         $kecamatan = MKecamatan::all();
-        
+
         return view(
             'registrasi.create',
             ['kecamatan' => $kecamatan],
             ['userId' => $userId]
-            
+
         );
     }
     public function store(Request $request)
@@ -84,11 +87,13 @@ class C_Registrasi extends Controller
             return redirect()->back()->with('error', 'An error occurred while saving the data. Please try again later.');
         }
     }
-    public function show($id){
+    public function show($id)
+    {
         $data = MRegistrasi::find($id);
         return view('registrasi.show', ['data' => $data]);
     }
-    public function edit(Request $request, $id_registrasi){
+    public function edit(Request $request, $id_registrasi)
+    {
         $user = Auth::user();
 
         // Check if user is authenticated
@@ -99,48 +104,49 @@ class C_Registrasi extends Controller
             // User is not authenticated
             $userId = null; // or you can handle it as you want
         }
-        
+
         $kecamatan = MKecamatan::all();
-        
-        
+
+
         $data = MRegistrasi::getById($id_registrasi);
-        
+
         // dd($data);
         // dd($data);
         return view(
             'registrasi.edit',
-            ['kecamatan' => $kecamatan,
-            'userId' => $userId,
-            'data' => $data],
+            [
+                'kecamatan' => $kecamatan,
+                'userId' => $userId,
+                'data' => $data
+            ],
         );
-
-
-        
     }
-    public function editdinas(Request $request, $id_registrasi){
+    public function editdinas(Request $request, $id_registrasi)
+    {
 
-       
-        
+
+
         $kecamatan = MKecamatan::all();
-        
-        
+
+
         $data = MRegistrasi::getById($id_registrasi);
-        
+
         return view(
             'registrasi.editdinas',
-            ['kecamatan' => $kecamatan,
-            'data' => $data],
+            [
+                'kecamatan' => $kecamatan,
+                'data' => $data
+            ],
         );
-
-
-        
     }
 
-   
+
 
 
     public function update(Request $request, $id_registrasi)
     {
+
+
         $request->validate([
             'nama_keltani' => 'required',
             'nama_ketua' => 'required',
@@ -148,11 +154,7 @@ class C_Registrasi extends Controller
             'jumlah_anggota' => 'required',
             'alamat_keltani' => 'required',
             'bukti_legalitas' => 'file|mimes:pdf,png,jpg,jpeg,svg',
-            'tanggal_validasi' => 'nullable',
-            'catatan_validasi' => 'nullable',
             'nama_kecamatan' => 'required',
-            'status_validasi' => 'required',
-            'id_users' => 'required',
         ]);
 
         $data = [
@@ -161,11 +163,7 @@ class C_Registrasi extends Controller
             'luas_hamparan' => $request->luas_hamparan,
             'jumlah_anggota' => $request->jumlah_anggota,
             'alamat_keltani' => $request->alamat_keltani,
-            'tanggal_validasi' => $request->tanggal_validasi,
-            'catatan_validasi' => $request->catatan_validasi,
             'nama_kecamatan' => $request->nama_kecamatan,
-            'status_validasi' => $request->status_validasi,
-            'id_users' => $request->id_users,
         ];
 
         if ($request->hasFile('bukti_legalitas')) {
@@ -184,6 +182,7 @@ class C_Registrasi extends Controller
 
     public function updatedinas(Request $request, $id_registrasi)
     {
+
         $request->validate([
             'nama_keltani' => 'required',
             'nama_ketua' => 'required',
@@ -223,7 +222,7 @@ class C_Registrasi extends Controller
         return redirect()->route('registrasi.list')
             ->with('success', 'Akun kelompok tani telah diperbarui');
     }
-    
+
     public function destroy($id_registrasi)
     {
         $destroy = MRegistrasi::getById($id_registrasi);
@@ -232,15 +231,17 @@ class C_Registrasi extends Controller
             ->with('success', 'KelompokTani telah didelete');
     }
 
-    public function profile($id_registrasi){
+    public function profile($id_registrasi)
+    {
 
         $user = Auth::user()->id;
-    
+
         $registrasi =  MRegistrasi::regkec();
-        $registrasi = $registrasi->where('id', $user)->first(); 
+
+        $registrasi = $registrasi->where('id', $user)->first();
         $hashedpassword = $registrasi->password;
         $kecamatan = MKecamatan::all();
 
-        return view('kelompoktani.profile',compact('registrasi','kecamatan'),['hashedpassword' => $hashedpassword]);
+        return view('kelompoktani.profile', compact('registrasi', 'kecamatan'), ['hashedpassword' => $hashedpassword]);
     }
 }

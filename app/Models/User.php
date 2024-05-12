@@ -45,11 +45,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'old_password' => 'hashed',
     ];
 
     public function registrasi()
     {
         return $this->hasOne(MRegistrasi::class, 'id_users', 'id');
+    }
+
+    static function getById($id)
+    {
+        return static::find($id);
     }
     
 
