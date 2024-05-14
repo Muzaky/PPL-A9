@@ -15,7 +15,7 @@
 <style>
     .alert {
         position: fixed;
-        top: 20px;
+        top: 20px;9
         right: 20px;
         z-index: 9999;
     }

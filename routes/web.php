@@ -116,6 +116,7 @@ Route::group(['middleware' => ['kelompoktani']], function () {
     Route::group(['prefix' => 'homepage'], function () {
         Route::get('/', [HomepageController::class, 'homepage'])->name('homepage');
         Route::get('/{id}/profile', [C_Registrasi::class, 'profile'])->name('kelompoktani.profile');
+        Route::put('/{id}/updatefoto', [C_Registrasi::class, 'updatefoto'])->name('fotoprofil.update');
         Route::put('/{id}/kredensial', [C_Auth::class, 'update'])->name('kredensial.update');
     });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MRegistrasi;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use App\Models\MKecamatan;
 use App\Models\MPengajuan;
@@ -189,7 +190,7 @@ class C_Registrasi extends Controller
             'luas_hamparan' => 'required',
             'jumlah_anggota' => 'required',
             'alamat_keltani' => 'required',
-            'bukti_legalitas' => 'file|mimes:pdf,png,jpg,jpeg,svg',
+            'bukti_legalitas' => 'file|mimes:pdf',
             'tanggal_validasi' => 'nullable',
             'catatan_validasi' => 'nullable',
             'nama_kecamatan' => 'required',
@@ -237,11 +238,31 @@ class C_Registrasi extends Controller
         $user = Auth::user()->id;
 
         $registrasi =  MRegistrasi::regkec();
-
+        // dd($registrasi);    
         $registrasi = $registrasi->where('id', $user)->first();
         $hashedpassword = $registrasi->password;
         $kecamatan = MKecamatan::all();
 
         return view('kelompoktani.profile', compact('registrasi', 'kecamatan'), ['hashedpassword' => $hashedpassword]);
+    }
+
+    public function updatefoto(Request $request, $id_registrasi)
+    {
+       
+        
+        $request->validate([
+            'foto_profil' => 'file|mimes:pdf,png,jpg,jpeg,svg',
+        ]);
+    
+        if ($request->hasFile('foto_profil')) {
+            $file = $request->file('foto_profil');
+            $nama_file = $file->getClientOriginalName();
+            $file->move('fotoprofil', $nama_file);
+            $data['foto_profil'] = $nama_file;
+        }
+        $update = MRegistrasi::getById($id_registrasi);
+        $update->update($data);
+        return redirect()->route('homepage');
+        
     }
 }

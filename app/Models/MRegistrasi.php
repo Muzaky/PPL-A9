@@ -27,7 +27,8 @@ class MRegistrasi extends Model
         'catatan_validasi',
         'nama_kecamatan',
         'status_validasi',
-        'id_users'
+        'id_users',
+        'foto_profil'
     ];
     static function getData()
     {
