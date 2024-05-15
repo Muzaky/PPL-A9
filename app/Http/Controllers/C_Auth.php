@@ -26,6 +26,7 @@ class C_Auth extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $userx = Auth::user()->id;
+            $iduser = User::where('id', $userx)->first();
             $registrasi = MRegistrasi::where('id_users', $userx)->first();
             $usercount = MRegistrasi::where('id_users', $userx)->count();
             // dd($registrasi);
@@ -35,7 +36,7 @@ class C_Auth extends Controller
             $x = Auth::user()->id_roles;
             // dd($x);
             if ($x == 1) {
-                return view('kelompoktani.homepage', compact('registrasi', 'usercount'));
+                return view('kelompoktani.homepage', compact('registrasi', 'usercount','iduser'));
             } elseif ($x == 2) {
                 return redirect('dashboard');
             }

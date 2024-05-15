@@ -63,6 +63,7 @@ class C_Pengajuan extends Controller
 
     public function store(Request $request)
     {
+
         $user = Auth::user()->id;
         $id_registrasi = MRegistrasi::where('id_users', $user)->get('id_registrasi');
         // dd($id_registrasi);

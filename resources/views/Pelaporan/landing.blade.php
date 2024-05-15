@@ -17,27 +17,27 @@
                 </svg>
                 Back
             </a>
-            <h1 class=" text-[#204E51] mb-10 text-center" id="judul">Daftar pengajuan kelompok tani {{ $registrasi->nama_keltani }}</h1>
+            <h1 class=" text-[#204E51] mb-10 text-center" id="judul">Bantuan Bibit {{ $registrasi->nama_keltani }}</h1>
             @foreach ($pengajuan as $pengajuan)
                 @if ($pengajuan ->status_validasi == 2)
                 <div class="flex flex-col items-center">
                     <a href="{{ route('pelaporan.main', $pengajuan->id_pengajuan) }}"
                         class="flex flex-col items-center mb-6 bg-white border w-[1710px] border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <img class="object-cover w-48 rounded h-40"
+                        <img class="object-cover w-48 h-40 rounded"
                             src="{{ optional($pengajuan->informasi)->gambar_informasi ? asset('img/' . $pengajuan->informasi->gambar_informasi) : 'fallback-image-url.jpg' }}"
                             alt="">
                         <div class="flex flex-col justify-between px-4 leading-normal">
                             <h5 class="text-[36px] font-semibold tracking-tight text-gray-900 dark:text-white ">
                                 {{ optional($pengajuan->informasi)->nama_bibit }}</h5>
                             <div
-                                class="mb-1 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
+                                class="flex items-center justify-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
                                 @if ($pengajuan->status_validasi == 2)
                                     Validated
                                 @else
                                     {{ $pengajuan->status_validasi }}
                                 @endif
                             </div>
-                            <p class="text-neutral-500 mb-2">
+                            <p class="mb-2 text-neutral-500">
                                 @if ($pengajuan->status_validasi ==2)
                                     <small>
                                         Terverifikasi tanggal
@@ -82,14 +82,14 @@
                         <h5 class=" text-[56px] font-bold tracking-tight text-gray-900 dark:text-white ">
                             {{ $informasi->nama_bibit }}</h5>
                         <div
-                            class="mb-1 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
+                            class="flex items-center justify-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
                             @if ($pengajuan->status_validasi == 2)
                                 Validated
                             @else
                                 {{ $pengajuan->status_validasi }}
                             @endif
                         </div>
-                        <p class="text-neutral-500 mb-2">
+                        <p class="mb-2 text-neutral-500">
                             <small>
                                 Terverifikasi tanggal
                                 <u>

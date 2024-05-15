@@ -1,14 +1,14 @@
-@extends('Layout.nav')
+@extends('Layout.navtani')
 
 @section('content')
-    <section class="flex flex-col justify-center items-center">
+    <section class="flex flex-col items-center justify-center">
         <div class="w-[1000px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex flex-col justify-center items-center">
+            <div class="flex flex-col items-center justify-center">
                 <img class="w-full h-[400px]" src="{{ asset('img/' . $data->gambar_informasi) }}" alt="berita">
-                <div class="flex justify-center items-center text-center text-wrap px-4">
+                <div class="flex items-center justify-center px-4 text-center text-wrap">
                     <h1 class="font-[poppins] text-[40px] font-bold mt-4 justify-center">{{ $data->judul_informasi }}</h1>
                 </div>
-                <p class="text-neutral-500 mb-2">
+                <p class="mb-2 text-neutral-500">
                     <small>
                         <u>
                             {{ $data->tgl_awal }}
@@ -27,7 +27,7 @@
                 <small class="text-red-300">
                     *Bibit akan dibagikan secara merata terhadap jumlah pengajuan dan kebutuhan
                 </small>
-                <div class="mb-3 font-normal text-gray-700 dark:text-gray-400 flex flex-col py-4">
+                <div class="flex flex-col py-4 mb-3 font-normal text-gray-700 dark:text-gray-400">
                     Syarat dan Ketentuan :
                     @if ($data->syarat_ketentuan)
                         @php
@@ -54,7 +54,7 @@
                     @endif
                 </div>
             </div>
-            <div class="flex justify-center items-center py-4 ">
+            <div class="flex items-center justify-center py-4 ">
                 <button onclick="showCreateButton()"
                     class="px-4 py-2 rounded-lg bg-[#204E51] text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51]">
                     Pengajuan</button>
@@ -63,55 +63,69 @@
 
         <!--Modal Script Create Pengajuan-->
         <div id="createbutton"
-            class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen flex items-center justify-center opacity-0 transition-opacity duration-500 hidden">
+            class="fixed top-0 left-0 flex items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
             <div
-                class="bg-white relative flex flex-col min-w-0 break-words  mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-                <div class="flex-auto px-4 lg:px-10 py-4 pt-0">
-                    <form class="flex justify-center items-center flex-col"
-                        action="{{ route('pengajuan.store') }}" method="POST"
-                        enctype="multipart/form-data">
+                class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg bg-blueGray-100">
+                <div class="flex-auto px-4 py-4 pt-0 lg:px-10">
+                    <form class="flex flex-col items-center justify-center" action="{{ route('pengajuan.store') }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
-                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                            Form Pengajuan
+                        <h6 class="mt-3 mb-6 text-sm font-bold uppercase text-[#204E51]">
+                            Ajukan Berkas
                         </h6>
                         <div class="flex flex-wrap text-center">
-                            
-                           
-                            <div class="w-full  px-4">
+                            <div class="w-full px-4">
                                 <div class="w-full mb-3">
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                        htmlfor="grid-password">
-                                        Berkas Pengajuan
-                                    </label>
-                                    <input type="file" name="berkas_pengajuan"  id="berkas_pengajuan"
-                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
-                                        value="" placeholder="Masukkan File">
-                                    </input>
-                                    <input type="number" name="id_informasi"  id="id_informasi"
+                                    <div class="mb-[18px] relative">
+                                        <label for="dropzone-file"
+                                            class="flex flex-col items-center justify-center w-full h-14 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 2xl:h-20">
+                                            <div class="flex flex-row items-center justify-center gap-2 pt-5 pb-6">
+                                                <div id="file-name"
+                                                    class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-[14px] w-[500px] justify-center ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" class="w-4 h-4" id="svg-upload">
+                                                        <path fillRule="evenodd"
+                                                            d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+                                                            clipRule="evenodd" />
+                                                    </svg>
+                                                    <p id="textcontent">
+                                                        Klik Untuk Unggah Berkas Pengajuan
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <input id="dropzone-file" onchange="displayFileName()" name="berkas_pengajuan"
+                                                type="file" class="hidden"/>
+                                        </label>
+                                    </div>
+
+                                    <input type="number" name="id_informasi" id="id_informasi"
                                         class=" hidden border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
                                         value="{{ $data->id_informasi }}" placeholder="">
                                     </input>
-                                    <input type="text" name="nama_informasi"  id="nama_informasi"
+                                    <input type="text" name="nama_informasi" id="nama_informasi"
                                         class=" hidden border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
                                         value="{{ $data->judul_informasi }}" placeholder=>
                                     </input>
-                                    <input type="number" name="id_registrasi"  id="id_registrasi"
+                                    <input type="number" name="id_registrasi" id="id_registrasi"
                                         class=" hidden border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
-                                        value="{{ $id_registrasi->id_registrasi }}" placeholder=>
+                                        value="{{ $registrasi->id_registrasi }}" placeholder=>
                                     </input>
-                                    {{-- <input type="" name="id_informasi" id="id_informasi" value="{{ $data->id_informasi }}">
-                                    <input type="" name="nama_informasi" id="nama_informasi" value="{{ $data->nama_informasi }}"> --}}
-                           
+
+
+
                                 </div>
                             </div>
-            
+
 
                         </div>
-                       
-                        <button type="submit" class="flex w-[300px] justify-center rounded-[12px] bg-[#80411e] opacity-70 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#37251b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#76f51] mt-8">
+
+                        <button type="submit"
+                            class="flex w-full justify-center rounded-[12px] bg-[#204E51] opacity-70 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#37251b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#76f51] mt-8">
                             Simpan
                         </button>
                     </form>
+
+
                 </div>
             </div>
         </div>
@@ -123,7 +137,7 @@
         <script>
             function showCreateButton() {
                 let createbutton = document.getElementById('createbutton')
-                
+
                 createbutton.classList.remove('hidden')
                 createbutton.classList.add('flex')
                 setTimeout(() => {
@@ -132,7 +146,22 @@
 
             }
 
-
+            function displayFileName() {
+                const fileInput = document.getElementById('dropzone-file');
+                const fileNameParagraph = document.getElementById('file-name');
+                const textcontent = document.getElementById('textcontent');
+                const svgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" class="w-4 h-4" id="svg-upload">
+                                                        <path fillRule="evenodd"
+                                                            d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+                                                            clipRule="evenodd" />
+                                                    </svg>`
+                if (fileInput.files.length > 0) {
+                    fileNameParagraph.textContent = fileInput.files[0].name;
+                } else {
+                    fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Bukti Legalitas';
+                }
+            }
         </script>
 
 

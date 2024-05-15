@@ -6,6 +6,7 @@ use App\Models\MPelaporan;
 use App\Models\MPengajuan;
 use App\Models\MBerita;
 use App\Models\MRegistrasi;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -16,6 +17,7 @@ class C_Pelaporan extends Controller
     {
 
         $user = Auth::user()->id;
+        $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->get();
         $informasi = MBerita::where('id_informasi', $user)->get();
@@ -24,13 +26,14 @@ class C_Pelaporan extends Controller
         return view(
             'Pelaporan.landing',
             ['data' => $data],
-            compact('pengajuan', 'informasi', 'registrasi')
+            compact('pengajuan', 'informasi', 'registrasi','iduser')
         );
     }
 
     public function show($id)
     {
         $user = Auth::user()->id;
+        $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->first();
         $pelaporan = MPelaporan::where('id_pelaporan', $id)->first();
@@ -42,13 +45,14 @@ class C_Pelaporan extends Controller
         return view(
             'Pelaporan.viewpelaporan',
             ['data' => $data],
-            compact('pengajuan', 'informasi', 'registrasi', 'pelaporan')
+            compact('pengajuan', 'informasi', 'registrasi', 'pelaporan', 'iduser')
         );
     }
 
     public function main($id)
     {
         $user = Auth::user()->id;
+        $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_pengajuan', $id)->first();
         $informasi = $pengajuan->informasi;
@@ -64,11 +68,12 @@ class C_Pelaporan extends Controller
         return view(
             'Pelaporan.main',
             ['data' => $data],
-            compact('informasi', 'registrasi', 'pelaporan', 'pengajuan')
+            compact('informasi', 'registrasi', 'pelaporan', 'pengajuan','iduser')
         );
     }
     public function store(Request $request)
     {
+      
         $user = Auth::user()->id;
         $registrasi = MRegistrasi::where('id_users', $user)->first();
 

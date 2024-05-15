@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\MBerita;
 use App\Models\MRegistrasi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,10 +18,13 @@ class BeritaController extends Controller
     {
         // dd($usercount);
         $data = MBerita::getData()->paginate(10);
+        $user = Auth::user()->id;
+        $iduser = User::where('id', $user)->first();
+        $registrasi = MRegistrasi::where('id_users', $user)->first();
         //return json_encode($data);
         return view(
             'Berita.landingberita',
-            ['data' => $data]
+            ['data' => $data],compact('registrasi','iduser')
         );
     }
     public function index()
@@ -29,7 +33,7 @@ class BeritaController extends Controller
         //return json_encode($data);
         return view(
             'Berita.data_list',
-            ['data' => $data]
+            ['data' => $data],
         );
     }
 
@@ -37,10 +41,11 @@ class BeritaController extends Controller
     {
         // dd(auth()->user());
         $user = Auth::user()->id;
-        $id_registrasi = MRegistrasi::where('id_users', $user)->first();
+        $iduser = User::where('id', $user)->first();
+        $registrasi = MRegistrasi::where('id_users', $user)->first();
         // dd($id_registrasi);
         $data = MBerita::getById($id);
-        return view('Berita.viewberita',['data' => $data],compact('id_registrasi')
+        return view('Berita.viewberita',['data' => $data],compact('registrasi','iduser')
         );
     }
 
@@ -52,6 +57,7 @@ class BeritaController extends Controller
    
     public function store(Request $request)
     {
+        
         $request->validate([
             'judul_informasi' => 'required',
             'nama_bibit' => 'required',

@@ -18,14 +18,14 @@
         <div class="alert">
             @if (session()->has('success'))
                 <div id="alert-border-3"
-                    class="flex items-center mt-5 p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
+                    class="flex items-center p-4 mt-5 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
                     role="alert">
                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 20">
                         <path
                             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>
-                    <div class="ms-3 text-sm font-medium">
+                    <div class="text-sm font-medium ms-3">
                         {{ session('success') }}
                     </div>
                     <button type="button"
@@ -56,7 +56,7 @@
                     {{ $informasi->first()->nama_bibit }}</h1>
             </div>
             <div class="flex flex-row text-start">
-                <div class="container-list flex flex-col">
+                <div class="flex flex-col container-list">
                     <div class="flex flex-row items-center gap-2 mt-4">
                         <label class="text-[24px] font-medium">Tanggal Pelaporan :</label>
                         <input type="text" class="w-[449px] bg-transparent border-0 text-[20px]" disabled readonly
@@ -74,17 +74,17 @@
                     </div>
                     <div class="flex-row gap-2 mt-4">
                         <label for="" class="block text-[24px] font-medium">Kondisi :</label>
-                        <textarea type="text" class="w-[449px] border-0 text-center mt-4 rounded" disabled readonly>{{ strip_tags($data->kondisi) }}</textarea>
+                        <textarea type="text" class="w-[449px] border-0 text-center mt-4 rounded resize-none" disabled readonly>{{ strip_tags($data->kondisi) }}</textarea>
                     </div>
                 </div>
 
-                <div class="container-status flex flex-col bg-gray-400">
+                <div class="flex flex-col bg-gray-400 container-status">
                     <h2 class="text-[24px] font-semibold px-4 py-4 mx-auto">Status Validasi</h2>
                     <div class="flex flex-col mx-4">
                         @if ($data->status_validasi == 2)
                             <div class="flex items-center bg-[#F0FFFB] rounded-[8px]">
                                 <div class="h-[60vpx] w-[5px] bg-green-500"></div>
-                                <div class="bg-green-500 rounded-full p-1 mx-2">
+                                <div class="p-1 mx-2 bg-green-500 rounded-full">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -104,7 +104,7 @@
                             {{-- <div class="flex items-center"> --}}
                                 <div class="flex items-center bg-[#F0FFFB] rounded-[8px]">
                                     <div class="h-[60vpx] w-[5px] bg-red-500"></div>
-                                    <div class="bg-red-500 rounded-full p-1 mx-2">
+                                    <div class="p-1 mx-2 bg-red-500 rounded-full">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -130,7 +130,7 @@
                             {{-- <div class="flex items-center bg-[#F0FFFB] rounded-[8px]"> --}}
                                 <div class="flex items-center bg-[#F0FFFB] rounded-[8px]">
                                     {{-- <div class="h-[60px] w-[5px] bg-yellow-500"></div> --}}
-                                    <div class="bg-yellow-500 rounded-full p-1 mx-2">
+                                    <div class="p-1 mx-2 bg-yellow-500 rounded-full">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             strokeWidth={1.5} stroke="currentColor" class="w-8 h-8">
                                             <path strokeLinecap="round" strokeLinejoin="round"
@@ -163,9 +163,9 @@
 
 
         <div id="editbutton"
-            class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen flex items-center justify-center opacity-0 transition-opacity duration-500 hidden">
+            class="fixed top-0 left-0 flex items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
             <div
-                class="bg-white relative flex flex-col min-w-0 break-words  mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+                class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg bg-blueGray-100">
                 <button onclick="hideEditButton()"
                     class="absolute left-[20px] top-[20px] flex items-center text-black text-sm font-medium">
                     <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -175,44 +175,57 @@
                     </svg>
                     Back
                 </button>
-                <div class="flex-auto px-4 lg:px-10 py-4 pt-0">
-                    <form class="flex justify-center items-center flex-col"
+                <div class="flex-auto px-4 py-4 pt-0 lg:px-10">
+                    <form class="flex flex-col items-center justify-center"
                         action="{{ route('pelaporan.update', $pelaporan->id_pelaporan) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                        <h6 class="mt-3 mb-6 text-sm font-bold uppercase text-blueGray-400">
                             Ubah Pelaporan
                         </h6>
                         <div class="flex flex-wrap text-center">
 
 
-                            <div class="w-full  px-4">
+                            <div class="w-full px-4">
                                 <div class="w-full mb-3">
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                        htmlfor="grid-password">
-                                        Dokumentasi Pelaporan
-                                    </label>
-                                    <input type="file" name="dokumentasi_pelaporan" id="dokumentasi_pelaporan"
-                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
-                                        value="{{ $data->dokumentasi_pelaporan }}" placeholder="Masukkan File">
-                                    </input>
+                                    
 
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                    <label class="block mb-2 text-xs font-bold uppercase text-blueGray-600"
                                         htmlfor="grid-password">
                                         Nama Kegiatan
                                     </label>
                                     <input type="text" name="nama_kegiatan" id="nama_kegiatan"
-                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150"
+                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204E51] w-[500px] ease-linear transition-all duration-150 mb-4"
                                         value="{{ $data->nama_kegiatan }}" placeholder="Masukkan File">
                                     </input>
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                    <label class="block mb-2 text-xs font-bold uppercase text-blueGray-600"
                                         htmlfor="grid-password">
                                         Kondisi
                                     </label>
 
-                                    <textarea name="kondisi" id="kondisi">{{ $data->kondisi }}
-                                        
-                                    </textarea>
+                                    <textarea name="kondisi" id="kondisi" class="border-0 px-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm focus:ring-[#204E51] focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150 h-[236px] resize-none mb-4 shadow-lg">{{ $data->kondisi }}</textarea>
+                                    <div class="mb-[18px] relative">
+                                        <label for="dropzone-file"
+                                            class="flex flex-col items-center justify-center w-full h-14 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 2xl:h-20">
+                                            <div class="flex flex-row items-center justify-center gap-2 pt-5 pb-6">
+                                                <div id="file-name"
+                                                    class="flex items-center gap-2 text-gray-500 dark:text-gray-400  text-[14px]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" class="w-4 h-4" id="svg-upload">
+                                                        <path fillRule="evenodd"
+                                                            d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+                                                            clipRule="evenodd" />
+                                                    </svg>
+                                                    <p id="textcontent">
+                                                        Klik Untuk Unggah Dokumentasi Pelaporan
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <input id="dropzone-file" onchange="displayFileName()" name="dokumentasi_pelaporan"
+                                                type="file" class="hidden">
+                                        </label>
+                                    </div>       
+                                    
 
 
                                     {{-- <input type="" name="id_informasi" id="id_informasi" value="{{ $data->id_informasi }}">
@@ -232,7 +245,7 @@
             </div>
         </div>
         <script>
-            CKEDITOR.replace('kondisi');
+            
 
             function showEditButton() {
                 let editbutton = document.getElementById('editbutton')
@@ -253,6 +266,23 @@
                     editbutton.classList.remove('flex')
                 }, 500);
             }
+
+            function displayFileName() {
+                const fileInput = document.getElementById('dropzone-file');
+                const fileNameParagraph = document.getElementById('file-name');
+                const textcontent = document.getElementById('textcontent');
+                const svgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" class="w-4 h-4" id="svg-upload">
+                                                        <path fillRule="evenodd"
+                                                            d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+                                                            clipRule="evenodd" />
+                                                    </svg>`
+                if (fileInput.files.length > 0) {
+                    fileNameParagraph.textContent = fileInput.files[0].name;
+                } else {
+                    fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Bukti Legalitas';
+                }
+            }
         </script>
 
     </section>
@@ -260,10 +290,10 @@
     {{-- <section class="py-1 mt-4">
         <div id="editbutton" class="flex flex-col">
             <div
-                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-                <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <form class="flex justify-center items-center flex-col" enctype="multipart/form-data">
-                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">Tabel Pengajuan</h6>
+                class="relative flex flex-col w-full min-w-0 mb-6 break-words border-0 rounded-lg shadow-lg bg-blueGray-100">
+                <div class="flex-auto px-4 py-10 pt-0 lg:px-10">
+                    <form class="flex flex-col items-center justify-center" enctype="multipart/form-data">
+                        <h6 class="mt-3 mb-6 text-sm font-bold uppercase text-blueGray-400">Tabel Pengajuan</h6>
                         <div class="flex flex-wrap gap-4">
                             <div class="w-full lg:w-6/12">
                                 <div class="flex items-center justify-center mb-6">
@@ -271,7 +301,7 @@
                                     <img src="path_to_your_image.jpg" alt="Image" class="h-auto max-w-full">
                                 </div>
                                 <label for="tanggal_pengajuan"
-                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Tanggal
+                                    class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Tanggal
                                     Pengajuan</label>
                                 <input type="date" name="tanggal_pengajuan" id="tanggal_pengajuan"
                                     class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -279,13 +309,13 @@
                             </div>
                             <div class="w-full lg:w-6/12">
                                 <label for="berkas_pengajuan"
-                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Berkas
+                                    class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Berkas
                                     Pengajuan</label>
                                 <a href="{{ asset('pdf/' . $data->berkas_pengajuan) }}" target="_blank"
                                     class="block border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">{{ basename($data->berkas_pengajuan) }}</a>
                             </div>
                             <div class="w-full lg:w-6/12">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status
+                                <label class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Status
                                     Validasi</label>
                                 @if ($data->status_validasi == 2)
                                     <p>Tervalidasi</p>
@@ -297,7 +327,7 @@
                             </div>
                             <div class="w-full lg:w-6/12">
                                 <label for="tanggal_validasi"
-                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Tanggal
+                                    class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Tanggal
                                     Validasi</label>
                                 <input type="date" name="tanggal_validasi" id="tanggal_validasi"
                                     class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -305,7 +335,7 @@
                             </div>
                             <div class="w-full lg:w-6/12">
                                 <label for="catatan_validasi"
-                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Catatan
+                                    class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Catatan
                                     Validasi</label>
                                 <input type="text" name="catatan_validasi" id="catatan_validasi"
                                     class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"

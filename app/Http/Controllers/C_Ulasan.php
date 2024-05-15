@@ -6,6 +6,7 @@ use App\Models\MPengajuan;
 use App\Models\MBerita;
 use App\Models\MRegistrasi;
 use App\Models\MUlasan;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -17,10 +18,11 @@ class C_Ulasan extends Controller
     public function landing(){
 
         $user = Auth::user()->id;
+        $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
      
         $ulasan = MUlasan::getDataName();
-        return view("ulasan.view",compact('ulasan', 'registrasi'));
+        return view("ulasan.view",compact('ulasan', 'registrasi','iduser'));
         
     }
 
