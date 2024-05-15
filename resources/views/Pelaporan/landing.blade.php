@@ -1,12 +1,16 @@
 @extends('layout.navtani')
 @section('content')
-<style>
-    #judul {
-        font-family: 'Montserrat';
-        font-size: 48px;
-        font-weight: 700;
-    }
-</style>
+    <style>
+        #judul {
+            font-family: 'Montserrat';
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .font-inside {
+            font-family: 'Poppins'
+        }
+    </style>
     <section class="flex flex-col font-[Poppins]">
         <div>
             <a href="{{ route('homepage') }}"
@@ -17,95 +21,64 @@
                 </svg>
                 Back
             </a>
-            <h1 class=" text-[#204E51] mb-10 text-center" id="judul">Bantuan Bibit {{ $registrasi->nama_keltani }}</h1>
+            <h1 class=" text-[#204E51] mb-10 text-center" id="judul">Daftar Bantuan {{ $registrasi->nama_keltani }}</h1>
             @foreach ($pengajuan as $pengajuan)
-                @if ($pengajuan ->status_validasi == 2)
-                <div class="flex flex-col items-center">
-                    <a href="{{ route('pelaporan.main', $pengajuan->id_pengajuan) }}"
-                        class="flex flex-col items-center mb-6 bg-white border w-[1710px] border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <img class="object-cover w-48 h-40 rounded"
-                            src="{{ optional($pengajuan->informasi)->gambar_informasi ? asset('img/' . $pengajuan->informasi->gambar_informasi) : 'fallback-image-url.jpg' }}"
-                            alt="">
-                        <div class="flex flex-col justify-between px-4 leading-normal">
-                            <h5 class="text-[36px] font-semibold tracking-tight text-gray-900 dark:text-white ">
-                                {{ optional($pengajuan->informasi)->nama_bibit }}</h5>
-                            <div
-                                class="flex items-center justify-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
-                                @if ($pengajuan->status_validasi == 2)
-                                    Validated
-                                @else
-                                    {{ $pengajuan->status_validasi }}
-                                @endif
-                            </div>
-                            <p class="mb-2 text-neutral-500">
-                                @if ($pengajuan->status_validasi ==2)
-                                    <small>
-                                        Terverifikasi tanggal
-                                        <u>
-                                            {{ $pengajuan->tanggal_validasi }}
-                                        </u>
-                                    </small>
-                                @elseif ($pengajuan->status_validasi == 3)
-                                    <small>
-                                        Ditolak tanggal
-                                        <u>
-                                            {{ $pengajuan->tanggal_validasi }}
-                                        </u>
-                                    </small>
-                                @else
-                                    <small>
-                                        Menunggu pemrosesan oleh Dinas
-                                    </small>
-                                @endif
-                            </p>
-                            <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                @if ($pengajuan->status_validasi == 2)
+                    <div class="flex flex-col items-center">
+                        <a href="{{ route('pelaporan.main', $pengajuan->id_pengajuan) }}"
+                            class="flex items-center mb-6 bg-white border-2 w-[1280px] border-gray-200 rounded-[20px] shadow-md flex-row hover:bg-gray-100">
+                            <img class="object-cover w-48 h-40 rounded-[20px]"
+                                src="{{ optional($pengajuan->informasi)->gambar_informasi ? asset('img/' . $pengajuan->informasi->gambar_informasi) : 'fallback-image-url.jpg' }}"
+                                alt="">
+                            <div class="flex flex-col justify-between px-4 leading-normal">
+                                <h5
+                                    class="text-[36px] font-semibold tracking-tight text-gray-900 dark:text-white font-inside">
+                                    {{ optional($pengajuan->informasi)->judul_informasi }}</h5>
+                                <div
+                                    class="flex items-center justify-center mb-1 text-sm font-medium text-green-500 md:justify-start">
+                                    @if ($pengajuan->status_validasi == 2)
+                                        <span class="px-3 py-1 text-green-500 bg-green-100 rounded-full">Validated</span>
+                                    @elseif ($pengajuan->status_validasi == 3)
+                                        <span class="px-3 py-1 text-red-500 bg-red-100 rounded-full">Rejected</span>
+                                    @else
+                                        <span class="px-3 py-1 text-yellow-500 bg-yellow-100 rounded-full">Process</span>
+                                    @endif
+                                </div>
+                                <p class="mb-2 text-neutral-500">
+                                    @if ($pengajuan->status_validasi == 2)
+                                        <small class="font-inside">
+                                            Terverifikasi Tanggal
+                                            <u><b>  
+                                                {{ $pengajuan->tanggal_validasi }}
+                                            </b></u>
+                                        </small>
+                                    @elseif ($pengajuan->status_validasi == 3)
+                                        <small class="font-inside">
+                                            Ditolak tanggal
+                                            <u>
+                                                {{ $pengajuan->tanggal_validasi }}
+                                            </u>
+                                        </small>
+                                    @else
+                                        <small class="font-inside">
+                                            Menunggu pemrosesan oleh Dinas
+                                        </small>
+                                    @endif
+                                </p>
+                                <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+
+                                </div>
 
                             </div>
+                        </a>
 
-                        </div>
-                    </a>
-
-                </div>
-
+                    </div>
                 @endif
-                
             @endforeach
 
 
 
-            {{-- <div class="flex flex-col items-center">
-                <a href="{{ route('pengajuan.show', $pengajuan->id_pengajuan) }}"
-                    class="flex flex-col items-center mb-6 bg-white border w-[1710px] border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                        src="{{ asset('img/' . $informasi->gambar_informasi) }}" alt="">
-                    <div class="flex flex-col justify-between px-4 leading-normal">
-                        <h5 class=" text-[56px] font-bold tracking-tight text-gray-900 dark:text-white ">
-                            {{ $informasi->nama_bibit }}</h5>
-                        <div
-                            class="flex items-center justify-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
-                            @if ($pengajuan->status_validasi == 2)
-                                Validated
-                            @else
-                                {{ $pengajuan->status_validasi }}
-                            @endif
-                        </div>
-                        <p class="mb-2 text-neutral-500">
-                            <small>
-                                Terverifikasi tanggal
-                                <u>
-                                    {{ $pengajuan->tanggal_validasi }}
-                                </u>
 
-                            </small>
-                        </p>
-                        <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-
-                        </div>
-
-                    </div>
-                </a>
-
-            </div> --}}
         </div>
     </section>
 @endsection

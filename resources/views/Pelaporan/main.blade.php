@@ -6,6 +6,10 @@
             font-size: 48px;
             font-weight: 700;
         }
+        #judul-laporan{
+            font-family: 'Montserrat';
+            font-weight: 700;
+        }
     </style>
     <section class="flex flex-col font-[Poppins]">
         <div>
@@ -28,26 +32,24 @@
                     @foreach ($pelaporan as $pelaporans)
                         <div class="flex flex-col items-center">
                             <a href="{{ route('pelaporan.show', $pelaporans->id_pelaporan) }}"
-                                class="flex flex-col items-center mb-6 bg-white border w-[1710px] border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-48 h-40 rounded"
+                                class="flex flex-row items-center mb-6 bg-white border-2 w-[1280px] border-gray-200 rounded-[20px] shadow-md  hover:bg-gray-100">
+                                <img class="object-cover w-48 h-40 rounded-[20px]"
                                     src="{{ optional($pelaporans->dokumentasi_pelaporan) ? asset('dokumentasi/' . $pelaporans->dokumentasi_pelaporan) : 'fallback-image-url.jpg' }}"
                                     alt="">
                                 <div class="flex flex-col justify-between px-4 leading-normal">
-                                    <h5 class="text-[36px] font-semibold tracking-tight text-gray-900 dark:text-white ">
-                                        {{-- {{ optional($pengajuan->informasi)->nama_bibit }} --}}
+                                    <h5 class="text-[36px] font-semibold tracking-tight text-gray-900 dark:text-white mb-2" id="judul-laporan">
                                         {{ $pelaporans->nama_kegiatan }}
                                     </h5>
-                                    <div
-                                        class="flex items-center justify-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
+                                    <div class="flex items-center justify-center mb-1 text-sm md:justify-start">
                                         @if ($pelaporans->status_validasi == 2)
-                                            Validated
+                                            <span class="px-3 py-1 text-green-500 bg-green-100 rounded-full">Validated</span>
                                         @elseif ($pelaporans->status_validasi == 3)
-                                            Rejected
+                                            <span class="px-3 py-1 text-red-500 bg-red-100 rounded-full">Rejected</span>
                                         @else
-                                            Proses
+                                            <span class="px-3 py-1 text-yellow-500 bg-yellow-100 rounded-full">Process</span>
                                         @endif
                                     </div>
-                                    <p class="mb-2 text-neutral-500">
+                                    <p class="mt-2 text-neutral-500">
                                         @if ($pelaporans->status_validasi == 2)
                                             <small>
                                                 Terverifikasi tanggal
@@ -64,7 +66,7 @@
                                             </small>
                                         @else
                                             <small>
-                                                Menunggu pemrosesan oleh Dinas
+                                                Menunggu proses oleh Dinas
                                             </small>
                                         @endif
 
@@ -118,8 +120,8 @@
                         <div class="flex flex-wrap text-center">
                             <div class="w-full px-4">
                                 <div class="w-full mb-3">
-                                    
-                                    
+
+
                                     <label class="block mb-2 text-xs font-bold uppercase text-[#204E51]"
                                         htmlfor="grid-password">
                                         Nama Kegiatan
@@ -134,29 +136,29 @@
                                         Kondisi
                                     </label>
                                     <textarea name="kondisi" id="kondisi"
-                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150 h-40 shadow-lg resize-none mb-4" ></textarea>
+                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150 h-40 shadow-lg resize-none mb-4"></textarea>
 
-                                        <div class="mb-[18px] relative">
-                                            <label for="dropzone-file"
-                                                class="flex flex-col items-center justify-center w-full h-14 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 2xl:h-20">
-                                                <div class="flex flex-row items-center justify-center gap-2 pt-5 pb-6">
-                                                    <div id="file-name"
-                                                        class="flex items-center gap-2 text-gray-500 dark:text-gray-400  text-[14px]">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                            fill="currentColor" class="w-4 h-4" id="svg-upload">
-                                                            <path fillRule="evenodd"
-                                                                d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
-                                                                clipRule="evenodd" />
-                                                        </svg>
-                                                        <p id="textcontent">
-                                                            Klik Untuk Unggah Dokumentasi Pelaporan
-                                                        </p>
-                                                    </div>
+                                    <div class="mb-[18px] relative">
+                                        <label for="dropzone-file"
+                                            class="flex flex-col items-center justify-center w-full h-14 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 2xl:h-20">
+                                            <div class="flex flex-row items-center justify-center gap-2 pt-5 pb-6">
+                                                <div id="file-name"
+                                                    class="flex items-center gap-2 text-gray-500 dark:text-gray-400  text-[14px]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" class="w-4 h-4" id="svg-upload">
+                                                        <path fillRule="evenodd"
+                                                            d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+                                                            clipRule="evenodd" />
+                                                    </svg>
+                                                    <p id="textcontent">
+                                                        Klik Untuk Unggah Dokumentasi Pelaporan
+                                                    </p>
                                                 </div>
-                                                <input id="dropzone-file" onchange="displayFileName()" name="dokumentasi_pelaporan"
-                                                    type="file" class="hidden">
-                                            </label>
-                                        </div>
+                                            </div>
+                                            <input id="dropzone-file" onchange="displayFileName()"
+                                                name="dokumentasi_pelaporan" type="file" class="hidden">
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

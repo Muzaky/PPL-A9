@@ -114,7 +114,7 @@
                 <h1 class="judul flex text-black m-8 text-[50px] font-bold uppercase">Menu</h1>
                 <div class="flex flex-row">
                     @if ($registrasi && $registrasi->status_validasi == 2)
-                        <a class="flex flex-col items-center mx-4 bg-white border-4 border-[#204E51] rounded-xl shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
+                        <a class="flex flex-col items-center mx-4 bg-white border-4 border-[#204E51] rounded-[20px] shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
                             href="{{ route('pemberitahuan.landing') }}">
                             <div class="flex flex-col items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
@@ -147,7 +147,7 @@
                                 <h1 class="font-isi flex text-[20px] font-bold -mt-2">Pemberitahuan</h1>
                             </div>
                         </a>
-                        <a class="flex flex-col items-center mx-4 bg-white border-4 border-[#204E51] rounded-xl shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
+                        <a class="flex flex-col items-center mx-4 bg-white border-4 border-[#204E51] rounded-[20px] shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
                             href="{{ route('pengajuan.landing') }}">
                             <div class="flex flex-col items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"
@@ -182,7 +182,7 @@
                                 </h1>
                             </div>
                         </a>
-                        <a class="flex flex-col items-center mx-4 bg-white border-4 border-[#204E51] rounded-xl shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
+                        <a class="flex flex-col items-center mx-4 bg-white border-4 border-[#204E51] rounded-[20px] shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
                             href="{{ route('pelaporan.landing') }}">
                             <div class="flex flex-col items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
@@ -209,7 +209,7 @@
                                 <h1 class="font-isi  flex text-[20px] font-bold ">Pelaporan</h1>
                             </div>
                         </a>
-                        <a class="flex flex-col items-center mx-4 bg-white border-4 border-[#204E51] rounded-xl shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
+                        <a class="flex flex-col items-center mx-4 bg-white border-4 border-[#204E51] rounded-[20px] shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
                             href="{{ route('ulasan.landing') }}">
                             <div class="flex flex-col items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"

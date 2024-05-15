@@ -1,6 +1,5 @@
 @extends('Layout.navtani')
-{{-- @dd(Auth::user()) --}}
-{{-- @if (session()->has('success')) --}}
+
 @section('content')
     <style>
         #judul {
@@ -8,37 +7,101 @@
             font-size: 48px;
             font-weight: 700;
         }
-        
+
+        .judul-carousel, #judul-berita {
+            font-family: 'Montserrat';
+            font-size: 24px;
+            font-weight: 700;
+        }
     </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.0/flowbite.min.css" rel="stylesheet">
 
     <section>
         <div class="flex items-center justify-center">
-          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride='carousel'>
-        
-            <div class="carousel-inner">
-              @foreach ($data as $val)
-              <div class="carousel-item @if ($loop->first) active @endif" data-bs-interval='4000'>
-                <a href="{{ route('pemberitahuan.detail', $val->id_informasi) }}">
-                  <img src="{{ asset('img/' . $val->gambar_informasi) }}" class="bg-cover w-[1200px] h-[600px] mt-4 rounded-xl" alt="">
-                  <div class="carousel-caption d-none d-md-block ">
-                    <h5 class="font-bold font-['Montserrat'] text-[24px]">{{ $val->judul_informasi }}</h5>
-                    <p>Klik untuk informasi lebih lanjut</p>
-                  </div>
-                </a>
-                
-              </div>
-              @endforeach
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+            <div id="default-carousel" class="relative mt-4" data-carousel="slide">
+                <!-- Carousel wrapper -->
+                <div class="relative h-[600px] w-[1200px] overflow-hidden rounded-lg">
+                    @foreach ($data as $val)
+                        @if ($loop->first)
+                            <!-- First Item: Visible by default -->
+                            <a href="{{ route('pemberitahuan.detail', $val->id_informasi) }}"
+                                class="visible hidden duration-700 ease-in-out" data-carousel-item="active">
+                                <div class="absolute w-full h-full mix-blend-overlay">
+                                    <img src="{{ asset('img/' . $val->gambar_informasi) }}"
+                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                        alt="...">
+                                    <div
+                                        class="absolute w-full h-full bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
 
+
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <p class="p-2 text-lg font-semibold text-white md:text-xl lg:text-2xl mt-[35%]">
+                                        {{ $val->judul_informasi }}</p>
+                                    <small class="text-white">Klik untuk informasi lebih lanjut</small>
+                                </div>
+                            </a>
+                        @else
+                            <!-- Other Items: Hidden by default -->
+                            <a href="{{ route('pemberitahuan.detail', $val->id_informasi) }}"
+                                class="hidden duration-700 ease-in-out " data-carousel-item>
+                                <div class="absolute w-full h-full mix-blend-overlay">
+                                    <img src="{{ asset('img/' . $val->gambar_informasi) }}"
+                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                        alt="...">
+                                    <div
+                                        class="absolute w-full h-full bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+
+
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <p class="p-2 text-lg font-semibold text-white md:text-xl lg:text-2xl mt-[35%]">
+                                        {{ $val->judul_informasi }}</p>
+                                    <small class="text-white">Klik untuk informasi lebih lanjut</small>
+                                </div>
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
+                <!-- Slider indicators -->
+                <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 rtl:space-x-reverse">
+                    <?php $i = 0; ?>
+                    @foreach ($data as $val)
+                        <button type="button" class="w-3 h-3 rounded-full" aria-current="{{ $i == 0 ? 'true' : 'false' }}"
+                            aria-label="Slide {{ $i }}" data-carousel-slide-to="{{ $i }}"></button>
+                        <?php $i++; ?>
+                    @endforeach
+                </div>
+                <!-- Slider controls -->
+                <button type="button"
+                    class="absolute top-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer start-0 group focus:outline-none"
+                    data-carousel-prev>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button"
+                    class="absolute top-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer end-0 group focus:outline-none"
+                    data-carousel-next>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
+            </div>
         </div>
 
 
@@ -49,20 +112,22 @@
         <div class="container mx-auto my-6 md:px-6">
             <!-- Section: Design Block -->
             <section class="mb-32 text-center">
-              <p>Berita Lainnya</p>
+                <div class="flex items-center justify-center w-full text-center">
+                    <p id="judul-berita" class="flex p-2 bg-white">Berita Lainnya</p>
+                </div>
+                <div class="w-full -mt-6 h-[2px] bg-black"></div>
 
 
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center mt-4">
                     @foreach ($data as $val)
                         <a href="{{ route('pemberitahuan.detail', $val->id_informasi) }}"
                             class="flex flex-col items-center mb-6 w-[1000px] bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                             <img class="object-cover w-[280px] h-[240px] rounded-t-lg rounded-lg"
                                 src="{{ asset('img/' . $val->gambar_informasi) }}" alt="">
-                            <div class="flex flex-col justify-between p-4 leading-normal">
+                            <div class="flex flex-col items-start justify-between p-4 leading-normal">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     {{ $val->judul_informasi }}</h5>
-                                <div
-                                    class="flex items-center justify-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
+                                <div class="flex items-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -82,7 +147,6 @@
                                 <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                     <?= @$val->syarat_ketentuan ?>
                                 </div>
-
                             </div>
                         </a>
                     @endforeach
@@ -93,9 +157,8 @@
             </section>
             <!-- Section: Design Block -->
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+
+
     </section>
 @endsection
 {{-- @endif --}}

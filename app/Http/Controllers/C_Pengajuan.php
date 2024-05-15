@@ -6,6 +6,7 @@ use App\Http\Controllers\C_Auth;
 use App\Http\Controllers\Controller;
 use App\Models\MPengajuan;
 use App\Models\MRegistrasi;
+use App\Models\User;
 use App\Models\MBerita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ class C_Pengajuan extends Controller
     public function landing()
     {
         $user = Auth::user()->id;
+        $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->get();
         
@@ -33,13 +35,14 @@ class C_Pengajuan extends Controller
         //return json_encode($data);
         return view(
             'Pengajuan.landing',
-            ['data' => $data],compact('pengajuan', 'registrasi')
+            ['data' => $data],compact('pengajuan', 'registrasi' ,'iduser')
         );
     }
 
     public function show($id)
     {
         $user = Auth::user()->id;
+        $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_pengajuan', $id)->first();
         // $informasi = MBerita::where('id_informasi', $pengajuan->informasi)->get();
@@ -48,7 +51,7 @@ class C_Pengajuan extends Controller
         
         return view(
             'Pengajuan.viewpengajuan',
-            ['data' => $data],compact('pengajuan', 'informasi', 'registrasi')
+            ['data' => $data],compact('pengajuan', 'informasi', 'registrasi','iduser')
         );
     }
 
