@@ -24,8 +24,6 @@ class C_Pengajuan extends Controller
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->get();
-        
-        
         // $informasi = $pengajuan;
         $data = MPengajuan::getData()->paginate(10);
         // dd($informasi);

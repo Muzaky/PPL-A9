@@ -6,6 +6,7 @@
     <title>BibiTani</title>
     <link rel="icon" href="bibitani.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css">
+    <link rel="stylesheet" href="./css/scroll.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>

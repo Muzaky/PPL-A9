@@ -8,7 +8,8 @@
             font-weight: 700;
         }
 
-        .judul-carousel, #judul-berita {
+        .judul-carousel,
+        #judul-berita {
             font-family: 'Montserrat';
             font-size: 24px;
             font-weight: 700;
@@ -16,11 +17,12 @@
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.0/flowbite.min.css" rel="stylesheet">
 
-    <section>
-        <div class="flex items-center justify-center">
+    <section class="bg-gradient-to-b from-[#204e51]/20 from-70% to-transparent">
+        
+        <div class="flex items-center justify-center ">
             <div id="default-carousel" class="relative mt-4" data-carousel="slide">
                 <!-- Carousel wrapper -->
-                <div class="relative h-[600px] w-[1200px] overflow-hidden rounded-lg">
+                <div class="relative h-[600px] w-[1200px] overflow-hidden rounded-[20px]">
                     @foreach ($data as $val)
                         @if ($loop->first)
                             <!-- First Item: Visible by default -->
@@ -113,12 +115,12 @@
             <!-- Section: Design Block -->
             <section class="mb-32 text-center">
                 <div class="flex items-center justify-center w-full text-center">
-                    <p id="judul-berita" class="flex p-2 bg-white">Berita Lainnya</p>
+                    <p id="judul-berita" class="flex p-2 bg-[#d2dcdc] text-[#204e51]">Daftar Pemberitahuan</p>
                 </div>
-                <div class="w-full -mt-6 h-[2px] bg-black"></div>
+                <div class="w-full -mt-6 h-[2px] bg-black "></div>
 
 
-                <div class="flex flex-col items-center mt-4">
+                <div class="flex flex-col items-center mt-8">
                     @foreach ($data as $val)
                         <a href="{{ route('pemberitahuan.detail', $val->id_informasi) }}"
                             class="flex flex-col items-center mb-6 w-[1000px] bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -127,7 +129,8 @@
                             <div class="flex flex-col items-start justify-between p-4 leading-normal">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     {{ $val->judul_informasi }}</h5>
-                                <div class="flex items-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
+                                <div
+                                    class="flex items-center mb-1 text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round"

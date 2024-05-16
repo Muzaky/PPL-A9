@@ -54,7 +54,7 @@ class C_Auth extends Controller
 
         $request->session()->regenerateToken(); // Menghasilkan token sesi baru
 
-        return redirect('/landing')->with('status', 'You have been logged out successfully.'); // Redirect ke halaman utama dengan pesan sukses
+        return redirect('/')->with('status', 'Anda Berhasil Logout !'); // Redirect ke halaman utama dengan pesan sukses
     }
 
     public function form_register()

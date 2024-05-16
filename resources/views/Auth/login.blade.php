@@ -8,22 +8,23 @@
     <link rel="icon" href="bibitani.ico">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/scroll.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="flex justify-center items-center">
+<body class="flex items-center justify-center">
     <form action="{{ route('authenticate') }}" method="post">
         @method('POST')
         @csrf
         <div class="container h-full p-10 ">
-            <div class="flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+            <div class="flex flex-wrap items-center justify-center h-full text-neutral-800 dark:text-neutral-200">
                 <div class="w-full">
                     <!-- Container -->
-                    <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800 relative">
-                        <a href="{{ url('landing') }}"
+                    <div class="relative block bg-white rounded-lg shadow-lg dark:bg-neutral-800">
+                        <a href="/"
                             class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
                             aria-label="Close">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
@@ -31,14 +32,14 @@
                         <div class="g-0 lg:flex lg:flex-wrap">
                             <!-- Left column container-->
                             <div class="px-4 md:px-0 lg:w-6/12">
-                                <div class="md:mx-6 md:p-12 flex flex-col">
+                                <div class="flex flex-col md:mx-6 md:p-12">
                                     <!--Logo-->
                                     <div class="items-center">
-                                        <img class="mx-auto w-90 my-12" src="../bibitani.ico" alt="logo" />
+                                        <img class="mx-auto my-12 w-90" src="../bibitani.ico" alt="logo" />
 
                                     </div>
                                     @if (session()->has('error'))
-                                        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 text-center"
+                                        <div class="p-4 mb-4 text-sm text-center text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                                             role="alert">
                                             {{ session()->get('error') }}
                                         </div>
@@ -48,14 +49,14 @@
                                         <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Masuk</p>
                                         <small class="mb-[46px] text-[#B9B8B8] ">Silahkan masukkan email dan password</small>
                                         <!--Username input-->
-                                        <div class=" mb-4">
+                                        <div class="mb-4 ">
                                             <label class="block mb-2 font-semibold text-[20px]">
                                                 Email
                                             </label>
                                             <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="text"
                                                 placeholder="Masukkan email" id="email" name="email" />
                                         </div>
-                                        <div class=" mb-4">
+                                        <div class="mb-4 ">
                                             <label class="block mb-2 font-semibold text-[20px]">
                                                 Password
                                             </label>
@@ -67,9 +68,9 @@
 
 
                                         <!--Submit button-->
-                                        <div class="pb-1 pt-1 text-center">
+                                        <div class="pt-1 pb-1 text-center">
                                             <button
-                                                class=" bg-[#204E51] p-3 rounded px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]"
+                                                class=" bg-[#204E51] p-3 rounded-[16px] px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]"
                                                 type="submit">
                                                 Masuk
                                             </button>

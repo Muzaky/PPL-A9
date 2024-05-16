@@ -8,6 +8,7 @@
     <link rel="icon" href="bibitani.ico">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/scroll.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -20,7 +21,7 @@
                 <div class="w-full">
                     <!-- Container -->
                     <div class="relative block bg-white rounded-lg shadow-lg dark:bg-neutral-800">
-                         <a href="{{ url('landing') }}"
+                         <a href="/"
                             class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
                             aria-label="Close">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,7 +36,7 @@
                                 <div class="flex flex-col md:mx-6 md:p-12">
                                     <!--Logo-->
                                     <div class="text-center">
-                                        <img class="mx-auto my-12 w-90" src="../bibitani.ico" alt="logo" />
+                                        <img class="mx-auto mb-12 w-90" src="../bibitani.ico" alt="logo" />
 
                                     </div>
 
@@ -102,7 +103,7 @@
                                         <!--Submit button-->
                                         <div class="pt-1 pb-1 text-center">
                                             <button
-                                                class=" bg-[#204E51] p-3 rounded px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]"
+                                                class=" bg-[#204E51] p-3 rounded-[16px] px-10 font-bold text-[#f4f4f4] border border-[#204E51] hover:bg-[#f4f4f4] hover:text-[#204E51]"
                                                 type="submit">
                                                 Daftar
                                             </button>

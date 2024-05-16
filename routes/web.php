@@ -23,24 +23,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+
+
+
 Route::get('/', function () {
-    return view("landing");
-});
-
-
-Route::get('/landing', function () {
     return view('landing');
-});
-
-Route::get('/login', function () {
-    return view('auth.login');
-});
-Route::get('/register', function () {
-    return view('auth.register');
-});
-
-Route::get('/registrasi', function () {
-    return view('registrasi.create');
 });
 
 // Route::get('/homepage', function () {
