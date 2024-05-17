@@ -1,10 +1,10 @@
 @extends('Layout.navtani')
 
 @section('content')
-    <section class="flex flex-col items-center justify-center">
-        <div class="w-[1000px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <section class="flex flex-col items-center justify-center mt-4">
+        <div class="w-[1000px] bg-white border border-gray-200 rounded-[20px] shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col items-center justify-center">
-                <img class="w-full h-[400px]" src="{{ asset('img/' . $data->gambar_informasi) }}" alt="berita">
+                <img class="w-full h-[400px] rounded-[20px]" src="{{ asset('img/' . $data->gambar_informasi) }}" alt="berita">
                 <div class="flex items-center justify-center px-4 text-center text-wrap">
                     <h1 class="font-[poppins] text-[40px] font-bold mt-4 justify-center">{{ $data->judul_informasi }}</h1>
                 </div>

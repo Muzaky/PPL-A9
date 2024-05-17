@@ -132,14 +132,14 @@ class BeritaController extends Controller
 
         $update = MBerita::getById($id_informasi);
         $update->update($data);
-        return redirect()->route('Berita.list')
+        return redirect()->route('berita.list')
             ->with('success', 'Berita telah terpost');
     }
     public function destroy($id_informasi)
     {
         $destroy = MBerita::getById($id_informasi);
         $destroy->delete();
-        return redirect()->route('Berita.list')
+        return redirect()->route('berita.list')
             ->with('success', 'Berita telah didelete');
     }
 

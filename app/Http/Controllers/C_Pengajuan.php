@@ -199,7 +199,7 @@ class C_Pengajuan extends Controller
 
         $update = MPengajuan::getById($id_pengajuan);
         $update->update($data);
-        return redirect()->route('Pengajuan.list')
+        return redirect()->route('pengajuan.list')
             ->with('success', 'Berita telah terpost');
     }
 }

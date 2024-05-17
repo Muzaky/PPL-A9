@@ -1,4 +1,4 @@
-@extends('layout.navtani')
+@extends('Layout.navtani')
 @section('content')
     <style>
         #judul {

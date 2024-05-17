@@ -220,7 +220,7 @@ class C_Registrasi extends Controller
 
         $update = MRegistrasi::getById($id_registrasi);
         $update->update($data);
-        return redirect()->route('Registrasi.list')
+        return redirect()->route('registrasi.list')
             ->with('success', 'Akun kelompok tani telah diperbarui');
     }
 
@@ -228,7 +228,7 @@ class C_Registrasi extends Controller
     {
         $destroy = MRegistrasi::getById($id_registrasi);
         $destroy->delete();
-        return redirect()->route('Registrasi.list')
+        return redirect()->route('registrasi.list')
             ->with('success', 'KelompokTani telah didelete');
     }
 

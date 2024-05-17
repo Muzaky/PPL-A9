@@ -40,7 +40,7 @@ class C_Ulasan extends Controller
         ];
 
         MUlasan::create($data);
-        return redirect()->route('Ulasan.landing');
+        return redirect()->route('ulasan.landing');
     }
 
     public function update(Request $request, $id)
@@ -55,14 +55,14 @@ class C_Ulasan extends Controller
 
         $update = MUlasan::getById($id);
         $update->update($data);
-        return redirect()->route('Ulasan.landing');
+        return redirect()->route('ulasan.landing');
     }
 
     public function destroy($id)
     {
         $destroy = MUlasan::getById($id);
         $destroy->delete();
-        return redirect()->route('Ulasan.landing')
+        return redirect()->route('ulasan.landing')
             ->with('success', 'Berita telah didelete');
     }
 
@@ -75,7 +75,7 @@ class C_Ulasan extends Controller
         
         
         //return json_encode($data);
-        return view("ulasan.data_list",compact('ulasan'));
+        return view("Ulasan.data_list",compact('ulasan'));
             
       
     }
