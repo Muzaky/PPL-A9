@@ -77,7 +77,7 @@ class C_Registrasi extends Controller
             if ($request->hasFile('bukti_legalitas')) {
                 $file = $request->file('bukti_legalitas');
                 $nama_file = $file->getClientOriginalName();
-                $file->move('bukti', $nama_file);
+                $file->storeAs('bukti', $nama_file);
                 $data['bukti_legalitas'] = $nama_file;
             }
 
