@@ -27,6 +27,12 @@
 
         <div class=" lg:flex lg:flex-1 lg:justify-end">
             @if (Auth::check())
+                @if ($registrasi->foto_profil == null)
+                <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+                    data-dropdown-placement="bottom-start"
+                    class="w-12 h-12 rounded-full cursor-pointer border-2 border-[#204E51] mr-12"
+                    src="{{ asset('user.png') }}" alt="User dropdown">
+                @else
 
                 <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
                     data-dropdown-placement="bottom-start"
@@ -63,6 +69,7 @@
                             out</a>
                     </div>
                 </div>
+                @endif
             @else
                 <a href="/login"
                     class="flex justify-center font-semibold leading-6  mx-8 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Masuk</a>
