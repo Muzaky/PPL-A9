@@ -124,7 +124,7 @@
             </a>
         </div>
         <div class="flex gap-x-12">
-            <a href="/homepage" class="font-semibold leading-6 navitem" style="font-size:20px">Home</a>
+            <a href="#hero" class="font-semibold leading-6 navitem" style="font-size:20px">Home</a>
             <a href="#about" class="font-semibold leading-6 navitem" style="font-size:20px">About Us</a>
             <a href="#footer" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Address</a>
         </div>
