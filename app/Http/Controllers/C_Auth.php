@@ -17,7 +17,7 @@ class C_Auth extends Controller
 
     public function login()
     {
-        return view('auth.login');
+        return view('Auth.login');
     }
 
     public function authenticate(Request $request)
@@ -36,7 +36,7 @@ class C_Auth extends Controller
             $x = Auth::user()->id_roles;
             // dd($x);
             if ($x == 1) {
-                return view('kelompoktani.homepage', compact('registrasi', 'usercount','iduser'));
+                return view('KelompokTani.homepage', compact('registrasi', 'usercount','iduser'));
             } elseif ($x == 2) {
                 return redirect('dashboard');
             }
@@ -60,7 +60,7 @@ class C_Auth extends Controller
     public function form_register()
     {
 
-        return view('auth.register');
+        return view('Auth.register');
     }
 
     public function register(Request $request)
