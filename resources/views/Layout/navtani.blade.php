@@ -17,7 +17,7 @@
 </head>
 
 <body>
-   
+
     <nav class="flex items-center justify-between px-8 py-4 bg-white shadow-md" aria-label="Global">
         <div class="flex lg:flex-1">
             <a href="/" class="-m-1.5 p-1.5 opacity-100">
@@ -27,48 +27,89 @@
 
         <div class=" lg:flex lg:flex-1 lg:justify-end">
             @if (Auth::check())
-                @if ($registrasi->foto_profil == null)
-                <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
-                    data-dropdown-placement="bottom-start"
-                    class="w-12 h-12 rounded-full cursor-pointer border-2 border-[#204E51] mr-12"
-                    src="{{ asset('user.png') }}" alt="User dropdown">
+                @if ($registrasi == null)
+                    <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+                        data-dropdown-placement="bottom-start"
+                        class="w-12 h-12 rounded-full cursor-pointer border-2 border-[#204E51] mr-12"
+                        src="{{ asset('user.png') }}" alt="User dropdown">
+                    <div id="userDropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                        <div class="py-1">
+                            <a href="{{ route('logout') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                                out</a>
+                        </div>
+                    </div>
+                @elseif ($registrasi->foto_profil == null)
+                    <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+                        data-dropdown-placement="bottom-start"
+                        class="w-12 h-12 rounded-full cursor-pointer border-2 border-[#204E51] mr-12"
+                        src="{{ asset('user.png') }}" alt="User dropdown">
+                    <div id="userDropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                            <div>{{ $registrasi->nama_keltani }}</div>
+                            <div class="font-medium truncate">{{ $iduser->email }}</div>
+                            @if ($registrasi->status_validasi == 2)
+                                <p class="text-green-500">Verified</p>
+                            @elseif ($registrasi->status_validasi == 1)
+                                <p class="text-yellow-500">Unverified</p>
+                            @else
+                                <p class="text-red-500">Rejected</p>
+                            @endif
+                        </div>
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                            <li>
+                                <a href="{{ route('homepage') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('kelompoktani.profile', $registrasi->id_registrasi) }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                            </li>
+                        </ul>
+                        <div class="py-1">
+                            <a href="{{ route('logout') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                                out</a>
+                        </div>
+                    </div>
                 @else
+                    <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+                        data-dropdown-placement="bottom-start"
+                        class="w-12 h-12 rounded-full cursor-pointer border-2 border-[#204E51] mr-12"
+                        src="{{ asset('fotoprofil/' . $registrasi->foto_profil) }}" alt="User dropdown">
 
-                <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
-                    data-dropdown-placement="bottom-start"
-                    class="w-12 h-12 rounded-full cursor-pointer border-2 border-[#204E51] mr-12"
-                    src="{{ asset('fotoprofil/' . $registrasi->foto_profil) }}" alt="User dropdown">
-
-                <!-- Dropdown menu -->
-                <div id="userDropdown"
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                        <div>{{ $registrasi->nama_keltani }}</div>
-                        <div class="font-medium truncate">{{ $iduser->email }}</div>
-                        @if ($registrasi->status_validasi == 2)
-                            <p class="text-green-500">Verified</p>
-                        @elseif ($registrasi->status_validasi == 1)
-                            <p class="text-yellow-500">Unverified</p>
-                        @else
-                            <p class="text-red-500">Rejected</p>
-                        @endif
+                    <!-- Dropdown menu -->
+                    <div id="userDropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                            <div>{{ $registrasi->nama_keltani }}</div>
+                            <div class="font-medium truncate">{{ $iduser->email }}</div>
+                            @if ($registrasi->status_validasi == 2)
+                                <p class="text-green-500">Verified</p>
+                            @elseif ($registrasi->status_validasi == 1)
+                                <p class="text-yellow-500">Unverified</p>
+                            @else
+                                <p class="text-red-500">Rejected</p>
+                            @endif
+                        </div>
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                            <li>
+                                <a href="{{ route('homepage') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('kelompoktani.profile', $registrasi->id_registrasi) }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                            </li>
+                        </ul>
+                        <div class="py-1">
+                            <a href="{{ route('logout') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                                out</a>
+                        </div>
                     </div>
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-                        <li>
-                            <a href="{{ route('homepage') }}"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('kelompoktani.profile', $registrasi->id_registrasi) }}"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-                        </li>
-                    </ul>
-                    <div class="py-1">
-                        <a href="{{ route('logout') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
-                            out</a>
-                    </div>
-                </div>
                 @endif
             @else
                 <a href="/login"
@@ -81,7 +122,7 @@
 
     <script src="https://cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    
+
     @yield('content');
 </body>
 

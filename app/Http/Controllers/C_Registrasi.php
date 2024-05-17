@@ -37,7 +37,7 @@ class C_Registrasi extends Controller
         $kecamatan = MKecamatan::all();
 
         return view(
-            'registrasi.create',
+            'Registrasi.create',
             ['kecamatan' => $kecamatan],
             ['userId' => $userId]
 
@@ -45,6 +45,7 @@ class C_Registrasi extends Controller
     }
     public function store(Request $request)
     {
+      
         try {
             $request->validate([
                 'nama_keltani' => 'required',
@@ -236,9 +237,9 @@ class C_Registrasi extends Controller
     {
 
         $user = Auth::user()->id;
-
+        
         $registrasi =  MRegistrasi::regkec();
-        // dd($registrasi);    
+       
         $registrasi = $registrasi->where('id', $user)->first();
         $hashedpassword = $registrasi->password;
         $kecamatan = MKecamatan::all();

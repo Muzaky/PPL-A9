@@ -133,7 +133,7 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file" onchange="displayFileName()"
-                                                name="bukti_sertifikasi" type="file" class="hidden" />
+                                                name="bukti_legalitas" type="file" class="hidden" />
                                         </label>
                                     </div>
                                     <!-- Submit button -->

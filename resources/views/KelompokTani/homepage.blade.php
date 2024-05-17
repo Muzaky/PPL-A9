@@ -68,14 +68,14 @@
                             </div>
                         @elseif ($usercount != 0)
                             @if ($registrasi->status_validasi == 1)
-                                <div class="flex w-[300px] text-[36px] text-white">Menunggu Validasi Kelompok
+                                <div class="flex text-[36px] text-white">Menunggu Validasi Kelompok
                                     Tani
                                 </div>
                                 <div class="flex text-[20px] text-white">Silahkan menunggu validasi dari kedinasan !
                                 </div>
                             @elseif ($registrasi->status_validasi == 2)
                                 <div class="profilehome">
-                                    <div class="flex w-[400px] text-[36px] text-[#f4f4f4]">Halo,
+                                    <div class="flex text-[36px] text-[#f4f4f4]">Halo,
                                         {{ $registrasi->nama_keltani }} !
                                     </div>
                                     <div class="flex text-[20px] text-[#f4f4f4]">Selamat datang !
