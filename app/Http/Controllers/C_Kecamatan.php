@@ -12,6 +12,6 @@ class C_Kecamatan extends Controller
     public function showForm()
     {
         $kecamatan = MKecamatan::all();
-        return view('registrasi.create', ['kecamatan' => $kecamatan]);
+        return view('Registrasi.create', ['kecamatan' => $kecamatan]);
     }
 }

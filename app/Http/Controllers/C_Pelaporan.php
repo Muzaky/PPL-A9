@@ -147,7 +147,7 @@ class C_Pelaporan extends Controller
 
         $update = MPelaporan::getById($id_pelaporan);
         $update->update($data);
-        return redirect()->route('pelaporan.show', ['id' => $id_pelaporan])
+        return redirect()->route('Pelaporan.show', ['id' => $id_pelaporan])
             ->with('success', 'Data telah berubah');
     }
 
@@ -186,7 +186,7 @@ class C_Pelaporan extends Controller
 
         $update = MPelaporan::getById($id_pelaporan);
         $update->update($data);
-        return redirect()->route('pelaporan.list')
+        return redirect()->route('Pelaporan.list')
             ->with('success', 'Berita telah terpost');
     }
 
@@ -218,7 +218,7 @@ class C_Pelaporan extends Controller
     {
         $destroy = MPelaporan::getById($id_pelaporan);
         $destroy->delete();
-        return redirect()->route('pengajuan.list')
+        return redirect()->route('Pengajuan.list')
             ->with('success', 'Berita telah didelete');
     }
 }

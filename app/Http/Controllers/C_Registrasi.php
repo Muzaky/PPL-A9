@@ -91,7 +91,7 @@ class C_Registrasi extends Controller
     public function show($id)
     {
         $data = MRegistrasi::find($id);
-        return view('registrasi.show', ['data' => $data]);
+        return view('Registrasi.show', ['data' => $data]);
     }
     public function edit(Request $request, $id_registrasi)
     {
@@ -114,7 +114,7 @@ class C_Registrasi extends Controller
         // dd($data);
         // dd($data);
         return view(
-            'registrasi.edit',
+            'Registrasi.edit',
             [
                 'kecamatan' => $kecamatan,
                 'userId' => $userId,
@@ -220,7 +220,7 @@ class C_Registrasi extends Controller
 
         $update = MRegistrasi::getById($id_registrasi);
         $update->update($data);
-        return redirect()->route('registrasi.list')
+        return redirect()->route('Registrasi.list')
             ->with('success', 'Akun kelompok tani telah diperbarui');
     }
 
@@ -228,7 +228,7 @@ class C_Registrasi extends Controller
     {
         $destroy = MRegistrasi::getById($id_registrasi);
         $destroy->delete();
-        return redirect()->route('registrasi.list')
+        return redirect()->route('Registrasi.list')
             ->with('success', 'KelompokTani telah didelete');
     }
 
@@ -243,7 +243,7 @@ class C_Registrasi extends Controller
         $hashedpassword = $registrasi->password;
         $kecamatan = MKecamatan::all();
 
-        return view('kelompoktani.profile', compact('registrasi', 'kecamatan'), ['hashedpassword' => $hashedpassword]);
+        return view('KelompokTani.profile', compact('registrasi', 'kecamatan'), ['hashedpassword' => $hashedpassword]);
     }
 
     public function updatefoto(Request $request, $id_registrasi)

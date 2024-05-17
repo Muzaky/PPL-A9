@@ -16,6 +16,6 @@ class HomepageController extends Controller
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $usercount = MRegistrasi::where('id_users', $user)->count();
 
-        return view("kelompoktani.homepage",compact('registrasi', 'usercount','iduser'));
+        return view("KelompokTani.homepage",compact('registrasi', 'usercount','iduser'));
     }
 }

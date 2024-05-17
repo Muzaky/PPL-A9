@@ -88,7 +88,7 @@ class BeritaController extends Controller
 
         MBerita::create($data);
 
-        return redirect()->route('berita.list');
+        return redirect()->route('Berita.list');
     }
 
     public function edit(Request $request, $id_informasi)
@@ -132,14 +132,14 @@ class BeritaController extends Controller
 
         $update = MBerita::getById($id_informasi);
         $update->update($data);
-        return redirect()->route('berita.list')
+        return redirect()->route('Berita.list')
             ->with('success', 'Berita telah terpost');
     }
     public function destroy($id_informasi)
     {
         $destroy = MBerita::getById($id_informasi);
         $destroy->delete();
-        return redirect()->route('berita.list')
+        return redirect()->route('Berita.list')
             ->with('success', 'Berita telah didelete');
     }
 

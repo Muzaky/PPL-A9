@@ -22,7 +22,7 @@ class C_Ulasan extends Controller
         $registrasi = MRegistrasi::where('id_users', $user)->first();
      
         $ulasan = MUlasan::getDataName();
-        return view("ulasan.view",compact('ulasan', 'registrasi','iduser'));
+        return view("Ulasan.view",compact('ulasan', 'registrasi','iduser'));
         
     }
 
@@ -40,7 +40,7 @@ class C_Ulasan extends Controller
         ];
 
         MUlasan::create($data);
-        return redirect()->route('ulasan.landing');
+        return redirect()->route('Ulasan.landing');
     }
 
     public function update(Request $request, $id)
@@ -55,14 +55,14 @@ class C_Ulasan extends Controller
 
         $update = MUlasan::getById($id);
         $update->update($data);
-        return redirect()->route('ulasan.landing');
+        return redirect()->route('Ulasan.landing');
     }
 
     public function destroy($id)
     {
         $destroy = MUlasan::getById($id);
         $destroy->delete();
-        return redirect()->route('ulasan.landing')
+        return redirect()->route('Ulasan.landing')
             ->with('success', 'Berita telah didelete');
     }
 
