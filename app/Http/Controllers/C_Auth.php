@@ -17,7 +17,7 @@ class C_Auth extends Controller
 
     public function login()
     {
-        return view('Auth.login');
+        return view('auth.login');
     }
 
     public function authenticate(Request $request)
