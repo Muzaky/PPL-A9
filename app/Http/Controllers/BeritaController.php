@@ -88,7 +88,7 @@ class BeritaController extends Controller
 
         MBerita::create($data);
 
-        return redirect()->route('Berita.list');
+        return redirect()->route('berita.list');
     }
 
     public function edit(Request $request, $id_informasi)
