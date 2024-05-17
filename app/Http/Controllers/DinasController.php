@@ -6,6 +6,6 @@ class DinasController extends Controller
 {
     public function index()
     {
-        return view('dinas.dashboard');
+        return view('Dinas.dashboard');
     }
 }
