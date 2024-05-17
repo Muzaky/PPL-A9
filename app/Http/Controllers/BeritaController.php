@@ -126,7 +126,7 @@ class BeritaController extends Controller
         if ($request->hasFile('gambar_informasi')) {
             $file = $request->file('gambar_informasi');
             $nama_file = $file->getClientOriginalName();
-            $file->move('img', $nama_file);
+            $file->storeAs('img', $nama_file);
             $data['gambar_informasi'] = $nama_file;
         };
 
