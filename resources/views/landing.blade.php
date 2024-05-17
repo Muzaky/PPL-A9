@@ -7,6 +7,7 @@
     <title>BibiTani</title>
     <link rel="icon" href="bibitani.ico">
     <link rel="stylesheet" href="./css/scroll.css">
+    <link rel="stylesheet" href="./css/landing.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
@@ -17,6 +18,8 @@
     @vite('resources/css/app.css')
 </head>
 <style>
+
+
     #overlay {
 
         background-color: rgba(0, 0, 0, 0.45);
@@ -37,7 +40,7 @@
     }
 
     .subhero {
-        font-family: 'Poppins';
+        font-family: 'Raleway';
         color: #f4f4f4;
     }
 
@@ -79,9 +82,10 @@
         margin-bottom: 36px;
     }
 
-    .subabout {
-        margin-top: 36px;
-        margin-bottom: 36px;
+    .abouttext{
+        font-family: 'Raleway';
+        text-align: center;
+        color: #f4f4f4;
     }
 </style>
 
@@ -121,8 +125,8 @@
         </div>
         <div class="flex gap-x-12">
             <a href="/homepage" class="font-semibold leading-6 navitem" style="font-size:20px">Home</a>
-            <a href="#" class="font-semibold leading-6 navitem" style="font-size:20px">About Us</a>
-            <a href="#" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Address</a>
+            <a href="#about" class="font-semibold leading-6 navitem" style="font-size:20px">About Us</a>
+            <a href="#footer" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Address</a>
         </div>
         <div class=" lg:flex lg:flex-1 lg:justify-end">
             @if (Auth::check())
@@ -136,65 +140,60 @@
             @endif
         </div>
     </nav>
-    <div class="relative h-screen px-6 bg-cover shadow-md isolate lg:px-8" id="home"
+    <div class="relative h-screen px-6 bg-cover shadow-md isolate lg:px-8 transition:ease-in-out" id="hero"
         style="background-image: url(image_1.png); background-size: cover;background-repeat: no-repeat; max-height: 86vh;">
         <div class="h-screen -mx-8 bg-cover"id="overlay" style="max-height: 86vh">
 
             <div class="max-w-4xl py-48 mx-auto ">
-                <div class="flex flex-col items-center text-center">
+                <div class="flex flex-col items-center text-center" id="isihero">
                     <img src="./landing/Frame 841.png" class="w-[400px] h-full" alt="">
                     <p class="text-lg leading-8 subhero">Platform Interaktif untuk Sinergi antara Dinas Tanaman Pangan
                         Hortikultura dan Perkebunan (TPHP) dengan Kelompok Tani, guna Mewujudkan Distribusi Bantuan
                         Bibit Hortikultura yang Optimal Kepada para Kelompok Tani di Kabupaten Jember</p>
                 </div>
-                <div class="flex items-center justify-center mt-10 gap-x-6">
-                    <a href="#"
-                        class="flex items-center justify-center text-sm font-semibold leading-6 text-gray-900"
-                        style="font-size:20px; width: 176px; height:48px;background-color:#transparent; color:#f4f4f4;border-radius:8px; border :1px solid #f4f4f4">Learn
-                        more</a>
-                </div>
+                
             </div>
         </div>
     </div>
-    <div id="about" class="flex flex-col items-center justify-center">
-        <div class="herotitle text-[72px] font-bold my-8">
-            <h1>About Us</h1>
+    <div id="about" class="flex flex-col items-center bg-[#204e51]">
+        <div class="herotitle text-[72px] font-bold my-8 text-[#f4f4f4]">
+            <h1>About us</h1>
         </div>
-        <div class="flex flex-row justify-between gap-80">
-            <div class="flex-col subabout">
-                <p>Meningkatkan produktivitas hasil panen petani di Kabupaten Jember melalui bantuan bibit hortikultura
-                    yang berkualitas.</p>
+        
+        <div class="flex flex-row justify-evenly w-full h-full" >
+            <div class="flex justify-center flex-col text-justify w-[500px] text-wrap gap-4" id="textabout">
+                <p class="abouttext text-[22px] text-left">Bibitani adalah sebuah aplikasi berbasis website sebagai upaya membantu kelompok tani dalam mengajukan
+                    permintaan bantuan bibit Hortikultura kepada Dinas Tanaman Pangan dan Hortikultura (TPHP)</p>
+                <p class="abouttext text-[22px] text-left">Dengan harapan Website Bibitani dapat mempermudah Dinas Tanaman Pangan dan Hortikultura (TPHP) untuk melakukan
+                    pendistribusian bantuan bibit hortikultura di Kabupaten Jember dengan efektif dan efisien. 
+                </p>
             </div>
-            <div class="relative flex-col items-center justify-center subabout">
-                <img src="./landing/about us.jpeg" class="rounded-[20px]" alt="">
-                <div class="w-20 h-20 ">
-                    <p class="absolute bg-white left-60 top-[400px] p-2 px-4 border-2 border-[#204e51] rounded-[12px] font-['Montserrat'] text-[20px] font-semibold">SINCE 2024</p>
-                </div>
+           
+            <div class="items-center flex flex-col justify-center" id="imgabout">
+                <img src="./landing/about us.jpeg" class="h-500px rounded-[20px]" alt="">
             </div>
-
-
-
         </div>
-
-
+        <div class="herotitle text-[72px] font-bold my-8 text-[#204e51]">
+            <h1>About us</h1>
+        </div>
     </div>
     <div id="tujuan" class="flex flex-col items-center justify-center">
-        <div class="herotitle text-[72px] font-bold my-8">
+        <div class="herotitle text-[72px] font-bold my-8 ">
             <h1>Tujuan</h1>
         </div>
         <div class="flex flex-row gap-40">
             <div class="subtujuan">
-                <img src="./landing/Rectangle 10.png" alt="">
+                <img src="./landing/Rectangle 10.png" class="imgtujuan" alt="">
                 <p>Mempermudah Dinas Tanaman Pangan Hortikultura dan Perkebunan (TPHP) untuk melakukan pencatatan dalam
                     pendistribusian bantuan bibit hortikultura di Kabupaten Jember.</p>
             </div>
             <div class="subtujuan">
-                <img src="./landing/Rectangle 11.png" alt="">
+                <img src="./landing/Rectangle 11.png" class="imgtujuan" alt="">
                 <p>Meningkatkan produktivitas hasil panen petani di Kabupaten Jember melalui bantuan bibit hortikultura
                     yang berkualitas.</p>
             </div>
             <div class="subtujuan">
-                <img src="./landing/Rectangle 12.png" alt="">
+                <img src="./landing/Rectangle 12.png" class="imgtujuan" alt="">
                 <p>Memudahkan Dinas Tanaman Pangan Hortikultura dan Perkebunan (TPHP) dalam mengontrol kualitas produk
                     pertanian hortikultura di Kabupaten Jember.</p>
             </div>
@@ -206,10 +205,11 @@
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="landing.js"></script>
 
 
 </body>
-<footer class="flex flex-col p-6 text-center bg-[#204E51]">
+<footer class="flex flex-col p-6 text-center bg-[#204E51]" id="footer">
     <div class="flex flex-row justify-between">
         <div class="spacer"></div>
         <div class="flex flex-col items-start ml-8 footer-bar">
@@ -223,8 +223,8 @@
                 <div class="footer-bar">
                     <div class="footer-subtitle">
                         <ul class="flex flex-col items-start gap-3"> Pages
-                            <a href="#home" class="footer-sublink">Home</a>
-                            <a class="footer-sublink">About</a>
+                            <a href="#hero" class="footer-sublink">Home</a>
+                            <a href="#about" class="footer-sublink">About</a>
                             <a href="#tujuan" class="footer-sublink">Purpose</a>
                         </ul>
                     </div>
@@ -232,8 +232,8 @@
                 <div class="footer-bar">
                     <div class="footer-subtitle">
                         <ul class="flex flex-col items-start gap-3">Information
-                            <a class="footer-sublink">Contact Us</a>
-                            <a class="footer-sublink">Address</a>
+                            <a href="#" class="footer-sublink">Contact Us</a>
+                            <a href="https://maps.app.goo.gl/hUygpvR5W21Sy9Nn9" class="footer-sublink">Address</a>
                         </ul>
                     </div>
                 </div>

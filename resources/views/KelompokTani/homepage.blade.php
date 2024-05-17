@@ -16,27 +16,7 @@
             color: #204E51;
         }
 
-        .embossed {
-            transition: box-shadow 0.3s, text-shadow 0.3s;
-
-        }
-
-        .embossed h1 {
-            transition: text-shadow 0.3s;
-        }
-
-        .embossed:hover {
-            box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.6),
-                inset -2px -2px 5px rgba(0, 0, 0, 0.2),
-                4px 4px 10px rgba(0, 0, 0, 0.1);
-
-
-        }
-
-        .embossed:hover h1 {
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1),
-                -1px -1px 2px rgba(255, 255, 255, 0.8);
-        }
+        
     </style>
 
     <body class="">
@@ -72,7 +52,7 @@
             {{-- {{ Auth::check() ? 'Authenticated' : 'Not Authenticated' }} --}}
             <div class="flex flex-col items-center justify-center">
                 <div
-                    class="flex flex-row items-center justify-between w-[1280px] mt-4 rounded-[20px] px-12 bg-[#204e51]/20 shadow-lg h-60 bg-image bg-blend-multiply">
+                    class="flex flex-row items-center justify-between w-[1280px] mt-8 rounded-[20px] px-12 bg-[#204e51]/20 shadow-lg h-60 bg-image bg-blend-multiply">
                     <style>
                         .bg-image {
                             background-image: url('../images/Component.png');
@@ -117,14 +97,14 @@
                     <h1 class="judul flex text-black m-8 text-[50px] font-bold uppercase">Menu</h1>
                     <div class="flex flex-row">
                         @if ($registrasi && $registrasi->status_validasi == 2)
-                            <a class="flex flex-col items-center mx-4 bg-white border-[6px] border-[#204E51] rounded-[32px] shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
+                            <a class="flex flex-col items-center mx-4 bg-white border-[6px] border-[#204E51] rounded-[32px] md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed hover:-translate-y-1 hover:scale-110 hover:shadow-xl"
                                 href="{{ route('pemberitahuan.landing') }}">
                                 <div class="flex flex-col items-center">
                                     <img src="./assets/News.png" class="h-[100px]" alt="">
                                     <h1 class="font-isi flex text-[20px] font-bold mt-2 ">Pemberitahuan</h1>
                                 </div>
                             </a>
-                            <a class="flex flex-col items-center mx-4 bg-white border-[6px] border-[#204E51] rounded-[32px] shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
+                            <a class="flex flex-col items-center mx-4 bg-white border-[6px] border-[#204E51] rounded-[32px] md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed hover:-translate-y-1 hover:scale-110 hover:shadow-xl"
                                 href="{{ route('pengajuan.landing') }}">
                                 <div class="flex flex-col items-center">
                                     <img src="./assets/Artboard 1.png"
@@ -133,14 +113,14 @@
                                     </h1>
                                 </div>
                             </a>
-                            <a class="flex flex-col items-center mx-4 bg-white border-[6px] border-[#204E51] rounded-[32px] shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
+                            <a class="flex flex-col items-center mx-4 bg-white border-[6px] border-[#204E51] rounded-[32px] md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed hover:-translate-y-1 hover:scale-110 hover:shadow-xl"
                                 href="{{ route('pelaporan.landing') }}">
                                 <div class="flex flex-col items-center">
                                     <img src="./assets/Checklist.png" class="h-[100px] " alt="">
                                     <h1 class="font-isi flex text-[20px] font-bold mt-2 ">Pelaporan</h1>
                                 </div>
                             </a>
-                            <a class="flex flex-col items-center mx-4 bg-white border-[6px] border-[#204E51] rounded-[32px] shadow-xl md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed"
+                            <a class="flex flex-col items-center mx-4 bg-white border-[6px] border-[#204E51] rounded-[32px] md:flex-row md:max-w-xl w-[250px] h-[250px] justify-center embossed hover:-translate-y-1 hover:scale-110 hover:shadow-xl"
                                 href="{{ route('ulasan.landing') }}">
                                 <div class="flex flex-col items-center">
                                     <img src="./assets/Chat.png" class="h-[100px]" alt="">
