@@ -63,7 +63,7 @@
 
         <!--Modal Script Create Pengajuan-->
         <div id="createbutton"
-            class="fixed top-0 left-0 flex items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
+            class="fixed top-0 left-0 items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg bg-blueGray-100">
                 <div class="flex-auto px-4 py-4 pt-0 lg:px-10">
@@ -141,6 +141,7 @@
                 createbutton.classList.remove('hidden')
                 createbutton.classList.add('flex')
                 setTimeout(() => {
+                    createbutton.classList.remove('opacity-0')
                     createbutton.classList.add('opacity-100')
                 }, 20);
 

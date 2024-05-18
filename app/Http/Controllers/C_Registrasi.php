@@ -171,7 +171,7 @@ class C_Registrasi extends Controller
         if ($request->hasFile('bukti_legalitas')) {
             $file = $request->file('bukti_legalitas');
             $nama_file = $file->getClientOriginalName();
-            $file->move('bukti', $nama_file);
+            $file->storeAs('bukti', $nama_file);
             $data['bukti_legalitas'] = $nama_file;
         }
 
@@ -215,7 +215,7 @@ class C_Registrasi extends Controller
         if ($request->hasFile('bukti_legalitas')) {
             $file = $request->file('bukti_legalitas');
             $nama_file = $file->getClientOriginalName();
-            $file->move('bukti', $nama_file);
+            $file->storeAs('bukti', $nama_file);
             $data['bukti_legalitas'] = $nama_file;
         }
 
@@ -258,7 +258,7 @@ class C_Registrasi extends Controller
         if ($request->hasFile('foto_profil')) {
             $file = $request->file('foto_profil');
             $nama_file = $file->getClientOriginalName();
-            $file->move('fotoprofil', $nama_file);
+            $file->storeAs('fotoprofil', $nama_file);
             $data['foto_profil'] = $nama_file;
         }
         $update = MRegistrasi::getById($id_registrasi);

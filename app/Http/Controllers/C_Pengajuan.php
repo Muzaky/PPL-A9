@@ -87,7 +87,7 @@ class C_Pengajuan extends Controller
         if ($request->hasFile('berkas_pengajuan')) {
             $file = $request->file('berkas_pengajuan');
             $nama_file = $file->getClientOriginalName();
-            $file->move('pdf', $nama_file);
+            $file->storeAs('pdf', $nama_file);
             $data['berkas_pengajuan'] = $nama_file;
         }
 
@@ -124,7 +124,7 @@ class C_Pengajuan extends Controller
         if ($request->hasFile('berkas_pengajuan')) {
             $file = $request->file('berkas_pengajuan');
             $nama_file = $file->getClientOriginalName();
-            $file->move('pdf', $nama_file);
+            $file->storeAs('pdf', $nama_file);
             $data['berkas_pengajuan'] = $nama_file;
         }
 
@@ -190,7 +190,7 @@ class C_Pengajuan extends Controller
         if ($request->hasFile('berkas_pengajuan')) {
             $file = $request->file('berkas_pengajuan');
             $nama_file = $file->getClientOriginalName();
-            $file->move('pdf', $nama_file);
+            $file->storeAs('pdf', $nama_file);
             $data['berkas_pengajuan'] = $nama_file;
         }
 

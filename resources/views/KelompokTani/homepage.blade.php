@@ -20,7 +20,7 @@
     </style>
 
     <body class="">
-        <div class="main-container bg-gradient-to-b from-[#204e51]/20 from-70% to-transparent">
+        <div class="main-container">
             <div class=" alert">
                 @if (session()->has('status'))
                     <div id="alert-border-3"

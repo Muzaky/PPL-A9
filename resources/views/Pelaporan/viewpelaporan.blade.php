@@ -163,7 +163,7 @@
 
 
         <div id="editbutton"
-            class="fixed top-0 left-0 flex items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
+            class="fixed top-0 left-0 items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg bg-blueGray-100">
                 <button onclick="hideEditButton()"
@@ -225,12 +225,6 @@
                                                 type="file" class="hidden">
                                         </label>
                                     </div>       
-                                    
-
-
-                                    {{-- <input type="" name="id_informasi" id="id_informasi" value="{{ $data->id_informasi }}">
-                                    <input type="" name="nama_informasi" id="nama_informasi" value="{{ $data->nama_informasi }}"> --}}
-
                                 </div>
                             </div>
 
@@ -253,6 +247,7 @@
                 editbutton.classList.remove('hidden')
                 editbutton.classList.add('flex')
                 setTimeout(() => {
+                    editbutton.classList.remove('opacity-0')
                     editbutton.classList.add('opacity-100')
                 }, 20);
 
@@ -262,6 +257,7 @@
                 let editbutton = document.getElementById('editbutton')
                 editbutton.classList.add('opacity-0')
                 setTimeout(() => {
+                    editbutton.classList.remove('opacity-100')
                     editbutton.classList.add('hidden')
                     editbutton.classList.remove('flex')
                 }, 500);
@@ -287,65 +283,5 @@
 
     </section>
 
-    {{-- <section class="py-1 mt-4">
-        <div id="editbutton" class="flex flex-col">
-            <div
-                class="relative flex flex-col w-full min-w-0 mb-6 break-words border-0 rounded-lg shadow-lg bg-blueGray-100">
-                <div class="flex-auto px-4 py-10 pt-0 lg:px-10">
-                    <form class="flex flex-col items-center justify-center" enctype="multipart/form-data">
-                        <h6 class="mt-3 mb-6 text-sm font-bold uppercase text-blueGray-400">Tabel Pengajuan</h6>
-                        <div class="flex flex-wrap gap-4">
-                            <div class="w-full lg:w-6/12">
-                                <div class="flex items-center justify-center mb-6">
-                                    <!-- Tambah container untuk gambar di sini -->
-                                    <img src="path_to_your_image.jpg" alt="Image" class="h-auto max-w-full">
-                                </div>
-                                <label for="tanggal_pengajuan"
-                                    class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Tanggal
-                                    Pengajuan</label>
-                                <input type="date" name="tanggal_pengajuan" id="tanggal_pengajuan"
-                                    class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    value="{{ $data->tanggal_pengajuan }}" placeholder="Masukkan Nama Ketua">
-                            </div>
-                            <div class="w-full lg:w-6/12">
-                                <label for="berkas_pengajuan"
-                                    class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Berkas
-                                    Pengajuan</label>
-                                <a href="{{ asset('pdf/' . $data->berkas_pengajuan) }}" target="_blank"
-                                    class="block border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">{{ basename($data->berkas_pengajuan) }}</a>
-                            </div>
-                            <div class="w-full lg:w-6/12">
-                                <label class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Status
-                                    Validasi</label>
-                                @if ($data->status_validasi == 2)
-                                    <p>Tervalidasi</p>
-                                @elseif ($data->status_validasi == 3)
-                                    <p>Rejected</p>
-                                @else
-                                    <p>Masih Dalam Process</p>
-                                @endif
-                            </div>
-                            <div class="w-full lg:w-6/12">
-                                <label for="tanggal_validasi"
-                                    class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Tanggal
-                                    Validasi</label>
-                                <input type="date" name="tanggal_validasi" id="tanggal_validasi"
-                                    class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    value="{{ $data->tanggal_validasi }}" placeholder="Tanggal Validasi">
-                            </div>
-                            <div class="w-full lg:w-6/12">
-                                <label for="catatan_validasi"
-                                    class="block mb-2 text-xs font-bold uppercase text-blueGray-600">Catatan
-                                    Validasi</label>
-                                <input type="text" name="catatan_validasi" id="catatan_validasi"
-                                    class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    value="{{ strip_tags($data->catatan_validasi) }}" placeholder="Catatan Validasi">
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section> --}}
+ 
 @endsection

@@ -107,7 +107,7 @@ class C_Pelaporan extends Controller
         if ($request->hasFile('dokumentasi_pelaporan')) {
             $file = $request->file('dokumentasi_pelaporan');
             $nama_file = $file->getClientOriginalName();
-            $file->move('dokumentasi', $nama_file);
+            $file->storeAs('dokumentasi', $nama_file);
             $data['dokumentasi_pelaporan'] = $nama_file;
         }
         // dd($data);
@@ -141,7 +141,7 @@ class C_Pelaporan extends Controller
         if ($request->hasFile('dokumentasi_pelaporan')) {
             $file = $request->file('dokumentasi_pelaporan');
             $nama_file = $file->getClientOriginalName();
-            $file->move('dokumentasi', $nama_file);
+            $file->storeAs('dokumentasi', $nama_file);
             $data['dokumentasi_pelaporan'] = $nama_file;
         }
 
@@ -180,7 +180,7 @@ class C_Pelaporan extends Controller
         // if ($request->hasFile('dokumentasi_pelaporan')) {
         //     $file = $request->file('dokumentasi_pelaporan');
         //     $nama_file = $file->getClientOriginalName();
-        //     $file->move('dokumentasi', $nama_file);
+        //     $file->storeAs('dokumentasi', $nama_file);
         //     $data['dokumentasi_pelaporan'] = $nama_file;
         // }
 

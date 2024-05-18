@@ -17,7 +17,7 @@
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.0/flowbite.min.css" rel="stylesheet">
 
-    <section class="bg-gradient-to-b from-[#204e51]/20 from-70% to-transparent">
+    <section class="">
         
         <div class="flex items-center justify-center ">
             <div id="default-carousel" class="relative mt-4" data-carousel="slide">
@@ -115,7 +115,7 @@
             <!-- Section: Design Block -->
             <section class="mb-32 text-center">
                 <div class="flex items-center justify-center w-full text-center">
-                    <p id="judul-berita" class="flex p-2 bg-[#d2dcdc] text-[#204e51]">Daftar Pemberitahuan</p>
+                    <p id="judul-berita" class="flex p-2 bg-white text-[#204e51]">Daftar Pemberitahuan</p>
                 </div>
                 <div class="w-full -mt-6 h-[2px] bg-black "></div>
 

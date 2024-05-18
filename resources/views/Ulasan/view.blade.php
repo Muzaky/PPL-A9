@@ -83,7 +83,7 @@
                 @else
                     @foreach ($ulasan as $data)
                         <div
-                            class="flex flex-col h-40  items-center mb-6 bg-white border w-[1580px] border-[#204E51] border-2 rounded-lg shadow md:flex-row ">
+                            class="flex flex-col h-40  items-center mb-6 bg-white w-[1580px] border-[#204E51] border-2 rounded-lg shadow md:flex-row ">
                             <div class="flex flex-col px-8 w-[1580px] text-wrap">
                                 <div class="justify-between flex flex-row">
                                     <div id="namakel" class="mb-2 text-[#204E51]">
@@ -116,7 +116,7 @@
 
                                 {{-- Modal Edit --}}
                                 <div id="editModal{{ $data->id_ulasan }}"
-                                    class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen flex items-center justify-center opacity-0 transition-opacity duration-500 hidden">
+                                    class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen items-center opacity-0 justify-center transition-opacity duration-500 hidden">
                                     <div
                                         class="bg-white relative flex flex-col min-w-0 break-words  mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
                                         <button onclick="hideEditModal({{ $data->id_ulasan }})"
@@ -157,7 +157,7 @@
 
                                 {{-- Modal Delete --}}
                                 <div id="deleteModal{{ $data->id_ulasan }}"
-                                    class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen flex items-center justify-center opacity-0 transition-opacity duration-500 hidden">
+                                    class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen items-center justify-center opacity-0 transition-opacity duration-500 hidden">
                                     <div
                                         class="bg-white relative flex flex-col min-w-0 break-words  mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
                                         <button onclick="hideDeleteModal({{ $data->id_ulasan }})"
@@ -189,10 +189,6 @@
 
 
 
-
-
-
-
                             </div>
 
                         </div>
@@ -207,7 +203,7 @@
 
 
             <div id="createbutton"
-                class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen flex items-center justify-center opacity-0 transition-opacity duration-500 hidden">
+                class="fixed left-0 top-0 bg-black bg-opacity-40 w-screen h-screen items-center justify-center opacity-0 transition-opacity duration-500 hidden">
                 <div
                     class="bg-white relative flex flex-col min-w-0 break-words  mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
                     <button onclick="hideCreateButton()"
@@ -255,19 +251,22 @@
         <script>
             function showCreateButton() {
                 let createbutton = document.getElementById('createbutton')
-
+                
                 createbutton.classList.remove('hidden')
                 createbutton.classList.add('flex')
                 setTimeout(() => {
+                    
+                    createbutton.classList.remove('opacity-0')
                     createbutton.classList.add('opacity-100')
                 }, 20);
-
+                
             }
 
             function hideCreateButton() {
                 let createbutton = document.getElementById('createbutton')
                 createbutton.classList.add('opacity-0')
                 setTimeout(() => {
+                    createbutton.classList.remove('opacity-100')
                     createbutton.classList.add('hidden')
                     createbutton.classList.remove('flex')
                 }, 500);
@@ -275,10 +274,10 @@
 
             function editData(id) {
                 let editModal = document.getElementById('editModal' + id);
-
                 editModal.classList.remove('hidden');
                 editModal.classList.add('flex');
                 setTimeout(() => {
+                    editModal.classList.remove('opacity-0')
                     editModal.classList.add('opacity-100');
                 }, 20);
             }
@@ -287,6 +286,7 @@
                 let editModal = document.getElementById('editModal' + id);
                 editModal.classList.add('opacity-0');
                 setTimeout(() => {
+                    editModal.classList.remove('opacity-100')
                     editModal.classList.add('hidden');
                     editModal.classList.remove('flex');
                 }, 500);
@@ -298,6 +298,7 @@
                 deleteModal.classList.remove('hidden');
                 deleteModal.classList.add('flex');
                 setTimeout(() => {
+                    deleteModal.classList.remove('opacity-0')
                     deleteModal.classList.add('opacity-100');
                 }, 20);
             }
@@ -305,8 +306,9 @@
             function hideDeleteModal(id) {
                 let deleteModal = document.getElementById('deleteModal' + id);
 
-                deleteModal.classList.add('opacity-0');
+                deleteModal.classList.add('opacity-0'); 
                 setTimeout(() => {
+                    deleteModal.classList.remove('opacity-100')
                     deleteModal.classList.add('hidden');
                     deleteModal.classList.remove('flex');
                 }, 500);
@@ -318,7 +320,7 @@
                 dropdown.classList.toggle("show");
 
                 for (var i = 0; i < allDropdowns.length; i++) {
-                    if (allDropdowns[i].id !== "myDropdown" + id) {
+                    if (allDropdowns[i].id !== "myDropdown" + id) { 
                         allDropdowns[i].classList.remove("show");
                     }
                 }
@@ -348,13 +350,7 @@
             //     }, 500);
             // }
         </script>
-        {{-- @foreach ($pelaporan as $pelaporans) --}}
 
-
-
-
-
-        {{-- @endforeach --}}
 
         </div>
 
@@ -362,39 +358,6 @@
 
 
 
-        {{-- <div class="flex flex-col items-center">
-            <a href="{{ route('pengajuan.show', $pengajuan->id_pengajuan) }}"
-                class="flex flex-col items-center mb-6 bg-white border w-[1710px] border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                    src="{{ asset('img/' . $informasi->gambar_informasi) }}" alt="">
-                <div class="flex flex-col justify-between px-4 leading-normal">
-                    <h5 class=" text-[56px] font-bold tracking-tight text-gray-900 dark:text-white ">
-                        {{ $informasi->nama_bibit }}</h5>
-                    <div
-                        class="mb-1 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500 md:justify-start">
-                        @if ($pengajuan->status_validasi == 2)
-                            Validated
-                        @else
-                            {{ $pengajuan->status_validasi }}
-                        @endif
-                    </div>
-                    <p class="text-neutral-500 mb-2">
-                        <small>
-                            Terverifikasi tanggal
-                            <u>
-                                {{ $pengajuan->tanggal_validasi }}
-                            </u>
-
-                        </small>
-                    </p>
-                    <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-
-                    </div>
-
-                </div>
-            </a>
-
-        </div> --}}
         </div>
     </section>
 @endsection
