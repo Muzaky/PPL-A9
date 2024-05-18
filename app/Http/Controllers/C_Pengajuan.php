@@ -18,22 +18,29 @@ class C_Pengajuan extends Controller
 {
 
 
-    public function landing()
+    public function landing(request $request)
     {
+        
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
-        $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->get();
-        // $informasi = $pengajuan;
-        $data = MPengajuan::getData()->paginate(10);
-        // dd($informasi);
-
+        $pengajuan = 
+        MPengajuan::where('id_registrasi', $registrasi->id_registrasi)
+        ->when($request->status_validasi != null, function ($query) use ($request) {
+            return $query->whereIn('status_validasi', $request->status_validasi);
+        })->paginate(4);
+        $data = MPengajuan::getData()->paginate(4);
+    
+        if ($pengajuan->isEmpty()){
+            $message = "Tidak ada data pengajuan";
+            return view(
+                'Pengajuan.landing',
+                ['data' => $data,'pengajuan'=> $pengajuan],compact('pengajuan', 'registrasi' ,'iduser','message'));
+        }
         
-        // dd($pengajuan);
-        //return json_encode($data);
         return view(
             'Pengajuan.landing',
-            ['data' => $data],compact('pengajuan', 'registrasi' ,'iduser')
+            ['data' => $data,'pengajuan'=> $pengajuan],compact('pengajuan', 'registrasi' ,'iduser')
         );
     }
 
@@ -43,7 +50,7 @@ class C_Pengajuan extends Controller
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_pengajuan', $id)->first();
-        // $informasi = MBerita::where('id_informasi', $pengajuan->informasi)->get();
+     
         $informasi = $pengajuan->informasi;
         $data = MPengajuan::getById($id);
         

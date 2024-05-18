@@ -1,59 +1,65 @@
 @extends('Layout.navtani')
 @section('content')
+
     <body class="">
         <div class="items-center justify-center flex">
-            <div class="flex flex-col text-center w-[1440px] h-full bg-[#204E51] items-center mt-4 shadow-xl border-[4px] border-[#204E51] rounded-[20px] relative">
+            <div
+                class="flex flex-col text-center w-[1440px] h-full bg-[#204E51] items-center mt-4 shadow-xl border-[4px] border-[#204E51] rounded-[20px] relative">
                 <div class="bg-white shadow-xl rounded-[20px] w-full px-10 pb-10">
                     <a href="{{ route('pengajuan.landing') }}"
-                    class="absolute left-[20px] top-[20px] flex items-center text-black text-sm font-medium font-[Montserrat]">
-                    <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                    Back
-                </a>
-    
-                <div>
-                    <h1 class="text-[40px] font-bold  mt-4 font-[Montserrat] text-[#204E51]">Form Detail Pengajuan</h1>
-                </div>
-                <!-- Back button -->
-                <div class="flex flex-row w-[1280px] gap-4 justify-between font-[Montserrat] mt-4">
-                    <div class="flex flex-row gap-2 items-center">
-                        <h1 class="text-[24px] font-semibold">Nama Bibit : </h1>
-                        <h1 class="text-[24px] font-semibold">{{ $informasi->nama_bibit }}</h1>
-                    </div>
-                    <div class="flex flex-row gap-2">
-                        <h1 class="text-[16px] font-semibold">Tanggal Pengajuan : </h1>
-                        <h1 class="text-[16px] font-semibold">{{ $pengajuan->tanggal_pengajuan }}</h1>
-                    </div>
-                </div>
-                <div class="flex flex-row w-[1280px] gap-4 justify-between font-[Montserrat] mt-4">
-                    <div class="flex flex-row gap-2 items-center">
-                        <h1 class="text-[24px] font-semibold">Berkas Pengajuan : </h1>
-                        <a href="{{ asset('pdf/' . $pengajuan->berkas_pengajuan) }}"
-                        class="flex flex-col items-center justify-center w-[400px] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 h-14">
-                        <div class="flex flex-row items-center justify-center gap-2 pt-5 pb-6">
-                            <div id="file-name"
-                                class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-[14px] w-[500px] justify-center ">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-4 h-4">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                                  </svg>
-                                  
-                                <p id="textcontent">
-                                    {{ $pengajuan->berkas_pengajuan }}
-                                </p>
-                            </div>
-                        </div>
+                        class="absolute left-[20px] top-[20px] flex items-center text-black text-sm font-medium font-[Montserrat]">
+                        <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                        Back
                     </a>
+
+                    <div>
+                        <h1 class="text-[40px] font-bold  mt-4 font-[Montserrat] text-[#204E51]">Form Detail Pengajuan</h1>
                     </div>
-                </div>
-                
+                    <!-- Back button -->
+                    <div class="flex flex-row w-[1280px] gap-4 justify-between font-[Montserrat] mt-4">
+                        <div class="flex flex-row gap-2 items-center">
+                            <h1 class="text-[24px] font-semibold">Nama Bibit : </h1>
+                            <h1 class="text-[24px] font-semibold">{{ $informasi->nama_bibit }}</h1>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <h1 class="text-[16px] font-semibold">Tanggal Pengajuan : </h1>
+                            <h1 class="text-[16px] font-semibold">{{ $pengajuan->tanggal_pengajuan }}</h1>
+                        </div>
+                    </div>
+                    <div class="flex flex-row w-[1280px] gap-4 justify-between font-[Montserrat] mt-4">
+                        <div class="flex flex-row gap-2 items-center">
+                            <h1 class="text-[24px] font-semibold">Berkas Pengajuan : </h1>
+                            <a href="{{ asset('pdf/' . $pengajuan->berkas_pengajuan) }}"
+                                class="flex flex-col items-center justify-center w-[400px] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 h-14">
+                                <div class="flex flex-row items-center justify-center gap-2 pt-5 pb-6">
+                                    <div id="file-name"
+                                        class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-[14px] w-[500px] justify-center ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            strokeWidth={1.5} stroke="currentColor" class="w-4 h-4">
+                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                        </svg>
+
+                                        <p id="textcontent">
+                                            {{ $pengajuan->berkas_pengajuan }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="flex flex-col w-[1330px] h-[349px] rounded-[20px] mt-[36px]">
                     <div class="flex flex-row items-center justify-between gap-2 mt-4 mx-4">
                         @if ($pengajuan->status_validasi == 2)
                             <div class="flex items-center">
-                                <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Status Validasi :</label>
+                                <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Status
+                                    Validasi :</label>
                                 <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
                                     <div class="h-[60px] w-[5px] bg-green-500"></div>
                                     <div class="bg-green-500 rounded-full p-1 mx-2">
@@ -63,13 +69,15 @@
                                                 d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </div>
-                                    <span class="text-[#000] font-semibold px-4 py-4 font-[Raleway]">Berkas Pengajuan Bibit telah
+                                    <span class="text-[#000] font-semibold px-4 py-4 font-[Raleway]">Berkas Pengajuan Bibit
+                                        telah
                                         disetujui</span>
                                 </div>
                             </div>
                             <div class="flex flex-row items-center gap-2">
-                                <h1 class="text-[24px] font-semibold font-[Montserrat] text-white">Tanggal Validasi : </h1>
-                                <h1 class="text-[24px] font-normal font-[Montserrat] text-white">{{ $pengajuan->updated_at }}</h1>
+                                <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Tanggal Validasi : </h1>
+                                <h1 class="text-[16px] font-normal font-[Montserrat] text-white">
+                                    {{ $pengajuan->updated_at }}</h1>
                             </div>
                         @elseif ($pengajuan->status_validasi == 3)
                             <div class="flex items-center">
@@ -81,18 +89,20 @@
                                             strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                                         </svg>
-    
+
                                     </div>
                                     <span class="text-[#000] font-medium px-4 py-4">Berkas Pengajuan Bibit Ditolak</span>
                                 </div>
                             </div>
                             <div class="flex flex-row items-center gap-2">
                                 <h1 class="text-[24px] font-semibold font-[Montserrat] text-white">Tanggal Validasi : </h1>
-                                <h1 class="text-[24px] font-normal font-[Montserrat] text-white">{{ $pengajuan->updated_at }}</h1>
+                                <h1 class="text-[24px] font-normal font-[Montserrat] text-white">
+                                    {{ $pengajuan->updated_at }}</h1>
                             </div>
                         @else
                             <div class="flex items-center">
-                                <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Status Validasi :</label>
+                                <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Status
+                                    Validasi :</label>
                                 <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
                                     <div class="h-[60px] w-[5px] bg-yellow-500"></div>
                                     <div class="bg-yellow-500 rounded-full  ml-2">
@@ -109,27 +119,32 @@
                             <div class="">
                                 <div class="flex flex-row items-center gap-2">
                                     @if ($pengajuan->tanggal_validasi != null)
-                                    <h1 class="text-[24px] font-semibold font-[Montserrat] text-white">Tanggal Validasi : </h1>
-                                    <h1 class="text-[24px] font-normal font-[Montserrat] text-white">{{ $pengajuan->updated_at }}</h1>
+                                        <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Tanggal Validasi
+                                            : </h1>
+                                        <h1 class="text-[16px] font-normal font-[Montserrat] text-white">
+                                            {{ $pengajuan->updated_at }}</h1>
                                     @else
-                                    <h1 class="text-[16px] font-normal font-[Montserrat] text-white">Menunggu Validasi Dinas</h1>
+                                        <h1 class="text-[16px] font-normal font-[Montserrat] text-white">Menunggu Validasi
+                                            Dinas</h1>
                                     @endif
                                 </div>
                             </div>
                         @endif
-    
+
                     </div>
                     <div class="flex flex-col items-center gap-2 mt-8">
-                        <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Catatan Validasi :</label>
+                        <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Catatan
+                            Validasi :</label>
                         <textarea class="rounded-[20px] w-[980px] h-[180px] resize-none border-0 p-4" disabled readonly>{{ strip_tags($pengajuan->catatan_validasi) }}</textarea>
                     </div>
-                    
-    
-    
+
+
+
                 </div>
                 <div class="flex flex-row m-4 ">
                     @if ($pengajuan->status_validasi == 3 || $pengajuan->status_validasi == 1)
-                    <button onclick="showEditButton()" class="text-[#f4f4f4] p-2 font-[Montserrat] border-b-2">Ubah Data</button>
+                        <button onclick="showEditButton()" class="text-[#f4f4f4] p-2 font-[Montserrat] border-b-2">Ubah
+                            Data</button>
                     @endif
                 </div>
 
@@ -166,7 +181,7 @@
                                         htmlfor="grid-password">
                                         Berkas Pengajuan
                                     </label>
-                                    
+
                                     <div class="mb-[18px] relative">
                                         <label for="dropzone-file"
                                             class="flex flex-col items-center justify-center w-full h-14 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 2xl:h-20">
@@ -184,8 +199,8 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <input id="dropzone-file" onchange="displayFileName()" name="berkas_pengajuan"
-                                                type="file" class="hidden"/>
+                                            <input id="dropzone-file" onchange="displayFileName()"
+                                                name="berkas_pengajuan" type="file" class="hidden" />
                                         </label>
                                     </div>
 
@@ -225,6 +240,7 @@
                     editbutton.classList.remove('flex')
                 }, 500);
             }
+
             function displayFileName() {
                 const fileInput = document.getElementById('dropzone-file');
                 const fileNameParagraph = document.getElementById('file-name');
@@ -245,65 +261,5 @@
 
     </body>
 
-    {{-- <section class="py-1 mt-4">
-        <div id="editbutton" class="flex flex-col">
-            <div
-                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-                <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <form class="flex justify-center items-center flex-col" enctype="multipart/form-data">
-                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">Tabel Pengajuan</h6>
-                        <div class="flex flex-wrap gap-4">
-                            <div class="w-full lg:w-6/12">
-                                <div class="flex items-center justify-center mb-6">
-                                    <!-- Tambah container untuk gambar di sini -->
-                                    <img src="path_to_your_image.jpg" alt="Image" class="h-auto max-w-full">
-                                </div>
-                                <label for="tanggal_pengajuan"
-                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Tanggal
-                                    Pengajuan</label>
-                                <input type="date" name="tanggal_pengajuan" id="tanggal_pengajuan"
-                                    class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    value="{{ $data->tanggal_pengajuan }}" placeholder="Masukkan Nama Ketua">
-                            </div>
-                            <div class="w-full lg:w-6/12">
-                                <label for="berkas_pengajuan"
-                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Berkas
-                                    Pengajuan</label>
-                                <a href="{{ asset('pdf/' . $data->berkas_pengajuan) }}" target="_blank"
-                                    class="block border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">{{ basename($data->berkas_pengajuan) }}</a>
-                            </div>
-                            <div class="w-full lg:w-6/12">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Status
-                                    Validasi</label>
-                                @if ($data->status_validasi == 2)
-                                    <p>Tervalidasi</p>
-                                @elseif ($data->status_validasi == 3)
-                                    <p>Rejected</p>
-                                @else
-                                    <p>Masih Dalam Process</p>
-                                @endif
-                            </div>
-                            <div class="w-full lg:w-6/12">
-                                <label for="tanggal_validasi"
-                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Tanggal
-                                    Validasi</label>
-                                <input type="date" name="tanggal_validasi" id="tanggal_validasi"
-                                    class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    value="{{ $data->tanggal_validasi }}" placeholder="Tanggal Validasi">
-                            </div>
-                            <div class="w-full lg:w-6/12">
-                                <label for="catatan_validasi"
-                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Catatan
-                                    Validasi</label>
-                                <input type="text" name="catatan_validasi" id="catatan_validasi"
-                                    class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    value="{{ strip_tags($data->catatan_validasi) }}" placeholder="Catatan Validasi">
-                            </div>
-                        </div>
 
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section> --}}
 @endsection

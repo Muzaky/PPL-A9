@@ -219,15 +219,14 @@
                         <form class="flex justify-center items-center flex-col" action="{{ route('ulasan.store') }}"
                             method="POST" enctype="multipart/form-data">
                             @csrf
-                            <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                            <h6 class=" text-sm mt-3 mb-6 font-bold uppercase">
                                 Beri Ulasan
                             </h6>
                             <div class="flex flex-wrap text-center">
                                 <div class="w-full px-4">
                                     <div class="w-full mb-3">
                                         <textarea name="deskripsi" id="deskripsi"
-                                            class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150 h-[236px] resize-none">
-                                    </textarea>
+                                            class="border-0 px-3  bg-[#f4f4f4] rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204E51] w-[500px] ease-linear transition-all duration-150 h-[236px] resize-none"></textarea>
                                     </div>
                                 </div>
 
@@ -255,7 +254,6 @@
                 createbutton.classList.remove('hidden')
                 createbutton.classList.add('flex')
                 setTimeout(() => {
-                    
                     createbutton.classList.remove('opacity-0')
                     createbutton.classList.add('opacity-100')
                 }, 20);

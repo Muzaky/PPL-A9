@@ -25,8 +25,9 @@
                 <div class="relative h-[600px] w-[1200px] overflow-hidden rounded-[20px]">
                     @foreach ($data as $val)
                         @if ($loop->first)
+                        
                             <!-- First Item: Visible by default -->
-                            <a href="{{ route('pemberitahuan.detail', $val->id_informasi) }}"
+                            <a href="{{ route('pemberitahuan.detail', ['slug' => Str::slug($val->judul_informasi), 'id' => $val->id_informasi]) }}"
                                 class="visible hidden duration-700 ease-in-out" data-carousel-item="active">
                                 <div class="absolute w-full h-full mix-blend-overlay">
                                     <img src="{{ asset('img/' . $val->gambar_informasi) }}"
@@ -46,7 +47,7 @@
                             </a>
                         @else
                             <!-- Other Items: Hidden by default -->
-                            <a href="{{ route('pemberitahuan.detail', $val->id_informasi) }}"
+                            <a href="{{ route('pemberitahuan.detail', ['slug' => Str::slug($val->judul_informasi), 'id' => $val->id_informasi]) }}"
                                 class="hidden duration-700 ease-in-out " data-carousel-item>
                                 <div class="absolute w-full h-full mix-blend-overlay">
                                     <img src="{{ asset('img/' . $val->gambar_informasi) }}"
@@ -122,7 +123,8 @@
 
                 <div class="flex flex-col items-center mt-8">
                     @foreach ($data as $val)
-                        <a href="{{ route('pemberitahuan.detail', $val->id_informasi) }}"
+                      
+                        <a href="{{ route('pemberitahuan.detail',  ['slug' => Str::slug($val->judul_informasi), 'id' => $val->id_informasi]) }}"
                             class="flex flex-col items-center mb-6 w-[1000px] bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                             <img class="object-cover w-[280px] h-[240px] rounded-t-lg rounded-lg"
                                 src="{{ asset('img/' . $val->gambar_informasi) }}" alt="">

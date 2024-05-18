@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BeritaController extends Controller
 {
@@ -37,15 +38,17 @@ class BeritaController extends Controller
         );
     }
 
-    public function show($id)
+    public function show($slug,$id)
     {
-        // dd(auth()->user());
+        $idSegments = explode('-', $id);
+        $id = end($idSegments);
+        
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
-        // dd($id_registrasi);
-        $data = MBerita::getById($id);
-        return view('Berita.viewberita',['data' => $data],compact('registrasi','iduser')
+        $data = MBerita::findOrFail($id);
+        $slug = Str::slug($data->judul_informasi);
+        return view('Berita.viewberita',['data' => $data,'slug' => $slug],compact('registrasi','iduser')
         );
     }
 

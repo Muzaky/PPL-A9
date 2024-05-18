@@ -109,7 +109,7 @@ Route::group(['middleware' => ['kelompoktani']], function () {
 
     Route::group(['prefix' => 'pemberitahuan'], function () {
         Route::get('', [BeritaController::class, 'landing'])->name('pemberitahuan.landing');
-        Route::get('/detail/{id}', [BeritaController::class, 'show'])->name('pemberitahuan.detail');
+        Route::get('/detail/{slug}-{id}', [BeritaController::class, 'show'])->name('pemberitahuan.detail');
     });
 
     Route::group(['prefix' => 'registrasitani'], function () {
@@ -121,8 +121,8 @@ Route::group(['middleware' => ['kelompoktani']], function () {
     });
 
     Route::group(['prefix'=> 'pengajuan'], function () {
-        Route::post('/store', [C_Pengajuan::class, 'store'])->name('pengajuan.store');
         Route::get('', [C_Pengajuan::class, 'landing'])->name('pengajuan.landing');
+        Route::post('/store', [C_Pengajuan::class, 'store'])->name('pengajuan.store');
         Route::get('/viewpengajuan/{id}', [C_Pengajuan::class, 'show'])->name('pengajuan.show');
         Route::post('/{id}/update', [C_Pengajuan::class, 'update'])->name('pengajuan.update');
     });

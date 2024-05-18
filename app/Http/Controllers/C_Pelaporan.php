@@ -19,14 +19,14 @@ class C_Pelaporan extends Controller
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
-        $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->get();
+        $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->paginate(4);
         $informasi = MBerita::where('id_informasi', $user)->get();
         $data = MPengajuan::getData()->paginate(10);
         // dd($pengajuan);
         return view(
             'Pelaporan.landing',
             ['data' => $data],
-            compact('pengajuan', 'informasi', 'registrasi','iduser')
+            compact('pengajuan', 'informasi', 'registrasi', 'iduser')
         );
     }
 
@@ -49,31 +49,38 @@ class C_Pelaporan extends Controller
         );
     }
 
-    public function main($id)
+    public function main(request $request,$id)
     {
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_pengajuan', $id)->first();
         $informasi = $pengajuan->informasi;
-        // $informasi = MBerita::where('id_informasi', $pengajuan->id_pengajuan)->get();
-        $pelaporan = MPelaporan::where('id_pengajuan', $pengajuan->id_pengajuan)->get();
-        
-    
-        // dd($pelaporan);
-        // dd($pelaporan);
-        // $pelaporan = $pelaporan->pengajuan;
+
+        $pelaporan = MPelaporan::where('id_pengajuan', $pengajuan->id_pengajuan)->when($request->status_validasi != null, function ($query) use ($request) {
+            return $query->whereIn('status_validasi', $request->status_validasi);
+        })->paginate(4);
 
         $data = MPengajuan::getById($id);
+
+        if ($pelaporan->isEmpty()) {
+            $message = "Tidak ada data pelaporan";
+            return view(
+                'Pelaporan.main',
+                ['data' => $data, 'pelaporan' => $pelaporan],
+                compact('informasi', 'registrasi', 'pelaporan', 'pengajuan', 'iduser', 'message')
+            );
+        }
+
         return view(
             'Pelaporan.main',
             ['data' => $data],
-            compact('informasi', 'registrasi', 'pelaporan', 'pengajuan','iduser')
+            compact('informasi', 'registrasi', 'pelaporan', 'pengajuan', 'iduser')
         );
     }
     public function store(Request $request)
     {
-      
+
         $user = Auth::user()->id;
         $registrasi = MRegistrasi::where('id_users', $user)->first();
 
@@ -118,7 +125,7 @@ class C_Pelaporan extends Controller
     }
 
     public function update(Request $request, $id_pelaporan)
-    {  
+    {
         // dd($id_pelaporan);
         // dd($request);
         $request->validate([
