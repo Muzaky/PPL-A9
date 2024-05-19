@@ -1,16 +1,14 @@
 @extends('Layout.navtani')
 @section('content')
     <style>
-        #judul,
         #namakel,
-        #tanggal {
+        #tanggal,
+        #judul {
             font-family: 'Montserrat';
+            font-size: 40px;
             font-weight: 700;
         }
 
-        #judul {
-            font-size: 48px;
-        }
 
         #namakel,
         #tanggal {
@@ -63,19 +61,35 @@
             display: inline-block;
         }
     </style>
-    <section class="flex flex-col font-[Poppins]">
-        <div>
+    <section class="flex flex-col font-[Montserrat] items-center">
+        <div
+            class="relative w-[1440px] rounded-br-[20px] rounded-bl-[20px] border-x-2 border-b-2 border-[#204E51] shadow-xl bg-[#204E51]">
             <a href="{{ route('homepage') }}"
-                class="mt-10 left-[20px] top-[20px] flex items-center text-black text-sm font-medium ml-4">
+                class="mt-10 left-[20px] top-[20px] flex items-center text-white text-sm font-medium ml-4">
                 <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
                 Back
             </a>
-            <h1 class="text-[#204E51] px-[105px] mb-4 text-center" id="judul">Ulasan Kelompok Tani</h1>
+            <h1 class="my-10 text-center text-white" id="judul">Ulasan Kelompok Tani</h1>
+        </div>
+            <div
+                class="flex flex-row gap-8 items-center -mt-8 bg-gray-100 p-2 rounded-br-[20px] rounded-bl-[20px] justify-start w-[1440px] mb-4">
 
-            <div class="flex flex-col items-center bg-gray-300 py-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                    stroke="currentColor" class="w-32 h-32 rounded-full p-4 mt-8">
+                    <path strokeLinecap="round" strokeLinejoin="round"
+                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+
+                <h1 class="w-[1440px] text-wrap text-gray-600 mt-6">
+                    <font class="font-semibold text-yellow-500">Halaman ulasan bantuan bibit tani Dinas Tanaman Pangan
+                        dan Hortikultura (TPHP)</font>.<br> Petani dapat memberikan ulasan berupa kritik dan saran terhadap kinerja aplikasi dan sebagainya.
+                </h1>
+            </div>
+
+            <div class="flex flex-col items-center">
                 {{-- @dd ($ulasan) --}}
                 @if ($ulasan->isEmpty())
                     <h1 class="">Belum ada ulasan</h1>
@@ -250,14 +264,14 @@
         <script>
             function showCreateButton() {
                 let createbutton = document.getElementById('createbutton')
-                
+
                 createbutton.classList.remove('hidden')
                 createbutton.classList.add('flex')
                 setTimeout(() => {
                     createbutton.classList.remove('opacity-0')
                     createbutton.classList.add('opacity-100')
                 }, 20);
-                
+
             }
 
             function hideCreateButton() {
@@ -304,7 +318,7 @@
             function hideDeleteModal(id) {
                 let deleteModal = document.getElementById('deleteModal' + id);
 
-                deleteModal.classList.add('opacity-0'); 
+                deleteModal.classList.add('opacity-0');
                 setTimeout(() => {
                     deleteModal.classList.remove('opacity-100')
                     deleteModal.classList.add('hidden');
@@ -318,7 +332,7 @@
                 dropdown.classList.toggle("show");
 
                 for (var i = 0; i < allDropdowns.length; i++) {
-                    if (allDropdowns[i].id !== "myDropdown" + id) { 
+                    if (allDropdowns[i].id !== "myDropdown" + id) {
                         allDropdowns[i].classList.remove("show");
                     }
                 }
