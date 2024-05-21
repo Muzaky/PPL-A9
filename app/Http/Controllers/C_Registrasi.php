@@ -47,38 +47,25 @@ class C_Registrasi extends Controller
     {
       
         try {
-            $request->validate([
-                'nama_keltani' => 'required',
-                'nama_ketua' => 'required',
-                'luas_hamparan' => 'required',
-                'jumlah_anggota' => 'required',
-                'alamat_keltani' => 'required',
-                'bukti_legalitas' => 'file|mimes:pdf,png,jpg,jpeg,svg',
+            $data = $request->validate([
+                'nama_keltani' => 'required|string|max:255',
+                'nama_ketua' => 'required|string|max:255',
+                'luas_hamparan' => 'required|integer',
+                'jumlah_anggota' => 'required|integer',
+                'alamat_keltani' => 'required|string',
+                'bukti_legalitas' => 'required|file|mimes:pdf',
+                'nama_kecamatan' => 'required|string|max:255',
+                'id_users' => 'required',
+                'status_validasi' => 'required',
                 'tanggal_validasi' => 'nullable',
                 'catatan_validasi' => 'nullable',
-                'nama_kecamatan' => 'required',
-                'status_validasi' => 'required',
-                'id_users' => 'required',
             ]);
-
-            $data = [
-                'nama_keltani' => $request->nama_keltani,
-                'nama_ketua' => $request->nama_ketua,
-                'luas_hamparan' => $request->luas_hamparan,
-                'jumlah_anggota' => $request->jumlah_anggota,
-                'alamat_keltani' => $request->alamat_keltani,
-                'tanggal_validasi' => $request->tanggal_validasi,
-                'catatan_validasi' => $request->catatan_validasi,
-                'nama_kecamatan' => $request->nama_kecamatan,
-                'status_validasi' => $request->status_validasi,
-                'id_users' => $request->id_users,
-            ];
-
+    
             if ($request->hasFile('bukti_legalitas')) {
                 $file = $request->file('bukti_legalitas');
                 $nama_file = $file->getClientOriginalName();
-                $file->storeAs('bukti', $nama_file);
-                $data['bukti_legalitas'] = $nama_file;
+                $filePath = $file->storeAs('bukti', $nama_file, 'public');
+                $data['bukti_legalitas'] = $filePath; // Menyimpan path lengkap
             }
 
             MRegistrasi::create($data);
@@ -149,29 +136,20 @@ class C_Registrasi extends Controller
     {
 
 
-        $request->validate([
-            'nama_keltani' => 'required',
-            'nama_ketua' => 'required',
-            'luas_hamparan' => 'required',
-            'jumlah_anggota' => 'required',
-            'alamat_keltani' => 'required',
-            'bukti_legalitas' => 'file|mimes:pdf,png,jpg,jpeg,svg',
-            'nama_kecamatan' => 'required',
+        $data = $request->validate([
+            'nama_keltani' => 'required|string|max:255',
+            'nama_ketua' => 'required|string|max:255',
+            'luas_hamparan' => 'required|integer',
+            'jumlah_anggota' => 'required|integer',
+            'alamat_keltani' => 'required|string',
+            'bukti_legalitas' => 'required|file|mimes:pdf',
+            'nama_kecamatan' => 'required|string|max:255',
         ]);
-
-        $data = [
-            'nama_keltani' => $request->nama_keltani,
-            'nama_ketua' => $request->nama_ketua,
-            'luas_hamparan' => $request->luas_hamparan,
-            'jumlah_anggota' => $request->jumlah_anggota,
-            'alamat_keltani' => $request->alamat_keltani,
-            'nama_kecamatan' => $request->nama_kecamatan,
-        ];
 
         if ($request->hasFile('bukti_legalitas')) {
             $file = $request->file('bukti_legalitas');
             $nama_file = $file->getClientOriginalName();
-            $file->storeAs('bukti', $nama_file);
+            $file->storeAs('bukti', $nama_file, 'public');
             $data['bukti_legalitas'] = $nama_file;
         }
 

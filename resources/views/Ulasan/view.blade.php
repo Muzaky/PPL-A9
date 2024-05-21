@@ -72,7 +72,7 @@
                 </svg>
                 Back
             </a>
-            <h1 class="my-10 text-center text-white" id="judul">Ulasan Kelompok Tani</h1>
+            <h1 class="mb-8 text-center text-white" id="judul">Ulasan Kelompok Tani</h1>
         </div>
             <div
                 class="flex flex-row gap-8 items-center -mt-8 bg-gray-100 p-2 rounded-br-[20px] rounded-bl-[20px] justify-start w-[1440px] mb-4">
@@ -97,8 +97,8 @@
                 @else
                     @foreach ($ulasan as $data)
                         <div
-                            class="flex flex-col h-40  items-center mb-6 bg-white w-[1580px] border-[#204E51] border-2 rounded-lg shadow md:flex-row ">
-                            <div class="flex flex-col px-8 w-[1580px] text-wrap">
+                            class="flex flex-col h-40  items-center mb-6 bg-white w-[1280px] border-[#204E51] border-2 rounded-lg shadow md:flex-row ">
+                            <div class="flex flex-col px-8 w-[1280px] text-wrap">
                                 <div class="justify-between flex flex-row">
                                     <div id="namakel" class="mb-2 text-[#204E51]">
                                         {{ $data->nama_keltani }}

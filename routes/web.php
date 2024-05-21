@@ -109,7 +109,7 @@ Route::group(['middleware' => ['kelompoktani']], function () {
 
     Route::group(['prefix' => 'pemberitahuan'], function () {
         Route::get('', [BeritaController::class, 'landing'])->name('pemberitahuan.landing');
-        Route::get('/detail/{slug}-{id}', [BeritaController::class, 'show'])->name('pemberitahuan.detail');
+        Route::get('/detail-pemberitahuan/{slug}-{id}', [BeritaController::class, 'show'])->name('pemberitahuan.detail');
     });
 
     Route::group(['prefix' => 'registrasitani'], function () {
@@ -123,15 +123,15 @@ Route::group(['middleware' => ['kelompoktani']], function () {
     Route::group(['prefix'=> 'pengajuan'], function () {
         Route::get('', [C_Pengajuan::class, 'landing'])->name('pengajuan.landing');
         Route::post('/store', [C_Pengajuan::class, 'store'])->name('pengajuan.store');
-        Route::get('/viewpengajuan/{id}', [C_Pengajuan::class, 'show'])->name('pengajuan.show');
+        Route::get('/detail-pengajuan/{id}', [C_Pengajuan::class, 'show'])->name('pengajuan.show');
         Route::post('/{id}/update', [C_Pengajuan::class, 'update'])->name('pengajuan.update');
     });
 
     Route::group(['prefix'=> 'pelaporan'], function () {
         Route::get('', [C_Pelaporan::class, 'landing'])->name('pelaporan.landing');
-        Route::get('/main/{id}', [C_Pelaporan::class, 'main'])->name('pelaporan.main');
+        Route::get('/pelaporan-bantuan/{id}', [C_Pelaporan::class, 'main'])->name('pelaporan.main');
         Route::post('/store', [C_Pelaporan::class, 'store'])->name('pelaporan.store');
-        Route::get('/viewpelaporan/{id}', [C_Pelaporan::class, 'show'])->name('pelaporan.show');
+        Route::get('/detail-pelaporan/{id}', [C_Pelaporan::class, 'show'])->name('pelaporan.show');
         Route::post('/{id}/update', [C_Pelaporan::class, 'update'])->name('pelaporan.update');
     });
 

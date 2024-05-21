@@ -16,9 +16,12 @@
     <link rel="stylesheet"
         href="https://demos.creative-tim.com/notus-js/assets/vendor/@fort[]awesome/fontawesome-free/css/all.min.css">
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
+
+
 </head>
 <style>
     .remove-arrow::-webkit-inner-spin-button,
@@ -159,16 +162,19 @@
             <!-- Top bar -->
             <div class="flex h-[44px] justify-center items-center content-center mt-[63px]">
                 <!-- Top bar content -->
-                <form class="flex w-[614px] h-auto bg-white rounded-[8px] mx-[12px] items-center" action="GET">
-                    <label for="search_field"></label>
+                <div class="flex w-[614px] h-auto rounded-[8px] mx-[12px] items-center">
                     <div class="relative w-full text-gray-400 focus-within:text-gray-600">
                         <input id="search_field"
-                            class="block w-full h-full  px-[12px] py-[14px] rounded-md border border-transparent bg-gray-200 focus:outline-none focus:bg-white focus:border-gray-300 text-gray-900 placeholder-gray-500 sm:text-sm"
-                            placeholder="Cari disini" type="search">
+                               class="block w-full h-full pl-10 pr-4 py-1 rounded-md border-2 border-[#204e51] bg-[#f4f4f4]"
+                               placeholder="Cari berdasarkan nama" type="search">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                             class="w-6 h-6 absolute left-2 top-1/2 transform -translate-y-1/2">
+                            <path fillRule="evenodd"
+                                  d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                                  clipRule="evenodd" />
+                        </svg>
                     </div>
-
-
-                </form>
+                </div>
                 <div class="flex-1 px-4 flex justify-between">
                     <div class="flex-1 flex">
                     </div>

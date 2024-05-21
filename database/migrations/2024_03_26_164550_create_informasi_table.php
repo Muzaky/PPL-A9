@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_informasi');
             $table->string('judul_informasi');
             $table->string('nama_bibit');
+            $table->string('deskripsi');
             $table->string('gambar_informasi')->nullable();
             $table->date('tgl_awal');
             $table->date('tgl_akhir');

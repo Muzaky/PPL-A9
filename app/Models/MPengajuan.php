@@ -20,12 +20,17 @@ class MPengajuan extends Model
         "id_pengajuan",
         'tanggal_pengajuan',
         'berkas_pengajuan',
+        'catatan',
         'tanggal_validasi',
         'catatan_validasi',
         'id_informasi',
         'id_registrasi',
         'status_validasi',
     ] ;
+    public function registrasi()
+    {
+        return $this->belongsTo(MRegistrasi::class, 'id_registrasi');
+    }
     static function getData(){
         return DB::table('pengajuan');
     }
@@ -38,9 +43,6 @@ class MPengajuan extends Model
 
     public function pelaporan(){
         return $this->hasMany(MPelaporan::class);
-    }
-    public function registrasi(){
-        return $this->hasOne(MRegistrasi::class,'id_registrasi','id');
     }
     public function informasi()
     {

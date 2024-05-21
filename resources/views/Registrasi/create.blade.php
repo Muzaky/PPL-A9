@@ -8,12 +8,20 @@
     <link rel="icon" href="bibitani.ico">
     <title>Bibitani | Registrasi Kelompok Tani</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
 
 <body class="flex items-center justify-center">
-
     <div class="container h-full p-10 ">
         <div class="flex flex-wrap items-center justify-center h-full text-neutral-800 dark:text-neutral-200">
             <div class="w-full">
@@ -32,7 +40,7 @@
                             <div class="flex flex-col md:mx-6 md:p-12">
                                 <!--Logo-->
 
-                                <p class="mb-[10px] text-[36px] font-bold font-[Open Sans] text-wrap w-[300px]">
+                                <p class="mb-[10px] text-[36px] font-bold font-[Montserrat] text-wrap w-[300px]">
                                     Regitrasi
                                     Kelompok <font style="color: #53C341">Tani</font>
                                 </p>
@@ -41,7 +49,7 @@
                                     enctype="multipart/form-data" class="flex flex-col max-w-md" id="form-create">
                                     @csrf
                                     <!-- Nama Kelompok Tani -->
-                                    <div class="mb-[18px] mt-[px] form-group">
+                                    <div class="mb-[18px] form-group">
                                         <input class="w-full h-[52px] p-2  border-b border-gray-500 outline-none"
                                             type="text" placeholder="Nama Kelompok Tani" id="nama_keltani"
                                             name="nama_keltani" />
@@ -58,7 +66,7 @@
                                     <!-- Luas Hamparan -->
                                     <div class=" mb-[18px]">
                                         <input class="w-full h-[52px] p-2  border-b border-gray-500 outline-none "
-                                            type="number" placeholder="Luas Hamparan" id="luas_hamparan"
+                                            type="number" placeholder="Luas Hamparan (Hektare)" id="luas_hamparan"
                                             name="luas_hamparan" />
                                     </div>
 
@@ -128,7 +136,7 @@
                                                             clipRule="evenodd" />
                                                     </svg>
                                                     <p id="textcontent">
-                                                        Klik Untuk Unggah Bukti Legalitas
+                                                        Unggah Bukti Legalitas Dalam Bentuk PDF
                                                     </p>
                                                 </div>
                                             </div>
@@ -177,7 +185,7 @@
             if (fileInput.files.length > 0) {
                 fileNameParagraph.textContent = fileInput.files[0].name;
             } else {
-                fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Bukti Legalitas';
+                fileNameParagraph.innerHTML = svgCode + 'Unggah Bukti Legalitas Dalam Bentuk PDF';
             }
         }
     </script>

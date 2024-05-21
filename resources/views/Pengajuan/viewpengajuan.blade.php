@@ -1,10 +1,10 @@
 @extends('Layout.navtani')
 @section('content')
 
-    <body class="">
+    <body class="bg-slate-200">
         <div class="items-center justify-center flex">
             <div
-                class="flex flex-col text-center w-[1440px] h-full bg-[#204E51] items-center mt-4 shadow-xl border-[4px] border-[#204E51] rounded-[20px] relative">
+                class="flex flex-col text-center w-[1440px] h-full bg-[#204E51] items-center mt-8 shadow-xl border-[4px] border-[#204E51] rounded-[20px] relative pb-4">
                 <div class="bg-white shadow-xl rounded-[20px] w-full px-10 pb-10">
                     <a href="{{ route('pengajuan.landing') }}"
                         class="absolute left-[20px] top-[20px] flex items-center text-black text-sm font-medium font-[Montserrat]">
@@ -22,18 +22,19 @@
                     <!-- Back button -->
                     <div class="flex flex-row w-[1280px] gap-4 justify-between font-[Montserrat] mt-4">
                         <div class="flex flex-row gap-2 items-center">
-                            <h1 class="text-[24px] font-semibold">Nama Bibit : </h1>
-                            <h1 class="text-[24px] font-semibold">{{ $informasi->nama_bibit }}</h1>
+                            <h1 class="text-[24px] font-semibold">Kelompok Tani : </h1>
+                            <h1 class="text-[24px] font-semibold">{{ $registrasi->nama_keltani }}</h1>
                         </div>
                         <div class="flex flex-row gap-2">
                             <h1 class="text-[16px] font-semibold">Tanggal Pengajuan : </h1>
                             <h1 class="text-[16px] font-semibold">{{ $pengajuan->tanggal_pengajuan }}</h1>
                         </div>
                     </div>
+
                     <div class="flex flex-row w-[1280px] gap-4 justify-between font-[Montserrat] mt-4">
                         <div class="flex flex-row gap-2 items-center">
                             <h1 class="text-[24px] font-semibold">Berkas Pengajuan : </h1>
-                            <a href="{{ asset('pdf/' . $pengajuan->berkas_pengajuan) }}"
+                            <a href="{{ Storage::url($pengajuan->berkas_pengajuan) }}"
                                 class="flex flex-col items-center justify-center w-[400px] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 h-14">
                                 <div class="flex flex-row items-center justify-center gap-2 pt-5 pb-6">
                                     <div id="file-name"
@@ -45,88 +46,101 @@
                                         </svg>
 
                                         <p id="textcontent">
-                                            {{ $pengajuan->berkas_pengajuan }}
+                                            {{ basename(Storage::url($pengajuan->berkas_pengajuan)) }}
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-
                 </div>
-                <div class="flex flex-col w-[1330px] h-[349px] rounded-[20px] mt-[36px]">
-                    <div class="flex flex-row items-center justify-between gap-2 mt-4 mx-4">
+                <div class="flex flex-col w-[1330px] h-[349px] rounded-[20px] mt-[36px] items-center">
+                    <div class="flex items-center">
+                        <h1 class="font-[Montserrat] text-white font-semibold text-[24px]">Rincian</h1>
+                    </div>
+                    <div class="flex flex-row items-center justify-between  gap-2 mt-4 mx-4 w-[800px]">
                         @if ($pengajuan->status_validasi == 2)
-                            <div class="flex items-center">
-                                <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Status
-                                    Validasi :</label>
-                                <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
-                                    <div class="h-[60px] w-[5px] bg-green-500"></div>
-                                    <div class="bg-green-500 rounded-full p-1 mx-2">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-[#000] font-semibold px-4 py-4 font-[Raleway]">Berkas Pengajuan Bibit
-                                        telah
-                                        disetujui</span>
+                            <div class="flex flex-col items-start gap-2 font-[Montserrat]">
+                                <div class="flex flex-row items-center gap-2 ">
+                                    <h1 class="text-[16px] font-semibold text-white">Jenis Bibit Bantuan : </h1>
+                                    <h1 class="text-[16px] font-semibold text-white">{{ $informasi->nama_bibit }}</h1>
                                 </div>
                             </div>
-                            <div class="flex flex-row items-center gap-2">
-                                <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Tanggal Validasi : </h1>
-                                <h1 class="text-[16px] font-normal font-[Montserrat] text-white">
-                                    {{ $pengajuan->updated_at }}</h1>
+                            <div class="flex flex-col items-start gap-2">
+                                <div class="flex flex-row gap-2 items-center justify-between">
+                                    <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Status : </h1>
+                                    <div class="flex flex-row items-center text-white">
+                                        <span class="text-green-500 font-semibold font-[Raleway]">Tervalidasi</span>
+                                        <div class="bg-green-500 rounded-full mx-2">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row gap-2">
+                                    <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Tanggal Validasi :
+                                    </h1>
+                                    <h1 class="text-[16px] font-normal font-[Montserrat] text-white">
+                                        {{ $pengajuan->updated_at }}</h1>
+                                </div>
+
                             </div>
                         @elseif ($pengajuan->status_validasi == 3)
-                            <div class="flex items-center">
-                                <label for="" class="text-[24px] font-medium">Status Validasi :</label>
-                                <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
-                                    <div class="h-[60px] w-[5px] bg-red-500"></div>
-                                    <div class="bg-red-500 rounded-full p-1 mx-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            <div class="flex flex-col items-start gap-2 font-[Montserrat]">
+                                <div class="flex flex-row items-center gap-2 ">
+                                    <h1 class="text-[16px] font-semibold text-white">Jenis Bibit Bantuan : </h1>
+                                    <h1 class="text-[16px] font-semibold text-white">{{ $informasi->nama_bibit }}</h1>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-start gap-2">
+                                <div class="flex flex-row gap-2 items-center justify-between">
+                                    <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Status : </h1>
+                                    <div class="flex flex-row items-center text-white">
+                                        <span class="text-red-500 font-semibold font-[Raleway]">Pengajuan Ditolak</span>
+                                        <div class="bg-red-500 rounded-full mx-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                                         </svg>
-
+                                        </div>
                                     </div>
-                                    <span class="text-[#000] font-medium px-4 py-4">Berkas Pengajuan Bibit Ditolak</span>
                                 </div>
-                            </div>
-                            <div class="flex flex-row items-center gap-2">
-                                <h1 class="text-[24px] font-semibold font-[Montserrat] text-white">Tanggal Validasi : </h1>
-                                <h1 class="text-[24px] font-normal font-[Montserrat] text-white">
-                                    {{ $pengajuan->updated_at }}</h1>
+                                <div class="flex flex-row gap-2">
+                                    <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Tanggal Penolakan :
+                                    </h1>
+                                    <h1 class="text-[16px] font-normal font-[Montserrat] text-white">
+                                        {{ $pengajuan->updated_at }}</h1>
+                                </div>
+
                             </div>
                         @else
-                            <div class="flex items-center">
-                                <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Status
-                                    Validasi :</label>
-                                <div class="flex items-center bg-[#F0FFFB] rounded-[8px] mx-4">
-                                    <div class="h-[60px] w-[5px] bg-yellow-500"></div>
-                                    <div class="bg-yellow-500 rounded-full  ml-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            strokeWidth={1.5} stroke="currentColor" class="w-8 h-8">
-                                            <path strokeLinecap="round" strokeLinejoin="round"
-                                                d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
-                                        </svg>
-                                    </div>
-                                    <span class="text-[#000] font-medium px-2 py-4">Berkas Pengajuan Bibit Sedang
-                                        Diproses</span>
+                            <div class="flex flex-col items-start gap-2 font-[Montserrat]">
+                                <div class="flex flex-row items-center gap-2 ">
+                                    <h1 class="text-[16px] font-semibold text-white">Jenis Bibit Bantuan : </h1>
+                                    <h1 class="text-[16px] font-semibold text-white">{{ $informasi->nama_bibit }}</h1>
                                 </div>
+
                             </div>
-                            <div class="">
-                                <div class="flex flex-row items-center gap-2">
-                                    @if ($pengajuan->tanggal_validasi != null)
-                                        <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Tanggal Validasi
-                                            : </h1>
-                                        <h1 class="text-[16px] font-normal font-[Montserrat] text-white">
-                                            {{ $pengajuan->updated_at }}</h1>
-                                    @else
-                                        <h1 class="text-[16px] font-normal font-[Montserrat] text-white">Menunggu Validasi
-                                            Dinas</h1>
-                                    @endif
+                            <div class="flex flex-col items-start gap-2">
+                                <div class="flex flex-row gap-2 items-center justify-between">
+                                    <h1 class="text-[16px] font-semibold font-[Montserrat] text-white">Status : </h1>
+                                    <div class="flex flex-row items-center text-black">
+                                        <span class="text-yellow-400 font-semibold font-[Raleway]">Process</span>
+                                        <div class="bg-yellow-400 rounded-full mx-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                strokeWidth={1.5} stroke="currentColor" class="w-8 h-8">
+                                                <path strokeLinecap="round" strokeLinejoin="round"
+                                                    d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row gap-2">
+                                    <h1 class="text-[16px] font-normal font-[Montserrat] text-white">Menunggu Validasi
+                                        Dinas</h1>
                                 </div>
                             </div>
                         @endif
@@ -135,13 +149,13 @@
                     <div class="flex flex-col items-center gap-2 mt-8">
                         <label for="" class="text-[24px] font-semibold font-[Montserrat] text-white">Catatan
                             Validasi :</label>
-                        <textarea class="rounded-[20px] w-[980px] h-[180px] resize-none border-0 p-4" disabled readonly>{{ strip_tags($pengajuan->catatan_validasi) }}</textarea>
+                        <textarea class="rounded-[20px] w-[980px] h-[180px] resize-none border-0 p-4 text-center" disabled readonly>{{ strip_tags($pengajuan->catatan_validasi) }}</textarea>
                     </div>
 
 
 
                 </div>
-                <div class="flex flex-row m-4 ">
+                <div class="flex flex-row mt-8 ">
                     @if ($pengajuan->status_validasi == 3 || $pengajuan->status_validasi == 1)
                         <button onclick="showEditButton()" class="text-[#f4f4f4] p-2 font-[Montserrat] border-b-2">Ubah
                             Data</button>
@@ -260,6 +274,4 @@
         </script>
 
     </body>
-
-
 @endsection

@@ -1,7 +1,7 @@
 @extends('Layout.dinas_nav')
 @section('content')
     <section>
-        <div class="flex flex-col m-4 w-[100%]">
+        <div class="flex flex-col m-4">
             <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Kelompok Tani Kabupaten Jember
             </h1>
             <p class="text-[18px] font-normal text-[#9B9B9B] font-[Poppins] mt-[11px] text-wrap w-[1100px] leading-[25px]">
@@ -56,78 +56,83 @@
                     <tbody>
                         <?php $no = 1; ?>
                         @foreach ($data as $val)
-                            <tr>
-                                <td class="justify-center text-center tb-col tb-col-sm">
-                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $no++ }}</div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->nama_keltani }}</div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->nama_ketua }}</div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->luas_hamparan }} Hektare</div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_anggota }}</div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->alamat_keltani }}</div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    <div class="object-fill px-2 py-1 fs-6 lh-sm">
-                                        <a href="{{ asset('bukti/' . $val->bukti_legalitas) }}">
-                                            {{-- {{ basename($val->bukti_legalitas) }} --}}
-                                            Buka File
+                            
+                                <tr>
+                                    <td class="justify-center text-center tb-col tb-col-sm">
+                                        <div class="px-2 py-1 fs-6 lh-sm">{{ $no++ }}</div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        <div class="px-2 py-1 fs-6 lh-sm">{{ $val->nama_keltani }}</div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        <div class="px-2 py-1 fs-6 lh-sm">{{ $val->nama_ketua }}</div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        <div class="px-2 py-1 fs-6 lh-sm">{{ $val->luas_hamparan }} Hektare</div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        <div class="px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_anggota }}</div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        <div class="px-2 py-1 fs-6 lh-sm">{{ $val->alamat_keltani }}</div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        <div class="object-fill px-2 py-1 fs-6 lh-sm">
+                                            <a href="{{ Storage::url($val->bukti_legalitas) }}">
+                                                {{-- {{ basename($val->bukti_legalitas) }} --}}
+                                                Buka File
 
-                                        </a>
-                                    </div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    <div class="px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    <div class="px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->catatan_validasi) }}</div>
-                                </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
-                                    @if ($val->status_validasi == 1)
-                                        <div class="px-2 py-1 fs-6 lh-sm">Diproses</div>
-                                    @elseif ($val->status_validasi == 2)
-                                        <div class="px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
-                                    @else
-                                        <div class="px-2 py-1 fs-6 lh-sm">Ditolak</div>
-                                    @endif
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        <div class="px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        <div class="px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->catatan_validasi) }}</div>
+                                    </td>
+                                    <td class="justify-center text-center tb-col tb-col-md">
+                                        @if ($val->status_validasi == 1)
+                                            <div class="px-2 py-1 fs-6 lh-sm">Diproses</div>
+                                        @elseif ($val->status_validasi == 2)
+                                            <div class="px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
+                                        @else
+                                            <div class="px-2 py-1 fs-6 lh-sm">Ditolak</div>
+                                        @endif
 
-                                </td>
-                                <td class="flex justify-center py-4 tb-col tb-col-md gap-x-3 ">
-                                    <a href="{{ route('registrasi.editdinas', $val->id_registrasi) }}"
-                                        class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-green-600 rounded-md"><i>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round"
-                                                    d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
-                                            </svg>
-                                        </i></a>
-                                    <button id="delete-form"
-                                        action="{{ route('registrasi.destroy', $val->id_registrasi) }}" method="POST">
-
-                                        <button onclick="showDelButton({{ $val->id_registrasi }})"
-                                            class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-red-600 rounded-md">
-                                            <i>
+                                    </td>
+                                    <td class="flex justify-center py-4 tb-col tb-col-md gap-x-3 ">
+                                        <a href="{{ route('registrasi.editdinas', $val->id_registrasi) }}"
+                                            class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-green-600 rounded-md"><i>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    strokeWidth="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
                                                     <path strokeLinecap="round" strokeLinejoin="round"
-                                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                                                 </svg>
-                                            </i>
-                                        </button>
+                                            </i></a>
+                                        <button id="delete-form"
+                                            action="{{ route('registrasi.destroy', $val->id_registrasi) }}" method="POST">
 
-                                    </button>
-                                </td>
-                            </tr>
+                                            <button onclick="showDelButton({{ $val->id_registrasi }})"
+                                                class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-red-600 rounded-md">
+                                                <i>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
+                                                        class="w-6 h-6">
+                                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                    </svg>
+                                                </i>
+                                            </button>
+
+                                        </button>
+                                    </td>
+                                </tr>
+                            
                         @endforeach
                     </tbody>
+                </table>
+
             </div>
         </div>
         <!--Modal Script Delete Button-->

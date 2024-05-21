@@ -25,7 +25,8 @@ class BeritaController extends Controller
         //return json_encode($data);
         return view(
             'Berita.landingberita',
-            ['data' => $data],compact('registrasi','iduser')
+            ['data' => $data],
+            compact('registrasi', 'iduser')
         );
     }
     public function index()
@@ -38,17 +39,20 @@ class BeritaController extends Controller
         );
     }
 
-    public function show($slug,$id)
+    public function show($slug, $id)
     {
         $idSegments = explode('-', $id);
         $id = end($idSegments);
-        
+
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $data = MBerita::findOrFail($id);
         $slug = Str::slug($data->judul_informasi);
-        return view('Berita.viewberita',['data' => $data,'slug' => $slug],compact('registrasi','iduser')
+        return view(
+            'Berita.viewberita',
+            ['data' => $data, 'slug' => $slug],
+            compact('registrasi', 'iduser')
         );
     }
 
@@ -57,36 +61,29 @@ class BeritaController extends Controller
     {
         return view('Berita.create');
     }
-   
+
     public function store(Request $request)
     {
-        
-        $request->validate([
-            'judul_informasi' => 'required',
-            'nama_bibit' => 'required',
-            'tgl_awal' => 'required',
-            'tgl_akhir' => 'required',
-            'jumlah_bibit' => 'required',
-            'syarat_ketentuan' => 'required',
-            'kontak_narahubung' => 'required',
-            'gambar_informasi' => 'file|mimes:pdf,jpg,jpeg,svg,png',
+   
+        // Validasi input
+        $data = $request->validate([
+            'judul_informasi' => 'required|string|max:255',
+            'nama_bibit' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'tgl_awal' => 'required|date',
+            'tgl_akhir' => 'required|date',
+            'jumlah_bibit' => 'required|integer',
+            'syarat_ketentuan' => 'required|string',
+            'kontak_narahubung' => 'required|string|max:255',
+            'gambar_informasi' => 'nullable|file|mimes:jpg,jpeg,svg,png|max:2048',
         ]);
 
-        $data = [
-            'judul_informasi' => $request->judul_informasi,
-            'nama_bibit' => $request->nama_bibit,
-            'tgl_awal' => $request->tgl_awal,
-            'tgl_akhir' => $request->tgl_akhir,
-            'jumlah_bibit' => $request->jumlah_bibit,
-            'syarat_ketentuan' => $request->syarat_ketentuan,
-            'kontak_narahubung' => $request->kontak_narahubung,
-        ];
 
         if ($request->hasFile('gambar_informasi')) {
             $file = $request->file('gambar_informasi');
             $nama_file = $file->getClientOriginalName();
-            $file->storeAs('img', $nama_file);
-            $data['gambar_informasi'] = $nama_file;
+            $filePath = $file->storeAs('img', $nama_file, 'public');
+            $data['gambar_informasi'] = $filePath; // Menyimpan path lengkap
         }
 
         MBerita::create($data);
@@ -145,6 +142,4 @@ class BeritaController extends Controller
         return redirect()->route('berita.list')
             ->with('success', 'Berita telah didelete');
     }
-
-    
 }

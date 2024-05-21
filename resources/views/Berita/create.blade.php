@@ -1,41 +1,5 @@
 @extends('Layout.dinas_nav')
 @section('content')
-    <style>
-        .input-with-dropdown {
-            position: relative;
-            width: 200px;
-        }
-
-        .input-with-dropdown input[type="text"] {
-            width: 100%;
-            padding-right: 20px;
-            /* To accommodate the dropdown arrow */
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-top: none;
-            display: none;
-        }
-
-        .dropdown.open {
-            display: block;
-        }
-
-        .dropdown-item {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .dropdown-item:hover {
-            background-color: #f0f0f0;
-        }
-    </style>
     <section class=" py-1  mt-4">
         <div class="flex flex-col">
             <div
@@ -55,7 +19,7 @@
                                         Judul Informasi
                                     </label>
                                     <input id="judul_informasi" name="judul_informasi" type="text"
-                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204e51] w-full ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan Judul">
                                 </div>
                             </div>
@@ -66,21 +30,11 @@
                                         Nama Bibit
                                     </label>
                                     <input type="text" name="nama_bibit" id="nama_bibit"
-                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204e51] w-full ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan Nama Bibit">
                                 </div>
                             </div>
-                            <div class="w-full lg:w-6/12 px-4">
-                                <div class="relative w-full mb-3">
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                        htmlfor="grid-password">
-                                        Gambar
-                                    </label>
-                                    <input type="file" name="gambar_informasi" id="gambar_informasi"
-                                        class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        placeholder="Masukkan Gambar">
-                                </div>
-                            </div>
+
                             <div class="w-full lg:w-6/12 px-4">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -88,7 +42,7 @@
                                         Tanggal Mulai
                                     </label>
                                     <input type="date" id="tgl_awal" name="tgl_awal"
-                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204e51] w-full ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan Tanggal Awal">
                                 </div>
                             </div>
@@ -99,7 +53,7 @@
                                         Tanggal Akhir
                                     </label>
                                     <input type="date" id="tgl_akhir" name="tgl_akhir"
-                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204e51] w-full ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan Tanggal Akhir">
                                 </div>
                             </div>
@@ -107,10 +61,10 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         htmlfor="grid-password">
-                                        Jumlah Bibit
+                                        Jumlah Bibit (Kg)
                                     </label>
                                     <input type="number" name="jumlah_bibit" id="jumlah_bibit"
-                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204e51] w-full ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan Jumlah Bibit">
                                 </div>
                             </div>
@@ -121,22 +75,59 @@
                                         Narahubung
                                     </label>
                                     <input type="text" name="kontak_narahubung" id="kontak_narahubung"
-                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204e51] w-full ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan Narahubung">
                                 </div>
                             </div>
 
 
                         </div>
-                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                            Syarat dan Ketentuan test
-                        </label>
+                        <div class="mb-[18px] mt-4 relative">
+                            <label for="dropzone-file"
+                                class="flex flex-col items-center justify-center w-full h-14 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 2xl:h-20">
+                                <div class="flex flex-row items-center justify-center gap-2 pt-5 pb-6">
+                                    <div id="file-name"
+                                        class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-[14px] w-[500px] justify-center ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="w-4 h-4" id="svg-upload">
+                                            <path fillRule="evenodd"
+                                                d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+                                                clipRule="evenodd" />
+                                        </svg>
+                                        <p id="textcontent">
+                                            Upload Foto Berita (Max 2MB)
+                                        </p>
+                                    </div>
+                                </div>
+                                <input id="dropzone-file" onchange="displayFileName()" name="gambar_informasi"
+                                    type="file" class="hidden" />
+                            </label>
+                        </div>
 
-                        <textarea name="syarat_ketentuan" id="syarat_ketentuan"></textarea>
+                        <div class="flex flex-row gap-8">
+                            <div class="flex flex-col items-center">
+                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 resize-none"
+                                    htmlfor="grid-password">
+                                    Deskripsi
+                                </label>
+                                <textarea name="deskripsi" id="deskripsi"></textarea>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 resize-none"
+                                    htmlfor="grid-password">
+                                    Syarat dan Ketentuan test
+                                </label>
+                                <textarea name="syarat_ketentuan" id="syarat_ketentuan"></textarea>
+                            </div>
+
+                        </div>
                         <script>
                             CKEDITOR.replace('syarat_ketentuan');
+                            CKEDITOR.replace('deskripsi');
                         </script>
-                        <button type="submit" class="flex">
+                        <button
+                            class="mt-4 px-4 py-2 bg-[#204e51] text-[#fff] border-2 border-[#204e51] hover:bg-[#fff] hover:text-[#204e51] rounded-[8px]"
+                            type="submit" class="flex">
                             Simpan
                         </button>
                     </form>
@@ -145,16 +136,23 @@
         </div>
 
         <script>
-            const inputField = document.getElementById('nama_bibit');
-            const dropdown = document.getElementById('dropdown');
+        
 
-            inputField.addEventListener('click', function() {
-                dropdown.classList.toggle('open');
-            });
-
-            function selectItem(item) {
-                inputField.value = item;
-                dropdown.classList.remove('open');
+            function displayFileName() {
+                const fileInput = document.getElementById('dropzone-file');
+                const fileNameParagraph = document.getElementById('file-name');
+                const textcontent = document.getElementById('textcontent');
+                const svgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" class="w-4 h-4" id="svg-upload">
+                                                        <path fillRule="evenodd"
+                                                            d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 15.75a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z"
+                                                            clipRule="evenodd" />
+                                                    </svg>`
+                if (fileInput.files.length > 0) {
+                    fileNameParagraph.textContent = fileInput.files[0].name;
+                } else {
+                    fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Bukti Legalitas';
+                }
             }
         </script>
     </section>

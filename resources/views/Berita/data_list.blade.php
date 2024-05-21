@@ -1,50 +1,54 @@
 @extends('Layout.dinas_nav')
 @section('content')
+    
     <section>
-        <div class="flex flex-col m-4 w-[100%]">
+        <div class="flex flex-col m-4 ">
             <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Pemberitahuan Informasi Bibit Horikultura
             </h1>
-            <p class="text-[18px] font-normal text-[#9B9B9B] font-[Poppins] mt-[11px] text-wrap w-[1100px] leading-[25px]">
+            <p class="text-[18px] font-normal text-[#9B9B9B] font-[Montserrat] mt-[11px] text-wrap w-[1100px] leading-[25px]">
                 Pada halaman ini akan membantu kamu dalam menambahkan pemberitahun, mengedit apabila diperlukan perubahan
                 pada pemberitahuan, menghapus pemberitahuan dan memantau pemberitahuan yang telah ditambahkan</p>
 
-            <a class="flex justify-center text-center items-center font-[Poppins] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
+            <a class="flex justify-center text-center items-center font-[Montserrat] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
                 href="{{ route('berita.create') }}" id="myButton" onclick="startLoading()"><span class="flex">Tambah
                     Informasi
                     Baru</span></a>
             <div class="flex flex-col overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200 table-auto ">
-                    <thead class="bg-white">
+                    <thead class="bg-white border-2 border-[#204e51]">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 No</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Judul Informasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Nama Bibit</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Gambar Informasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Tanggal Awal</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Tanggal Akhir</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Jumlah Bibit</th>
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Jumlah Bibit (Kg)</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Syarat Ketentuan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Deskripsi</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Narahubung</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Action</th>
                         </tr>
                     </thead>
@@ -55,7 +59,7 @@
                                 <td class="justify-center text-center tb-col tb-col-sm">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ $no++ }}</div>
                                 </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
+                                <td id="judulinfo" class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64 overflow-ellipsis whitespace-nowrap overflow-hidden">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ $val->judul_informasi }}</div>
                                 </td>
                                 <td class="justify-center text-center tb-col tb-col-md">
@@ -63,13 +67,9 @@
                                 </td>
                                 <td class="justify-center text-center tb-col tb-col-md">
                                     <div class="object-fill px-2 py-1 fs-6 lh-sm">
-                                        <a href="{{ asset('img/' . $val->gambar_informasi) }}">
+                                        <a href="{{ Storage::url($val->gambar_informasi) }}">
                                             Lihat Gambar
-                                            {{-- {{ basename($val->gambar_informasi) }} --}}
-
                                         </a>
-                                        {{-- <img --}}
-                                        {{-- src="{{ asset('img' . '/' . $val->gambar_informasi) }}" alt=""> --}}
                                     </div>
                                 </td>
                                 <td class="justify-center text-center tb-col tb-col-md">
@@ -81,13 +81,16 @@
                                 <td class="justify-center text-center tb-col tb-col-md">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_bibit }}</div>
                                 </td>
-                                <td class="justify-center text-center tb-col tb-col-md">
+                                <td class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64  overflow-ellipsis whitespace-nowrap overflow-hidden">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->syarat_ketentuan) }}</div>
+                                </td>
+                                <td class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64 overflow-ellipsis whitespace-nowrap overflow-hidden">
+                                    <div class="px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->deskripsi) }}</div>
                                 </td>
                                 <td class="justify-center text-center tb-col tb-col-md">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ $val->kontak_narahubung }}</div>
                                 </td>
-                                <td class="flex px-6 py-4 tb-col tb-col-md gap-x-3">
+                                <td class="flex flex-row px-6 py-4 tb-col tb-col-md gap-x-3 justify-center text-center">
                                     <a href="{{ route('berita.edit', $val->id_informasi) }}"
                                         class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-green-600 rounded-md"><i>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -98,7 +101,6 @@
                                         </i></a>
                                     <button id="delete-form" action=""
                                         method="POST">
-
                                         <button onclick="showDelButton({{ $val->id_informasi }})"
                                             class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-red-600 rounded-md">
                                             <i>
@@ -109,7 +111,6 @@
                                                 </svg>
                                             </i>
                                         </button>
-
                                     </button>
                                 </td>
                             </tr>

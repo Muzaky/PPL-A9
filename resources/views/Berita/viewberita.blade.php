@@ -4,7 +4,7 @@
     <section class="flex flex-col items-center justify-center mt-4">
         <div class="w-[1000px] bg-white border border-gray-200 rounded-[20px] shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col items-center justify-center">
-                <img class="w-full h-[400px] rounded-[20px]" src="{{ asset('img/' . $data->gambar_informasi) }}" alt="berita">
+                <img class="w-full h-[400px] rounded-[20px]" src="{{ Storage::url($data->gambar_informasi) }}" alt="berita">
                 <div class="flex items-center justify-center px-4 text-center text-wrap">
                     <h1 class="font-[poppins] text-[40px] font-bold mt-4 justify-center">{{ $data->judul_informasi }}</h1>
                 </div>
@@ -19,15 +19,17 @@
 
             </div>
             <div class="px-4">
+                <h2 class="mt-4 font-bold text-[20px]">Deskripsi :</h2>
+                <p class="font-[Montserrat]">{{ strip_tags($data->deskripsi) }}</p>
                 <h2 class="mt-4 font-bold text-[20px]">Keterangan :</h2>
-                <ul class=" font-regular">
+                <ul class=" font-regular font-[Montserrat]">
                     <li>Waktu pengajuan dimulai pada tanggal {{ $data->tgl_awal }} s/d {{ $data->tgl_akhir }}</li>
                     <li>Jumlah Bibit : <font style="font-weight: 700">{{ $data->jumlah_bibit }}</font> Kg</li>
                 </ul>
                 <small class="text-red-300">
                     *Bibit akan dibagikan secara merata terhadap jumlah pengajuan dan kebutuhan
                 </small>
-                <div class="flex flex-col py-4 mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <div class="flex flex-col py-4 mb-3 font-normal text-gray-700 dark:text-gray-400 font-[Montserrat]">
                     Syarat dan Ketentuan :
                     @if ($data->syarat_ketentuan)
                         @php

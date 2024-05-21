@@ -9,6 +9,8 @@ use App\Models\MRegistrasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 
 class C_Pelaporan extends Controller
@@ -32,16 +34,17 @@ class C_Pelaporan extends Controller
 
     public function show($id)
     {
+        $decryptedID = Crypt::decryptString($id);
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_registrasi', $registrasi->id_registrasi)->first();
-        $pelaporan = MPelaporan::where('id_pelaporan', $id)->first();
+        $pelaporan = MPelaporan::where('id_pelaporan', $decryptedID)->first();
         $informasi = $pengajuan->informasi;
 
 
 
-        $data = MPelaporan::getById($id);
+        $data = MPelaporan::getById($decryptedID);
         return view(
             'Pelaporan.viewpelaporan',
             ['data' => $data],
@@ -51,17 +54,19 @@ class C_Pelaporan extends Controller
 
     public function main(request $request,$id)
     {
+        $decryptedID = Crypt::decryptString($id);
+
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
-        $pengajuan = MPengajuan::where('id_pengajuan', $id)->first();
+        $pengajuan = MPengajuan::where('id_pengajuan', $decryptedID)->first();
         $informasi = $pengajuan->informasi;
 
         $pelaporan = MPelaporan::where('id_pengajuan', $pengajuan->id_pengajuan)->when($request->status_validasi != null, function ($query) use ($request) {
             return $query->whereIn('status_validasi', $request->status_validasi);
         })->paginate(4);
 
-        $data = MPengajuan::getById($id);
+        $data = MPengajuan::getById($decryptedID);
 
         if ($pelaporan->isEmpty()) {
             $message = "Tidak ada data pelaporan";
@@ -114,11 +119,9 @@ class C_Pelaporan extends Controller
         if ($request->hasFile('dokumentasi_pelaporan')) {
             $file = $request->file('dokumentasi_pelaporan');
             $nama_file = $file->getClientOriginalName();
-            $file->storeAs('dokumentasi', $nama_file);
-            $data['dokumentasi_pelaporan'] = $nama_file;
+            $filePath = $file->storeAs('dokumentasi', $nama_file, 'public');
+            $data['dokumentasi_pelaporan'] = $filePath; // Menyimpan path lengkap
         }
-        // dd($data);
-
         MPelaporan::create($data);
 
         return redirect()->route('homepage');
@@ -126,14 +129,12 @@ class C_Pelaporan extends Controller
 
     public function update(Request $request, $id_pelaporan)
     {
-        // dd($id_pelaporan);
-        // dd($request);
         $request->validate([
             'dokumentasi_pelaporan' => '|file|mimes:png,jpg,jpeg',
             'kondisi' => 'required',
             'nama_kegiatan' => 'required',
         ]);
-        // dd($request);
+
         $data = [
             'kondisi' => $request->kondisi,
             'nama_kegiatan' => $request->nama_kegiatan,
@@ -148,8 +149,8 @@ class C_Pelaporan extends Controller
         if ($request->hasFile('dokumentasi_pelaporan')) {
             $file = $request->file('dokumentasi_pelaporan');
             $nama_file = $file->getClientOriginalName();
-            $file->storeAs('dokumentasi', $nama_file);
-            $data['dokumentasi_pelaporan'] = $nama_file;
+            $filePath = $file->storeAs('dokumentasi', $nama_file, 'public');
+            $data['dokumentasi_pelaporan'] = $filePath; // Menyimpan path lengkap
         }
 
         $update = MPelaporan::getById($id_pelaporan);
@@ -181,15 +182,6 @@ class C_Pelaporan extends Controller
             'tanggal_validasi' => $request->tanggal_validasi,
             'catatan_validasi' => $request->catatan_validasi,
         ];
-
-
-
-        // if ($request->hasFile('dokumentasi_pelaporan')) {
-        //     $file = $request->file('dokumentasi_pelaporan');
-        //     $nama_file = $file->getClientOriginalName();
-        //     $file->storeAs('dokumentasi', $nama_file);
-        //     $data['dokumentasi_pelaporan'] = $nama_file;
-        // }
 
         $update = MPelaporan::getById($id_pelaporan);
         $update->update($data);

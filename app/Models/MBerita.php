@@ -21,6 +21,7 @@ class MBerita extends Model
         "id_informasi",
         'judul_informasi',
         'nama_bibit',
+        'deskripsi',
         'gambar_informasi',
         'tgl_awal',
         'tgl_akhir',
@@ -40,12 +41,5 @@ class MBerita extends Model
         return $this->hasMany(MPengajuan::class);
     }
 
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($post) {
-            $post->slug = str_replace(' ', '-', $post->judul_informasi);
-        });
-    }
+    
 }
