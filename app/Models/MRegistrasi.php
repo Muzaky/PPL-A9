@@ -31,7 +31,7 @@ class MRegistrasi extends Model
         'foto_profil'
     ];
     public function pengajuan(){
-        return $this->hasMany(MPengajuan::class, 'id_registrasi');
+        return $this->belongsTo(MPengajuan::class, 'id_registrasi');
     }
     static function getData()
     {
@@ -110,7 +110,7 @@ class MRegistrasi extends Model
     
 
     public function pelaporan(){
-        return $this->hasMany(MPelaporan::class);
+        return $this->hasMany(MPelaporan::class,'id_registrasi');
     }
 
 }

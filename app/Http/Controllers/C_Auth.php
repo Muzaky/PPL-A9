@@ -29,10 +29,6 @@ class C_Auth extends Controller
             $iduser = User::where('id', $userx)->first();
             $registrasi = MRegistrasi::where('id_users', $userx)->first();
             $usercount = MRegistrasi::where('id_users', $userx)->count();
-            // dd($registrasi);
-            // dd($user);
-            // Debugging statements
-            //dd($usercount); // Check the value of $usercount
             $x = Auth::user()->id_roles;
             // dd($x);
             if ($x == 1) {

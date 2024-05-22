@@ -1,49 +1,48 @@
 @extends('Layout.dinas_nav')
 @section('content')
     <section>
-        <div class="flex flex-col m-4 w-[100%]">
-            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Pelaporan Bantuan Bibit Horikultura
+        <div class="flex flex-col m-4">
+            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Montserrat] ">Pelaporan Bantuan Bibit Horikultura
             </h1>
-            <p class="text-[18px] font-normal text-[#9B9B9B] font-[Poppins] mt-[11px] text-wrap w-[1100px] leading-[25px]">
+            <p
+                class="text-[18px] font-normal text-[#9B9B9B] font-[Montserrat] mt-[11px] text-wrap w-[1100px] leading-[25px]">
                 Pada halaman ini akan membantu kamu dalam menambahkan pemberitahun, mengedit apabila diperlukan perubahan
                 pada pemberitahuan, menghapus pemberitahuan dan memantau pemberitahuan yang telah ditambahkan</p>
 
             <div class="flex flex-col overflow-x-auto mt-4">
                 <table class="table-auto min-w-full divide-y divide-gray-200 ">
-                    <thead class="bg-white">
+                    <thead class="bg-white border-2 border-[#204e51]">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 No</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Tanggal Pelaporan</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Nama Kegiatan</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Dokumentasi Pelaporan</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Kondisi</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Tanggal Validasi</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Catatan Validasi</th>                           
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Status Validasi</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Nama Kelompok Tani</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                                Pengajuan</th>
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Tanggal Pelaporan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins] ">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Nama Kegiatan</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Dokumentasi Pelaporan</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Kondisi</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Tanggal Validasi</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Catatan Validasi</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
+                                Status Validasi</th>
+
+                            <th scope="col"
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat] ">
                                 Action</th>
 
                         </tr>
@@ -56,6 +55,9 @@
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $no++ }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_keltani }}</div>
+                                </td>
+                                <td class="tb-col tb-col-md justify-center text-center">
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_pelaporan }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
@@ -63,14 +65,14 @@
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class="px-2 py-1 fs-6 lh-sm object-fill">
-                                        <a href="{{ asset('dokumentasi/' . $val->dokumentasi_pelaporan) }}">
-                                            {{ basename($val->dokumentasi_pelaporan) }}
+                                        <a href="{{ Storage::url($val->dokumentasi_pelaporan) }}">
+                                            Lihat Dokumentasi
 
                                         </a>
                                     </div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->kondisi)}}</div>
+                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->kondisi) }}</div>
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_validasi }}</div>
@@ -80,19 +82,15 @@
                                 </td>
                                 <td class="tb-col tb-col-md justify-center text-center">
                                     @if ($val->status_validasi == 1)
-                                    <div class=" px-2 py-1 fs-6 lh-sm">Diproses</div>
-                                    @elseif ($val->status_validasi ==2)
-                                    <div class=" px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
-                                    @else 
-                                    <div class=" px-2 py-1 fs-6 lh-sm">Ditolak</div>
+                                        <div class=" px-2 py-1 fs-6 lh-sm">Diproses</div>
+                                    @elseif ($val->status_validasi == 2)
+                                        <div class=" px-2 py-1 fs-6 lh-sm">Tervalidasi</div>
+                                    @else
+                                        <div class=" px-2 py-1 fs-6 lh-sm">Ditolak</div>
                                     @endif
                                 </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->nama_keltani }}</div>
-                                </td>
-                                <td class="tb-col tb-col-md justify-center text-center">
-                                    <div class=" px-2 py-1 fs-6 lh-sm">{{ $val->tanggal_pengajuan }}</div>
-                                </td>
+                               
+
                                 <td class="tb-col tb-col-md justify-center py-4 flex gap-x-3 ">
                                     <a href="{{ route('pelaporan.editdinas', $val->id_pelaporan) }}"
                                         class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-green-600"><i>
@@ -102,8 +100,7 @@
                                                     d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                                             </svg>
                                         </i></a>
-                                    <button id="delete-form" action=""
-                                        method="POST">
+                                    <button id="delete-form" action="" method="POST">
 
                                         <button onclick="showDelButton({{ $val->id_pelaporan }})"
                                             class="font-medium text-lg bg-transparent rounded-md border-t-2 border-l-2 border-b-4 border-r-4 border-red-600">

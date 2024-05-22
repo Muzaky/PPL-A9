@@ -2,7 +2,7 @@
 @section('content')
     <section>
         <div class="flex flex-col m-4">
-            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Bantuan Bibit Horikultura
+            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Montserrat] ">Bantuan Bibit Horikultura
             </h1>
             <p class="text-[18px] font-normal text-[#9B9B9B] font-[Montserrat] mt-[11px] text-wrap w-[1100px] leading-[25px]">
                 Pada halaman ini admin dapat melihat pengajuan bantuan dari kelompok tani. Dibagi menjadi 3 indikator : <br>
@@ -46,34 +46,34 @@
 
             <div class="flex flex-col overflow-x-auto mt-4">
                 <table class="table-auto min-w-full divide-y divide-gray-200" id="tablezz">
-                    <thead class="bg-white">
+                    <thead class="bg-white border-2 border-[#204e51]">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 No</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Nama Kelompok Tani</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Tanggal Pengajuan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Berkas Pengajuan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Bantuan Terakhir</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Catatan Validasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Tanggal Validasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Status Validasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins] ">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat] ">
                                 Action</th>
 
                         </tr>

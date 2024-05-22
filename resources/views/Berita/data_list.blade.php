@@ -3,7 +3,7 @@
     
     <section>
         <div class="flex flex-col m-4 ">
-            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Pemberitahuan Informasi Bibit Horikultura
+            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Montserrat] ">Pemberitahuan Informasi Bibit Horikultura
             </h1>
             <p class="text-[18px] font-normal text-[#9B9B9B] font-[Montserrat] mt-[11px] text-wrap w-[1100px] leading-[25px]">
                 Pada halaman ini akan membantu kamu dalam menambahkan pemberitahun, mengedit apabila diperlukan perubahan

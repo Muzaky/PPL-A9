@@ -80,7 +80,6 @@
                 </div>
             </div>
             <div class="flex flex-col items-center">
-    
                 @if ($pelaporan->isEmpty())
                     <h1>Tidak ada laporan yang dapat ditampilkan</h1>
                     <a href="{{ route('pelaporan.landing') }}" class="text-[#204E51]"></a>
@@ -140,12 +139,18 @@
                         </div>
                     @endforeach
                 @endif
-    
-                <button>
+                
+                @if ($pelaporancount == 5)
+                <div>
+                    Terima kasih sudah melengkapi pelaporan bantuan kelompok tani !
+                </div>
+                @else
+                <div>
                     <button onclick="showEditButton()"
                         class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[220px] mt-4">
                         Tambahkan Pelaporan</button>
-                </button>
+                </div>
+                @endif
                 {{ $pelaporan->links() }}
             </div>
             {{-- @foreach ($pelaporan as $pelaporans) --}}

@@ -16,6 +16,7 @@ class C_Registrasi extends Controller
     public function index()
     {
         $data = MRegistrasi::getData()->paginate(10);
+        
         return view(
             "Registrasi.data_list",
             ['data' => $data]
@@ -149,14 +150,16 @@ class C_Registrasi extends Controller
         if ($request->hasFile('bukti_legalitas')) {
             $file = $request->file('bukti_legalitas');
             $nama_file = $file->getClientOriginalName();
-            $file->storeAs('bukti', $nama_file, 'public');
-            $data['bukti_legalitas'] = $nama_file;
+            $filePath = $file->storeAs('bukti', $nama_file, 'public');
+            $data['bukti_legalitas'] = $filePath; // Menyimpan path lengkap
         }
 
-        $update = MRegistrasi::getById($id_registrasi);
-        $update->update($data);
-        return redirect()->route('homepage')
-            ->with('success', 'Data akun sudah diperbarui');
+       if ($request->hasFile('bukti_legalitas')) {
+                $file = $request->file('bukti_legalitas');
+                $nama_file = $file->getClientOriginalName();
+                $filePath = $file->storeAs('bukti', $nama_file, 'public');
+                $data['bukti_legalitas'] = $filePath; // Menyimpan path lengkap
+            }
     }
 
 
@@ -193,8 +196,8 @@ class C_Registrasi extends Controller
         if ($request->hasFile('bukti_legalitas')) {
             $file = $request->file('bukti_legalitas');
             $nama_file = $file->getClientOriginalName();
-            $file->storeAs('bukti', $nama_file);
-            $data['bukti_legalitas'] = $nama_file;
+            $filePath = $file->storeAs('bukti', $nama_file, 'public');
+            $data['bukti_legalitas'] = $filePath; // Menyimpan path lengkap
         }
 
         $update = MRegistrasi::getById($id_registrasi);
@@ -236,8 +239,8 @@ class C_Registrasi extends Controller
         if ($request->hasFile('foto_profil')) {
             $file = $request->file('foto_profil');
             $nama_file = $file->getClientOriginalName();
-            $file->storeAs('fotoprofil', $nama_file);
-            $data['foto_profil'] = $nama_file;
+            $filePath = $file->storeAs('fotoprofil', $nama_file, 'public');
+            $data['foto_profil'] = $filePath; // Menyimpan path lengkap
         }
         $update = MRegistrasi::getById($id_registrasi);
         $update->update($data);

@@ -42,7 +42,7 @@ class MPengajuan extends Model
     }
 
     public function pelaporan(){
-        return $this->hasMany(MPelaporan::class);
+        return $this->hasMany(MPelaporan::class, 'id_pengajuan');
     }
     public function informasi()
     {

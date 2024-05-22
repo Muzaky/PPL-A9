@@ -2,53 +2,53 @@
 @section('content')
     <section>
         <div class="flex flex-col m-4">
-            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Poppins] ">Kelompok Tani Kabupaten Jember
+            <h1 class="text-[40px] font-semibold text-[#33765F] font-[Montserrat] ">Kelompok Tani Kabupaten Jember
             </h1>
-            <p class="text-[18px] font-normal text-[#9B9B9B] font-[Poppins] mt-[11px] text-wrap w-[1100px] leading-[25px]">
+            <p class="text-[18px] font-normal text-[#9B9B9B] font-[Montserrat] mt-[11px] text-wrap w-[1100px] leading-[25px]">
                 Pada halaman ini akan membantu Anda dalam menampilkan data dari seluruh Kelompok Tani di Kabupaten Jember
                 dan Kelompok
                 Tani yang meminta persetujuan validasi akun BibiTani.</p>
 
-            {{-- <a class="flex justify-center  items-center font-[Poppins] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
+            {{-- <a class="flex justify-center  items-center font-[Montserrat] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
                 href="{{ route('berita.create') }}" id="myButton" onclick="startLoading()"><span class="flex">Tambah
                     Informasi
                     Baru</span></a> --}}
             <div class="flex flex-col mt-4 overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200 table-auto ">
-                    <thead class="bg-white">
+                    <thead class="bg-white border-2 border-[#204e51]">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 No</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Nama Kel.Tani</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Nama Ketua</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Luas Hamparan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Jumlah Anggota</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Alamat Kel.Tani</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Bukti Legalitas</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Tanggal Validasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Catatan Validasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 Status Validasi</th>
                             <th scope="col"
-                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Poppins] ">
+                                class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat] ">
                                 Action</th>
 
                         </tr>

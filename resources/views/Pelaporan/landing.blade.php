@@ -35,6 +35,7 @@
                         Jika belum terdapat bantuan bibit yang sudah pernah diajukan maka, pengajuan tersebut belum disetujui oleh dinas atau pengajuan tidak memenuhi syarat yang diberikan oleh dinas
                     </h1>
                 </div>
+                
                 @foreach ($pengajuan as $pengajuan)
                     @if ($pengajuan->status_validasi == 2)
                         <div class="flex flex-col items-center">

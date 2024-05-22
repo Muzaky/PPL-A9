@@ -61,10 +61,12 @@ class C_Pelaporan extends Controller
         $registrasi = MRegistrasi::where('id_users', $user)->first();
         $pengajuan = MPengajuan::where('id_pengajuan', $decryptedID)->first();
         $informasi = $pengajuan->informasi;
+        $pelaporancount = MPelaporan::where('id_pengajuan', $decryptedID)->count();
 
+    
         $pelaporan = MPelaporan::where('id_pengajuan', $pengajuan->id_pengajuan)->when($request->status_validasi != null, function ($query) use ($request) {
             return $query->whereIn('status_validasi', $request->status_validasi);
-        })->paginate(4);
+        })->paginate(5);
 
         $data = MPengajuan::getById($decryptedID);
 
@@ -73,14 +75,14 @@ class C_Pelaporan extends Controller
             return view(
                 'Pelaporan.main',
                 ['data' => $data, 'pelaporan' => $pelaporan],
-                compact('informasi', 'registrasi', 'pelaporan', 'pengajuan', 'iduser', 'message')
+                compact('informasi', 'registrasi', 'pelaporan', 'pengajuan', 'iduser', 'message','pelaporancount')
             );
         }
 
         return view(
             'Pelaporan.main',
             ['data' => $data],
-            compact('informasi', 'registrasi', 'pelaporan', 'pengajuan', 'iduser')
+            compact('informasi', 'registrasi', 'pelaporan', 'pengajuan', 'iduser','pelaporancount')
         );
     }
     public function store(Request $request)
@@ -192,11 +194,8 @@ class C_Pelaporan extends Controller
     public function index()
     {
 
-        $data = MPelaporan::select('pelaporan.*', 'pengajuan.tanggal_pengajuan', 'registrasi.nama_keltani')
-            ->join('pengajuan', 'pelaporan.id_pelaporan', '=', 'pengajuan.id_pengajuan')
-            ->join('registrasi', 'pengajuan.id_registrasi', '=', 'registrasi.id_registrasi')
-            ->get();
-        //return json_encode($data);
+        $data = MPelaporan::getDatas();
+   
         return view(
             'Pelaporan.data_list',
             ['data' => $data]

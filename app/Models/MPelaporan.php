@@ -29,24 +29,40 @@ class MPelaporan extends Model
     ];
 
 
-    static function getData(){
+    static function getData()
+    {
         return DB::table('pelaporan');
     }
 
-    public static function getById($id_pelaporan){
+    public static function getById($id_pelaporan)
+    {
         return static::find($id_pelaporan);
     }
 
-    public function pengajuan(){
-        return $this->belongsTo(MPengajuan::class,'id_pengajuan');
+    public function pengajuan()
+    {
+        return $this->belongsTo(MPengajuan::class, 'id_pengajuan');
     }
-    public function registrasi(){
-        return $this->belongsTo(MRegistrasi::class);
+    public function registrasi()
+    {
+        return $this->belongsTo(MRegistrasi::class, 'id_registrasi');
     }
 
-    // public function pelaporan(){
-    //     return $this->belongsTo(MPengajuan::class);
-    // }
-
-
+    static function getDatas()
+    {
+        return DB::table('pelaporan')
+            ->select(
+                'pelaporan.id_pelaporan',
+                'pelaporan.tanggal_pelaporan',
+                'pelaporan.nama_kegiatan',
+                'pelaporan.dokumentasi_pelaporan',
+                'pelaporan.kondisi',
+                'pelaporan.tanggal_validasi',
+                'pelaporan.catatan_validasi',
+                'pelaporan.status_validasi',
+                'registrasi.nama_keltani'
+            )->join('registrasi', 'pelaporan.id_registrasi', '=', 'registrasi.id_registrasi')
+            ->join('pengajuan', 'pelaporan.id_pengajuan', '=', 'pengajuan.id_pengajuan')
+            ->get();
+    }
 }
