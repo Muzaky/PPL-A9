@@ -166,10 +166,6 @@
             </div>
         </div>
 
-        <!--Modal Script Edit Button-->
-
-        {{-- @extends('Berita.edit') --}}
-
 
 
         <script>

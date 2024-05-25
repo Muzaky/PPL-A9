@@ -33,6 +33,9 @@ class MRegistrasi extends Model
     public function pengajuan(){
         return $this->belongsTo(MPengajuan::class, 'id_registrasi');
     }
+    public function pengajuans(){
+        return $this->hasMany(MPengajuan::class, 'id_registrasi');
+    }
     static function getData()
     {
         return DB::table('registrasi');

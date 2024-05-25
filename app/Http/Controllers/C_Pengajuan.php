@@ -22,6 +22,7 @@ class C_Pengajuan extends Controller
     public function landing(request $request)
     {
 
+      
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
@@ -160,29 +161,35 @@ class C_Pengajuan extends Controller
     public function index(Request $request)
     {
         $statusValidasi = $request->input('status_validasi', []);
+        
+       
 
         // Query untuk mendapatkan data registrasi dengan pengajuannya
-        $registrationsQuery = MRegistrasi::with(['pengajuan' => function ($query) use ($statusValidasi) {
+        $registrationsQuery = MRegistrasi::with(['pengajuans' => function ($query) use ($statusValidasi) {
             // Filter berdasarkan status_validasi jika ada
             if (!empty($statusValidasi)) {
                 $query->whereIn('status_validasi', $statusValidasi);
             }
             $query->orderBy('id_pengajuan', 'desc'); // Mengurutkan pengajuan berdasarkan id_pengajuan
         }]);
-
+        
+        
         $registrations = $registrationsQuery->get();
+
+        
         // Menggabungkan semua pengajuan dari registrasi yang berbeda dan mengurutkannya
         $allPengajuans = collect();
         foreach ($registrations as $registration) {
-            $lastValidatedDate = $registration->pengajuan
+            $lastValidatedDate = $registration->pengajuans
                 ->where('status_validasi', 2) // Status validasi tervalidasi
                 ->max('tanggal_validasi'); // Mendapatkan tanggal validasi terbaru
 
-            $lastValidatedDate = $lastValidatedDate ? Carbon::parse($lastValidatedDate)->format('d-m-Y') : null;
 
-            foreach ($registration->pengajuan as $pengajuan) {
+            $lastValidatedDate = $lastValidatedDate ? Carbon::parse($lastValidatedDate)->translatedFormat('D , d-m-Y') : null;
+
+            foreach ($registration->pengajuans as $pengajuans) {
                 $allPengajuans->push([
-                    'pengajuan' => $pengajuan,
+                    'pengajuan' => $pengajuans,
                     'registration' => $registration,
                     'lastValidatedDate' => $lastValidatedDate,
                 ]);
