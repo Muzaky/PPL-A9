@@ -89,7 +89,7 @@
                                             </label>
                                             <input
                                                 class="w-[600px] h-[52px] p-2 rounded-[8px] @error('password') border-red-500 @enderror"
-                                                type="confirm-password" placeholder="Konfirmasi password" id="password" name="password" />
+                                                type="password" placeholder="Konfirmasi password" id="password" name="password" />
                                             @error('password')
                                                 <div class="text-red-500 capitalize invalid-feedback">
                                                     {{ $message }}

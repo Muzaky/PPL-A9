@@ -19,7 +19,6 @@
 </head>
 <style>
 
-
     #overlay {
 
         background-color: rgba(0, 0, 0, 0.45);
@@ -116,7 +115,7 @@
         </div>
     @endif
 
-    <nav class="flex items-center p-6 lg:px-8 mx" aria-label="Global">
+    <nav class="flex items-center p-6 lg:px-8" aria-label="Global">
         <div class="flex">
             <a href="/" class="-m-1.5 p-1.5">
                 <span class="sr-only">Your Company</span>
@@ -127,6 +126,13 @@
             <a href="#hero" class="font-semibold leading-6 navitem" style="font-size:20px">Home</a>
             <a href="#about" class="font-semibold leading-6 navitem" style="font-size:20px">About Us</a>
             <a href="#footer" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Address</a>
+            @if (Auth::check())
+                @if (Auth::user()->id_roles == '2')
+                <a href="/dashboard" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Dashboard</a>
+                @else
+                <a href="/homepage" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Homepage</a>
+                @endif
+            @endif
         </div>
         <div class=" lg:flex lg:flex-1 lg:justify-end">
             @if (Auth::check())

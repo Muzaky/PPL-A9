@@ -91,12 +91,12 @@
                                                             clipRule="evenodd" />
                                                     </svg>
                                                     <p id="textcontent">
-                                                        Klik Untuk Unggah Berkas Pengajuan
+                                                        Klik untuk unggah dokumen pengajuan (PDF)
                                                     </p>
                                                 </div>
                                             </div>
                                             <input id="dropzone-file" onchange="displayFileName()" name="berkas_pengajuan"
-                                                type="file" class="hidden"/>
+                                                type="file" class="hidden" accept="application/pdf"/>
                                         </label>
                                     </div>
 
@@ -162,7 +162,7 @@
                 if (fileInput.files.length > 0) {
                     fileNameParagraph.textContent = fileInput.files[0].name;
                 } else {
-                    fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Bukti Legalitas';
+                    fileNameParagraph.innerHTML = svgCode + 'Klik untuk unggah dokumen pengajuan (PDF)';
                 }
             }
         </script>

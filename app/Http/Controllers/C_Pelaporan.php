@@ -126,11 +126,14 @@ class C_Pelaporan extends Controller
         }
         MPelaporan::create($data);
 
-        return redirect()->route('homepage');
+        return redirect()->route('homepage')->with('status', 'Berhasil melakukan pelaporan !');
     }
 
     public function update(Request $request, $id_pelaporan)
     {
+        
+        $decryptedID = Crypt::decryptString($id_pelaporan);
+        
         $request->validate([
             'dokumentasi_pelaporan' => '|file|mimes:png,jpg,jpeg',
             'kondisi' => 'required',
@@ -155,10 +158,16 @@ class C_Pelaporan extends Controller
             $data['dokumentasi_pelaporan'] = $filePath; // Menyimpan path lengkap
         }
 
-        $update = MPelaporan::getById($id_pelaporan);
-        $update->update($data);
-        return redirect()->route('pelaporan.show', ['id' => $id_pelaporan])
-            ->with('success', 'Data telah berubah');
+        $update = MPelaporan::getById($decryptedID);
+        if ($update){
+            $update->update($data);
+            return redirect()->route('pelaporan.show', ['id' => $id_pelaporan])
+                ->with('success', 'Data pelaporan telah diubah !');
+        } else{
+            return redirect()->route('pelaporan.show', ['id' => $id_pelaporan])
+                ->with('error', 'Gagal mengubah data pelaporan');
+        }
+        
     }
 
 
@@ -166,20 +175,14 @@ class C_Pelaporan extends Controller
 
     public function updatedinas(Request $request, $id_pelaporan)
     {
-
-        // dd($request);
+        
         $request->validate([
-            // 'dokumentasi_pelaporan' => 'required|file|mimes:png,jpg,jpeg',
-            'kondisi' => 'required',
-            'nama_kegiatan' => 'required',
             'status_validasi' => 'required',
             'catatan_validasi' => 'required',
             'tanggal_validasi',
         ]);
 
         $data = [
-            'kondisi' => $request->kondisi,
-            'nama_kegiatan' => $request->nama_kegiatan,
             'status_validasi' => $request->status_validasi,
             'tanggal_validasi' => $request->tanggal_validasi,
             'catatan_validasi' => $request->catatan_validasi,
@@ -188,14 +191,20 @@ class C_Pelaporan extends Controller
         $update = MPelaporan::getById($id_pelaporan);
         $update->update($data);
         return redirect()->route('pelaporan.list')
-            ->with('success', 'Berita telah terpost');
+            ->with('success', 'data pelaporan berhasil diubah !');
     }
 
-    public function index()
+    public function index(request $request)
     {
 
-        $data = MPelaporan::getDatas();
-   
+        $data = MPelaporan::getDatas()->orderBy('id_pelaporan', 'desc') // Ensure this method returns a query builder
+        ->when($request->status_validasi != null, function ($query) use ($request) {
+            return $query->whereIn('pelaporan.status_validasi', $request->status_validasi)->orderBy('id_pelaporan', 'desc');
+        })
+        ->paginate(10);
+        
+     
+
         return view(
             'Pelaporan.data_list',
             ['data' => $data]
@@ -205,7 +214,6 @@ class C_Pelaporan extends Controller
     public function editdinas(Request $request, $id_pelaporan)
     {
         $data = MPelaporan::getById($id_pelaporan);
-        // dd($data);
         return view(
             'Pelaporan.editdinas',
             compact('data')

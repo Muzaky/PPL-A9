@@ -44,7 +44,7 @@
         </div>
         <div class="flex flex-col items-center">
             <div
-                class="flex flex-col text-center w-[1440px] h-full bg-[#204E51] items-center mt-8 shadow-xl border-[4px] border-[#204E51] rounded-[20px] relative">
+                class="flex flex-col text-center w-[1440px] h-full bg-[#204E51] items-center mt-8 pb-4 shadow-xl border-[4px] border-[#204E51] rounded-[20px] relative">
                 <div class="bg-white shadow-xl rounded-[20px] w-full px-10 pb-10">
 
                     <a href="{{ route('pelaporan.main', Crypt::encryptString($pengajuan->id_pengajuan)) }}"
@@ -128,29 +128,29 @@
                                         disetujui</span>
                                 </div>
                                 <div>
-                                    <p class="px-4 py-4 text-center">{{ $data->updated_at }}</p>
+                                    <p class="px-4 py-4 text-center">Tanggal Validasi : {{ $data->updated_at }}</p>
                                 </div>
                                 <div>
                                     <textarea type="text" class="w-[449px] h-full border-0 text-center mt-4 rounded" disabled readonly>{{ strip_tags($data->catatan_validasi) }}</textarea>
                                 </div>
                             @elseif ($data->status_validasi == 3)
-                                <div class="flex items-center bg-[#f4f4f4] rounded-[8px]">
+                                <div class="flex items-center bg-red-200 rounded-[8px]">
                                     <div class="h-[60vpx] w-[5px] bg-red-500"></div>
                                     <div class="p-1 mx-2 bg-red-500 rounded-full">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13l4 4L19 7"></path>
-                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                            <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                                          </svg>
+                                          
+                                          
                                     </div>
                                     <span class="text-[#000] font-medium px-4 py-4">Berkas Pelaporan Ditolak</span>
                                 </div>
                                 <div>
-                                    <p>{{ $data->updated_at }}</p>
-
+                                    <p class="px-4 py-4 text-center text-white">Tanggal Validasi : {{ $data->updated_at }}
+                                    </p>
                                 </div>
                                 <div>
-                                    <textarea type="text" class="w-[449px] h-full border-0 text-center mt-4 rounded" disabled readonly>Belum ada catatan</textarea>
+                                    <textarea type="text" class="w-[449px] h-full border-0 text-center mt-4 rounded" disabled readonly>{{ strip_tags($data->catatan_validasi) }}</textarea>
                                 </div>
                             @else
                                 <div class="flex items-center bg-yellow-100 rounded-[8px]">
@@ -173,17 +173,17 @@
                                 </div>
                         </div>
                         @endif
-                        <div class="flex flex-row m-4 ">
-                            @if ($pengajuan->status_validasi == 3 || $pengajuan->status_validasi == 1)
-                                <button onclick="showEditButton()"
-                                    class="text-[#f4f4f4] p-2 font-[Montserrat] border-b-2">Ubah
-                                    Data</button>
-                            @endif
-                        </div>
                     </div>
-
+                    
                 </div>
-
+                
+            </div>
+            <div class="flex flex-row mt-4 justify-center">
+                @if ($data->status_validasi == 3 || $data->status_validasi == 1)
+                    <button onclick="showEditButton()"
+                        class="text-[#f4f4f4] p-2 font-[Montserrat] border-b-2">Ubah
+                        Data</button>
+                @endif
             </div>
         </div>
         <!-- Back button -->
@@ -191,7 +191,7 @@
 
 
         <div id="editbutton"
-            class="fixed top-0 left-0 items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
+            class="fixed top-0 left-0 items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40 font-[Montserrat]">
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg bg-blueGray-100">
                 <button onclick="hideEditButton()"
@@ -205,11 +205,11 @@
                 </button>
                 <div class="flex-auto px-4 py-4 pt-0 lg:px-10">
                     <form class="flex flex-col items-center justify-center"
-                        action="{{ route('pelaporan.update', $pelaporan->id_pelaporan) }}" method="POST"
+                        action="{{ route('pelaporan.update',  Crypt::encryptString($pelaporan->id_pelaporan)) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <h6 class="mt-3 mb-6 text-sm font-bold uppercase text-blueGray-400">
-                            Ubah Pelaporan
+                            Ubah Data Pelaporan
                         </h6>
                         <div class="flex flex-wrap text-center">
 
@@ -249,8 +249,20 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file" onchange="displayFileName()"
-                                                name="dokumentasi_pelaporan" type="file" class="hidden">
+                                                name="dokumentasi_pelaporan" type="file" class="hidden" accept="image/*">
                                         </label>
+                                    </div>
+                                    <div class="notice-container  my-4 bg-gray-200/40 text-[14px] flex-row flex items-center rounded-[8px]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            strokeWidth={1.5} stroke="currentColor"
+                                            class="rounded-full w-[100px] h-[100px] p-2 text-yellow-200">
+                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                                        </svg>
+                                    
+                                        <span class="p-2  w-[400px] text-wrap">
+                                            Mengubah data akan otomatis mengubah status validasi kembali ke status dalam proses
+                                        </span>
                                     </div>
                                 </div>
                             </div>

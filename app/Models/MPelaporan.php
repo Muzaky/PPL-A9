@@ -61,8 +61,8 @@ class MPelaporan extends Model
                 'pelaporan.catatan_validasi',
                 'pelaporan.status_validasi',
                 'registrasi.nama_keltani'
-            )->join('registrasi', 'pelaporan.id_registrasi', '=', 'registrasi.id_registrasi')
-            ->join('pengajuan', 'pelaporan.id_pengajuan', '=', 'pengajuan.id_pengajuan')
-            ->get();
+            )
+            ->join('registrasi', 'pelaporan.id_registrasi', '=', 'registrasi.id_registrasi')
+            ->join('pengajuan', 'pelaporan.id_pengajuan', '=', 'pengajuan.id_pengajuan');
     }
 }

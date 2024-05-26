@@ -141,7 +141,7 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file" onchange="displayFileName()"
-                                                name="bukti_legalitas" type="file" class="hidden" />
+                                                name="bukti_legalitas" type="file" class="hidden" accept="application/pdf" />
                                         </label>
                                     </div>
                                     <!-- Submit button -->

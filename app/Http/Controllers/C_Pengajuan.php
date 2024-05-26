@@ -83,7 +83,6 @@ class C_Pengajuan extends Controller
 
         $user = Auth::user()->id;
         $id_registrasi = MRegistrasi::where('id_users', $user)->get('id_registrasi');
-        // dd($id_registrasi);
 
 
 
@@ -106,11 +105,14 @@ class C_Pengajuan extends Controller
             $nama_file = $file->getClientOriginalName();
             $filePath = $file->storeAs('pdf', $nama_file, 'public');
             $data['berkas_pengajuan'] = $filePath; // Menyimpan path lengkap
+
+            MPengajuan::create($data);
+            return redirect()->route('homepage')->with('status', 'Berhasil melakukan pengajuan !');
         }
 
-        MPengajuan::create($data);
-
-        return redirect()->route('homepage')->with('success', 'Berhasil melakukan pengajuan !');
+        else {
+            return redirect()->route('homepage')->with('error', 'Gagal melakukan pengajuan !');
+        }
     }
 
     public function edit(Request $request, $id_pengajuan)
@@ -162,8 +164,6 @@ class C_Pengajuan extends Controller
     {
         $statusValidasi = $request->input('status_validasi', []);
         
-       
-
         // Query untuk mendapatkan data registrasi dengan pengajuannya
         $registrationsQuery = MRegistrasi::with(['pengajuans' => function ($query) use ($statusValidasi) {
             // Filter berdasarkan status_validasi jika ada
@@ -216,7 +216,7 @@ class C_Pengajuan extends Controller
 
     public function updatedinas(Request $request, $id_pengajuan)
     {
-        // dd($request->all());
+        // dd($request);
         $request->validate([
             'berkas_pengajuan' => 'file|mimes:pdf',
             'status_validasi' => 'required',
@@ -225,8 +225,6 @@ class C_Pengajuan extends Controller
             'tanggal_validasi',
 
         ]);
-
-
 
         $data = [
             'tanggal_pengajuan' => $request->tanggal_pengajuan,
@@ -241,13 +239,12 @@ class C_Pengajuan extends Controller
             $file->storeAs('pdf', $nama_file);
             $data['berkas_pengajuan'] = $nama_file;
         }
-
-        // dd($data)->all();
-
+        
+   
 
         $update = MPengajuan::getById($id_pengajuan);
         $update->update($data);
         return redirect()->route('pengajuan.list')
-            ->with('success', 'Berita telah terpost');
+            ->with('success', 'Data pengajuan telah diubah');
     }
 }

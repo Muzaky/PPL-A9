@@ -1,22 +1,43 @@
 @extends('Layout.dinas_nav')
 @section('content')
-    
     <section>
         <div class="flex flex-col m-4 ">
             <h1 class="text-[40px] font-semibold text-[#33765F] font-[Montserrat] ">Pemberitahuan Informasi Bibit Horikultura
             </h1>
-            <p class="text-[18px] font-normal text-[#9B9B9B] font-[Montserrat] mt-[11px] text-wrap w-[1100px] leading-[25px]">
+            <p
+                class="text-[18px] font-normal text-[#9B9B9B] font-[Montserrat] mt-[11px] text-wrap w-[1100px] leading-[25px]">
                 Pada halaman ini akan membantu kamu dalam menambahkan pemberitahun, mengedit apabila diperlukan perubahan
                 pada pemberitahuan, menghapus pemberitahuan dan memantau pemberitahuan yang telah ditambahkan</p>
 
-            <a class="flex justify-center text-center items-center font-[Montserrat] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
-                href="{{ route('berita.create') }}" id="myButton" onclick="startLoading()"><span class="flex">Tambah
-                    Informasi
-                    Baru</span></a>
-            <div class="flex flex-col overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200 table-auto ">
-                    <thead class="bg-white border-2 border-[#204e51]">
-                        <tr>
+            <div class="flex flex-col overflow-x-auto mt-8">
+                <table class="min-w-full divide-y divide-gray-200 table-auto" id="tablezz">
+                    <thead class="bg-white">
+                        <tr class="flex-row">
+                            <td colspan="5" class=" rounded-tl-xl bg-[#204e51]">
+                                <div class="relative w-[500px] text-gray-400 focus-within:text-gray-600 px-4">
+                                    <input id="search_field"
+                                        class=" w-full h-full pl-14 pr-4 py-1 rounded-md border-2 border-[#204e51] bg-[#f4f4f4]"
+                                        placeholder="Cari berdasarkan judul" type="search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="w-6 h-6 absolute left-6 top-1/2 transform -translate-y-1/2">
+                                        <path fillRule="evenodd"
+                                            d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                                            clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                            </td>
+                            <td colspan="6" class=" rounded-tr-xl bg-[#204e51]">
+                                <div class="flex flex-row justify-end mr-4">
+
+                                    <a class="flex justify-center text-center items-center font-[Montserrat] font-semibold text-[13px] bg-white rounded-[5px] text-[#33765F] mb-[22px] mt-5 ml-5 w-[211px] h-[26px] btn btn-primary loading-button hover:text-white hover:bg-[#8BD7D2]"
+                                        href="{{ route('berita.create') }}" id="myButton" onclick="startLoading()"><span
+                                            class="flex">Tambah
+                                            Informasi
+                                            Baru</span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b-2 border-[#204e51]">
                             <th scope="col"
                                 class="px-6 py-3 text-center text-xs font-normal text-black  tracking-wider font-[Montserrat]">
                                 No</th>
@@ -55,11 +76,12 @@
                     <tbody>
                         <?php $no = 1; ?>
                         @foreach ($data as $val)
-                            <tr>
+                            <tr class="bg-white">
                                 <td class="justify-center text-center tb-col tb-col-sm">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ $no++ }}</div>
                                 </td>
-                                <td id="judulinfo" class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64 overflow-ellipsis whitespace-nowrap overflow-hidden">
+                                <td id="judulinfo"
+                                    class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64 overflow-ellipsis whitespace-nowrap overflow-hidden">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ $val->judul_informasi }}</div>
                                 </td>
                                 <td class="justify-center text-center tb-col tb-col-md">
@@ -81,10 +103,12 @@
                                 <td class="justify-center text-center tb-col tb-col-md">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ $val->jumlah_bibit }}</div>
                                 </td>
-                                <td class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64  overflow-ellipsis whitespace-nowrap overflow-hidden">
+                                <td
+                                    class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64  overflow-ellipsis whitespace-nowrap overflow-hidden">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->syarat_ketentuan) }}</div>
                                 </td>
-                                <td class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64 overflow-ellipsis whitespace-nowrap overflow-hidden">
+                                <td
+                                    class="justify-center text-center tb-col tb-col-md max-w-32 max-h-64 overflow-ellipsis whitespace-nowrap overflow-hidden">
                                     <div class="px-2 py-1 fs-6 lh-sm">{{ strip_tags($val->deskripsi) }}</div>
                                 </td>
                                 <td class="justify-center text-center tb-col tb-col-md">
@@ -99,8 +123,7 @@
                                                     d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                                             </svg>
                                         </i></a>
-                                    <button id="delete-form" action=""
-                                        method="POST">
+                                    <button id="delete-form" action="" method="POST">
                                         <button onclick="showDelButton({{ $val->id_informasi }})"
                                             class="text-lg font-medium bg-transparent border-t-2 border-b-4 border-l-2 border-r-4 border-red-600 rounded-md">
                                             <i>
@@ -150,7 +173,7 @@
         </div>
 
         <!--Modal Script Edit Button-->
-        
+
         {{-- @extends('Berita.edit') --}}
 
 
@@ -168,7 +191,7 @@
 
             }
 
-            
+
 
             function hideDelButton() {
                 let delbutton = document.getElementById('delbutton')
@@ -189,6 +212,24 @@
                     delbutton.classList.add('opacity-100')
                 }, 20);
             }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#search_field').on('keyup', function() {
+                    var searchText = $(this).val().toLowerCase();
+                    $('#tablezz tbody tr').each(function() {
+                        var taniname = $(this).find('td:eq(1)').text().toLowerCase();
+                        if (taniname.includes(searchText)) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+            });
         </script>
     </section>
 @endsection

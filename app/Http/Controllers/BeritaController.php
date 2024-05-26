@@ -29,7 +29,7 @@ class BeritaController extends Controller
             compact('registrasi', 'iduser')
         );
     }
-    public function index()
+    public function index(request $request)
     {
         $data = MBerita::getData()->paginate(10);
         //return json_encode($data);

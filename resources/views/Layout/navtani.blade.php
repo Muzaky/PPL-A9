@@ -75,7 +75,7 @@
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
                             </li>
                             <li>
-                                <a href="{{ route('kelompoktani.profile', $registrasi->id_registrasi) }}"
+                                <a href="{{ route('kelompoktani.profile', Crypt::encryptString($registrasi->id_registrasi)) }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
                             </li>
                         </ul>
@@ -89,7 +89,7 @@
                     <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
                         data-dropdown-placement="bottom-start"
                         class="w-12 h-12 rounded-full cursor-pointer border-2 border-[#204E51] mr-12"
-                        src="{{ asset('fotoprofil/' . $registrasi->foto_profil) }}" alt="User dropdown">
+                        src="{{ Storage::url($registrasi->foto_profil) }}" alt="User dropdown">
 
                     <!-- Dropdown menu -->
                     <div id="userDropdown"

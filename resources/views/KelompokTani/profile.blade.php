@@ -24,13 +24,14 @@
 <body class="">
     <section class="flex items-center justify-center h-full py-4">
         <div class="flex flex-col container-main h-full w-[100vh] shadow-2xl rounded-lg px-4 pb-10">
+            
             <a href="{{ route('homepage') }}" class="top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
                 aria-label="Close">
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </a>
-            <div id="judul-container" class="mb-[10px] text-[36px] font-bold font-[Open Sans] text-center">Profile Kelompok <font style="color: #53C341">Tani</font></div>
+            <div id="judul-container" class="mb-[10px] text-[36px] font-bold font-[Open Sans] text-center">Profile Kelompok <font style="color: #204E51">Tani</font></div>
             <div class="flex items-center justify-center photo-container">
                 <div class="upload w-[200px]">
                     @if ($registrasi->foto_profil == null)
@@ -48,7 +49,7 @@
                                 @csrf
                                 @method('PUT')
                                 <input id="inputprofile" type="file" name="foto_profil"
-                                    class="absolute w-5 border opacity-0" >
+                                    class="absolute w-5 border opacity-0" accept="image/*">
                                 <i class ="fa fa-camera" style = "color: #fff;" id="upload"></i>
                             </form>
                         </div>
@@ -60,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-4 rounded-[8px] bg-[#53C341] my-4 mx-2">
+            <div class="p-4 rounded-[8px] bg-[#204E51] my-4 mx-2">
                 <div class=" text-xl font-medium text-white w-[500px]">
                     <p>
                         Halo, <b>{{ $registrasi->nama_keltani }} ! </b>
@@ -69,13 +70,13 @@
             </div>
             <div class="flex flex-row profile-container">
                 <div class="flex w-[50%] flex-col">
-                    <form action="{{ route('registrasi.update', $registrasi->id_registrasi) }}" id="profilkeltan"
+                    <form action="{{ route('registrasi.update', Crypt::encryptString($registrasi->id_registrasi)) }}" id="profilkeltan"
                         method="POST">
                         @method('PUT')
                         @csrf
     
                         <div class="px-2">
-                            <div class="bg-[#53C341] rounded-[8px] px-2 py-2 flex flex-col text-white">
+                            <div class="bg-[#204E51] rounded-[8px] px-2 py-2 flex flex-col text-white">
                                 <div class="flex flex-row items-center justify-between">
                                     <p class="text-[20px] px-2 font-[poppins] font-semibold">Data
                                         Profil</p>
@@ -159,7 +160,7 @@
                         @method('PUT')
                         @csrf
                         <div class="px-2">
-                            <div class="bg-[#53C341] rounded-[8px] px-2 py-2 flex flex-col text-white">
+                            <div class="bg-[#204E51] rounded-[8px] px-2 py-2 flex flex-col text-white">
                                 <div class="flex flex-row items-center justify-between">
                                     <p class="text-[20px] px-2 font-[poppins] font-semibold">Data
                                         Kredensial</p>
@@ -191,7 +192,7 @@
                                 class="px-2 py-1 rounded-[8px]  bg-white  input_main5 border hidden">
                             <small class="pt-1 pl-2 text-yellow-500 font-[poppins] input_main5 hidden">Optional</small>
                             <small class="pt-3 pl-2 text-gray-400 font-[poppins] input_main5 hidden text-wrap">
-                                
+
                                 <br>
                                 Perhatikan penulisan password baru anda !, jika anda benar benar
                                 sudah yakin dengan password anda makan anda dapat menekan "Ubah"
