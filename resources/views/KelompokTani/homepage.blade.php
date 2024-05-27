@@ -47,12 +47,9 @@
                     </div>
                 @endif
             </div>
-    
-            {{-- @dd(auth()->user()->username)  --}}
-            {{-- {{ Auth::check() ? 'Authenticated' : 'Not Authenticated' }} --}}
             <div class="flex flex-col items-center justify-center">
-                <div class="bg-white p-8 mt-8 items-center flex flex-col rounded-[32px] shadow-xl border-black/5 border">
-                    <div class="flex flex-row items-center justify-between w-[1280px] rounded-[20px] px-12 bg-[#204e51]/20 shadow-lg h-60 bg-image bg-blend-multiply">
+                <div class="bg-white p-8 mt-8 items-center flex flex-col rounded-[16px] shadow-xl border-black/5 border">
+                    <div class="flex flex-row items-center justify-between w-[1280px] rounded-[12px] px-12 bg-[#204e51]/20 shadow-lg h-60 bg-image bg-blend-multiply">
                         <style>
                             .bg-image {
                                 background-image: url('../images/Component.png');
@@ -78,11 +75,11 @@
                                         <div class="flex text-[36px] text-[#f4f4f4]">Halo,
                                             {{ $registrasi->nama_keltani }} !
                                         </div>
-                                        <div class="flex text-[20px] text-[#f4f4f4]">Selamat datang !
+                                        <div class="flex text-[20px] text-[#f4f4f4]">Selamat datang
                                         </div>
                                     </div>
                                 @endif
-                            @endif
+                            @endif 
                         </div>
         
                         <div class="flex flex-row items-center justify-center h-full bg-transparent ">

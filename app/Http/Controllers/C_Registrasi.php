@@ -74,12 +74,16 @@ class C_Registrasi extends Controller
                 $data['bukti_legalitas'] = $filePath; // Menyimpan path lengkap
             }
 
-            MRegistrasi::create($data);
+            if ($data){
+                MRegistrasi::create($data);
+    
+                return redirect()->route('homepage')->with('status', 'Registrasi berhasil dikirim. Tunggu Dinas TPHP melakukan validasi');   
+            }
+           
 
-            return redirect()->route('homepage');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'An error occurred while saving the data. Please try again later.');
+            return redirect()->back()->with('error', 'Mohon lengkapi data registrasi kelompok tani !');
         }
     }
     public function show($id)
@@ -140,33 +144,34 @@ class C_Registrasi extends Controller
 
     public function update(Request $request, $id_registrasi)
     {
+        try{
 
-        $decryptedID = Crypt::decryptString($id_registrasi);
-        $data = $request->validate([
-            'nama_keltani' => 'required|string|max:255',
-            'nama_ketua' => 'required|string|max:255',
-            'luas_hamparan' => 'required|integer',
-            'jumlah_anggota' => 'required|integer',
-            'alamat_keltani' => 'required|string',
-            'bukti_legalitas' => 'required|file|mimes:pdf',
-            'nama_kecamatan' => 'required|string|max:255',
-        ]);
-
-        if ($request->hasFile('bukti_legalitas')) {
-            $file = $request->file('bukti_legalitas');
-            $nama_file = $file->getClientOriginalName();
-            $filePath = $file->storeAs('bukti', $nama_file, 'public');
-            $data['bukti_legalitas'] = $filePath; // Menyimpan path lengkap
-        }
-
-        $update = MRegistrasi::getById($decryptedID);
-        if ($update){
-            $update->update($data);
-            return redirect()->route('kelompoktani.profile', ['id' => $id_registrasi])
-                ->with('success', 'Data kelompoktani telah diubah !');
-        } else{
-            return redirect()->route('kelompoktani.profile', ['id' => $id_registrasi])
-                ->with('error', 'Gagal mengubah data pelaporan');
+            $data = $request->validate([
+                'nama_keltani' => 'required|string|max:255',
+                'nama_ketua' => 'required|string|max:255',
+                'luas_hamparan' => 'required|integer',
+                'jumlah_anggota' => 'required|integer',
+                'alamat_keltani' => 'required|string',
+                'bukti_legalitas' => 'required|file|mimes:pdf',
+                'nama_kecamatan' => 'required|string|max:255',
+            ]);
+    
+            if ($request->hasFile('bukti_legalitas')) {
+                $file = $request->file('bukti_legalitas');
+                $nama_file = $file->getClientOriginalName();
+                $filePath = $file->storeAs('bukti', $nama_file, 'public');
+                $data['bukti_legalitas'] = $filePath; // Menyimpan path lengkap
+            }
+    
+            $update = MRegistrasi::getById($id_registrasi);
+            if ($update){
+                $update->update($data);
+                return redirect()->route('kelompoktani.profile', ['id' => $id_registrasi])
+                    ->with('success', 'Data kelompoktani telah diubah !');
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Silahkan lengkapi data registrasi anda !');
         }
     }
 
@@ -224,7 +229,7 @@ class C_Registrasi extends Controller
 
     public function profile($id_registrasi)
     {
-        
+        $decryptedID = Crypt::decryptString($id_registrasi);
         $user = Auth::user()->id;
 
         $registrasi =  MRegistrasi::regkec();
@@ -238,6 +243,7 @@ class C_Registrasi extends Controller
 
     public function updatefoto(Request $request, $id_registrasi)
     {
+        $decryptedID = Crypt::decryptString($id_registrasi);
         $request->validate([
             'foto_profil' => 'file|mimes:pdf,png,jpg,jpeg,svg',
         ]);
@@ -248,11 +254,11 @@ class C_Registrasi extends Controller
             $filePath = $file->storeAs('fotoprofil', $nama_file, 'public');
             $data['foto_profil'] = $filePath; // Menyimpan path lengkap
         }
-        $update = MRegistrasi::getById($id_registrasi);
+        $update = MRegistrasi::getById($decryptedID);
         if ($update){
             $update->update($data);
             return redirect()->route('kelompoktani.profile', ['id' => $id_registrasi])
-                ->with('success', 'Foto Profil telah telah diubah !');
+                ->with('status', 'Foto Profil telah telah diubah !');
         } else{
             return redirect()->route('kelompoktani.profile', ['id' => $id_registrasi])
                 ->with('error', 'Gagal mengubah foto profil');

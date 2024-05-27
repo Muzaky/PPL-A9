@@ -77,6 +77,7 @@
                             <li>
                                 <a href="{{ route('kelompoktani.profile', Crypt::encryptString($registrasi->id_registrasi)) }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                                    
                             </li>
                         </ul>
                         <div class="py-1">
@@ -111,7 +112,7 @@
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
                             </li>
                             <li>
-                                <a href="{{ route('kelompoktani.profile', $registrasi->id_registrasi) }}"
+                                <a href="{{ route('kelompoktani.profile', Crypt::encryptString($registrasi->id_registrasi)) }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
                             </li>
                         </ul>

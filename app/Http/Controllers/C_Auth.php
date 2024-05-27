@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use App\Models\MRegistrasi;
 
 
@@ -32,7 +33,7 @@ class C_Auth extends Controller
             $x = Auth::user()->id_roles;
             // dd($x);
             if ($x == 1) {
-                return view('KelompokTani.homepage', compact('registrasi', 'usercount','iduser'));
+                return view('KelompokTani.homepage', compact('registrasi', 'usercount', 'iduser'));
             } elseif ($x == 2) {
                 return redirect('dashboard');
             }
@@ -80,23 +81,27 @@ class C_Auth extends Controller
     {
 
         $registrasi =  MRegistrasi::regkec();
+   
 
         $registrasi = $registrasi->where('id', $id)->first();
-        $request->validate([
-            'old_password' => 'required',
-            'password' => 'required|min:6',
-        ]);
+        try {
+            $request->validate([
+                'old_password' => 'required',
+                'password' => 'required|min:6',
+            ]);
 
-        if (Hash::check($request->old_password, $registrasi->password)) {
-            $data = [
-                'password' => Hash::make($request->password)
-            ];
-            $update = User::getById($id);
-            $update->update($data);
-            return redirect()->route('homepage')
-                ->with('success', 'Kredensial has been updated');
-        } else {
-            return redirect()->back()->with('error', 'Password lama tidak cocok');
+            if (Hash::check($request->old_password, $registrasi->password)) {
+                $data = [
+                    'password' => Hash::make($request->password)
+                ];
+                $update = User::getById($id);
+                $update->update($data);
+                return redirect()->route('homepage')
+                    ->with('status', 'Data akun telah diubah !');
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Mohon lengkapi data akun kelompok tani !');
         }
     }
 }

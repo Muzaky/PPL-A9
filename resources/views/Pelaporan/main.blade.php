@@ -16,12 +16,13 @@
             font-family: 'Montserrat'
         }
     </style>
+
     <body class="bg-slate-200">
-        
+
         <section class="flex flex-col font-[Montserrat] items-center">
             <div
                 class="relative w-[1440px] rounded-br-[20px] rounded-bl-[20px] border-x-2 border-b-2 border-[#204E51] shadow-xl bg-[#204E51]">
-                <a href="{{ route('homepage') }}"
+                <a href="{{ route('pelaporan.landing') }}"
                     class="absolute left-[20px] top-[20px] flex items-center text-white text-sm font-medium ml-4">
                     <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -39,11 +40,13 @@
                     <path strokeLinecap="round" strokeLinejoin="round"
                         d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
                 </svg>
-    
+
                 <h1 class="w-[1440px] text-wrap text-gray-600 mt-6">
-                    <font class="font-semibold text-yellow-500">Halaman pengajuan pelaporan bantuan bibit tani Dinas Tanaman Pangan dan
-                        Hortikultura (TPHP)</font>.<br> Petani dapat melakukan pelaporan dengan mencantumkan nama kegiatan, dokumentasi, dan kondisi bibit yang sudah diberikan.
-                    
+                    <font class="font-semibold text-yellow-500">Halaman pengajuan pelaporan bantuan bibit tani Dinas Tanaman
+                        Pangan dan
+                        Hortikultura (TPHP)</font>.<br> Petani dapat melakukan pelaporan dengan mencantumkan nama kegiatan,
+                    dokumentasi, dan kondisi bibit yang sudah diberikan.
+
                 </h1>
             </div>
             <div class="w-[1280px] mb-2">
@@ -79,30 +82,82 @@
                     </form>
                 </div>
             </div>
+
             <div class="flex flex-col items-center">
+                @if (session()->has('status'))
+                    <div id="alert-border-3"
+                        class="flex items-center p-4 mt-5 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
+                        role="alert">
+                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <div class="text-sm font-medium ms-3">
+                            {{ session('status') }}
+                        </div>
+                        <button type="button"
+                            class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
+                            data-dismiss-target="#alert-border-3" aria-label="Close">
+                            <span class="sr-only">Dismiss</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div id="alert-border-3"
+                        class="flex items-center p-4 mt-5 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-red-800 dark:border-red-800"
+                        role="alert">
+                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <div class="text-sm font-medium ms-3">
+                            {{ session('error') }}
+                        </div>
+                        <button type="button"
+                            class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-red-800 dark:text-red-400 dark:hover:bg-red-700"
+                            data-dismiss-target="#alert-border-3" aria-label="Close">
+                            <span class="sr-only">Dismiss</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+                @endif
                 @if ($pelaporan->isEmpty())
                     <h1>Tidak ada laporan yang dapat ditampilkan</h1>
                     <a href="{{ route('pelaporan.landing') }}" class="text-[#204E51]"></a>
                 @else
                     @foreach ($pelaporan as $pelaporans)
                         <div class="flex flex-col items-center">
-                            <a href="{{ route('pelaporan.show', Crypt::encryptString($pelaporans->id_pelaporan) ) }}"
+                            <a href="{{ route('pelaporan.show', Crypt::encryptString($pelaporans->id_pelaporan)) }}"
                                 class="flex items-center mb-6 bg-white border-2 w-[1280px] border-gray-200 rounded-[20px] shadow-md flex-row hover:bg-gray-100">
                                 <img class="object-cover w-48 h-40 rounded-[20px]"
-                                    src="{{ optional($pelaporans->dokumentasi_pelaporan) ?  Storage::url($pelaporans->dokumentasi_pelaporan) : 'fallback-image-url.jpg' }}"
+                                    src="{{ optional($pelaporans->dokumentasi_pelaporan) ? Storage::url($pelaporans->dokumentasi_pelaporan) : 'fallback-image-url.jpg' }}"
                                     alt="">
                                 <div class="flex flex-col justify-between px-4 leading-normal">
                                     <h5 class="text-[36px] font-bold tracking-tight text-gray-900 dark:text-white font-inside"
                                         id="judul-laporan">
                                         {{ $pelaporans->nama_kegiatan }}
                                     </h5>
-                                    <div class="flex items-center justify-center mb-1 text-sm font-medium text-green-500 md:justify-start">
+                                    <div
+                                        class="flex items-center justify-center mb-1 text-sm font-medium text-green-500 md:justify-start">
                                         @if ($pelaporans->status_validasi == 2)
-                                            <span class="px-3 py-1 text-green-500 bg-green-100 rounded-full">Validated</span>
+                                            <span
+                                                class="px-3 py-1 text-green-500 bg-green-100 rounded-full">Validated</span>
                                         @elseif ($pelaporans->status_validasi == 3)
                                             <span class="px-3 py-1 text-red-500 bg-red-100 rounded-full">Rejected</span>
                                         @else
-                                            <span class="px-3 py-1 text-yellow-500 bg-yellow-100 rounded-full">Process</span>
+                                            <span
+                                                class="px-3 py-1 text-yellow-500 bg-yellow-100 rounded-full">Process</span>
                                         @endif
                                     </div>
                                     <p class="mb-2 text-neutral-500">
@@ -125,42 +180,42 @@
                                                 Menunggu proses oleh Dinas
                                             </small>
                                         @endif
-    
+
                                     </p>
                                     <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-    
+
                                     </div>
-    
-    
+
+
                                 </div>
                             </a>
-    
-    
+
+
                         </div>
                     @endforeach
                 @endif
-                
+
                 @if ($pelaporancount == 5)
-                <div>
-                    Terima kasih sudah melengkapi pelaporan bantuan kelompok tani !
-                </div>
+                    <div>
+                        Terima kasih sudah melengkapi pelaporan bantuan kelompok tani !
+                    </div>
                 @else
-                <div>
-                    <button onclick="showEditButton()"
-                        class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[220px] mt-4">
-                        Tambahkan Pelaporan</button>
-                </div>
+                    <div>
+                        <button onclick="showEditButton()"
+                            class="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51] w-[220px] mt-4">
+                            Tambahkan Pelaporan</button>
+                    </div>
                 @endif
                 {{ $pelaporan->links() }}
             </div>
             {{-- @foreach ($pelaporan as $pelaporans) --}}
-    
-    
-    
-    
-    
+
+
+
+
+
             {{-- @endforeach --}}
-    
+
             </div>
             <div id="editbutton"
                 class="fixed top-0 left-0 items-center justify-center hidden w-screen h-screen transition-opacity duration-500 bg-black opacity-0 bg-opacity-40">
@@ -170,7 +225,8 @@
                         class="absolute left-[20px] top-[20px] flex items-center text-black text-sm font-medium">
                         <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
                         </svg>
                         Back
                     </button>
@@ -184,8 +240,8 @@
                             <div class="flex flex-wrap text-center">
                                 <div class="w-full px-4">
                                     <div class="w-full mb-3">
-    
-    
+
+
                                         <label class="block mb-2 text-xs font-bold uppercase text-[#204E51]"
                                             htmlfor="grid-password">
                                             Nama Kegiatan
@@ -194,14 +250,14 @@
                                             class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150 mb-4"
                                             value="" placeholder="Isi Nama Kegiatan">
                                         </input>
-    
+
                                         <label class="block mb-2 text-xs font-bold uppercase text-[#204E51]"
                                             htmlfor="grid-password">
                                             Kondisi
                                         </label>
                                         <textarea name="kondisi" id="kondisi"
                                             class="border-0 px-3  placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm focus:outline-none focus:ring w-[500px] ease-linear transition-all duration-150 h-40 shadow-lg resize-none mb-4"></textarea>
-    
+
                                         <div class="mb-[18px] relative">
                                             <label for="dropzone-file"
                                                 class="flex flex-col items-center justify-center w-full h-14 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#F1F1F1] hover:bg-gray-100 dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-slate-200 2xl:h-20">
@@ -236,16 +292,16 @@
             <script>
                 function showEditButton() {
                     let editbutton = document.getElementById('editbutton')
-    
+
                     editbutton.classList.remove('hidden')
                     editbutton.classList.add('flex')
                     setTimeout(() => {
                         editbutton.classList.remove('opacity-0')
                         editbutton.classList.add('opacity-100')
                     }, 20);
-    
+
                 }
-    
+
                 function hideEditButton() {
                     let editbutton = document.getElementById('editbutton')
                     editbutton.classList.add('opacity-0')
@@ -255,7 +311,7 @@
                         editbutton.classList.remove('flex')
                     }, 500);
                 }
-    
+
                 function displayFileName() {
                     const fileInput = document.getElementById('dropzone-file');
                     const fileNameParagraph = document.getElementById('file-name');

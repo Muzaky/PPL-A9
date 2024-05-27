@@ -11,6 +11,7 @@ use App\Models\MBerita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class C_Pengajuan extends Controller
     public function landing(request $request)
     {
 
-      
+
         $user = Auth::user()->id;
         $iduser = User::where('id', $user)->first();
         $registrasi = MRegistrasi::where('id_users', $user)->first();
@@ -69,7 +70,6 @@ class C_Pengajuan extends Controller
         );
     }
 
-    // public function show()
 
     public function create()
     {
@@ -84,36 +84,34 @@ class C_Pengajuan extends Controller
         $user = Auth::user()->id;
         $id_registrasi = MRegistrasi::where('id_users', $user)->get('id_registrasi');
 
+        try {
+            $request->validate([
+                'berkas_pengajuan' => 'required|file|mimes:pdf',
+                'id_registrasi' => 'required',
+                'id_informasi' => 'required',
+            ]);
 
+            $data = [
+                'tanggal_pengajuan' => Carbon::now()->toDateString(),
+                'id_registrasi' => $request->id_registrasi,
+                'id_informasi' => $request->id_informasi,
+            ];
 
-        $request->validate([
-            'berkas_pengajuan' => 'required|file|mimes:pdf',
-            'id_registrasi' => 'required',
-            'id_informasi' => 'required',
-            // 'nama_informasi'=> 'required' ,
-        ]);
+            if ($request->hasFile('berkas_pengajuan')) {
+                $file = $request->file('berkas_pengajuan');
+                $nama_file = $file->getClientOriginalName();
+                $filePath = $file->storeAs('pdf', $nama_file, 'public');
+                $data['berkas_pengajuan'] = $filePath; // Menyimpan path lengkap
 
-        $data = [
-            'tanggal_pengajuan' => Carbon::now()->toDateString(),
-            'id_registrasi' => $request->id_registrasi,
-            'id_informasi' => $request->id_informasi,
-            // 'nama_informasi'=> $request->nama_informasi, 
-        ];
-
-        if ($request->hasFile('berkas_pengajuan')) {
-            $file = $request->file('berkas_pengajuan');
-            $nama_file = $file->getClientOriginalName();
-            $filePath = $file->storeAs('pdf', $nama_file, 'public');
-            $data['berkas_pengajuan'] = $filePath; // Menyimpan path lengkap
-
-            MPengajuan::create($data);
-            return redirect()->route('homepage')->with('status', 'Berhasil melakukan pengajuan !');
-        }
-
-        else {
-            return redirect()->route('homepage')->with('error', 'Gagal melakukan pengajuan !');
+                MPengajuan::create($data);
+                return redirect()->route('homepage')->with('status', 'Berhasil melakukan pengajuan !');
+            }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Mohon lengkapi data pengajuan !');
         }
     }
+
 
     public function edit(Request $request, $id_pengajuan)
     {
@@ -127,28 +125,35 @@ class C_Pengajuan extends Controller
     }
     public function update(Request $request, $id_pengajuan)
     {
+        
+        $decryptedID = Crypt::decryptString($id_pengajuan);
+        try{
 
-        $request->validate([
-            'berkas_pengajuan' => 'required|file|mimes:pdf',
-        ]);
-
-        $data = [
-            'tanggal_pengajuan' => Carbon::now()->toDateString(),
-            'status_validasi' => 1,
-            'tanggal_validasi' => null,
-            'catatan_validasi' => null,
-        ];
-
-        if ($request->hasFile('berkas_pengajuan')) {
-            $file = $request->file('berkas_pengajuan');
-            $nama_file = $file->getClientOriginalName();
-            $filePath = $file->storeAs('pdf', $nama_file, 'public');
-            $data['berkas_pengajuan'] = $filePath; // Menyimpan path lengkap
+            $request->validate([
+                'berkas_pengajuan' => 'required|file|mimes:pdf',
+            ]);
+    
+            $data = [
+                'tanggal_pengajuan' => Carbon::now()->toDateString(),
+                'status_validasi' => 1,
+                'tanggal_validasi' => null,
+                'catatan_validasi' => null,
+            ];
+    
+            if ($request->hasFile('berkas_pengajuan')) {
+                $file = $request->file('berkas_pengajuan');
+                $nama_file = $file->getClientOriginalName();
+                $filePath = $file->storeAs('pdf', $nama_file, 'public');
+                $data['berkas_pengajuan'] = $filePath; // Menyimpan path lengkap
+            }
+            $update = MPengajuan::getById($decryptedID);
+            $update->update($data);
+            return redirect()->route('pengajuan.show', ['id' => $id_pengajuan])
+                ->with('status', 'Data pengajuan berhasil disimpan !');
+        }catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Mohon lengkapi data pengajuan !');
         }
-        $update = MPengajuan::getById($id_pengajuan);
-        $update->update($data);
-        return redirect()->route('pengajuan.show', ['id' => $id_pengajuan])
-            ->with('success', 'Berita telah terpost');
     }
 
     public function destroy($id_pengajuan)
@@ -163,7 +168,7 @@ class C_Pengajuan extends Controller
     public function index(Request $request)
     {
         $statusValidasi = $request->input('status_validasi', []);
-        
+
         // Query untuk mendapatkan data registrasi dengan pengajuannya
         $registrationsQuery = MRegistrasi::with(['pengajuans' => function ($query) use ($statusValidasi) {
             // Filter berdasarkan status_validasi jika ada
@@ -172,11 +177,11 @@ class C_Pengajuan extends Controller
             }
             $query->orderBy('id_pengajuan', 'desc'); // Mengurutkan pengajuan berdasarkan id_pengajuan
         }]);
-        
-        
+
+
         $registrations = $registrationsQuery->get();
 
-        
+
         // Menggabungkan semua pengajuan dari registrasi yang berbeda dan mengurutkannya
         $allPengajuans = collect();
         foreach ($registrations as $registration) {
@@ -239,8 +244,8 @@ class C_Pengajuan extends Controller
             $file->storeAs('pdf', $nama_file);
             $data['berkas_pengajuan'] = $nama_file;
         }
-        
-   
+
+
 
         $update = MPengajuan::getById($id_pengajuan);
         $update->update($data);

@@ -48,4 +48,5 @@ class MPengajuan extends Model
     {
         return $this->belongsTo(MBerita::class, 'id_informasi');
     }
+   
 }
