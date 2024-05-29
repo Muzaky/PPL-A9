@@ -49,37 +49,50 @@
 
                 </h1>
             </div>
-            <div class="w-[1280px] mb-2">
-                <div class="flex mb-2 w-full justify-end">
-                    <form action="" method="GET" class="flex-row flex">
-                        <div class="p-2 font-[Montserrat]">Filter :</div>
-                        <div class="flex items-center">
-                            <input type="checkbox" id="validated" name="status_validasi[]" value="2"
-                                class="form-checkbox border-green-500 focus:ring-green-500 focus:border-green-500  checked:bg-green-500 checked:border-transparent"
-                                {{ in_array('2', Request::get('status_validasi', [])) ? 'checked' : '' }}>
-                            <label for="validated" class="ml-1 mr-4 text-green-500 font-[Raleway]">Validated</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input type="checkbox" id="process" name="status_validasi[]" value="1"
-                                class="form-checkbox border-yellow-500 focus:ring-yellow-500 focus:border-yellow-500  checked:bg-yellow-500 checked:border-transparent"
-                                {{ in_array('1', Request::get('status_validasi', [])) ? 'checked' : '' }}>
-                            <label for="process" class="ml-1 mr-4 text-yellow-500 font-[Raleway]">Process</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input type="checkbox" id="rejected" name="status_validasi[]" value="3"
-                                class="form-checkbox border-red-500 focus:ring-red-500 focus:border-red-500  checked:bg-red-500 checked:border-transparent"
-                                {{ in_array('3', Request::get('status_validasi', [])) ? 'checked' : '' }}>
-                            <label for="rejected" class="ml-1 text-red-500 font-[Raleway]">Rejected</label>
-                        </div>
-                        <button type="submit"
-                            class="ml-4 px-2 bg-[#204E51] border-2 border-[#204E51] rounded-lg text-white hover:bg-white hover:text-[#204E51]">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                                stroke="currentColor" class="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round"
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </button>
-                    </form>
+            <div class="flex flex-row w-[1280px] justify-between">
+                <div class="relative w-[500px] h-[40px] text-gray-400 focus-within:text-gray-600">
+                    <input id="search_field"
+                        class=" w-full h-full pl-14 pr-4 py-1 rounded-[8px] border-2 border-[#204e51] bg-[#f4f4f4]"
+                        placeholder="Cari berdasarkan nama" type="search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-6 h-6 absolute left-6 top-1/2 transform -translate-y-1/2">
+                        <path fillRule="evenodd"
+                            d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                            clipRule="evenodd" />
+                    </svg>
+                </div>
+                <div class=" mb-2">
+                    <div class="flex mb-2 w-full justify-end">
+                        <form action="" method="GET" class="flex-row flex">
+                            <div class="p-2 font-[Montserrat]">Filter :</div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="validated" name="status_validasi[]" value="2"
+                                    class="form-checkbox border-green-500 focus:ring-green-500 focus:border-green-500  checked:bg-green-500 checked:border-transparent"
+                                    {{ in_array('2', Request::get('status_validasi', [])) ? 'checked' : '' }}>
+                                <label for="validated" class="ml-1 mr-4 text-green-500 font-[Raleway]">Validated</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="process" name="status_validasi[]" value="1"
+                                    class="form-checkbox border-yellow-500 focus:ring-yellow-500 focus:border-yellow-500  checked:bg-yellow-500 checked:border-transparent"
+                                    {{ in_array('1', Request::get('status_validasi', [])) ? 'checked' : '' }}>
+                                <label for="process" class="ml-1 mr-4 text-yellow-500 font-[Raleway]">Process</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="rejected" name="status_validasi[]" value="3"
+                                    class="form-checkbox border-red-500 focus:ring-red-500 focus:border-red-500  checked:bg-red-500 checked:border-transparent"
+                                    {{ in_array('3', Request::get('status_validasi', [])) ? 'checked' : '' }}>
+                                <label for="rejected" class="ml-1 text-red-500 font-[Raleway]">Rejected</label>
+                            </div>
+                            <button type="submit"
+                                class="ml-4 px-2 bg-[#204E51] border-2 border-[#204E51] rounded-lg text-white hover:bg-white hover:text-[#204E51]">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -132,12 +145,13 @@
                         </button>
                     </div>
                 @endif
+                
                 @if ($pelaporan->isEmpty())
                     <h1>Tidak ada laporan yang dapat ditampilkan</h1>
                     <a href="{{ route('pelaporan.landing') }}" class="text-[#204E51]"></a>
                 @else
                     @foreach ($pelaporan as $pelaporans)
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center tablezz">
                             <a href="{{ route('pelaporan.show', Crypt::encryptString($pelaporans->id_pelaporan)) }}"
                                 class="flex items-center mb-6 bg-white border-2 w-[1280px] border-gray-200 rounded-[20px] shadow-md flex-row hover:bg-gray-100">
                                 <img class="object-cover w-48 h-40 rounded-[20px]"
@@ -328,6 +342,22 @@
                         fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Bukti Legalitas';
                     }
                 }
+            </script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#search_field').on('keyup', function() {
+                        var searchText = $(this).val().toLowerCase();
+                        $('.tablezz').each(function() {
+                            var namaKegiatan = $(this).find('#judul-laporan').text().toLowerCase();
+                            if (namaKegiatan.includes(searchText)) {
+                                $(this).show();
+                            } else {
+                                $(this).hide();
+                            }
+                        });
+                    });
+                });
             </script>
         </section>
     </body>

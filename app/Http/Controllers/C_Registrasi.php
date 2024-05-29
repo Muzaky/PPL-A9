@@ -40,7 +40,7 @@ class C_Registrasi extends Controller
             $userId = null; // or you can handle it as you want
         }
 
-        $kecamatan = MKecamatan::all();
+        $kecamatan = MKecamatan::orderBy('nama_kecamatan', 'asc')->get();
 
         return view(
             'Registrasi.create',
@@ -103,8 +103,7 @@ class C_Registrasi extends Controller
             // User is not authenticated
             $userId = null; // or you can handle it as you want
         }
-
-        $kecamatan = MKecamatan::all();
+        $kecamatan = MKecamatan::orderBy('nama_kecamatan', 'asc')->get();
 
 
         $data = MRegistrasi::getById($id_registrasi);
@@ -125,7 +124,7 @@ class C_Registrasi extends Controller
 
 
 
-        $kecamatan = MKecamatan::all();
+        $kecamatan = MKecamatan::orderBy('nama_kecamatan', 'asc')->get();
 
 
         $data = MRegistrasi::getById($id_registrasi);
@@ -236,7 +235,7 @@ class C_Registrasi extends Controller
 
         $registrasi = $registrasi->where('id', $user)->first();
         $hashedpassword = $registrasi->password;
-        $kecamatan = MKecamatan::all();
+        $kecamatan = MKecamatan::orderBy('nama_kecamatan', 'asc')->get();
 
         return view('KelompokTani.profile', compact('registrasi', 'kecamatan'), ['hashedpassword' => $hashedpassword]);
     }

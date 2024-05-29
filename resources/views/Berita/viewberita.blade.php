@@ -1,28 +1,81 @@
 @extends('Layout.navtani')
 @section('content')
-    <section class="flex flex-col items-center justify-center mt-4">
-        <div class="w-[1000px] bg-white border border-gray-200 rounded-[20px] shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex flex-col items-center justify-center">
-                <img class="w-full h-[400px] rounded-[20px]" src="{{ Storage::url($data->gambar_informasi) }}" alt="berita">
-                <div class="flex items-center justify-center px-4 text-center text-wrap">
-                    <h1 class="font-[poppins] text-[40px] font-bold mt-4 justify-center">{{ $data->judul_informasi }}</h1>
+    <section class="flex items-center justify-center mt-4">
+        <div class="w-[1440px] bg-white border border-gray-200 rounded-[20px] shadow dark:bg-gray-800 dark:border-gray-700">
+            <div id="container" class="flex flex-row items-center justify-center w-full relative">
+                <a href="{{ route('pemberitahuan.landing') }}"
+                        class="absolute left-[10px] top-[20px] flex items-center text-white text-sm font-medium ml-4 p-2 bg-black/20 rounded-[12px] hover:bg-black/50 ">
+                        <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Back
+                    </a>
+                <div id="imageContainer" class="flex-shrink-0 rounded-l-[20px] w-[400px] h-full bg-cover bg-center bg-no-repeat"
+                    style="background-image: url('{{ Storage::url($data->gambar_informasi) }}');">
                 </div>
-                <p class="mb-2 text-neutral-500">
-                    <small>
-                        <u>
-                            {{ $data->tgl_awal }}
-                        </u>
-                        by Dinas Tanaman Pangan dan Hortikultura Jember
+                <div class="flex flex-col px-4">
+                    <div class="flex items-center text-wrap">
+                        <h1 class="font-[poppins] text-[40px] font-bold mt-4 justify-center">{{ $data->judul_informasi }}
+                        </h1>
+                    </div>
+                    <p class="mb-2 text-neutral-500">
+                        <small>
+                            <u>
+                                {{ $data->tgl_awal }}
+                            </u>
+                            by Dinas Tanaman Pangan dan Hortikultura Jember
+                        </small>
+                    </p>
+                    <h2 class="mt-4 font-bold text-[20px]">Deskripsi :</h2>
+                    <p class="font-[Montserrat]">{{ strip_tags($data->deskripsi) }}</p>
+                    <h2 class="mt-4 font-bold text-[20px]">Keterangan :</h2>
+                    <ul class=" font-regular font-[Montserrat]">
+                        <li>Waktu pengajuan dimulai pada tanggal {{ $data->tgl_awal }} s/d {{ $data->tgl_akhir }}</li>
+                        <li>Jumlah Bibit : <font style="font-weight: 700">{{ $data->jumlah_bibit }}</font> Kg</li>
+                    </ul>
+                    <small class="text-red-300">
+                        *Bibit akan dibagikan secara merata terhadap jumlah pengajuan dan kebutuhan
                     </small>
-                </p>
+                    <div class="flex flex-col py-4 mb-3 font-normal text-gray-700 dark:text-gray-400 font-[Montserrat]">
+                        Syarat dan Ketentuan :
+                        @if ($data->syarat_ketentuan)
+                            @php
+                                // Explode the text based on <br> tags
+                                $lines = explode('<br />', $data->syarat_ketentuan);
+                                // Initialize the counter
+                                $counter = 1;
+                            @endphp
 
+                            @if (!empty($lines))
+                                <ol>
+                                    @foreach ($lines as $line)
+                                        @php
+                                            // Strip HTML tags from the line
+                                            $cleanLine = strip_tags($line);
+                                        @endphp
+                                        <li>{{ $counter }}. {{ $cleanLine }}</li>
+                                        @php $counter++; @endphp
+                                    @endforeach
+                                </ol>
+                            @else
+                                <p>No syarat ketentuan found.</p>
+                            @endif
+                        @endif
+                        <div class="flex items-center justify-center py-4 ">
+                            <button onclick="showCreateButton()"
+                                class="px-4 py-2 rounded-lg bg-[#204E51] text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51]">
+                                Pengajuan</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             @if (session()->has('error'))
                 <div id="alert-border-3"
                     class="flex items-center p-4 mt-5 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-red-800 dark:border-red-800"
                     role="alert">
-                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 20 20">
+                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
                         <path
                             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>
@@ -41,49 +94,8 @@
                     </button>
                 </div>
             @endif
-            <div class="px-4">
-                <h2 class="mt-4 font-bold text-[20px]">Deskripsi :</h2>
-                <p class="font-[Montserrat]">{{ strip_tags($data->deskripsi) }}</p>
-                <h2 class="mt-4 font-bold text-[20px]">Keterangan :</h2>
-                <ul class=" font-regular font-[Montserrat]">
-                    <li>Waktu pengajuan dimulai pada tanggal {{ $data->tgl_awal }} s/d {{ $data->tgl_akhir }}</li>
-                    <li>Jumlah Bibit : <font style="font-weight: 700">{{ $data->jumlah_bibit }}</font> Kg</li>
-                </ul>
-                <small class="text-red-300">
-                    *Bibit akan dibagikan secara merata terhadap jumlah pengajuan dan kebutuhan
-                </small>
-                <div class="flex flex-col py-4 mb-3 font-normal text-gray-700 dark:text-gray-400 font-[Montserrat]">
-                    Syarat dan Ketentuan :
-                    @if ($data->syarat_ketentuan)
-                        @php
-                            // Explode the text based on <br> tags
-                            $lines = explode('<br />', $data->syarat_ketentuan);
-                            // Initialize the counter
-                            $counter = 1;
-                        @endphp
 
-                        @if (!empty($lines))
-                            <ol>
-                                @foreach ($lines as $line)
-                                    @php
-                                        // Strip HTML tags from the line
-                                        $cleanLine = strip_tags($line);
-                                    @endphp
-                                    <li>{{ $counter }}. {{ $cleanLine }}</li>
-                                    @php $counter++; @endphp
-                                @endforeach
-                            </ol>
-                        @else
-                            <p>No syarat ketentuan found.</p>
-                        @endif
-                    @endif
-                </div>
-            </div>
-            <div class="flex items-center justify-center py-4 ">
-                <button onclick="showCreateButton()"
-                    class="px-4 py-2 rounded-lg bg-[#204E51] text-white font-medium hover:bg-transparent hover:text-[#204E51] border border-[#204E51]">
-                    Pengajuan</button>
-            </div>
+
         </div>
 
         <!--Modal Script Create Pengajuan-->
@@ -119,7 +131,7 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file" onchange="displayFileName()" name="berkas_pengajuan"
-                                                type="file" class="hidden" accept="application/pdf"/>
+                                                type="file" class="hidden" accept="application/pdf" />
                                         </label>
                                     </div>
 
@@ -188,6 +200,22 @@
                     fileNameParagraph.innerHTML = svgCode + 'Klik untuk unggah dokumen pengajuan (PDF)';
                 }
             }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var container = document.getElementById('container');
+                var imageContainer = document.getElementById('imageContainer');
+
+                function adjustImageContainerHeight() {
+                    var containerHeight = container.offsetHeight;
+                    imageContainer.style.height = containerHeight + 'px';
+                }
+
+                // Initial adjustment
+                adjustImageContainerHeight();
+
+                // Adjust on window resize
+                window.addEventListener('resize', adjustImageContainerHeight);
+            });
         </script>
 
 

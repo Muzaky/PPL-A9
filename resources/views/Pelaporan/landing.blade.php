@@ -13,7 +13,6 @@
     </style>
 
     <body class="bg-slate-200">
-
         <section class="flex flex-col font-[Montserrat] items-center">
             <div
                 class="relative w-[1440px] rounded-br-[20px] rounded-bl-[20px] border-x-2 border-b-2 border-[#204E51] shadow-xl bg-[#204E51]">
@@ -29,7 +28,7 @@
                 </h1>
             </div>
             <div
-                class="flex flex-row gap-8 items-center -mt-8 bg-gray-100 p-2 rounded-br-[20px] rounded-bl-[20px] justify-start w-[1440px] mb-6">
+                class="flex flex-row gap-8 items-center -mt-8 bg-gray-100 p-2 px-32 rounded-br-[20px] rounded-bl-[20px] justify-start w-[1440px]">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                     stroke="currentColor" class="w-32 h-32 rounded-full p-4 mt-8">
@@ -93,62 +92,88 @@
                     </button>
                 </div>
             @endif
-
-            @foreach ($pengajuan as $pengajuan)
-                @if ($pengajuan->status_validasi == 2)
-                    <div class="flex flex-col items-center">
-                        <a href="{{ route('pelaporan.main', Crypt::encryptString($pengajuan->id_pengajuan)) }}"
-                            class="flex items-center mb-6 bg-white border-2 w-[1280px] border-gray-200 rounded-[20px] shadow-md flex-row hover:bg-gray-100">
-                            <img class="object-cover w-48 h-40 rounded-[20px]"
-                                src="{{ optional($pengajuan->informasi)->gambar_informasi ? Storage::url($pengajuan->informasi->gambar_informasi) : 'fallback-image-url.jpg' }}"
-                                alt="">
-                            <div class="flex flex-col justify-between px-4 leading-normal">
-                                <h5 class="text-[36px] font-bold tracking-tight text-gray-900 dark:text-white font-inside">
-                                    {{ optional($pengajuan->informasi)->judul_informasi }}</h5>
-                                <div
-                                    class="flex items-center justify-center mb-1 text-sm font-medium text-green-500 md:justify-start">
-                                    @if ($pengajuan->status_validasi == 2)
-                                        <span class="px-3 py-1 text-green-500 bg-green-100 rounded-full">Validated</span>
-                                    @elseif ($pengajuan->status_validasi == 3)
-                                        <span class="px-3 py-1 text-red-500 bg-red-100 rounded-full">Rejected</span>
-                                    @else
-                                        <span class="px-3 py-1 text-yellow-500 bg-yellow-100 rounded-full">Process</span>
-                                    @endif
-                                </div>
-                                <p class="mb-2 text-neutral-500">
-                                    @if ($pengajuan->status_validasi == 2)
-                                        <small class="font-inside">
-                                            Terverifikasi Tanggal
-                                            <u><b>
-                                                    {{ $pengajuan->tanggal_validasi }}
-                                                </b></u>
-                                        </small>
-                                    @elseif ($pengajuan->status_validasi == 3)
-                                        <small class="font-inside">
-                                            Ditolak tanggal
-                                            <u>
-                                                {{ $pengajuan->tanggal_validasi }}
-                                            </u>
-                                        </small>
-                                    @else
-                                        <small class="font-inside">
-                                            Menunggu pemrosesan oleh Dinas
-                                        </small>
-                                    @endif
-                                </p>
-                                <p>{{ $usercount }}</p>
-
-
-                            </div>
-                        </a>
-
+                <div class="bg-white w-[1440px] -mt-4">
+                    <div class="relative w-[500px] h-[40px] text-gray-400 focus-within:text-gray-600 ml-[114px] mt-8 mb-8">
+                        <input id="search_field"
+                            class=" w-full h-full pl-14 pr-4 py-1 rounded-[8px] border-2 border-[#204e51] bg-[#f4f4f4]"
+                            placeholder="Cari berdasarkan nama" type="search">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="w-6 h-6 absolute left-6 top-1/2 transform -translate-y-1/2">
+                            <path fillRule="evenodd"
+                                d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                                clipRule="evenodd" />
+                        </svg>
                     </div>
-                @endif
-            @endforeach
+                    
+                    @foreach ($pengajuan as $pengajuan)
+                        @if ($pengajuan->status_validasi == 2)
+                            <div class="flex flex-col items-center mt-4 tablezz">
+                                <a href="{{ route('pelaporan.main', Crypt::encryptString($pengajuan->id_pengajuan)) }}"
+                                    class="flex items-center mb-6 bg-white border-b-2 w-[1240px] flex-row hover:bg-gray-100 py-4">
+                                    <img class="object-cover w-120 h-32 rounded-[6px] ml-4"
+                                        src="{{ optional($pengajuan->informasi)->gambar_informasi ? Storage::url($pengajuan->informasi->gambar_informasi) : 'fallback-image-url.jpg' }}"
+                                        alt="">
+                                    <div class="flex flex-col justify-between px-4 leading-normal">
+                                        <h5 class="text-[24px] font-semibold tracking-tight text-[#204E51] dark:text-white font-inside" id="judul-laporan">
+                                            {{ optional($pengajuan->informasi)->judul_informasi }}</h5>
+                                            <p class="mb-2 text-neutral-500">
+                                                @if ($pengajuan->status_validasi == 2)
+                                                    <small class="font-inside">
+                                                        Terverifikasi Tanggal
+                                                        <u><b>
+                                                                {{ $pengajuan->tanggal_validasi }}
+                                                            </b></u>
+                                                    </small>
+                                                @elseif ($pengajuan->status_validasi == 3)
+                                                    <small class="font-inside">
+                                                        Ditolak tanggal
+                                                        <u>
+                                                            {{ $pengajuan->tanggal_validasi }}
+                                                        </u>
+                                                    </small>
+                                                @else
+                                                    <small class="font-inside">
+                                                        Menunggu pemrosesan oleh Dinas
+                                                    </small>
+                                                @endif
+                                            </p>
+                                        <div
+                                            class="flex items-center justify-center mb-1 text-sm font-medium text-green-500 md:justify-start">
+                                            @if ($pengajuan->status_validasi == 2)
+                                                <span class="px-3 py-1 text-green-500 bg-green-100 rounded-full">Validated</span>
+                                            @elseif ($pengajuan->status_validasi == 3)
+                                                <span class="px-3 py-1 text-red-500 bg-red-100 rounded-full">Rejected</span>
+                                            @else
+                                                <span class="px-3 py-1 text-yellow-500 bg-yellow-100 rounded-full">Process</span>
+                                            @endif
+                                        </div>        
+                                    </div>
+                                </a>
+                                <div class="spacer w-[1640px] h-[20px] invisible"></div>
+        
+                            </div>
+                        @endif
+                    @endforeach
 
-
-
+                </div>
             </div>
         </section>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#search_field').on('keyup', function() {
+                        var searchText = $(this).val().toLowerCase();
+                        $('.tablezz').each(function() {
+                            var namaKegiatan = $(this).find('#judul-laporan').text().toLowerCase();
+                            if (namaKegiatan.includes(searchText)) {
+                                $(this).show();
+                            } else {
+                                $(this).hide();
+                            }
+                        });
+                    });
+                });
+            </script>
     </body>
+    
 @endsection

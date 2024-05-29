@@ -30,10 +30,6 @@ Route::get('/', function () {
     return view('landing');
 });
 
-// Route::get('/homepage', function () {
-//     return view('kelompoktani.homepage');
-// });
-
 Route::get('login', [C_Auth::class, 'login'])->name('login');
 
 

@@ -11,6 +11,7 @@
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
@@ -137,6 +138,28 @@
 
     @yield('content');
 </body>
+<footer class="flex flex-col p-6 text-center bg-[#204E51]" id="footer">
+    <div class="flex flex-row justify-between">
+        <div class="spacer"></div>
+        <div class="flex flex-col items-start ml-8 footer-bar">
+            <img src="./landing/Frame 841.png" class="h-20 " alt="">
+            <p class="w-80 text-wrap text-start text-[#f4f4f4]">Distribusi Bantuan Bibit Hortikultura yang Optimal
+                Kepada para Kelompok Tani di Kabupaten Jember</p>
+        </div>
+        <div class="spacer"></div>
+        <div class="items-center flex justify-center">
+            <div class="flex items-center justify-center mt-4 text-[#f4f4f4]">
+                <p>Copyright © 2024 - All right reserved by Bibitani Ltd</p>
+            </div>
+        </div>
+
+        <div class="spacer"></div>
+
+    </div>
+   
+
+
+</footer>
 
 
 </html>

@@ -52,7 +52,7 @@
                                 <a href="{{ route('pemberitahuan.detail', ['slug' => Str::slug($val->judul_informasi), 'id' => $val->id_informasi]) }}"
                                     class="hidden duration-700 ease-in-out " data-carousel-item>
                                     <div class="absolute w-full h-full mix-blend-overlay">
-                                        <img src="{{ asset('img/' . $val->gambar_informasi) }}"
+                                        <img src="{{ Storage::url($val->gambar_informasi) }}"
                                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                             alt="...">
                                         <div
