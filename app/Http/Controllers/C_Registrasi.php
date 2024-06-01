@@ -93,29 +93,27 @@ class C_Registrasi extends Controller
     }
     public function edit(Request $request, $id_registrasi)
     {
-        $user = Auth::user();
+        $decryptedIDs = Crypt::decryptString($id_registrasi);
+        $decryptedID = unserialize($decryptedIDs);
 
-        // Check if user is authenticated
-        if ($user) {
-            // Get the user ID
-            $userId = $user->id;
-        } else {
-            // User is not authenticated
-            $userId = null; // or you can handle it as you want
-        }
+        $user = Auth::user()->id;
+
+        $registrasi =  MRegistrasi::regkec();
+
+        $registrasi = $registrasi->where('id', $user)->first();
+        
+        
         $kecamatan = MKecamatan::orderBy('nama_kecamatan', 'asc')->get();
-
-
-        $data = MRegistrasi::getById($id_registrasi);
-
-        // dd($data);
-        // dd($data);
+       
+    
+        $data = MRegistrasi::getById($decryptedID);
+        
         return view(
             'Registrasi.edit',
             [
                 'kecamatan' => $kecamatan,
-                'userId' => $userId,
-                'data' => $data
+                'data' => $data,
+                'registrasi' => $registrasi
             ],
         );
     }
@@ -143,6 +141,8 @@ class C_Registrasi extends Controller
 
     public function update(Request $request, $id_registrasi)
     {
+        
+        $decryptedID = Crypt::decryptString($id_registrasi);
         try{
 
             $data = $request->validate([
@@ -151,8 +151,9 @@ class C_Registrasi extends Controller
                 'luas_hamparan' => 'required|integer',
                 'jumlah_anggota' => 'required|integer',
                 'alamat_keltani' => 'required|string',
-                'bukti_legalitas' => 'required|file|mimes:pdf',
+                'bukti_legalitas' => '|file|mimes:pdf',
                 'nama_kecamatan' => 'required|string|max:255',
+                'status_validasi' => 'string|max:255',
             ]);
     
             if ($request->hasFile('bukti_legalitas')) {
@@ -162,10 +163,10 @@ class C_Registrasi extends Controller
                 $data['bukti_legalitas'] = $filePath; // Menyimpan path lengkap
             }
     
-            $update = MRegistrasi::getById($id_registrasi);
+            $update = MRegistrasi::getById($decryptedID);
             if ($update){
                 $update->update($data);
-                return redirect()->route('kelompoktani.profile', ['id' => $id_registrasi])
+                return redirect()->route('homepage', ['id' => $id_registrasi])
                     ->with('success', 'Data kelompoktani telah diubah !');
             }
         } catch (\Exception $e) {
@@ -229,6 +230,7 @@ class C_Registrasi extends Controller
     public function profile($id_registrasi)
     {
         $decryptedID = Crypt::decryptString($id_registrasi);
+        
         $user = Auth::user()->id;
 
         $registrasi =  MRegistrasi::regkec();

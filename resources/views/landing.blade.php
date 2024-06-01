@@ -18,7 +18,6 @@
     @vite('resources/css/app.css')
 </head>
 <style>
-
     #overlay {
 
         background-color: rgba(0, 0, 0, 0.45);
@@ -26,7 +25,7 @@
 
     }
 
-    .titleabout p{
+    .titleabout p {
         background-color: white;
         color: white;
         z-index: 2;
@@ -81,7 +80,7 @@
         margin-bottom: 36px;
     }
 
-    .abouttext{
+    .abouttext {
         font-family: 'Raleway';
         text-align: center;
         color: #f4f4f4;
@@ -90,9 +89,7 @@
 
 <body>
     @if (session()->has('status'))
-        <div id="alert-3"
-            class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-            role="alert">
+        <div id="alert-3" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50" role="alert">
             <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                 viewBox="0 0 20 20">
                 <path
@@ -115,120 +112,149 @@
         </div>
     @endif
 
-    <nav class="flex items-center p-6 lg:px-8" aria-label="Global">
+    <nav class="flex items-center p-6 bg-white shadow-md md:flex justify-between" aria-label="Global">
         <div class="flex">
             <a href="/" class="-m-1.5 p-1.5">
-                <span class="sr-only">Your Company</span>
                 <img class="h-[86px] mr-12" src="bibitani.ico" alt="logobibitani">
             </a>
         </div>
-        <div class="flex gap-x-12">
+        <div class="hidden md:flex gap-x-12">
             <a href="#hero" class="font-semibold leading-6 navitem" style="font-size:20px">Home</a>
             <a href="#about" class="font-semibold leading-6 navitem" style="font-size:20px">About Us</a>
-            <a href="#footer" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Address</a>
+            <a href="#footer" class="font-semibold leading-6 navitem" style="font-size:20px">Address</a>
             @if (Auth::check())
                 @if (Auth::user()->id_roles == '2')
-                <a href="/dashboard" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Dashboard</a>
+                    <a href="/dashboard" class="font-semibold leading-6 navitem" style="font-size:20px">Dashboard</a>
                 @else
-                <a href="/homepage" class="text-sm font-semibold leading-6 navitem" style="font-size:20px">Homepage</a>
+                    <a href="/homepage" class="font-semibold leading-6 navitem" style="font-size:20px">Homepage</a>
                 @endif
             @endif
         </div>
-        <div class=" lg:flex lg:flex-1 lg:justify-end">
+        <div class="hidden md:flex flex-1 justify-end">
             @if (Auth::check())
                 <a href="{{ route('logout') }}"
-                    class="flex justify-center font-semibold leading-6  mx-8 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Logout</a>
+                    class="flex justify-center font-semibold leading-6 mx-8 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Logout</a>
             @else
                 <a href="{{ route('login') }}"
-                    class="flex justify-center font-semibold leading-6  mx-8 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Masuk</a>
+                    class="flex justify-center font-semibold leading-6 mx-8 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Masuk</a>
                 <a href="{{ route('register') }}"
-                    class="flex justify-center font-semibold leading-6  hover:bg-[#204e51] bg-[#f4f4f4] text-[#204e51] hover:text-[#f4f4f4] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Daftar</a>
+                    class="flex justify-center font-semibold leading-6 hover:bg-[#204e51] bg-[#f4f4f4] text-[#204e51] hover:text-[#f4f4f4] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Daftar</a>
             @endif
         </div>
+        <div class="md:hidden flex items-center">
+            <button id="menu-btn" class="text-3xl focus:outline-none">
+                &#9776;
+            </button>
+        </div>
     </nav>
-    <div class="relative h-screen px-6 bg-cover shadow-md isolate lg:px-8 transition:ease-in-out" id="hero"
-        style="background-image: url(image_1.png); background-size: cover;background-repeat: no-repeat; max-height: 86vh;">
-        <div class="h-screen -mx-8 bg-cover"id="overlay" style="max-height: 86vh">
-
-            <div class="max-w-4xl py-48 mx-auto ">
-                <div class="flex flex-col items-center text-center" id="isihero">
-                    <img src="./landing/Frame 841.png" class="w-[400px] h-full" alt="">
-                    <p class="text-lg leading-8 subhero">Platform Interaktif untuk Sinergi antara Dinas Tanaman Pangan
-                        Hortikultura dan Perkebunan (TPHP) dengan Kelompok Tani, guna Mewujudkan Distribusi Bantuan
-                        Bibit Hortikultura yang Optimal Kepada para Kelompok Tani di Kabupaten Jember</p>
-                </div>
-                
-            </div>
-        </div>
+    <!-- Mobile Menu -->
+    <div id="menu" class="hidden md:hidden flex flex-col items-center bg-white shadow-md p-6">
+        <a href="#hero" class="font-semibold leading-6 navitem mb-4" style="font-size:20px">Home</a>
+        <a href="#about" class="font-semibold leading-6 navitem mb-4" style="font-size:20px">About Us</a>
+        <a href="#footer" class="font-semibold leading-6 navitem mb-4" style="font-size:20px">Address</a>
+        @if (Auth::check())
+            @if (Auth::user()->id_roles == '2')
+                <a href="/dashboard" class="font-semibold leading-6 navitem mb-4" style="font-size:20px">Dashboard</a>
+            @else
+                <a href="/homepage" class="font-semibold leading-6 navitem mb-4" style="font-size:20px">Homepage</a>
+            @endif
+            <a href="{{ route('logout') }}"
+                class="flex justify-center font-semibold leading-6 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Logout</a>
+        @else
+            <a href="{{ route('login') }}"
+                class="flex justify-center font-semibold leading-6 mb-4 hover:bg-[#f4f4f4] bg-[#204E51] text-[#f4f4f4] hover:text-[#204E51] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Masuk</a>
+            <a href="{{ route('register') }}"
+                class="flex justify-center font-semibold leading-6 mb-4 hover:bg-[#204e51] bg-[#f4f4f4] text-[#204e51] hover:text-[#f4f4f4] rounded-[8px] items-center h-[44px] w-[128px] text-[20px] border border-[#204E51]">Daftar</a>
+        @endif
     </div>
-    <div id="about" class="flex flex-col items-center bg-[#204e51]">
-        <div class="herotitle text-[72px] font-bold my-8 text-[#f4f4f4]">
-            <h1>About us</h1>
-        </div>
-        
-        <div class="flex flex-row justify-evenly w-full h-full" >
-            <div class="flex justify-center flex-col text-justify w-[500px] text-wrap gap-4" id="textabout">
-                <p class="abouttext text-[22px] text-left">Bibitani adalah sebuah aplikasi berbasis website sebagai upaya membantu kelompok tani dalam mengajukan
-                    permintaan bantuan bibit Hortikultura kepada Dinas Tanaman Pangan dan Hortikultura (TPHP)</p>
-                <p class="abouttext text-[22px] text-left">Dengan harapan Website Bibitani dapat mempermudah Dinas Tanaman Pangan dan Hortikultura (TPHP) untuk melakukan
-                    pendistribusian bantuan bibit hortikultura di Kabupaten Jember dengan efektif dan efisien. 
+
+   <div class="relative h-screen px-6 bg-cover shadow-md isolate lg:px-8 transition:ease-in-out" id="hero"
+    style="background-image: url(image_1.png); background-size: cover; background-repeat: no-repeat; max-height: 86vh;">
+    <div class="h-screen -mx-8 bg-cover flex items-center justify-center" id="overlay" style="max-height: 86vh">
+        <div class="max-w-4xl py-24 md:py-48 mx-auto text-center">
+            <div class="flex flex-col items-center text-center md:flex justify-center" id="isihero">
+                <img src="./landing/Frame 841.png" class="w-[200px] md:w-[400px] h-full" alt="">
+                <p class="text-base md:text-lg leading-6 md:leading-8 subhero px-4 md:px-0">
+                    Platform Interaktif untuk Sinergi antara Dinas Tanaman Pangan Hortikultura dan Perkebunan (TPHP)
+                    dengan Kelompok Tani, guna Mewujudkan Distribusi Bantuan Bibit Hortikultura yang Optimal Kepada para
+                    Kelompok Tani di Kabupaten Jember
                 </p>
             </div>
-           
-            <div class="items-center flex flex-col justify-center" id="imgabout">
-                <img src="./landing/about us.jpeg" class="h-500px rounded-[20px]" alt="">
-            </div>
-        </div>
-        <div class="herotitle text-[72px] font-bold my-8 text-[#204e51]">
-            <h1>About us</h1>
         </div>
     </div>
-    <div id="tujuan" class="flex flex-col items-center justify-center">
-        <div class="herotitle text-[72px] font-bold my-8 ">
+</div>
+
+    <div id="about" class="flex flex-col items-center bg-[#204e51] py-8">
+        <div class="herotitle text-[36px] md:text-[72px] font-bold my-8 text-[#f4f4f4]">
+            <h1>About us</h1>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-evenly w-full h-full px-4 md:px-0 md">
+            <div class="flex justify-center flex-col text-justify md:w-[500px] text-wrap gap-4 mb-8 md:mb-0 "
+                id="textabout">
+                <p class="abouttext text-[18px] text-center md:text-[22px] md:text-left">Bibitani adalah sebuah aplikasi berbasis
+                    website sebagai upaya membantu kelompok tani dalam mengajukan permintaan bantuan bibit Hortikultura
+                    kepada Dinas Tanaman Pangan dan Hortikultura (TPHP)</p>
+                <p class="abouttext text-[18px] text-center md:text-[22px] md:text-left">Dengan harapan Website Bibitani dapat
+                    mempermudah Dinas Tanaman Pangan dan Hortikultura (TPHP) untuk melakukan pendistribusian bantuan
+                    bibit hortikultura di Kabupaten Jember dengan efektif dan efisien.</p>
+            </div>
+
+            <div class="items-center flex flex-col justify-center" id="imgabout">
+                <img src="./landing/about us.jpeg" class="w-full md:w-[500px] rounded-[20px]" alt="">
+            </div>
+           
+        </div>
+        <div class="spacer h-[80px] invisible"></div>
+    </div>
+
+    <div id="tujuan" class="flex flex-col items-center justify-center py-8">
+        <div class="herotitle text-[36px] md:text-[72px] font-bold my-8">
             <h1>Tujuan</h1>
         </div>
-        <div class="flex flex-row gap-40">
-            <div class="subtujuan">
-                <img src="./landing/Rectangle 10.png" class="imgtujuan" alt="">
-                <p>Mempermudah Dinas Tanaman Pangan Hortikultura dan Perkebunan (TPHP) untuk melakukan pencatatan dalam
-                    pendistribusian bantuan bibit hortikultura di Kabupaten Jember.</p>
+        <div class="flex flex-col md:flex-row gap-8 md:gap-40 px-4 md:px-0">
+            <div class="subtujuan text-center">
+                <img src="./landing/Rectangle 10.png" class="w-full md:w-auto imgtujuan mb-4" alt="">
+                <p class="text-[18px] md:text-[22px]">Mempermudah Dinas Tanaman Pangan Hortikultura dan Perkebunan
+                    (TPHP) untuk melakukan pencatatan dalam pendistribusian bantuan bibit hortikultura di Kabupaten
+                    Jember.</p>
             </div>
-            <div class="subtujuan">
-                <img src="./landing/Rectangle 11.png" class="imgtujuan" alt="">
-                <p>Meningkatkan produktivitas hasil panen petani di Kabupaten Jember melalui bantuan bibit hortikultura
-                    yang berkualitas.</p>
+            <div class="subtujuan text-center">
+                <img src="./landing/Rectangle 11.png" class="w-full md:w-auto imgtujuan mb-4" alt="">
+                <p class="text-[18px] md:text-[22px]">Meningkatkan produktivitas hasil panen petani di Kabupaten Jember
+                    melalui bantuan bibit hortikultura yang berkualitas.</p>
             </div>
-            <div class="subtujuan">
-                <img src="./landing/Rectangle 12.png" class="imgtujuan" alt="">
-                <p>Memudahkan Dinas Tanaman Pangan Hortikultura dan Perkebunan (TPHP) dalam mengontrol kualitas produk
-                    pertanian hortikultura di Kabupaten Jember.</p>
+            <div class="subtujuan text-center">
+                <img src="./landing/Rectangle 12.png" class="w-full md:w-auto imgtujuan mb-4" alt="">
+                <p class="text-[18px] md:text-[22px]">Memudahkan Dinas Tanaman Pangan Hortikultura dan Perkebunan
+                    (TPHP) dalam mengontrol kualitas produk pertanian hortikultura di Kabupaten Jember.</p>
             </div>
-
-
-
         </div>
-
-
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="landing.js"></script>
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
 
 
 </body>
 <footer class="flex flex-col p-6 text-center bg-[#204E51]" id="footer">
-    <div class="flex flex-row justify-between">
-        <div class="spacer"></div>
-        <div class="flex flex-col items-start ml-8 footer-bar">
-            <img src="./landing/Frame 841.png" class="h-20 " alt="">
-            <p class="w-80 text-wrap text-start text-[#f4f4f4]">Distribusi Bantuan Bibit Hortikultura yang Optimal
-                Kepada para Kelompok Tani di Kabupaten Jember</p>
+    <div class="flex flex-col md:flex-row justify-between items-center md:items-start">
+        <div class="spacer hidden md:block"></div>
+        <div class="flex flex-col items-center md:items-start md:ml-8 footer-bar mb-6 md:mb-0">
+            <img src="./landing/Frame 841.png" class="h-20 mb-4" alt="">
+            <p class="w-full md:w-80 text-wrap text-center md:text-start text-[#f4f4f4]">Distribusi Bantuan Bibit Hortikultura yang Optimal Kepada para Kelompok Tani di Kabupaten Jember</p>
         </div>
-        <div class="spacer"></div>
-        <div class="items-end">
-            <div class="flex flex-row gap-8">
+        <div class="spacer hidden md:block"></div>
+        <div class="flex flex-col items-center md:items-end">
+            <div class="flex flex-col md:flex-row gap-8">
                 <div class="footer-bar">
                     <div class="footer-subtitle">
-                        <ul class="flex flex-col items-start gap-3"> Pages
+                        <ul class="flex flex-col items-center md:items-start gap-3"> Pages
                             <a href="#hero" class="footer-sublink">Home</a>
                             <a href="#about" class="footer-sublink">About</a>
                             <a href="#tujuan" class="footer-sublink">Purpose</a>
@@ -237,7 +263,7 @@
                 </div>
                 <div class="footer-bar">
                     <div class="footer-subtitle">
-                        <ul class="flex flex-col items-start gap-3">Information
+                        <ul class="flex flex-col items-center md:items-start gap-3">Information
                             <a href="#" class="footer-sublink">Contact Us</a>
                             <a href="https://maps.app.goo.gl/hUygpvR5W21Sy9Nn9" class="footer-sublink">Address</a>
                         </ul>
@@ -245,15 +271,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="spacer"></div>
-
+        <div class="spacer hidden md:block"></div>
     </div>
     <div class="flex items-center justify-center mt-4 text-[#f4f4f4]">
         <p>Copyright © 2024 - All right reserved by Bibitani Ltd</p>
     </div>
-
-
 </footer>
 
 </html>

@@ -129,8 +129,8 @@
             </div>
             <div class="flex flex-row profile-container">
                 <div class="flex w-[50%] flex-col">
-                    <form action="{{ route('registrasi.update', Crypt::encryptString($registrasi->id_registrasi)) }}" id="profilkeltan"
-                        method="POST">
+                    <form action="{{ route('registrasi.update', Crypt::encryptString($registrasi->id_registrasi)) }}"
+                        id="profilkeltan" method="POST">
                         @method('PUT')
                         @csrf
 
@@ -173,12 +173,16 @@
                             <label for="nama_keltani" class="pt-2 font-bold">Kecamatan</label>
                             <select name="nama_kecamatan"
                                 class="px-2 py-1 rounded-[8px] bg-white input_main3 border hidden">
-                                <option selected disabled>{{ $registrasi->nama_kecamatan }}
-                                </option>
+                                <option disabled>Pilih Kecamatan</option>
+                                <option selected value="{{ $registrasi->id_kecamatan }}">
+                                    {{ $registrasi->nama_kecamatan }}</option>
                                 @foreach ($kecamatan as $val)
-                                    <option value="{{ $val->id_kecamatan }}">
-                                        {{ $val->nama_kecamatan }}
-                                    </option>
+                                    @if ($val->id_kecamatan == $registrasi->id_kecamatan)
+                                        <option class="hidden" value="{{ $val->id_kecamatan }}">
+                                            {{ $val->nama_kecamatan }}</option>
+                                    @else
+                                        <option value="{{ $val->id_kecamatan }}">{{ $val->nama_kecamatan }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             <input type="text" name="nama_kecamatan" value="{{ $registrasi->nama_kecamatan }}"

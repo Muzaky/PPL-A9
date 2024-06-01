@@ -20,7 +20,7 @@
             <div class="flex flex-wrap items-center justify-center h-full text-neutral-800 dark:text-neutral-200">
                 <div class="w-full">
                     <!-- Container -->
-                    <div class="relative block bg-white rounded-lg shadow-lg dark:bg-neutral-800">
+                    <div class="relative block bg-white rounded-lg shadow-lg dark:bg-neutral-800 max-md:w-[400px]">
                          <a href="/"
                             class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
                             aria-label="Close">
@@ -49,7 +49,7 @@
                                                 Nama
                                             </label>
                                             <input
-                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('name') border-red-500 @enderror"
+                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('name') border-red-500 @enderror max-md:w-[370px]"
                                                 type="text" placeholder="Masukkan nama" id="name" name="name" />
                                             @error('name')
                                                 <div class="text-red-500 capitalize invalid-feedback">
@@ -62,7 +62,7 @@
                                                 Email
                                             </label>
                                             <input
-                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('email') border-red-500 @enderror"
+                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('email') border-red-500 @enderror max-md:w-[370px]"
                                                 type="text" placeholder="Masukkan email" id="email" name="email" />
                                             @error('email')
                                                 <div class="text-red-500 capitalize invalid-feedback">
@@ -75,7 +75,7 @@
                                                 Password
                                             </label>
                                             <input
-                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('password') border-red-500 @enderror"
+                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('password') border-red-500 @enderror max-md:w-[370px]"
                                                 type="password" placeholder="Masukkan password" id="password" name="password" />
                                             @error('password')
                                                 <div class="text-red-500 capitalize invalid-feedback">
@@ -88,8 +88,8 @@
                                                 Konfirmasi Password
                                             </label>
                                             <input
-                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('password') border-red-500 @enderror"
-                                                type="password" placeholder="Konfirmasi password" id="password" name="password" />
+                                                class="w-[600px] h-[52px] p-2 rounded-[8px] @error('password') border-red-500 @enderror max-md:w-[370px]"
+                                                type="password" placeholder="Konfirmasi password" id="password" name="confirm_password" />
                                             @error('password')
                                                 <div class="text-red-500 capitalize invalid-feedback">
                                                     {{ $message }}
@@ -125,7 +125,7 @@
 
                             <!-- Right column container with background and description-->
                             <div
-                                class="flex items-center justify-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none">
+                                class="hidden md:flex items-center justify-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none">
                                 <div class="w-[688px] h-[746px] rounded-[20px] my-8"
                                     style="background-image: url('air.png'); background-size: cover"></div>
                             </div>

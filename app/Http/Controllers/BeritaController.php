@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+
 class BeritaController extends Controller
 {
 
@@ -64,35 +65,33 @@ class BeritaController extends Controller
 
     public function store(Request $request)
     {
-   
-        try{
 
-            $data = $request->validate([
-                'judul_informasi' => 'required|string|max:255',
-                'nama_bibit' => 'required|string|max:255',
-                'deskripsi' => 'required|string',
-                'tgl_awal' => 'required|date',
-                'tgl_akhir' => 'required|date',
-                'jumlah_bibit' => 'required|integer',
-                'syarat_ketentuan' => 'required|string',
-                'kontak_narahubung' => 'required|string|max:255',
-                'gambar_informasi' => 'nullable|file|mimes:jpg,jpeg,svg,png|max:2048',
-            ]);
-    
-    
+        $data = $request->validate([
+            'judul_informasi' => 'required|string|max:255',
+            'nama_bibit' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'tgl_awal' => 'required|date',
+            'tgl_akhir' => 'required|date',
+            'jumlah_bibit' => 'required|integer',
+            'syarat_ketentuan' => 'required|string',
+            'kontak_narahubung' => 'required|string|max:255',
+            'gambar_informasi' => 'nullable|file|mimes:jpg,jpeg,svg,png|max:2048',
+        ]);
+
+        try {
             if ($request->hasFile('gambar_informasi')) {
                 $file = $request->file('gambar_informasi');
                 $nama_file = $file->getClientOriginalName();
                 $filePath = $file->storeAs('img', $nama_file, 'public');
                 $data['gambar_informasi'] = $filePath; // Menyimpan path lengkap
             }
-            
+
             MBerita::create($data);
-    
-            return redirect()->route('berita.list')->with('status','Pemberitahuan berhasil disimpan !');
-        }catch (\Exception $e) {
+
+            return redirect()->route('berita.list')->with('status', 'Pemberitahuan berhasil disimpan !');
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'Mohon lengkapi data registrasi kelompok tani !');
+            return redirect()->back()->with('error', 'Terjadi kesalahan, mohon coba lagi nanti.');
         }
     }
 
@@ -107,7 +106,7 @@ class BeritaController extends Controller
     }
     public function update(Request $request, $id_informasi)
     {
-        try{
+        try {
 
             $request->validate([
                 'judul_informasi' => 'required',
@@ -119,7 +118,7 @@ class BeritaController extends Controller
                 'kontak_narahubung' => 'required',
                 'gambar_informasi' => 'file|mimes:pdf,jpg,jpeg,svg,png',
             ]);
-    
+
             $data = [
                 'judul_informasi' => $request->judul_informasi,
                 'nama_bibit' => $request->nama_bibit,
@@ -135,9 +134,9 @@ class BeritaController extends Controller
                 $file->storeAs('img', $nama_file);
                 $data['gambar_informasi'] = $nama_file;
             };
-    
+
             $update = MBerita::getById($id_informasi);
-            if ($update){
+            if ($update) {
                 $update->update($data);
                 return redirect()->route('berita.list')
                     ->with('status', 'Pemberitahuan berhasil disimpan');
@@ -146,7 +145,6 @@ class BeritaController extends Controller
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Mohon lengkapi data registrasi kelompok tani !');
         }
-        
     }
     public function destroy($id_informasi)
     {

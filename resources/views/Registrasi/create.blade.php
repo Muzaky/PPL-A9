@@ -28,7 +28,7 @@
             <div class="w-full">
                 @if (session()->has('error'))
                 <div id="alert-border-3"
-                    class="flex items-center p-4 mt-5 mb-4 text-red-800 border-t-4 border-red-300 bg-green-50 dark:text-red-400 dark:bg-red-800 dark:border-red-800"
+                    class="flex items-center p-4 mt-5 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-red-800 dark:border-red-800"
                     role="alert">
                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 20">

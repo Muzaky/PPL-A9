@@ -16,11 +16,11 @@
     <form action="{{ route('authenticate') }}" method="post">
         @method('POST')
         @csrf
-        <div class="container h-full p-10 ">
-            <div class="flex flex-wrap items-center justify-center h-full text-neutral-800 dark:text-neutral-200">
+        <div class="container h-full p-10 max-md:flex justify-center">
+            <div class="flex flex-wrap items-center justify-center h-full text-neutral-800">
                 <div class="w-full">
                     <!-- Container -->
-                    <div class="relative block bg-white rounded-lg shadow-lg dark:bg-neutral-800">
+                    <div class="relative block bg-white rounded-lg shadow-lg dark:bg-neutral-800 max-md:w-[400px]">
                         <a href="/"
                             class="absolute top-0 left-0 mt-4 ml-4 text-gray-600 hover:text-gray-800"
                             aria-label="Close">
@@ -46,21 +46,21 @@
                                     @endif
 
                                     <form class="flex flex-col">
-                                        <p class="mb-[10px] text-[36px] font-bold font-[Open Sans]">Masuk</p>
-                                        <small class="mb-[46px] text-[#B9B8B8] ">Silahkan masukkan email dan password</small>
+                                        <p class="flex mb-[10px] text-[36px] font-bold font-[Open Sans]">Masuk</p>
+                                        <small class="flex mb-[46px] text-[#B9B8B8] ">Silahkan masukkan email dan password</small>
                                         <!--Username input-->
-                                        <div class="mb-4 ">
-                                            <label class="block mb-2 font-semibold text-[20px]">
+                                        <div class="mb-4 max-md:flex flex-col">
+                                            <label class="block mb-2 font-semibold text-[20px] max-md:flex">
                                                 Email
                                             </label>
-                                            <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="text"
+                                            <input class="w-[600px] h-[52px] p-2 rounded-[8px] max-md:w-[370px]" type="text"
                                                 placeholder="Masukkan email" id="email" name="email" />
                                         </div>
-                                        <div class="mb-4 ">
-                                            <label class="block mb-2 font-semibold text-[20px]">
+                                        <div class="mb-4 max-md:flex flex-col ">
+                                            <label class="block mb-2 font-semibold text-[20px] ">
                                                 Password
                                             </label>
-                                            <input class="w-[600px] h-[52px] p-2 rounded-[8px]" type="password"
+                                            <input class="w-[600px] h-[52px] p-2 rounded-[8px] max-md:w-[370px]" type="password"
                                                 placeholder="Masukkan password" id="password" name="password" />
                                         </div>
 
@@ -91,7 +91,7 @@
 
                             <!-- Right column container with background and description-->
                             <div
-                                class="flex items-center justify-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none">
+                                class="hidden md:flex items-center justify-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none">
                                 <div class="w-[688px] h-[746px] rounded-[20px] my-8"
                                     style="background-image: url(image_1.png); background-size: cover"></div>
                             </div>

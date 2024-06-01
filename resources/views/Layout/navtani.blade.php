@@ -75,11 +75,13 @@
                                 <a href="{{ route('homepage') }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
                             </li>
+                            @if ($registrasi -> status_validasi == 2)
                             <li>
                                 <a href="{{ route('kelompoktani.profile', Crypt::encryptString($registrasi->id_registrasi)) }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
                                     
-                            </li>
+                                </li>
+                                @endif
                         </ul>
                         <div class="py-1">
                             <a href="{{ route('logout') }}"
@@ -112,10 +114,12 @@
                                 <a href="{{ route('homepage') }}"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
                             </li>
-                            <li>
-                                <a href="{{ route('kelompoktani.profile', Crypt::encryptString($registrasi->id_registrasi)) }}"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-                            </li>
+                            
+                                <li>
+                                    <a href="{{ route('kelompoktani.profile', Crypt::encryptString($registrasi->id_registrasi)) }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                                </li>
+                            
                         </ul>
                         <div class="py-1">
                             <a href="{{ route('logout') }}"
@@ -142,7 +146,7 @@
     <div class="flex flex-row justify-between">
         <div class="spacer"></div>
         <div class="flex flex-col items-start ml-8 footer-bar">
-            <img src="./landing/Frame 841.png" class="h-20 " alt="">
+            <img src="/landing/Frame 841.png" class="h-20 " alt="">
             <p class="w-80 text-wrap text-start text-[#f4f4f4]">Distribusi Bantuan Bibit Hortikultura yang Optimal
                 Kepada para Kelompok Tani di Kabupaten Jember</p>
         </div>
@@ -156,7 +160,7 @@
         <div class="spacer"></div>
 
     </div>
-   
+
 
 
 </footer>

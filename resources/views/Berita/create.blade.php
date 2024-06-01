@@ -5,35 +5,12 @@
             <div
                 class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0 ">
-                    <form class="flex justify-center items-center flex-col" action="{{ route('berita.store') }}" method="POST"
+                    <form class="flex justify-center items-center flex-col font-[montserrat]" action="{{ route('berita.store') }}" method="POST"
                         enctype="multipart/form-data">
+                        @method('POST')
                         @csrf
-                        @if (session()->has('error'))
-                        <div id="alert-border-3"
-                            class="flex items-center p-4 mt-5 mb-4 text-red-800 border-t-4 border-red-300 bg-green-50 dark:text-red-400 dark:bg-red-800 dark:border-red-800"
-                            role="alert">
-                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                            </svg>
-                            <div class="text-sm font-medium ms-3">
-                                {{ session('error') }}
-                            </div>
-                            <button type="button"
-                                class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-red-800 dark:text-red-400 dark:hover:bg-red-700"
-                                data-dismiss-target="#alert-border-3" aria-label="Close">
-                                <span class="sr-only">Dismiss</span>
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                </svg>
-                            </button>
-                        </div>
-                    @endif
-                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                            Tabel Informasi
+                        <h6 class="text-blueGray-400 text-l mt-3 mb-6 font-bold uppercase">
+                            Buat Informasi
                         </h6>
                         <div class="flex flex-wrap">
                             <div class="w-full lg:w-6/12 px-4">
@@ -56,6 +33,7 @@
                                     <input type="text" name="nama_bibit" id="nama_bibit"
                                         class="border-0 px-3 py-2.5 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring focus:ring-[#204e51] w-full ease-linear transition-all duration-150"
                                         value="" placeholder="Masukkan Nama Bibit">
+                                        
                                 </div>
                             </div>
 
@@ -134,21 +112,27 @@
                                     htmlfor="grid-password">
                                     Deskripsi
                                 </label>
-                                <textarea name="deskripsi" id="deskripsi"></textarea>
+                                <textarea name="deskripsi" id="deskripsi" class="@error('deskripsi') border-red-500 @enderror h-[200px] w-[600px] resize-none rounded-[4px] p-2"></textarea>
+                                @error('deskripsi')
+                                    <div class="text-red-500 capitalize invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="flex flex-col items-center">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2 resize-none"
                                     htmlfor="grid-password">
-                                    Syarat dan Ketentuan test
+                                    Syarat dan Ketentuan
                                 </label>
-                                <textarea name="syarat_ketentuan" id="syarat_ketentuan"></textarea>
+                                <textarea name="syarat_ketentuan" id="syarat_ketentuan" class="@error('syarat_ketentuan') border-red-500 @enderror h-[200px] w-[600px] resize-none rounded-[4px] p-2"></textarea>
+                                @error('syarat_ketentuan')
+                                    <div class="text-red-500 capitalize invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                         </div>
-                        <script>
-                            CKEDITOR.replace('syarat_ketentuan');
-                            CKEDITOR.replace('deskripsi');
-                        </script>
                         <button
                             class="mt-4 px-4 py-2 bg-[#204e51] text-[#fff] border-2 border-[#204e51] hover:bg-[#fff] hover:text-[#204e51] rounded-[8px]"
                             type="submit" class="flex">
@@ -158,10 +142,12 @@
                 </div>
             </div>
         </div>
+        <script>
+            CKEDITOR.replace('syarat_ketentuan');
+            CKEDITOR.replace('deskripsi');
+        </script>
 
         <script>
-        
-
             function displayFileName() {
                 const fileInput = document.getElementById('dropzone-file');
                 const fileNameParagraph = document.getElementById('file-name');

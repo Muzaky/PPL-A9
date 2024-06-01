@@ -16,10 +16,9 @@
     </style>
 
     <body class="flex flex-col bg-slate-200">
-        
+
         <div class="flex flex-col items-center">
-            <div
-                class="flex flex-col text-center w-[1440px] h-full bg-[#204E51] items-center mt-8 pb-4 shadow-xl border-[4px] border-[#204E51] rounded-[20px] relative">
+            <div class="flex flex-col text-center w-[1440px] h-full bg-[#204E51] items-center mt-8 pb-4 shadow-xl border-[4px] border-[#204E51] rounded-[20px] relative">
                 <div class="bg-white shadow-xl rounded-[20px] w-full px-10 pb-10">
 
                     <a href="{{ route('pelaporan.main', Crypt::encryptString($pengajuan->id_pengajuan)) }}"
@@ -210,6 +209,7 @@
                 @endif
             </div>
         </div>
+        </div>
         <!-- Back button -->
 
 
@@ -343,6 +343,7 @@
                     fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Bukti Legalitas';
                 }
             }
+
             function displayFileName2() {
                 const fileInput = document.getElementById('dropzone-file2');
                 const fileNameParagraph = document.getElementById('file-name2');
@@ -360,6 +361,5 @@
                 }
             }
         </script>
-
-        </section>
-    @endsection
+    </body>
+@endsection

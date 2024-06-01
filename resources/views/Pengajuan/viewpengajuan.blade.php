@@ -229,8 +229,8 @@
                 </button>
                 <div class="flex-auto px-4 lg:px-10 py-4 pt-0">
                     <form class="flex justify-center items-center flex-col"
-                        action="{{ route('pengajuan.update', Crypt::encryptString($pengajuan->id_pengajuan)) }}" method="POST"
-                        enctype="multipart/form-data">
+                        action="{{ route('pengajuan.update', Crypt::encryptString($pengajuan->id_pengajuan)) }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             Ubah Pengajuan
@@ -263,7 +263,8 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file2" onchange="displayFileName2()"
-                                                name="berkas_pengajuan" type="file" class="hidden" accept="application/pdf"/>
+                                                name="berkas_pengajuan" type="file" class="hidden"
+                                                accept="application/pdf" />
                                         </label>
                                     </div>
 
@@ -320,6 +321,7 @@
                     fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Berkas Pengajuan';
                 }
             }
+
             function displayFileName2() {
                 const fileInput = document.getElementById('dropzone-file2');
                 const fileNameParagraph = document.getElementById('file-name2');
@@ -336,8 +338,6 @@
                     fileNameParagraph.innerHTML = svgCode + 'Klik Untuk Unggah Berkas Pengajuan';
                 }
             }
-
-            
         </script>
 
     </body>

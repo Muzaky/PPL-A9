@@ -33,6 +33,12 @@
     .remove-arrow {
         -moz-appearance: textfield;
     }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 </style>
 
 <body class="bg-gray-100">
@@ -131,28 +137,7 @@
                             <span>Ini Logout</span>
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="#"
-                            class="text-gray-800 hover:bg-gray-800 hover:text-white  px-4 py-2 rounded-md text-sm font-medium flex items-center space-x-2">
-                            <svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            <span>Kelompok Tani</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="text-gray-800 hover:bg-gray-800 hover:text-white  px-4 py-2 rounded-md text-sm font-medium flex items-center space-x-2">
-                            <svg class="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            <span>Kelompok Tani</span>
-                        </a>
-                    </li> --}}
+                    
                 </ul>
             </div>
         </div>
@@ -163,24 +148,11 @@
             <div class="flex h-[44px] justify-center items-center content-center mt-[63px]">
                 <!-- Top bar content -->
                 <div class="flex w-[614px] h-auto rounded-[8px] mx-[12px] items-center">
-                    
+
                 </div>
                 <div class="flex-1 px-4 flex justify-between">
                     <div class="flex-1 flex">
                     </div>
-
-                    {{-- <div class="ml-4 flex items-center md:ml-6">
-                        <!-- Profile dropdown -->
-                        <div class="ml-3 relative">
-                            <div>
-                                <button
-                                    class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid">
-                                    <img class="h-8 w-8 rounded-full"
-                                        src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
-                                </button>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
 
